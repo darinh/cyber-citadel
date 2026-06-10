@@ -81,6 +81,48 @@ image_expressions:
   status: "Variants are generated + framed, but NOT yet selected per-line by the renderer (build_episode2.py overlays the base {SPEAKER}.png only). Wiring expression-by-intent is backlog."
 
 # ---------------------------------------------------------------------------
+# IMAGE — setup (how to reproduce the image-gen stack on a fresh machine)
+# ---------------------------------------------------------------------------
+image_setup:
+  venv: .venv_img
+  pip: [torch (CUDA build), diffusers, transformers, accelerate, safetensors, Pillow, ip_adapter]
+  sdxl_model: "stabilityai/stable-diffusion-xl-base-1.0 (variant=fp16; pulled via diffusers.from_pretrained)"
+  ip_adapter_package: "tencent-ailab/IP-Adapter (Apache-2.0) -> provides `ip_adapter` python module"
+  ip_adapter_weights_source: "huggingface.co/h94/IP-Adapter (Apache-2.0)"
+  ip_adapter_local_dir: tools/_ipa            # gitignored, multi-GB, re-downloadable
+  ip_adapter_files:
+    - tools/_ipa/models/image_encoder/config.json            # ViT-H image encoder (1280-dim)
+    - tools/_ipa/models/image_encoder/model.safetensors
+    - tools/_ipa/sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors
+  ip_adapter_num_tokens: 16
+  note: "The _vit-h adapter REQUIRES the ViT-H encoder at models/image_encoder (not the bigG encoder under sdxl_models/)."
+
+# ---------------------------------------------------------------------------
+# IMAGE — backgrounds (hybrid: AI makes ONLY dark text/character-free backgrounds; UI on top)
+# ---------------------------------------------------------------------------
+image_backgrounds:
+  tool: tools/gen_backgrounds.py
+  venv: .venv_img
+  model: stabilityai/stable-diffusion-xl-base-1.0
+  width: 1344
+  height: 768
+  steps: 30
+  guidance_scale: 6.5
+  seed_base: 1000                              # seed = 1000 + index (citadel=1000 .. network=1007)
+  out_dir: course/art/backgrounds
+  style_suffix: ", dark moody concept art, deep navy background, high contrast, volumetric fog, cinematic rim lighting, depth of field, 16:9, no text, no characters"
+  negative: "text, words, letters, numbers, watermark, signature, people, person, face, hands, ui, border, frame, bright, washed out, low quality, jpeg artifacts, busy, cluttered"
+  scenes:
+    citadel: { seed: 1000, prompt: "a colossal dark cyber fortress citadel on a hill at night, glowing cyan circuit ramparts, distant gold lights" }
+    walls:   { seed: 1001, prompt: "a fortified digital gate, faint cyan energy barrier, towering dark ramparts, atmospheric haze" }
+    watch:   { seed: 1002, prompt: "tall watchtowers above a dark data-city, faint teal scanning light beams in fog" }
+    people:  { seed: 1003, prompt: "a vast dim archive hall of faintly glowing data shelves, warm gold ambient light" }
+    council: { seed: 1004, prompt: "a dark high council chamber, faint holographic blue maps floating, violet ambient glow" }
+    forge:   { seed: 1005, prompt: "a dark industrial forge with dim server racks and supply conduits, faint orange and cyan embers" }
+    vault:   { seed: 1006, prompt: "a deep underground data vault, dark blast doors, faint magenta and cyan glowing cores" }
+    network: { seed: 1007, prompt: "an abstract dark void with a faint constellation of cyan and gold light nodes, depth of field" }
+
+# ---------------------------------------------------------------------------
 # VOICE — Chatterbox (current engine); zero-shot clone of a license-clean reference clip
 # ---------------------------------------------------------------------------
 voice:

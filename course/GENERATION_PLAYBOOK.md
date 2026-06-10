@@ -193,6 +193,50 @@ Newer equivalents worth evaluating when revisiting: instant-identity / consisten
 workflows, reference-only / image-prompt adapters, and character-LoRA training from the
 approved base set. The principle (condition on the reference) stays the same.
 
+### 4a. Image-generation environment setup (reproduce on a new machine)
+All image gen runs in **`.venv_img`** (kept separate from the TTS venv): `torch` (CUDA build),
+`diffusers`, `transformers`, `accelerate`, `safetensors`, `Pillow`. Model: SDXL base-1.0 is
+pulled by `diffusers.from_pretrained("stabilityai/stable-diffusion-xl-base-1.0", variant="fp16")`
+(cached under the HF cache).
+
+**IP-Adapter (for §4 expression variants)** — install once, then it's offline:
+- `pip install` the **`ip_adapter`** package (Tencent `tencent-ailab/IP-Adapter`, Apache-2.0) into `.venv_img`.
+- Download the weights from HF **`h94/IP-Adapter`** into `tools/_ipa/` (gitignored, multi-GB, re-downloadable). Exact layout the code expects (`gen_avatar_ipa.py` `ENC`/`CKPT`):
+  - `tools/_ipa/models/image_encoder/{config.json, model.safetensors}` — ViT-H (1280-dim) image encoder
+  - `tools/_ipa/sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors` — the Plus adapter (ViT-H variant)
+- Plus adapter uses `num_tokens=16`; the `_vit-h` adapter **requires the ViT-H** encoder (don't pair it with the smaller ViT-bigG/`image_encoder` under `sdxl_models/`).
+
+### 4b. Backgrounds (hybrid: AI makes ONLY backgrounds, the UI stays designed)
+Council-endorsed rule: **AI generates only dark, text-free, character-free backgrounds**; all UI,
+sigils, and text are drawn by the deterministic scene engine on top. This avoids garbled AI text
+and keeps the layout crisp. (`tools/gen_backgrounds.py`, SDXL, 1344x768, steps 30, guidance 6.5,
+seeds `1000+i`.) Saved to `course/art/backgrounds/<name>.png`.
+```
+STYLE = ", dark moody concept art, deep navy background, high contrast, volumetric fog, cinematic rim lighting, depth of field, 16:9, no text, no characters"
+NEG   = "text, words, letters, numbers, watermark, signature, people, person, face, hands, ui, border, frame, bright, washed out, low quality, jpeg artifacts, busy, cluttered"
+citadel : "a colossal dark cyber fortress citadel on a hill at night, glowing cyan circuit ramparts, distant gold lights"   (seed 1000)
+walls   : "a fortified digital gate, faint cyan energy barrier, towering dark ramparts, atmospheric haze"                   (seed 1001)
+watch   : "tall watchtowers above a dark data-city, faint teal scanning light beams in fog"                                (seed 1002)
+people  : "a vast dim archive hall of faintly glowing data shelves, warm gold ambient light"                              (seed 1003)
+council : "a dark high council chamber, faint holographic blue maps floating, violet ambient glow"                         (seed 1004)
+forge   : "a dark industrial forge with dim server racks and supply conduits, faint orange and cyan embers"               (seed 1005)
+vault   : "a deep underground data vault, dark blast doors, faint magenta and cyan glowing cores"                         (seed 1006)
+network : "an abstract dark void with a faint constellation of cyan and gold light nodes, depth of field"                 (seed 1007)
+```
+
+### 4c. How to create a NEW character / re-cast for a NEW course (step-by-step)
+1. Pick a **new fixed seed** (don't reuse 1101–1105) and write an identity description in the
+   same slot style as the table above (age, hair, wardrobe, signature color, expression).
+2. Add it to `gen_avatars.py CHARS` + a ring color in `make_avatars.py COLOR`; run base gen → frame.
+3. **Lock it**: copy the seed + exact prompt into `course/seed_registry.yaml` **before** making
+   variants. That registry entry — not your memory — is the reproducibility record.
+4. Expression variants: add the character + per-expression prompts to `gen_avatar_ipa.py EXPR`
+   and run it; identity comes from the base image (scale 0.72), so vary ONLY the expression text.
+5. Eyeball that all variants look like the SAME person; if one drifts, nudge `SCALE` up (toward
+   ~0.8) or fix the expression wording — do **not** re-roll the base seed.
+6. Record the run (seed, prompts, files) in the registry + a Changelog note. Keep failed/rejected
+   attempts as documented lessons (see the NULL seed-1144 note) so they aren't retried blindly.
+
 ---
 
 ## 5. VOICE / TTS  ⭐ (hard-won)
@@ -373,6 +417,12 @@ the §4 fixed-base-reference identity so the animated character stays the same p
 ---
 
 ## 11. Changelog of learnings
+- **2025 — image-gen recording pass.** Recorded the remaining image-generation inputs +
+  setup/guidance so the avatar/image work is reproducible on a fresh machine: added §4a
+  (`.venv_img` + IP-Adapter install + exact `tools/_ipa/` model layout from `h94/IP-Adapter`),
+  §4b (backgrounds — hybrid AI-backgrounds-only rule + all 8 `gen_backgrounds.py` prompts/seeds
+  1000–1007 + STYLE/NEG), and §4c (step-by-step "create a NEW character / re-cast for a new
+  course"). Mirrored into `seed_registry.yaml` (`image_setup`, `image_backgrounds`).
 - **2025 — adversarial council review (5 LLMs: gpt-5.5, gemini-3.1-pro, claude-sonnet-4.5,
   gemma3:27b, gpt-oss:20b).** Consensus SHIP-WITH-CHANGES; applied: corrected the accuracy-gate
   description (`verify_script.py` is **deterministic**; `audit_narration.py` is the LLM
