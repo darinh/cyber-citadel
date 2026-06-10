@@ -42,7 +42,7 @@
     ],
     [
      "NOVA",
-     "I'm Nova — newly appointed, and honestly new to all of this. Can we start from the very beginning?"
+     "I'm Nova — just started here, and honestly? I'm new to all of this. Can we start from the very beginning?"
     ],
     [
      "VEGA",
@@ -61,11 +61,11 @@
    "say": [
     [
      "NOVA",
-     "So who writes all of this?"
+     "Okay, so who writes all this stuff?"
     ],
     [
      "VEGA",
-     "NIST does. Think of them as the standards lab for digital defense."
+     "That would be NIST. Think of them as the standards lab for digital defense."
     ]
    ],
    "min_seconds": 6.5
@@ -125,7 +125,7 @@
    "say": [
     [
      "NOVA",
-     "Everyone keeps saying 'risk.'"
+     "People keep throwing around this word, 'risk.'"
     ],
     [
      "VEGA",
@@ -192,7 +192,7 @@
    "say": [
     [
      "NOVA",
-     "Why does any of this exist?"
+     "But why does any of this even exist?"
     ],
     [
      "VEGA",
@@ -237,7 +237,7 @@
    "say": [
     [
      "NOVA",
-     "So this 'eight-hundred fifty-three' everyone cites — what is it, exactly?"
+     "So this 'eight-hundred fifty-three' everyone keeps citing — what even is it?"
     ],
     [
      "VEGA",
@@ -357,7 +357,7 @@
    "say": [
     [
      "NOVA",
-     "People keep saying 'baseline.'"
+     "People keep saying 'baseline' — what's that mean?"
     ],
     [
      "VEGA",
@@ -374,7 +374,7 @@
    "say": [
     [
      "NOVA",
-     "Hold on — where are the Low, Moderate, and High baselines kept?"
+     "Wait, hold on — where'd the Low, Moderate, and High baselines go?"
     ],
     [
      "VEGA",

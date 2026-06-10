@@ -174,10 +174,10 @@ def build_index(quizzes):
         dur = probe(mp4)
         durtxt = fmt_dur(dur) if dur else "&mdash;"
         rel = f"course/episodes/{epid}_{slug}.mp4"
-        relv = f"course/episodes/{epid}_{slug}.vtt"
-        track = f'<track kind="subtitles" label="English" srclang="en" src="{relv}" default>' if vtt.exists() else ""
+        # Captions are baked into the video; do NOT attach a soft subtitle track
+        # (it would double up and some players force-show track 1). VTT stays on disk.
         video = (f'<video controls preload="none" poster="">'
-                 f'<source src="{rel}" type="video/mp4">{track}</video>') if mp4.exists() else \
+                 f'<source src="{rel}" type="video/mp4"></video>') if mp4.exists() else \
                 '<div class="missing">video renders to this folder</div>'
         cards.append(f'''
       <article class="ep">
@@ -303,6 +303,9 @@ document.getElementById('score').textContent=(i===q.answer?'Correct!':'Answer: '
 document.getElementById('score').textContent='Score '+correct+'/'+seen;}
 function nextQ(){qi=(qi+1)%QZ.length;render();}function prevQ(){qi=(qi-1+QZ.length)%QZ.length;render();}
 render();
+// Captions are baked into the videos; force every soft text track OFF (defensive).
+function killTracks(v){try{const t=v.textTracks||[];for(let i=0;i<t.length;i++)t[i].mode='disabled';}catch(e){}}
+document.querySelectorAll('video').forEach(v=>{killTracks(v);v.addEventListener('loadedmetadata',()=>killTracks(v));v.addEventListener('play',()=>killTracks(v));});
 </script>
 </body></html>"""
 

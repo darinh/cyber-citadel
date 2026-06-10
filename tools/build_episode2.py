@@ -199,7 +199,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Cap,Segoe UI Semibold,42,&H00F5ECE8,&H00FFFFFF,&H00140A06,&H96000000,-1,0,0,0,100,100,0,0,1,3,1,2,240,240,42,1
+Style: Cap,Segoe UI Semibold,58,&H00F5ECE8,&H00FFFFFF,&H00140A06,&H96000000,-1,0,0,0,100,100,0,0,1,4,1,2,240,240,56,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text

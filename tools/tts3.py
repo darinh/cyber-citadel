@@ -47,8 +47,8 @@ EFFECTS = {
     "NARRATOR":  f"highpass=f=75,acompressor=threshold=-18dB:ratio=2:attack=12:release=120,aecho=0.85:0.9:28:0.12,{_NORM}",
     "VEGA":      f"highpass=f=80,firequalizer=gain_entry='entry(3000,1.5);entry(8000,-2)',acompressor=threshold=-18dB:ratio=2:attack=12:release=120,aecho=0.85:0.9:40:0.16,{_NORM}",
     "NOVA":      f"highpass=f=95,firequalizer=gain_entry='entry(300,-1.5);entry(3500,1.5);entry(9000,-3)',acompressor=threshold=-18dB:ratio=2:attack=10:release=110,aecho=0.85:0.88:22:0.12,{_NORM}",
-    "ARCHIVIST": f"highpass=f=80,firequalizer=gain_entry='entry(250,-1.5);entry(2500,1);entry(7000,-4)',acompressor=threshold=-18dB:ratio=2:attack=14:release=140,lowpass=f=11500,aecho=0.8:0.85:16:0.09,{_NORM}",
-    "NULL":      f"rubberband=pitch=0.93,asubboost,highpass=f=55,firequalizer=gain_entry='entry(400,-1.5);entry(1500,1);entry(4200,-2.5)',acompressor=threshold=-20dB:ratio=3:attack=8:release=150,aecho=0.8:0.85:95:0.34,lowpass=f=5200,{_NORM}",
+    "ARCHIVIST": f"highpass=f=105,firequalizer=gain_entry='entry(320,-1);entry(3200,1.5);entry(9000,-2.5)',acompressor=threshold=-18dB:ratio=2:attack=14:release=140,aecho=0.82:0.86:16:0.10,{_NORM}",
+    "NULL":      f"rubberband=pitch=0.84,asubboost,highpass=f=50,firequalizer=gain_entry='entry(120,2);entry(400,-1);entry(1500,1);entry(4200,-2.5)',acompressor=threshold=-20dB:ratio=3:attack=8:release=160,aecho=0.8:0.85:95:0.34,lowpass=f=4600,{_NORM}",
     "HERALD":    f"highpass=f=82,firequalizer=gain_entry='entry(3000,1.5);entry(8000,-2)',acompressor=threshold=-18dB:ratio=2:attack=12:release=120,aecho=0.85:0.9:52:0.20,{_NORM}",
 }
 

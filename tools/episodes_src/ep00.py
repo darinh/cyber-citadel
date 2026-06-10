@@ -26,14 +26,14 @@ beats = [
     L.b_map("AEGIS CITADEL", [],
             [["VEGA", "Picture an organization's information as a walled city. At its heart sits the Crown Data \u2014 the records, secrets, and services everyone depends on."],
              ["NULL", "I don't want your walls. I want what they guard \u2014 the Crown Data. Lose it once, and there is no second copy of trust."],
-             ["NOVA", "I'm Nova \u2014 newly appointed, and honestly new to all of this. Can we start from the very beginning?"],
+             ["NOVA", "I'm Nova \u2014 just started here, and honestly? I'm new to all of this. Can we start from the very beginning?"],
              ["VEGA", "We will. First, a few words everyone uses and almost no one defines."]]),
 
     # --- FOUNDATIONS: plain-English define cards -------------------------
     L.b_define("NIST",
                "A U.S. government lab that writes widely used security and technology guidance. It isn't a police force \u2014 but its playbooks are followed across government, and far beyond it.",
-               [["NOVA", "So who writes all of this?"],
-                ["VEGA", "NIST does. Think of them as the standards lab for digital defense."]],
+               [["NOVA", "Okay, so who writes all this stuff?"],
+                ["VEGA", "That would be NIST. Think of them as the standards lab for digital defense."]],
                expand="National Institute of Standards and Technology"),
 
     L.b_define("Information system",
@@ -52,7 +52,7 @@ beats = [
 
     L.b_define("Risk",
                "How likely something bad is, multiplied by how badly it would hurt. Security is the work of lowering risk to a level you can live with.",
-               [["NOVA", "Everyone keeps saying 'risk.'"],
+               [["NOVA", "People keep throwing around this word, 'risk.'"],
                 ["VEGA", "Risk is likelihood times impact. A threat is who or what could hurt you; a vulnerability is the weakness they'd use; risk is the chance \u2014 and the cost \u2014 if they do."]],
                example="An unlocked door (a vulnerability) plus a burglar nearby (a threat) makes a real risk of theft.",
                kicker="PLAIN ENGLISH \u00b7 THREAT \u00b7 VULNERABILITY \u00b7 RISK"),
@@ -66,7 +66,7 @@ beats = [
                ["FISMA (Federal Information Security Modernization Act) \u2014 the LAW: U.S. agencies and many contractors must protect their information and systems",
                 "NIST SP 800-53 \u2014 the CATALOG: the menu of controls you can put to work",
                 "The RMF (SP 800-37) \u2014 the FRAMEWORK: the step-by-step process that ties it together"],
-               [["NOVA", "Why does any of this exist?"],
+               [["NOVA", "But why does any of this even exist?"],
                 ["VEGA", "A law says you must protect systems. A catalog lists what you can use. A framework is the process that connects them."],
                 ["VEGA", "The law is FISMA \u2014 the Federal Information Security Modernization Act. 800-53 is the catalog. The RMF is the process. Hold those three apart, and everything else clicks."]],
                kicker="LAW \u00b7 CATALOG \u00b7 FRAMEWORK"),
@@ -82,7 +82,7 @@ beats = [
                ["A catalog of security AND privacy controls for information systems and organizations",
                 "Published by NIST; Revision 5 released in September 2020",
                 "The backbone of U.S. federal security \u2014 and used widely beyond government too"],
-               [["NOVA", "So this 'eight-hundred fifty-three' everyone cites \u2014 what is it, exactly?"],
+               [["NOVA", "So this 'eight-hundred fifty-three' everyone keeps citing \u2014 what even is it?"],
                 ["VEGA", "A catalog. A giant, well-organized menu of controls you put to work."]],
                kicker="ORIENTATION"),
 
@@ -119,12 +119,12 @@ beats = [
 
     L.b_define("Baseline",
                "A ready-made starting set of controls, matched to how much harm a system's failure would cause. You begin from the baseline, then adjust it to fit.",
-               [["NOVA", "People keep saying 'baseline.'"],
+               [["NOVA", "People keep saying 'baseline' \u2014 what's that mean?"],
                 ["VEGA", "A starting kit of controls \u2014 Low, Moderate, or High, sized to the stakes."]],
                example="Like a 'basic, standard, or premium' security package you start from, then customize."),
 
     L.b_section("", "BASELINES MOVED OUT", "Low / Moderate / High now live in NIST SP 800-53B",
-                [["NOVA", "Hold on \u2014 where are the Low, Moderate, and High baselines kept?"],
+                [["NOVA", "Wait, hold on \u2014 where'd the Low, Moderate, and High baselines go?"],
                  ["VEGA", "Sharp eye. In Revision 5 they moved out, into a companion book: 800-53B."],
                  ["NARRATOR", "800-53 is the catalog of controls. 800-53B holds the baselines and tailoring guidance."]]),
 
