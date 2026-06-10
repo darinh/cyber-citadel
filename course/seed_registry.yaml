@@ -1,0 +1,119 @@
+# Machine-readable registry of every reproducibility input (seeds, prompts, voice knobs,
+# licenses). The human-readable record is course/GENERATION_PLAYBOOK.md; THIS file is its
+# importable mirror. Keep both in sync with the tools. Values verified against:
+#   tools/gen_avatars.py, tools/gen_avatar_ipa.py, tools/tts3.py, tools/tts.py.
+# A future training-content generator can load this to reproduce characters + voices exactly.
+
+meta:
+  project: "Cyber Citadel — NIST SP 800-53r5 video training series"
+  units: 1920x1080
+  fps: 30
+  audio_loudness_target_lufs: -16
+
+# ---------------------------------------------------------------------------
+# IMAGE — base character portraits (text-to-image; identity = fixed seed)
+# ---------------------------------------------------------------------------
+image_base:
+  tool: tools/gen_avatars.py
+  venv: .venv_img
+  model: stabilityai/stable-diffusion-xl-base-1.0
+  license: OpenRAIL++-M
+  width: 1024
+  height: 1024
+  steps: 34
+  guidance_scale: 7.0
+  style_suffix: ", anime style character portrait, head and shoulders bust, centered, clean cel shading, dramatic rim lighting, dark teal studio background, highly detailed, crisp, single character, looking at viewer"
+  negative: "text, words, letters, watermark, signature, logo, multiple people, crowd, extra limbs, extra fingers, deformed, mutated, blurry, lowres, photorealistic, 3d render, nsfw, full body, weapon"
+  characters:
+    VEGA:
+      seed: 1101
+      ring_color: cyan
+      prompt: "a confident veteran cybersecurity officer, man in his thirties, short silver-blue hair, navy tactical uniform with glowing cyan accents, calm determined expression"
+      file: course/art/avatars/raw/VEGA.png
+    NOVA:
+      seed: 1102
+      ring_color: mint
+      prompt: "a young eager apprentice officer, woman in her early twenties, short tousled auburn hair, teal jacket with gold trim, bright curious hopeful expression"
+      file: course/art/avatars/raw/NOVA.png
+    ARCHIVIST:
+      seed: 1103
+      ring_color: gold
+      prompt: "a wise archivist scholar, woman, round glasses, dark hooded robe with glowing golden circuit embroidery, serene knowing expression, soft gold light"
+      file: course/art/avatars/raw/ARCHIVIST.png
+    "NULL":
+      seed: 1104
+      ring_color: magenta
+      prompt: "a shadowy hooded cyber antagonist, face mostly hidden in shadow, glowing magenta eyes, dark cloak with faint red glitch effects, menacing ominous"
+      file: course/art/avatars/raw/NULL.png
+      note: "AUTHORITATIVE. Shipped NULL.png = this seed-1104 hooded portrait (verified vs git). A seed-1144 'broad-shouldered bruiser' variant was tried in-session but REJECTED/uncommitted — do not adopt it. The NULL voice WAS deepened (see voice.NULL), which is separate from the rejected avatar change."
+    NARRATOR:
+      seed: 1105
+      ring_color: "200,210,255"
+      prompt: "a dignified herald narrator, older man, deep blue cloak, subtle gold circuitry mask on forehead, calm authoritative presence, soft blue light"
+      file: course/art/avatars/raw/NARRATOR.png
+
+# ---------------------------------------------------------------------------
+# IMAGE — expression variants (image-conditioned on the base portrait; SAME character)
+# ---------------------------------------------------------------------------
+image_expressions:
+  tool: tools/gen_avatar_ipa.py
+  venv: .venv_img
+  technique: IP-Adapter Plus (CLIP image conditioning on the base portrait)
+  adapter: ip-adapter-plus_sdxl_vit-h.safetensors
+  identity_scale: 0.72          # lower = more expression freedom; 0.72 = "clearly same person"
+  seed: 42
+  steps: 30
+  guidance_scale: 8.0
+  style_suffix: ", anime style, flat cel shading, simple clean shading, bold clean lineart, head and shoulders bust portrait, centered, dark teal background, single character"
+  negative: "text, watermark, multiple people, extra limbs, deformed, blurry, lowres, photorealistic, 3d render, painterly, heavy rendering, realistic skin, nsfw, different character, neutral expression"
+  licenses:
+    ip_adapter: "Tencent IP-Adapter — Apache-2.0"
+    adapter_weights: "h94 — Apache-2.0"
+    note: "No InsightFace (non-commercial terms); CLIP-image conditioning is sufficient."
+  variants:
+    VEGA:
+      explain: "a man with a clear warm friendly smile, mouth open speaking, kind eyes, explaining"
+      ask: "a man with a thoughtful curious look, one eyebrow raised high, head tilted, questioning"
+    NOVA:
+      curious: "a young woman with a gentle soft smile, bright wide attentive eyes, eager and curious"
+      ask: "a young woman asking a question, both eyebrows raised high, mouth open mid-question, inquisitive"
+      aha: "a young woman with a big open joyful grin showing teeth, eyes wide with delight, thrilled aha moment"
+  status: "Variants are generated + framed, but NOT yet selected per-line by the renderer (build_episode2.py overlays the base {SPEAKER}.png only). Wiring expression-by-intent is backlog."
+
+# ---------------------------------------------------------------------------
+# VOICE — Chatterbox (current engine); zero-shot clone of a license-clean reference clip
+# ---------------------------------------------------------------------------
+voice:
+  engine: chatterbox
+  tool: tools/tts3.py
+  venv: .venv_tts
+  license: "Chatterbox (Resemble AI) — MIT"
+  reference_clips_dir: tools/voices_ref           # <SPEAKER>.wav, generated by Kokoro (Apache-2.0)
+  sample_rate: 24000
+  shared_generate: { repetition_penalty: 1.2, min_p: 0.05, top_p: 1.0 }
+  engine_switch_env: CC_TTS                        # set to 'chatterbox' to use tts3; default = Kokoro/tts2
+  pronunciation_preprocessor: tools/tts.py         # shared across engines; spoken text ONLY
+  cast:
+    NARRATOR:  { exaggeration: 0.52, cfg_weight: 0.50, temperature: 0.78 }
+    VEGA:      { exaggeration: 0.62, cfg_weight: 0.46, temperature: 0.80, ref_note: "younger male timbre" }
+    NOVA:      { exaggeration: 0.70, cfg_weight: 0.42, temperature: 0.85, ref_note: "young, eager, most expressive" }
+    ARCHIVIST: { exaggeration: 0.38, cfg_weight: 0.58, temperature: 0.72, ref_note: "young British female; calm, measured" }
+    "NULL":     { exaggeration: 0.82, cfg_weight: 0.28, temperature: 0.70, post_pitch: 0.84, ref_note: "ffmpeg rubberband pitch=0.84 deepen + subboost/lowpass menace" }
+    HERALD:    { exaggeration: 0.58, cfg_weight: 0.46, temperature: 0.80 }
+  fallback_piper_voices:                            # tts.py SPEAKER_VOICE (old engine)
+    NARRATOR: en_GB-alan-medium
+    VEGA: en_US-ryan-high
+    NOVA: en_US-amy-medium
+    ARCHIVIST: en_US-lessac-medium                  # placeholder; superseded by young-British-female clone
+    "NULL": en_US-hfc_male-medium
+    HERALD: en_GB-jenny_dioco-medium
+
+# ---------------------------------------------------------------------------
+# ACCURACY — the truth layer + gates
+# ---------------------------------------------------------------------------
+accuracy:
+  truth_layer: course/data/truth.json              # built by tools/build_truth.py from official OSCAL catalog
+  truth_shape: "TRUTH[family].controls[ID] = {title, statement, discussion, related, enhancements}"
+  deterministic_gate: tools/verify_script.py        # on-screen control facts vs truth.json; exit 1 on error
+  llm_auditor: tools/audit_narration.py             # local-LLM hostile fact-check of narrative claims
+  rule: "All IDs/titles/quotes from truth.json, never LLM memory. Baselines live in SP 800-53B, not 800-53."

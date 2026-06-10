@@ -3,8 +3,13 @@ NIST.SP.800-53r5.pdf
 # Python
 .venv/
 .venv_img/
+.venv_tts/
 __pycache__/
 *.pyc
+# Local image-model weights (IP-Adapter / SDXL helpers; re-downloadable)
+tools/_ipa/
+# Scratch/demo art
+course/art/_demo/
 # Temp audio chunks
 course/audio/_chunks/
 tools/_tmp/

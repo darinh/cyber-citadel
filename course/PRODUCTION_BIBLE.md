@@ -20,7 +20,9 @@ way. Learner prefers video/visuals. Fully local production (ollama, piper, Pillo
 - Recurring guides (piper voices):
   - **VEGA** — veteran analyst, the expert (ryan-high).
   - **NOVA** — apprentice CISO = learner's avatar; asks the learner's questions (amy).
-  - **THE ARCHIVIST** — reads **verbatim** NIST text; accuracy anchor (lessac).
+  - **THE ARCHIVIST** — reads **verbatim** NIST text; accuracy anchor. Voice: **young British
+    female** (current engine = Chatterbox clone, ref `tools/voices_ref/ARCHIVIST.wav`; piper
+    "lessac" was the old-engine placeholder). See GENERATION_PLAYBOOK §5 for the live voice cast.
   - **THE NULL** — antagonist narration (hfc_male, pitched/processed).
 
 ## 3. Episode map (thematic clustering — endorsed over catalog order for retention)
