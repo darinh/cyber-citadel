@@ -46,6 +46,11 @@ a{color:var(--cy);text-decoration:none}
 .chip:hover{border-color:var(--cy);color:var(--ink)}
 .links{margin:18px 2px;color:var(--mut);font-size:14px}
 .note{color:var(--mut);font-size:13px;margin-top:8px}
+.overlay .nxfam{color:var(--go);font-family:Consolas,monospace;font-size:clamp(12px,1.6vw,18px);margin-bottom:12px}
+.nxrow{display:flex;gap:12px;align-items:center;margin-top:4px;flex-wrap:wrap;justify-content:center}
+.overlay .ghost{background:transparent;color:var(--ink);border:1px solid #2a3257;border-radius:10px;padding:11px 22px;font-size:15px;cursor:pointer}
+.overlay .ghost:hover{border-color:var(--cy)}
+.nxcount{color:var(--mut);font-size:14px;margin-top:16px;min-height:1.2em}
 </style></head><body>
 <div class="top">
   <span class="logo">CYBER CITADEL</span><span class="sub">Interactive course · NIST SP 800-53r5 &amp; the RMF</span>
@@ -65,6 +70,16 @@ a{color:var(--cy);text-decoration:none}
         <div class="opts" id="ovopts"></div>
         <div class="fb" id="ovfb"></div>
         <button class="cont" id="ovcont" onclick="resumeAfterQuiz()">Continue ▶</button>
+      </div>
+      <div class="overlay nx" id="nx">
+        <div class="qk" id="nxk">UP NEXT</div>
+        <div class="q" id="nxtitle"></div>
+        <div class="nxfam" id="nxfam"></div>
+        <div class="nxrow">
+          <button class="cont show" id="nxgo">Play next ▶</button>
+          <button class="ghost" id="nxstay" onclick="cancelNext()">Stay here</button>
+        </div>
+        <div class="nxcount" id="nxcount"></div>
       </div>
     </div>
     <div class="meta"><h2 id="eptitle">—</h2><span class="fam" id="epfam"></span></div>
@@ -99,7 +114,7 @@ function renderList(){
   });
 }
 async function selectEp(ep){
-  cur=ep; cues=null; activeQuiz=null; hideOverlay();
+  cur=ep; cues=null; activeQuiz=null; hideOverlay(); clearNext();
   answered=new Set(Object.keys(ansStore[ep.id]||{}).map(Number));
   document.querySelectorAll('.ep').forEach(e=>e.classList.toggle('active',e.dataset.id===ep.id));
   vid.src=ep.video; vid.load();
@@ -122,7 +137,35 @@ vid.addEventListener('timeupdate',()=>{
     if(!answered.has(q.n) && vid.currentTime>=tq-0.05 && vid.currentTime<q.t_reveal-0.2){ openQuiz(q); break; }
   }
 });
-vid.addEventListener('ended',()=>{ if(cur){done.add(cur.id);localStorage.setItem('cc_done',JSON.stringify([...done]));renderList();} });
+vid.addEventListener('ended',()=>{
+  if(cur){done.add(cur.id);localStorage.setItem('cc_done',JSON.stringify([...done]));renderList();}
+  const nx=nextEpOf(cur);
+  if(nx) showUpNext(nx); else showComplete();
+});
+function nextEpOf(ep){ if(!ep)return null; const i=manifest.findIndex(e=>e.id===ep.id); return (i>=0&&i<manifest.length-1)?manifest[i+1]:null; }
+let pendingNext=null, nextTimer=null;
+function clearNext(){ if(nextTimer){clearInterval(nextTimer);nextTimer=null;} pendingNext=null; $('#nx').classList.remove('show'); }
+function showUpNext(nx){
+  pendingNext=nx; hideOverlay();
+  $('#nxk').textContent='UP NEXT';
+  $('#nxtitle').textContent='EP '+nx.num+' \u00b7 '+nx.title;
+  $('#nxfam').textContent=nx.families||'';
+  $('#nxgo').textContent='Play next \u25b6'; $('#nxgo').onclick=goNext; $('#nxstay').style.display='';
+  let n=10; $('#nxcount').textContent='Starting in '+n+'\u2026';
+  nextTimer=setInterval(()=>{ n--; if(n<=0){ goNext(); } else { $('#nxcount').textContent='Starting in '+n+'\u2026'; } },1000);
+  $('#nx').classList.add('show');
+}
+function goNext(){ const nx=pendingNext; clearNext(); if(nx){ selectEp(nx).then(()=>{ vid.play().catch(()=>{}); }); } }
+function cancelNext(){ clearNext(); }
+function showComplete(){
+  pendingNext=null; hideOverlay();
+  $('#nxk').textContent='COURSE COMPLETE';
+  $('#nxtitle').textContent='\ud83c\udf89 You finished Cyber Citadel!';
+  const[c,n]=scoreParts(); $('#nxfam').textContent='Final score '+c+'/'+n+' across the course';
+  $('#nxgo').textContent='Back to Episode 00 \u25b6'; $('#nxgo').onclick=()=>{ clearNext(); selectEp(manifest[0]).then(()=>vid.play().catch(()=>{})); };
+  $('#nxstay').style.display='none'; $('#nxcount').textContent='';
+  $('#nx').classList.add('show');
+}
 function openQuiz(q){
   activeQuiz=q; vid.pause();
   $('#ovq').textContent=q.q;
