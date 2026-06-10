@@ -98,6 +98,10 @@ function scoreParts(){let c=0,n=0;for(const ep in ansStore)for(const k in ansSto
 function saveScore(){localStorage.setItem('cc_ans',JSON.stringify(ansStore));const[c,n]=scoreParts();const t=totalQuizzes();$('#score').textContent=c+'/'+n+(t?(' \u00b7 '+t+' total'):'');}
 function resetProgress(){if(!confirm('Reset your score and progress?'))return;for(const k in ansStore)delete ansStore[k];done.clear();localStorage.removeItem('cc_done');saveScore();renderList();}
 const vid=$('#vid');
+// Captions are baked into the videos; keep any soft text track OFF.
+function killTracks(){try{const t=vid.textTracks||[];for(let i=0;i<t.length;i++)t[i].mode='disabled';}catch(e){}}
+vid.addEventListener('loadedmetadata',killTracks);
+vid.addEventListener('play',killTracks);
 
 async function init(){
   try{ manifest=await (await fetch('course/episodes/manifest.json',{cache:'no-store'})).json(); }
