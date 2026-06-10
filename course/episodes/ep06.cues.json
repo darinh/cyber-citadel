@@ -1,0 +1,57 @@
+{
+ "id": "EP06",
+ "title": "EP06",
+ "duration": 384.64,
+ "chapters": [
+  {
+   "t": 18.97,
+   "title": "The Vaults"
+  },
+  {
+   "t": 31.87,
+   "title": "The Vaults & Lifelines"
+  },
+  {
+   "t": 48.19,
+   "title": "The Vaults & Lifelines"
+  },
+  {
+   "t": 334.39,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 349.94,
+   "title": "Quiz 2"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "Ransomware encrypts your servers. What gets you back fastest?",
+   "options": [
+    "A clean, tested backup (CP-9)",
+    "A firewall rule (SC-7)",
+    "A privacy notice (PT-5)"
+   ],
+   "answer": 0,
+   "t_question": 334.39,
+   "t_quiz": 339.64,
+   "t_reveal": 346.34,
+   "t_resume": 349.94
+  },
+  {
+   "n": 2,
+   "q": "A surplus hard drive is sold without being wiped. Which control failed?",
+   "options": [
+    "SC-8 Transmission",
+    "MP-6 Media Sanitization",
+    "CP-2 Contingency Plan"
+   ],
+   "answer": 1,
+   "t_question": 349.94,
+   "t_quiz": 354.01,
+   "t_reveal": 360.71,
+   "t_resume": 364.31
+  }
+ ]
+}

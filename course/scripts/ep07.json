@@ -1,0 +1,466 @@
+{
+ "id": "EP07",
+ "tag": "FINALE",
+ "slug": "siege_night",
+ "beats": [
+  {
+   "scene": "title",
+   "kicker": "A NIST SP 800-53r5 TRAINING SERIES",
+   "badge": "FINALE",
+   "title": "SIEGE NIGHT",
+   "subtitle": "Defense in Depth · The Full Picture",
+   "say": [
+    [
+     "NULL",
+     "Every gap, every shortcut, every forgotten door — I will find it. Tonight, I bring everything. Every vector, every door, all at once."
+    ],
+    [
+     "VEGA",
+     "Not tonight. Tonight, every guardian answers. Welcome to Siege Night."
+    ]
+   ],
+   "min_seconds": 4
+  },
+  {
+   "scene": "section",
+   "num": "07",
+   "title": "SIEGE NIGHT",
+   "subtitle": "All twenty guardians · The Risk Management Framework",
+   "say": [
+    [
+     "VEGA",
+     "One attacker, many weapons. One city, twenty guardians. This is defense in depth."
+    ]
+   ]
+  },
+  {
+   "scene": "map",
+   "title": "THE CITY STANDS AS ONE",
+   "highlight": [
+    "AC",
+    "IA",
+    "PE",
+    "AU",
+    "SI",
+    "IR",
+    "AT",
+    "PS",
+    "PT",
+    "RA",
+    "PL",
+    "PM",
+    "CA",
+    "SA",
+    "CM",
+    "MA",
+    "SR",
+    "SC",
+    "MP",
+    "CP"
+   ],
+   "deps": [
+    [
+     "AC",
+     "IA"
+    ],
+    [
+     "AC",
+     "AU"
+    ],
+    [
+     "IA",
+     "AC"
+    ],
+    [
+     "SI",
+     "IR"
+    ],
+    [
+     "AU",
+     "IR"
+    ],
+    [
+     "RA",
+     "CA"
+    ],
+    [
+     "SA",
+     "SR"
+    ],
+    [
+     "CM",
+     "SA"
+    ],
+    [
+     "SC",
+     "AC"
+    ],
+    [
+     "CP",
+     "IR"
+    ]
+   ],
+   "subtitle": "",
+   "say": [
+    [
+     "NARRATOR",
+     "The Null strikes everywhere at once. Watch the city answer."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "The assault — repelled, vector by vector",
+   "bullets": [
+    "Phishing email → AT, the trained human spots it",
+    "Stolen credential → IA proves identity; AC-6 limits the reach",
+    "Tailgating the door → PE stops the walk-in",
+    "Malware on a host → SI detects and cleans it",
+    "Wiping the logs → AU-9 protects the record"
+   ],
+   "kicker": "DEFENSE IN DEPTH",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "Each weapon meets a guardian. No single failure ends the city."
+    ],
+    [
+     "NULL",
+     "One of these should have worked..."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "...and still it holds",
+   "bullets": [
+    "Counterfeit part → SR checks authenticity",
+    "Eavesdropping the wire → SC encrypts it",
+    "The departing insider → PS revoked the keys",
+    "Ransomware detonates → CP restores from clean backup",
+    "Unpatched crack → RA found it, SI fixed it"
+   ],
+   "kicker": "DEFENSE IN DEPTH",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "Layered defense means no single failure ends the fight. If one layer fails, others still prevent, detect, limit, or recover."
+    ],
+    [
+     "NOVA",
+     "Twenty guardians, one shield."
+    ]
+   ]
+  },
+  {
+   "scene": "diagram",
+   "title": "The Risk Management Framework, end to end",
+   "nodes": [
+    {
+     "label": "Prepare",
+     "x": 110,
+     "y": 330,
+     "w": 300,
+     "h": 120,
+     "color": "cyan"
+    },
+    {
+     "label": "Categorize",
+     "x": 540,
+     "y": 330,
+     "w": 300,
+     "h": 120,
+     "color": "cyan"
+    },
+    {
+     "label": "Select",
+     "x": 970,
+     "y": 330,
+     "w": 300,
+     "h": 120,
+     "color": "gold"
+    },
+    {
+     "label": "Implement",
+     "x": 1400,
+     "y": 330,
+     "w": 300,
+     "h": 120,
+     "color": "gold"
+    },
+    {
+     "label": "Assess",
+     "x": 1400,
+     "y": 600,
+     "w": 300,
+     "h": 120,
+     "color": "cyan"
+    },
+    {
+     "label": "Authorize",
+     "x": 970,
+     "y": 600,
+     "w": 300,
+     "h": 120,
+     "color": "cyan"
+    },
+    {
+     "label": "Monitor",
+     "x": 540,
+     "y": 600,
+     "w": 300,
+     "h": 120,
+     "color": "mint"
+    }
+   ],
+   "arrows": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     6
+    ]
+   ],
+   "say": [
+    [
+     "VEGA",
+     "Here is how it all comes together, the lifecycle from 800-37."
+    ],
+    [
+     "VEGA",
+     "Prepare, categorize, select, implement, assess, authorize, and monitor, forever."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "How to actually use 800-53",
+   "bullets": [
+    "1. Categorize the system — FIPS 199, with help from SP 800-60",
+    "2. Select a baseline from SP 800-53B, then tailor it",
+    "3. Implement the controls in the system",
+    "4. Assess them — procedures in SP 800-53A",
+    "5. Authorize to operate, then 6. Monitor continuously"
+   ],
+   "kicker": "IN PRACTICE",
+   "note": "",
+   "say": [
+    [
+     "NOVA",
+     "So in the real world, where do I start?"
+    ],
+    [
+     "VEGA",
+     "Prepare, categorize the system, select and tailor a baseline, implement, assess, authorize, and never stop watching."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "Your bookshelf",
+   "bullets": [
+    "SP 800-53 — the control catalog (this series)",
+    "SP 800-53B — the control baselines",
+    "SP 800-53A — how to assess the controls",
+    "SP 800-37 — the Risk Management Framework",
+    "FIPS 199 / 200 — categorize and set minimum requirements"
+   ],
+   "kicker": "THE COMPANIONS",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "These books travel together. Know which one answers which question."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "Twenty guardians, one shield — their oaths",
+   "bullets": [
+    "AC: None pass unknown; none hold more than they need.",
+    "AU: Every footstep written; no page erased.",
+    "RA: I do not guess the storm; I measure it.",
+    "SC: Filter at the edge; cipher on the wire.",
+    "CP: We rehearse the dark, so we survive it."
+   ],
+   "kicker": "THE ROLL CALL",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "Hear the oaths together, and the whole defense fits in your hand."
+    ],
+    [
+     "NOVA",
+     "Twenty guardians, one shield."
+    ]
+   ]
+  },
+  {
+   "scene": "section",
+   "num": "",
+   "title": "GUARDIAN ROLL CALL",
+   "subtitle": "Five questions across the whole city",
+   "say": [
+    [
+     "NOVA",
+     "Final test. Five questions, all twenty guardians. Ready?"
+    ]
+   ]
+  },
+  {
+   "scene": "quiz",
+   "q": "Which guardian proves you are who you claim, before access?",
+   "options": [
+    "AC — Access Control",
+    "IA — Identification & Authentication",
+    "AU — Audit"
+   ],
+   "answer": 1,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "One. Who checks your identity at the gate?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "Where do the Low, Moderate, and High control baselines live?",
+   "options": [
+    "SP 800-53",
+    "SP 800-53B",
+    "SP 800-53A"
+   ],
+   "answer": 1,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Two. Where do the baselines live?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "Ransomware hits and encrypts everything. What brings you back?",
+   "options": [
+    "CP-9 System Backup",
+    "AC-6 Least Privilege",
+    "AT-2 Training"
+   ],
+   "answer": 0,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Three. What saves you from ransomware?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "Which document tells you HOW to assess whether controls work?",
+   "options": [
+    "SP 800-53B",
+    "SP 800-53A",
+    "FIPS 199"
+   ],
+   "answer": 1,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Four. Which book holds the assessment procedures?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "A senior official accepts the risk and lets the system operate. Which control?",
+   "options": [
+    "CA-6 Authorization",
+    "PL-2 System Plan",
+    "RA-3 Risk Assessment"
+   ],
+   "answer": 0,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Five. Who signs to let the system go live?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "points",
+   "title": "The siege breaks — but the war isn't won",
+   "bullets": [
+    "You met all 20 families across six layers of defense",
+    "You can read any control: ID, Control, Discussion, Related, Enhancements",
+    "But knowing the guardians isn't the same as standing up a system the right way"
+   ],
+   "kicker": "THE SIEGE ENDS · THE CAMPAIGN BEGINS",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "You walked every wall, every tower, every vault. The siege broke on our walls, Nova."
+    ],
+    [
+     "NULL",
+     "...but I left with the blueprints. I'll be back — and next time, it won't be one city."
+    ],
+    [
+     "NOVA",
+     "Then how do we prove a NEW citadel is safe before we trust it with the Crown Data?"
+    ],
+    [
+     "VEGA",
+     "That, apprentice, is a campaign. And in Act Two, you're going to lead it."
+    ]
+   ]
+  },
+  {
+   "scene": "title",
+   "kicker": "A NIST SP 800-53r5 TRAINING SERIES",
+   "badge": "ACT II AWAITS",
+   "title": "THE CAMPAIGN",
+   "subtitle": "Next: standing up a real system with the Risk Management Framework",
+   "say": [
+    [
+     "NARRATOR",
+     "The guardians are known. Now you learn to deploy them — categorize, select, implement, assess, authorize, and watch. The campaign begins in Act Two."
+    ]
+   ],
+   "min_seconds": 4
+  }
+ ]
+}

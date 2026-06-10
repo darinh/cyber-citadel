@@ -1,0 +1,119 @@
+{
+ "id": "EP07",
+ "title": "FINALE",
+ "duration": 216.35,
+ "chapters": [
+  {
+   "t": 0.0,
+   "title": "Siege Night"
+  },
+  {
+   "t": 15.82,
+   "title": "Siege Night"
+  },
+  {
+   "t": 23.42,
+   "title": "The City Stands As One"
+  },
+  {
+   "t": 105.36,
+   "title": "Guardian Roll Call"
+  },
+  {
+   "t": 111.06,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 124.67,
+   "title": "Quiz 2"
+  },
+  {
+   "t": 137.97,
+   "title": "Quiz 3"
+  },
+  {
+   "t": 151.57,
+   "title": "Quiz 4"
+  },
+  {
+   "t": 165.53,
+   "title": "Quiz 5"
+  },
+  {
+   "t": 204.33,
+   "title": "The Campaign"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "Which guardian proves you are who you claim, before access?",
+   "options": [
+    "AC — Access Control",
+    "IA — Identification & Authentication",
+    "AU — Audit"
+   ],
+   "answer": 1,
+   "t_question": 111.06,
+   "t_quiz": 114.37,
+   "t_reveal": 121.07,
+   "t_resume": 124.67
+  },
+  {
+   "n": 2,
+   "q": "Where do the Low, Moderate, and High control baselines live?",
+   "options": [
+    "SP 800-53",
+    "SP 800-53B",
+    "SP 800-53A"
+   ],
+   "answer": 1,
+   "t_question": 124.67,
+   "t_quiz": 127.67,
+   "t_reveal": 134.37,
+   "t_resume": 137.97
+  },
+  {
+   "n": 3,
+   "q": "Ransomware hits and encrypts everything. What brings you back?",
+   "options": [
+    "CP-9 System Backup",
+    "AC-6 Least Privilege",
+    "AT-2 Training"
+   ],
+   "answer": 0,
+   "t_question": 137.97,
+   "t_quiz": 141.27,
+   "t_reveal": 147.97,
+   "t_resume": 151.57
+  },
+  {
+   "n": 4,
+   "q": "Which document tells you HOW to assess whether controls work?",
+   "options": [
+    "SP 800-53B",
+    "SP 800-53A",
+    "FIPS 199"
+   ],
+   "answer": 1,
+   "t_question": 151.57,
+   "t_quiz": 155.23,
+   "t_reveal": 161.93,
+   "t_resume": 165.53
+  },
+  {
+   "n": 5,
+   "q": "A senior official accepts the risk and lets the system operate. Which control?",
+   "options": [
+    "CA-6 Authorization",
+    "PL-2 System Plan",
+    "RA-3 Risk Assessment"
+   ],
+   "answer": 0,
+   "t_question": 165.53,
+   "t_quiz": 169.11,
+   "t_reveal": 175.81,
+   "t_resume": 179.41
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "id": "EP09",
+ "title": "EP09",
+ "duration": 127.37,
+ "chapters": [
+  {
+   "t": 0.0,
+   "title": "Know Your Realm"
+  },
+  {
+   "t": 86.15,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 101.55,
+   "title": "Quiz 2"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "A system is Confidentiality=Moderate, Integrity=Low, Availability=High. Its category is?",
+   "options": [
+    "Low",
+    "Moderate",
+    "High"
+   ],
+   "answer": 2,
+   "t_question": 86.15,
+   "t_quiz": 91.25,
+   "t_reveal": 97.95,
+   "t_resume": 101.55
+  },
+  {
+   "n": 2,
+   "q": "Which standard defines the Low / Moderate / High impact levels?",
+   "options": [
+    "FIPS 199",
+    "SP 800-53B",
+    "SP 800-37"
+   ],
+   "answer": 0,
+   "t_question": 101.55,
+   "t_quiz": 106.07,
+   "t_reveal": 112.77,
+   "t_resume": 116.37
+  }
+ ]
+}

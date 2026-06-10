@@ -1,0 +1,155 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cyber Citadel — Interactive Course</title>
+<style>
+:root{--bg:#080b1e;--bg2:#101636;--pan:#0e142f;--ink:#e8ecff;--mut:#8a93c2;--cy:#38e1ff;--go:#ffc857;--mg:#ff3cac;--mint:#5eead4;--line:#ffffff14}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:linear-gradient(180deg,#080b1e,#101636);color:var(--ink);line-height:1.5}
+a{color:var(--cy);text-decoration:none}
+.top{display:flex;align-items:center;gap:14px;padding:14px 22px;border-bottom:1px solid var(--line)}
+.top .logo{font-weight:700;letter-spacing:.18em;color:var(--cy)}
+.top .sub{color:var(--mut);font-size:13px}
+.top .score{margin-left:auto;background:#121937;border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:14px}
+.top .score b{color:var(--mint)}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:0;min-height:calc(100vh - 58px)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+.side{border-right:1px solid var(--line);padding:14px;overflow:auto;max-height:calc(100vh - 58px)}
+.side h3{font-size:12px;letter-spacing:.2em;color:var(--mut);margin:6px 6px 12px}
+.ep{display:flex;gap:10px;padding:11px 12px;border-radius:12px;cursor:pointer;border:1px solid transparent}
+.ep:hover{background:#121937}.ep.active{background:#13224a;border-color:var(--cy)}
+.ep .n{font-family:Consolas,monospace;color:var(--cy);font-weight:700;min-width:34px}
+.ep .t{font-size:15px}.ep .f{font-size:12px;color:var(--go);font-family:Consolas,monospace}
+.ep .chk{margin-left:auto;color:var(--mint)}
+.main{padding:18px 22px;max-width:1180px}
+.stage{position:relative;background:#05071a;border:1px solid var(--line);border-radius:14px;overflow:hidden;aspect-ratio:16/9}
+.stage video{width:100%;height:100%;display:block;background:#05071a}
+.overlay{position:absolute;inset:0;background:rgba(6,9,24,.82);backdrop-filter:blur(3px);display:none;flex-direction:column;justify-content:center;align-items:center;padding:4% 6%}
+.overlay.show{display:flex}
+.overlay .qk{letter-spacing:.25em;color:var(--go);font-weight:700;font-size:clamp(11px,1.4vw,16px)}
+.overlay .q{font-size:clamp(18px,2.6vw,34px);font-weight:700;text-align:center;margin:.4em 0 .7em;max-width:1000px}
+.opts{display:flex;flex-direction:column;gap:10px;width:min(820px,92%)}
+.opt{display:flex;gap:14px;align-items:center;padding:clamp(10px,1.4vw,16px) 18px;border-radius:12px;border:1px solid #2a3257;background:#121937;color:var(--ink);font-size:clamp(14px,1.7vw,20px);cursor:pointer;text-align:left;transition:.12s}
+.opt:hover{border-color:var(--cy);transform:translateY(-1px)}
+.opt .L{font-weight:800;color:var(--cy);min-width:24px}
+.opt.ok{border-color:var(--mint);background:#10312b}.opt.ok .L{color:var(--mint)}
+.opt.no{border-color:var(--mg);background:#311022}.opt.no .L{color:var(--mg)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:14px;font-size:clamp(14px,1.8vw,20px);min-height:1.4em}
+.fb .good{color:var(--mint)}.fb .bad{color:var(--mg)}
+.cont{margin-top:12px;background:var(--cy);color:#04121a;font-weight:700;border:0;border-radius:10px;padding:11px 26px;font-size:16px;cursor:pointer;display:none}
+.cont.show{display:inline-block}
+.meta{display:flex;align-items:baseline;gap:12px;margin:14px 2px 2px}
+.meta h2{margin:0;font-size:24px}.meta .fam{color:var(--go);font-family:Consolas,monospace}
+.syn{color:var(--mut);margin:.3em 2px 0}
+.chaps{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.chip{font-size:12px;background:#121937;border:1px solid var(--line);border-radius:20px;padding:5px 12px;cursor:pointer;color:var(--mut)}
+.chip:hover{border-color:var(--cy);color:var(--ink)}
+.links{margin:18px 2px;color:var(--mut);font-size:14px}
+.note{color:var(--mut);font-size:13px;margin-top:8px}
+</style></head><body>
+<div class="top">
+  <span class="logo">CYBER CITADEL</span><span class="sub">Interactive course · NIST SP 800-53r5 &amp; the RMF</span>
+  <span class="score">Score <b id="score">0/0</b></span>
+  <a href="#" onclick="resetProgress();return false" style="margin-left:10px;color:var(--mut);font-size:12px">&#8634; reset</a>
+</div>
+<div class="layout">
+  <aside class="side"><h3>EPISODES</h3><div id="eplist"></div>
+    <div class="links"><a href="index.html">↪ Course home (cheat sheets &amp; quiz bank)</a></div>
+  </aside>
+  <main class="main">
+    <div class="stage">
+      <video id="vid" controls preload="metadata" crossorigin="anonymous"></video>
+      <div class="overlay" id="ov">
+        <div class="qk">GUARDIAN CHECK · YOUR ANSWER</div>
+        <div class="q" id="ovq"></div>
+        <div class="opts" id="ovopts"></div>
+        <div class="fb" id="ovfb"></div>
+        <button class="cont" id="ovcont" onclick="resumeAfterQuiz()">Continue ▶</button>
+      </div>
+    </div>
+    <div class="meta"><h2 id="eptitle">—</h2><span class="fam" id="epfam"></span></div>
+    <p class="syn" id="epsyn"></p>
+    <div class="chaps" id="chaps"></div>
+    <p class="note">The video pauses at each quiz so you can answer — take your time. Your score is tracked across the course and saved in this browser.</p>
+  </main>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+let manifest=[], cur=null, cues=null, answered=new Set(), activeQuiz=null;
+const ansStore=JSON.parse(localStorage.getItem('cc_ans')||'{}');
+const done=new Set(JSON.parse(localStorage.getItem('cc_done')||'[]'));
+function totalQuizzes(){return manifest.reduce((s,e)=>s+(e.quizzes||0),0);}
+function scoreParts(){let c=0,n=0;for(const ep in ansStore)for(const k in ansStore[ep]){n++;if(ansStore[ep][k])c++;}return[c,n];}
+function saveScore(){localStorage.setItem('cc_ans',JSON.stringify(ansStore));const[c,n]=scoreParts();const t=totalQuizzes();$('#score').textContent=c+'/'+n+(t?(' \u00b7 '+t+' total'):'');}
+function resetProgress(){if(!confirm('Reset your score and progress?'))return;for(const k in ansStore)delete ansStore[k];done.clear();localStorage.removeItem('cc_done');saveScore();renderList();}
+const vid=$('#vid');
+
+async function init(){
+  try{ manifest=await (await fetch('course/episodes/manifest.json',{cache:'no-store'})).json(); }
+  catch(e){ $('#eplist').innerHTML='<p style="color:var(--mut)">No manifest found.</p>'; return; }
+  saveScore(); renderList(); selectEp(manifest[0]);
+}
+function renderList(){
+  $('#eplist').innerHTML='';
+  manifest.forEach(ep=>{
+    const d=document.createElement('div'); d.className='ep'+(cur&&cur.id===ep.id?' active':'');
+    d.dataset.id=ep.id;
+    d.innerHTML=`<span class="n">${ep.num}</span><div><div class="t">${ep.title}</div><div class="f">${ep.families||''}</div></div><span class="chk">${done.has(ep.id)?'✓':''}</span>`;
+    d.onclick=()=>selectEp(ep); $('#eplist').appendChild(d);
+  });
+}
+async function selectEp(ep){
+  cur=ep; cues=null; activeQuiz=null; hideOverlay();
+  answered=new Set(Object.keys(ansStore[ep.id]||{}).map(Number));
+  document.querySelectorAll('.ep').forEach(e=>e.classList.toggle('active',e.dataset.id===ep.id));
+  vid.src=ep.video; vid.load();
+  $('#eptitle').textContent=ep.title; $('#epfam').textContent=ep.families||'';
+  $('#epsyn').textContent=ep.synopsis||'';
+  try{ cues=await (await fetch(ep.cues,{cache:'no-store'})).json(); }catch(e){ cues={quizzes:[],chapters:[]}; }
+  renderChaps();
+}
+function renderChaps(){
+  const c=$('#chaps'); c.innerHTML='';
+  (cues.chapters||[]).forEach(ch=>{
+    const b=document.createElement('span'); b.className='chip'; b.textContent='▸ '+ch.title;
+    b.onclick=()=>{ activeQuiz=null; hideOverlay(); vid.currentTime=ch.t; vid.play(); }; c.appendChild(b);
+  });
+}
+vid.addEventListener('timeupdate',()=>{
+  if(!cues||activeQuiz) return;
+  for(const q of cues.quizzes||[]){
+    const tq=(q.t_quiz!=null?q.t_quiz:q.t_question);
+    if(!answered.has(q.n) && vid.currentTime>=tq-0.05 && vid.currentTime<q.t_reveal-0.2){ openQuiz(q); break; }
+  }
+});
+vid.addEventListener('ended',()=>{ if(cur){done.add(cur.id);localStorage.setItem('cc_done',JSON.stringify([...done]));renderList();} });
+function openQuiz(q){
+  activeQuiz=q; vid.pause();
+  $('#ovq').textContent=q.q;
+  const o=$('#ovopts'); o.innerHTML=''; $('#ovfb').innerHTML=''; $('#ovcont').classList.remove('show');
+  q.options.forEach((opt,i)=>{
+    const b=document.createElement('button'); b.className='opt';
+    b.innerHTML=`<span class="L">${String.fromCharCode(65+i)}</span><span>${opt}</span>`;
+    b.onclick=()=>pick(q,i,o); o.appendChild(b);
+  });
+  $('#ov').classList.add('show');
+}
+function pick(q,i,o){
+  if(answered.has(q.n)) return;
+  answered.add(q.n);
+  const right=i===q.answer;
+  if(!ansStore[cur.id]) ansStore[cur.id]={};
+  if(ansStore[cur.id][q.n]===undefined){ ansStore[cur.id][q.n]=right; saveScore(); }
+  [...o.children].forEach((c,j)=>{c.disabled=true; if(j===q.answer)c.classList.add('ok'); else if(j===i)c.classList.add('no');});
+  $('#ovfb').innerHTML=right?'<span class="good">✓ Correct!</span>':'<span class="bad">Not quite — the answer is '+String.fromCharCode(65+q.answer)+'.</span>';
+  $('#ovcont').classList.add('show');
+}
+function resumeAfterQuiz(){
+  const q=activeQuiz; hideOverlay(); activeQuiz=null;
+  if(q){ vid.currentTime=(q.t_resume!=null?q.t_resume:q.t_reveal); }
+  vid.play();
+}
+function hideOverlay(){ $('#ov').classList.remove('show'); }
+init();
+</script>
+</body></html>

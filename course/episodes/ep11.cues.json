@@ -1,0 +1,71 @@
+{
+ "id": "EP11",
+ "title": "FINALE",
+ "duration": 170.37,
+ "chapters": [
+  {
+   "t": 0.0,
+   "title": "The Reckoning"
+  },
+  {
+   "t": 82.57,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 98.1,
+   "title": "Quiz 2"
+  },
+  {
+   "t": 112.55,
+   "title": "Quiz 3"
+  },
+  {
+   "t": 139.77,
+   "title": "Cyber Citadel"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "What are the three assessment methods in SP 800-53A?",
+   "options": [
+    "Scan, Patch, Report",
+    "Examine, Interview, Test",
+    "Plan, Do, Check"
+   ],
+   "answer": 1,
+   "t_question": 82.57,
+   "t_quiz": 87.8,
+   "t_reveal": 94.5,
+   "t_resume": 98.1
+  },
+  {
+   "n": 2,
+   "q": "A senior official accepts the residual risk and lets the system run. That decision is the?",
+   "options": [
+    "POA&M",
+    "ATO (Authorization to Operate)",
+    "SAR"
+   ],
+   "answer": 1,
+   "t_question": 98.1,
+   "t_quiz": 102.25,
+   "t_reveal": 108.95,
+   "t_resume": 112.55
+  },
+  {
+   "n": 3,
+   "q": "Where are open weaknesses tracked until they're remediated?",
+   "options": [
+    "In the SAR",
+    "In a POA&M",
+    "In FIPS 199"
+   ],
+   "answer": 1,
+   "t_question": 112.55,
+   "t_quiz": 116.54,
+   "t_reveal": 123.24,
+   "t_resume": 126.84
+  }
+ ]
+}

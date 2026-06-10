@@ -1,0 +1,1390 @@
+{
+  "AC": {
+    "name": "Access Control",
+    "controls": [
+      {
+        "id": "AC-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "AC-2",
+        "title": "ACCOUNT MANAGEMENT"
+      },
+      {
+        "id": "AC-3",
+        "title": "ACCESS ENFORCEMENT"
+      },
+      {
+        "id": "AC-4",
+        "title": "INFORMATION FLOW ENFORCEMENT"
+      },
+      {
+        "id": "AC-5",
+        "title": "SEPARATION OF DUTIES"
+      },
+      {
+        "id": "AC-6",
+        "title": "LEAST PRIVILEGE"
+      },
+      {
+        "id": "AC-7",
+        "title": "UNSUCCESSFUL LOGON ATTEMPTS"
+      },
+      {
+        "id": "AC-8",
+        "title": "SYSTEM USE NOTIFICATION"
+      },
+      {
+        "id": "AC-9",
+        "title": "PREVIOUS LOGON NOTIFICATION"
+      },
+      {
+        "id": "AC-10",
+        "title": "CONCURRENT SESSION CONTROL"
+      },
+      {
+        "id": "AC-11",
+        "title": "DEVICE LOCK"
+      },
+      {
+        "id": "AC-12",
+        "title": "SESSION TERMINATION"
+      },
+      {
+        "id": "AC-13",
+        "title": "SUPERVISION AND REVIEW"
+      },
+      {
+        "id": "AC-14",
+        "title": "Discussion"
+      },
+      {
+        "id": "AC-15",
+        "title": "AUTOMATED MARKING"
+      },
+      {
+        "id": "AC-16",
+        "title": "SECURITY AND PRIVACY ATTRIBUTES"
+      },
+      {
+        "id": "AC-17",
+        "title": "REMOTE ACCESS"
+      },
+      {
+        "id": "AC-18",
+        "title": "WIRELESS ACCESS"
+      },
+      {
+        "id": "AC-19",
+        "title": "Discussion"
+      },
+      {
+        "id": "AC-20",
+        "title": "Discussion"
+      },
+      {
+        "id": "AC-21",
+        "title": "INFORMATION SHARING"
+      },
+      {
+        "id": "AC-22",
+        "title": "PUBLICLY ACCESSIBLE CONTENT"
+      },
+      {
+        "id": "AC-23",
+        "title": "DATA MINING PROTECTION"
+      },
+      {
+        "id": "AC-24",
+        "title": "ACCESS CONTROL DECISIONS"
+      },
+      {
+        "id": "AC-25",
+        "title": "REFERENCE MONITOR"
+      }
+    ]
+  },
+  "AT": {
+    "name": "Awareness and Training",
+    "controls": [
+      {
+        "id": "AT-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "AT-2",
+        "title": "Discussion"
+      },
+      {
+        "id": "AT-3",
+        "title": "Discussion"
+      },
+      {
+        "id": "AT-4",
+        "title": "TRAINING RECORDS"
+      },
+      {
+        "id": "AT-5",
+        "title": "CONTACTS WITH SECURITY GROUPS AND ASSOCIATIONS"
+      },
+      {
+        "id": "AT-6",
+        "title": "Discussion"
+      }
+    ]
+  },
+  "AU": {
+    "name": "Audit and Accountability",
+    "controls": [
+      {
+        "id": "AU-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "AU-2",
+        "title": "EVENT LOGGING"
+      },
+      {
+        "id": "AU-3",
+        "title": "CONTENT OF AUDIT RECORDS"
+      },
+      {
+        "id": "AU-4",
+        "title": "AUDIT STORAGE CAPACITY"
+      },
+      {
+        "id": "AU-5",
+        "title": "RESPONSE TO AUDIT LOGGING PROCESS FAILURES"
+      },
+      {
+        "id": "AU-6",
+        "title": "AUDIT RECORD REVIEW, ANALYSIS, AND REPORTING"
+      },
+      {
+        "id": "AU-7",
+        "title": "AUDIT RECORD REDUCTION AND REPORT GENERATION"
+      },
+      {
+        "id": "AU-8",
+        "title": "TIME STAMPS"
+      },
+      {
+        "id": "AU-9",
+        "title": "PROTECTION OF AUDIT INFORMATION"
+      },
+      {
+        "id": "AU-10",
+        "title": "NON-REPUDIATION"
+      },
+      {
+        "id": "AU-11",
+        "title": "AUDIT RECORD RETENTION"
+      },
+      {
+        "id": "AU-12",
+        "title": "AUDIT RECORD GENERATION"
+      },
+      {
+        "id": "AU-13",
+        "title": "MONITORING FOR INFORMATION DISCLOSURE"
+      },
+      {
+        "id": "AU-14",
+        "title": "SESSION AUDIT"
+      },
+      {
+        "id": "AU-15",
+        "title": "ALTERNATE AUDIT LOGGING CAPABILITY"
+      },
+      {
+        "id": "AU-16",
+        "title": "CROSS-ORGANIZATIONAL AUDIT LOGGING"
+      }
+    ]
+  },
+  "CA": {
+    "name": "Assessment, Authorization, and Monitoring",
+    "controls": [
+      {
+        "id": "CA-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "CA-2",
+        "title": "CONTROL ASSESSMENTS"
+      },
+      {
+        "id": "CA-3",
+        "title": "References"
+      },
+      {
+        "id": "CA-4",
+        "title": "SECURITY CERTIFICATION"
+      },
+      {
+        "id": "CA-5",
+        "title": "PLAN OF ACTION AND MILESTONES"
+      },
+      {
+        "id": "CA-6",
+        "title": "AUTHORIZATION"
+      },
+      {
+        "id": "CA-7",
+        "title": "Discussion"
+      },
+      {
+        "id": "CA-8",
+        "title": "PENETRATION TESTING"
+      },
+      {
+        "id": "CA-9",
+        "title": "INTERNAL SYSTEM CONNECTIONS"
+      }
+    ]
+  },
+  "CM": {
+    "name": "Configuration Management",
+    "controls": [
+      {
+        "id": "CM-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "CM-2",
+        "title": "BASELINE CONFIGURATION"
+      },
+      {
+        "id": "CM-3",
+        "title": "CONFIGURATION CHANGE CONTROL"
+      },
+      {
+        "id": "CM-4",
+        "title": "IMPACT ANALYSES"
+      },
+      {
+        "id": "CM-5",
+        "title": "ACCESS RESTRICTIONS FOR CHANGE"
+      },
+      {
+        "id": "CM-6",
+        "title": "CONFIGURATION SETTINGS"
+      },
+      {
+        "id": "CM-7",
+        "title": "LEAST FUNCTIONALITY"
+      },
+      {
+        "id": "CM-8",
+        "title": "Related Controls"
+      },
+      {
+        "id": "CM-9",
+        "title": "CONFIGURATION MANAGEMENT PLAN"
+      },
+      {
+        "id": "CM-10",
+        "title": "SOFTWARE USAGE RESTRICTIONS"
+      },
+      {
+        "id": "CM-11",
+        "title": "USER-INSTALLED SOFTWARE"
+      },
+      {
+        "id": "CM-12",
+        "title": "INFORMATION LOCATION"
+      },
+      {
+        "id": "CM-13",
+        "title": "DATA ACTION MAPPING"
+      },
+      {
+        "id": "CM-14",
+        "title": "SIGNED COMPONENTS"
+      }
+    ]
+  },
+  "CP": {
+    "name": "Contingency Planning",
+    "controls": [
+      {
+        "id": "CP-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "CP-2",
+        "title": "CONTINGENCY PLAN"
+      },
+      {
+        "id": "CP-3",
+        "title": "Discussion"
+      },
+      {
+        "id": "CP-4",
+        "title": "CONTINGENCY PLAN TESTING"
+      },
+      {
+        "id": "CP-5",
+        "title": "CONTINGENCY PLAN UPDATE"
+      },
+      {
+        "id": "CP-6",
+        "title": "ALTERNATE STORAGE SITE"
+      },
+      {
+        "id": "CP-7",
+        "title": "ALTERNATE PROCESSING SITE"
+      },
+      {
+        "id": "CP-8",
+        "title": "TELECOMMUNICATIONS SERVICES"
+      },
+      {
+        "id": "CP-9",
+        "title": "SYSTEM BACKUP"
+      },
+      {
+        "id": "CP-10",
+        "title": "SYSTEM RECOVERY AND RECONSTITUTION"
+      },
+      {
+        "id": "CP-11",
+        "title": "ALTERNATE COMMUNICATIONS PROTOCOLS"
+      },
+      {
+        "id": "CP-12",
+        "title": "SAFE MODE"
+      },
+      {
+        "id": "CP-13",
+        "title": "ALTERNATIVE SECURITY MECHANISMS"
+      }
+    ]
+  },
+  "IA": {
+    "name": "Identification and Authentication",
+    "controls": [
+      {
+        "id": "IA-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "IA-2",
+        "title": "IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)"
+      },
+      {
+        "id": "IA-3",
+        "title": "DEVICE IDENTIFICATION AND AUTHENTICATION"
+      },
+      {
+        "id": "IA-4",
+        "title": "IDENTIFIER MANAGEMENT"
+      },
+      {
+        "id": "IA-5",
+        "title": "AUTHENTICATOR MANAGEMENT"
+      },
+      {
+        "id": "IA-6",
+        "title": "AUTHENTICATION FEEDBACK"
+      },
+      {
+        "id": "IA-7",
+        "title": "CRYPTOGRAPHIC MODULE AUTHENTICATION"
+      },
+      {
+        "id": "IA-8",
+        "title": "IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS)"
+      },
+      {
+        "id": "IA-9",
+        "title": "SERVICE IDENTIFICATION AND AUTHENTICATION"
+      },
+      {
+        "id": "IA-10",
+        "title": "ADAPTIVE AUTHENTICATION"
+      },
+      {
+        "id": "IA-11",
+        "title": "RE-AUTHENTICATION"
+      },
+      {
+        "id": "IA-12",
+        "title": "IDENTITY PROOFING"
+      }
+    ]
+  },
+  "IR": {
+    "name": "Incident Response",
+    "controls": [
+      {
+        "id": "IR-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "IR-2",
+        "title": "INCIDENT RESPONSE TRAINING"
+      },
+      {
+        "id": "IR-3",
+        "title": "INCIDENT RESPONSE TESTING"
+      },
+      {
+        "id": "IR-4",
+        "title": "Related Controls"
+      },
+      {
+        "id": "IR-5",
+        "title": "Related Controls"
+      },
+      {
+        "id": "IR-6",
+        "title": "INCIDENT REPORTING"
+      },
+      {
+        "id": "IR-7",
+        "title": "INCIDENT RESPONSE ASSISTANCE"
+      },
+      {
+        "id": "IR-8",
+        "title": "INCIDENT RESPONSE PLAN"
+      },
+      {
+        "id": "IR-9",
+        "title": "INFORMATION SPILLAGE RESPONSE"
+      },
+      {
+        "id": "IR-10",
+        "title": "INTEGRATED INFORMATION SECURITY ANALYSIS TEAM"
+      }
+    ]
+  },
+  "MA": {
+    "name": "Maintenance",
+    "controls": [
+      {
+        "id": "MA-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "MA-2",
+        "title": "CONTROLLED MAINTENANCE"
+      },
+      {
+        "id": "MA-3",
+        "title": "MAINTENANCE TOOLS"
+      },
+      {
+        "id": "MA-4",
+        "title": "NONLOCAL MAINTENANCE"
+      },
+      {
+        "id": "MA-5",
+        "title": "MAINTENANCE PERSONNEL"
+      },
+      {
+        "id": "MA-6",
+        "title": "TIMELY MAINTENANCE"
+      },
+      {
+        "id": "MA-7",
+        "title": "FIELD MAINTENANCE"
+      }
+    ]
+  },
+  "MP": {
+    "name": "Media Protection",
+    "controls": [
+      {
+        "id": "MP-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "MP-2",
+        "title": "MEDIA ACCESS"
+      },
+      {
+        "id": "MP-3",
+        "title": "References"
+      },
+      {
+        "id": "MP-4",
+        "title": "MEDIA STORAGE"
+      },
+      {
+        "id": "MP-5",
+        "title": "MEDIA TRANSPORT"
+      },
+      {
+        "id": "MP-6",
+        "title": "MEDIA SANITIZATION"
+      },
+      {
+        "id": "MP-7",
+        "title": "MEDIA USE"
+      },
+      {
+        "id": "MP-8",
+        "title": "MEDIA DOWNGRADING"
+      }
+    ]
+  },
+  "PE": {
+    "name": "Physical and Environmental Protection",
+    "controls": [
+      {
+        "id": "PE-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "PE-2",
+        "title": "PHYSICAL ACCESS AUTHORIZATIONS"
+      },
+      {
+        "id": "PE-3",
+        "title": "PHYSICAL ACCESS CONTROL"
+      },
+      {
+        "id": "PE-4",
+        "title": "ACCESS CONTROL FOR TRANSMISSION"
+      },
+      {
+        "id": "PE-5",
+        "title": "ACCESS CONTROL FOR OUTPUT DEVICES"
+      },
+      {
+        "id": "PE-6",
+        "title": "MONITORING PHYSICAL ACCESS"
+      },
+      {
+        "id": "PE-7",
+        "title": "VISITOR CONTROL"
+      },
+      {
+        "id": "PE-8",
+        "title": "VISITOR ACCESS RECORDS"
+      },
+      {
+        "id": "PE-9",
+        "title": "POWER EQUIPMENT AND CABLING"
+      },
+      {
+        "id": "PE-10",
+        "title": "EMERGENCY SHUTOFF"
+      },
+      {
+        "id": "PE-11",
+        "title": "EMERGENCY POWER"
+      },
+      {
+        "id": "PE-12",
+        "title": "EMERGENCY LIGHTING"
+      },
+      {
+        "id": "PE-13",
+        "title": "FIRE PROTECTION"
+      },
+      {
+        "id": "PE-14",
+        "title": "ENVIRONMENTAL CONTROLS"
+      },
+      {
+        "id": "PE-15",
+        "title": "WATER DAMAGE PROTECTION"
+      },
+      {
+        "id": "PE-16",
+        "title": "DELIVERY AND REMOVAL"
+      },
+      {
+        "id": "PE-17",
+        "title": "ALTERNATE WORK SITE"
+      },
+      {
+        "id": "PE-18",
+        "title": "LOCATION OF SYSTEM COMPONENTS"
+      },
+      {
+        "id": "PE-19",
+        "title": "INFORMATION LEAKAGE"
+      },
+      {
+        "id": "PE-20",
+        "title": "ASSET MONITORING AND TRACKING"
+      },
+      {
+        "id": "PE-21",
+        "title": "ELECTROMAGNETIC PULSE PROTECTION"
+      },
+      {
+        "id": "PE-22",
+        "title": "COMPONENT MARKING"
+      },
+      {
+        "id": "PE-23",
+        "title": "FACILITY LOCATION"
+      }
+    ]
+  },
+  "PL": {
+    "name": "Planning",
+    "controls": [
+      {
+        "id": "PL-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "PL-2",
+        "title": "References"
+      },
+      {
+        "id": "PL-3",
+        "title": "SYSTEM SECURITY PLAN UPDATE"
+      },
+      {
+        "id": "PL-4",
+        "title": "RULES OF BEHAVIOR"
+      },
+      {
+        "id": "PL-5",
+        "title": "PRIVACY IMPACT ASSESSMENT"
+      },
+      {
+        "id": "PL-6",
+        "title": "SECURITY-RELATED ACTIVITY PLANNING"
+      },
+      {
+        "id": "PL-7",
+        "title": "References"
+      },
+      {
+        "id": "PL-8",
+        "title": "SECURITY AND PRIVACY ARCHITECTURES"
+      },
+      {
+        "id": "PL-9",
+        "title": "CENTRAL MANAGEMENT"
+      },
+      {
+        "id": "PL-10",
+        "title": "BASELINE SELECTION"
+      },
+      {
+        "id": "PL-11",
+        "title": "Discussion"
+      }
+    ]
+  },
+  "PM": {
+    "name": "Program Management",
+    "controls": [
+      {
+        "id": "PM-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "PM-2",
+        "title": "References"
+      },
+      {
+        "id": "PM-3",
+        "title": "INFORMATION SECURITY AND PRIVACY RESOURCES"
+      },
+      {
+        "id": "PM-4",
+        "title": "PLAN OF ACTION AND MILESTONES PROCESS"
+      },
+      {
+        "id": "PM-5",
+        "title": "References"
+      },
+      {
+        "id": "PM-6",
+        "title": "MEASURES OF PERFORMANCE"
+      },
+      {
+        "id": "PM-7",
+        "title": "ENTERPRISE ARCHITECTURE"
+      },
+      {
+        "id": "PM-8",
+        "title": "References"
+      },
+      {
+        "id": "PM-9",
+        "title": "RISK MANAGEMENT STRATEGY"
+      },
+      {
+        "id": "PM-10",
+        "title": "References"
+      },
+      {
+        "id": "PM-11",
+        "title": "Related Controls"
+      },
+      {
+        "id": "PM-12",
+        "title": "References"
+      },
+      {
+        "id": "PM-13",
+        "title": "SECURITY AND PRIVACY WORKFORCE"
+      },
+      {
+        "id": "PM-14",
+        "title": "TESTING, TRAINING, AND MONITORING"
+      },
+      {
+        "id": "PM-15",
+        "title": "SECURITY AND PRIVACY GROUPS AND ASSOCIATIONS"
+      },
+      {
+        "id": "PM-16",
+        "title": "THREAT AWARENESS PROGRAM"
+      },
+      {
+        "id": "PM-17",
+        "title": "References"
+      },
+      {
+        "id": "PM-18",
+        "title": "PRIVACY PROGRAM PLAN"
+      },
+      {
+        "id": "PM-19",
+        "title": "Related Controls"
+      },
+      {
+        "id": "PM-20",
+        "title": "DISSEMINATION OF PRIVACY PROGRAM INFORMATION"
+      },
+      {
+        "id": "PM-21",
+        "title": "ACCOUNTING OF DISCLOSURES"
+      },
+      {
+        "id": "PM-22",
+        "title": "References"
+      },
+      {
+        "id": "PM-23",
+        "title": "DATA GOVERNANCE BODY"
+      },
+      {
+        "id": "PM-24",
+        "title": "Related Controls"
+      },
+      {
+        "id": "PM-25",
+        "title": "Related Controls"
+      },
+      {
+        "id": "PM-26",
+        "title": "COMPLAINT MANAGEMENT"
+      },
+      {
+        "id": "PM-27",
+        "title": "PRIVACY REPORTING"
+      },
+      {
+        "id": "PM-28",
+        "title": "RISK FRAMING"
+      },
+      {
+        "id": "PM-29",
+        "title": "References"
+      },
+      {
+        "id": "PM-30",
+        "title": "References"
+      },
+      {
+        "id": "PM-31",
+        "title": "Discussion"
+      },
+      {
+        "id": "PM-32",
+        "title": "References"
+      }
+    ]
+  },
+  "PS": {
+    "name": "Personnel Security",
+    "controls": [
+      {
+        "id": "PS-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "PS-2",
+        "title": "POSITION RISK DESIGNATION"
+      },
+      {
+        "id": "PS-3",
+        "title": "PERSONNEL SCREENING"
+      },
+      {
+        "id": "PS-4",
+        "title": "PERSONNEL TERMINATION"
+      },
+      {
+        "id": "PS-5",
+        "title": "PERSONNEL TRANSFER"
+      },
+      {
+        "id": "PS-6",
+        "title": "ACCESS AGREEMENTS"
+      },
+      {
+        "id": "PS-7",
+        "title": "EXTERNAL PERSONNEL SECURITY"
+      },
+      {
+        "id": "PS-8",
+        "title": "PERSONNEL SANCTIONS"
+      },
+      {
+        "id": "PS-9",
+        "title": "POSITION DESCRIPTIONS"
+      }
+    ]
+  },
+  "PT": {
+    "name": "PII Processing and Transparency",
+    "controls": [
+      {
+        "id": "PT-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "PT-2",
+        "title": "References"
+      },
+      {
+        "id": "PT-3",
+        "title": "References"
+      },
+      {
+        "id": "PT-4",
+        "title": "CONSENT"
+      },
+      {
+        "id": "PT-5",
+        "title": "Related Controls"
+      },
+      {
+        "id": "PT-6",
+        "title": "SYSTEM OF RECORDS NOTICE"
+      },
+      {
+        "id": "PT-7",
+        "title": "References"
+      },
+      {
+        "id": "PT-8",
+        "title": "References"
+      }
+    ]
+  },
+  "RA": {
+    "name": "Risk Assessment",
+    "controls": [
+      {
+        "id": "RA-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "RA-2",
+        "title": "References"
+      },
+      {
+        "id": "RA-3",
+        "title": "Related Controls"
+      },
+      {
+        "id": "RA-4",
+        "title": "RISK ASSESSMENT UPDATE"
+      },
+      {
+        "id": "RA-5",
+        "title": "VULNERABILITY MONITORING AND SCANNING"
+      },
+      {
+        "id": "RA-6",
+        "title": "TECHNICAL SURVEILLANCE COUNTERMEASURES SURVEY"
+      },
+      {
+        "id": "RA-7",
+        "title": "RISK RESPONSE"
+      },
+      {
+        "id": "RA-8",
+        "title": "References"
+      },
+      {
+        "id": "RA-9",
+        "title": "Related Controls"
+      },
+      {
+        "id": "RA-10",
+        "title": "THREAT HUNTING"
+      }
+    ]
+  },
+  "SA": {
+    "name": "System and Services Acquisition",
+    "controls": [
+      {
+        "id": "SA-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "SA-2",
+        "title": "References"
+      },
+      {
+        "id": "SA-3",
+        "title": "SYSTEM DEVELOPMENT LIFE CYCLE"
+      },
+      {
+        "id": "SA-4",
+        "title": "References"
+      },
+      {
+        "id": "SA-5",
+        "title": "SYSTEM DOCUMENTATION"
+      },
+      {
+        "id": "SA-6",
+        "title": "SOFTWARE USAGE RESTRICTIONS"
+      },
+      {
+        "id": "SA-7",
+        "title": "USER-INSTALLED SOFTWARE"
+      },
+      {
+        "id": "SA-8",
+        "title": "SECURITY AND PRIVACY ENGINEERING PRINCIPLES"
+      },
+      {
+        "id": "SA-9",
+        "title": "EXTERNAL SYSTEM SERVICES"
+      },
+      {
+        "id": "SA-10",
+        "title": "DEVELOPER CONFIGURATION MANAGEMENT"
+      },
+      {
+        "id": "SA-11",
+        "title": "DEVELOPER TESTING AND EVALUATION"
+      },
+      {
+        "id": "SA-12",
+        "title": "SUPPLY CHAIN PROTECTION"
+      },
+      {
+        "id": "SA-13",
+        "title": "TRUSTWORTHINESS"
+      },
+      {
+        "id": "SA-14",
+        "title": "CRITICALITY ANALYSIS"
+      },
+      {
+        "id": "SA-15",
+        "title": "DEVELOPMENT PROCESS, STANDARDS, AND TOOLS"
+      },
+      {
+        "id": "SA-16",
+        "title": "DEVELOPER-PROVIDED TRAINING"
+      },
+      {
+        "id": "SA-17",
+        "title": "DEVELOPER SECURITY AND PRIVACY ARCHITECTURE AND DESIGN"
+      },
+      {
+        "id": "SA-18",
+        "title": "TAMPER RESISTANCE AND DETECTION"
+      },
+      {
+        "id": "SA-19",
+        "title": "COMPONENT AUTHENTICITY"
+      },
+      {
+        "id": "SA-20",
+        "title": "CUSTOMIZED DEVELOPMENT OF CRITICAL COMPONENTS"
+      },
+      {
+        "id": "SA-21",
+        "title": "DEVELOPER SCREENING"
+      },
+      {
+        "id": "SA-22",
+        "title": "UNSUPPORTED SYSTEM COMPONENTS"
+      },
+      {
+        "id": "SA-23",
+        "title": "SPECIALIZATION"
+      }
+    ]
+  },
+  "SC": {
+    "name": "System and Communications Protection",
+    "controls": [
+      {
+        "id": "SC-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "SC-2",
+        "title": "SEPARATION OF SYSTEM AND USER FUNCTIONALITY"
+      },
+      {
+        "id": "SC-3",
+        "title": "SECURITY FUNCTION ISOLATION"
+      },
+      {
+        "id": "SC-4",
+        "title": "INFORMATION IN SHARED SYSTEM RESOURCES"
+      },
+      {
+        "id": "SC-5",
+        "title": "DENIAL-OF-SERVICE PROTECTION"
+      },
+      {
+        "id": "SC-6",
+        "title": "RESOURCE AVAILABILITY"
+      },
+      {
+        "id": "SC-7",
+        "title": "Discussion"
+      },
+      {
+        "id": "SC-8",
+        "title": "TRANSMISSION CONFIDENTIALITY AND INTEGRITY"
+      },
+      {
+        "id": "SC-9",
+        "title": "TRANSMISSION CONFIDENTIALITY"
+      },
+      {
+        "id": "SC-10",
+        "title": "NETWORK DISCONNECT"
+      },
+      {
+        "id": "SC-11",
+        "title": "TRUSTED PATH"
+      },
+      {
+        "id": "SC-12",
+        "title": "CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT"
+      },
+      {
+        "id": "SC-13",
+        "title": "CRYPTOGRAPHIC PROTECTION"
+      },
+      {
+        "id": "SC-14",
+        "title": "PUBLIC ACCESS PROTECTIONS"
+      },
+      {
+        "id": "SC-15",
+        "title": "COLLABORATIVE COMPUTING DEVICES AND APPLICATIONS"
+      },
+      {
+        "id": "SC-16",
+        "title": "TRANSMISSION OF SECURITY AND PRIVACY ATTRIBUTES"
+      },
+      {
+        "id": "SC-17",
+        "title": "Discussion"
+      },
+      {
+        "id": "SC-18",
+        "title": "MOBILE CODE"
+      },
+      {
+        "id": "SC-19",
+        "title": "VOICE OVER INTERNET PROTOCOL"
+      },
+      {
+        "id": "SC-20",
+        "title": "SECURE NAME/ADDRESS RESOLUTION SERVICE (AUTHORITATIVE SOURCE)"
+      },
+      {
+        "id": "SC-21",
+        "title": "SECURE NAME/ADDRESS RESOLUTION SERVICE (RECURSIVE OR CACHING RESOLVER)"
+      },
+      {
+        "id": "SC-22",
+        "title": "ARCHITECTURE AND PROVISIONING FOR NAME/ADDRESS RESOLUTION SERVICE"
+      },
+      {
+        "id": "SC-23",
+        "title": "SESSION AUTHENTICITY"
+      },
+      {
+        "id": "SC-24",
+        "title": "FAIL IN KNOWN STATE"
+      },
+      {
+        "id": "SC-25",
+        "title": "THIN NODES"
+      },
+      {
+        "id": "SC-26",
+        "title": "DECOYS"
+      },
+      {
+        "id": "SC-27",
+        "title": "PLATFORM-INDEPENDENT APPLICATIONS"
+      },
+      {
+        "id": "SC-28",
+        "title": "PROTECTION OF INFORMATION AT REST"
+      },
+      {
+        "id": "SC-29",
+        "title": "HETEROGENEITY"
+      },
+      {
+        "id": "SC-30",
+        "title": "CONCEALMENT AND MISDIRECTION"
+      },
+      {
+        "id": "SC-31",
+        "title": "COVERT CHANNEL ANALYSIS"
+      },
+      {
+        "id": "SC-32",
+        "title": "SYSTEM PARTITIONING"
+      },
+      {
+        "id": "SC-33",
+        "title": "TRANSMISSION PREPARATION INTEGRITY"
+      },
+      {
+        "id": "SC-34",
+        "title": "NON-MODIFIABLE EXECUTABLE PROGRAMS"
+      },
+      {
+        "id": "SC-35",
+        "title": "EXTERNAL MALICIOUS CODE IDENTIFICATION"
+      },
+      {
+        "id": "SC-36",
+        "title": "DISTRIBUTED PROCESSING AND STORAGE"
+      },
+      {
+        "id": "SC-37",
+        "title": "OUT-OF-BAND CHANNELS"
+      },
+      {
+        "id": "SC-38",
+        "title": "OPERATIONS SECURITY"
+      },
+      {
+        "id": "SC-39",
+        "title": "PROCESS ISOLATION"
+      },
+      {
+        "id": "SC-40",
+        "title": "WIRELESS LINK PROTECTION"
+      },
+      {
+        "id": "SC-41",
+        "title": "PORT AND I/O DEVICE ACCESS"
+      },
+      {
+        "id": "SC-42",
+        "title": "SENSOR CAPABILITY AND DATA"
+      },
+      {
+        "id": "SC-43",
+        "title": "USAGE RESTRICTIONS"
+      },
+      {
+        "id": "SC-44",
+        "title": "DETONATION CHAMBERS"
+      },
+      {
+        "id": "SC-45",
+        "title": "SYSTEM TIME SYNCHRONIZATION"
+      },
+      {
+        "id": "SC-46",
+        "title": "CROSS DOMAIN POLICY ENFORCEMENT"
+      },
+      {
+        "id": "SC-47",
+        "title": "ALTERNATE COMMUNICATIONS PATHS"
+      },
+      {
+        "id": "SC-48",
+        "title": "SENSOR RELOCATION"
+      },
+      {
+        "id": "SC-49",
+        "title": "HARDWARE-ENFORCED SEPARATION AND POLICY ENFORCEMENT"
+      },
+      {
+        "id": "SC-50",
+        "title": "SOFTWARE-ENFORCED SEPARATION AND POLICY ENFORCEMENT"
+      },
+      {
+        "id": "SC-51",
+        "title": "HARDWARE-BASED PROTECTION"
+      }
+    ]
+  },
+  "SI": {
+    "name": "System and Information Integrity",
+    "controls": [
+      {
+        "id": "SI-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "SI-2",
+        "title": "FLAW REMEDIATION"
+      },
+      {
+        "id": "SI-3",
+        "title": "MALICIOUS CODE PROTECTION"
+      },
+      {
+        "id": "SI-4",
+        "title": "SYSTEM MONITORING"
+      },
+      {
+        "id": "SI-5",
+        "title": "SECURITY ALERTS, ADVISORIES, AND DIRECTIVES"
+      },
+      {
+        "id": "SI-6",
+        "title": "SECURITY AND PRIVACY FUNCTION VERIFICATION"
+      },
+      {
+        "id": "SI-7",
+        "title": "SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY"
+      },
+      {
+        "id": "SI-8",
+        "title": "SPAM PROTECTION"
+      },
+      {
+        "id": "SI-9",
+        "title": "INFORMATION INPUT RESTRICTIONS"
+      },
+      {
+        "id": "SI-10",
+        "title": "References"
+      },
+      {
+        "id": "SI-11",
+        "title": "ERROR HANDLING"
+      },
+      {
+        "id": "SI-12",
+        "title": "References"
+      },
+      {
+        "id": "SI-13",
+        "title": "PREDICTABLE FAILURE PREVENTION"
+      },
+      {
+        "id": "SI-14",
+        "title": "NON-PERSISTENCE"
+      },
+      {
+        "id": "SI-15",
+        "title": "INFORMATION OUTPUT FILTERING"
+      },
+      {
+        "id": "SI-16",
+        "title": "MEMORY PROTECTION"
+      },
+      {
+        "id": "SI-17",
+        "title": "FAIL-SAFE PROCEDURES"
+      },
+      {
+        "id": "SI-18",
+        "title": "Related Controls"
+      },
+      {
+        "id": "SI-19",
+        "title": "References"
+      },
+      {
+        "id": "SI-20",
+        "title": "References"
+      },
+      {
+        "id": "SI-21",
+        "title": "INFORMATION REFRESH"
+      },
+      {
+        "id": "SI-22",
+        "title": "INFORMATION DIVERSITY"
+      },
+      {
+        "id": "SI-23",
+        "title": "INFORMATION FRAGMENTATION"
+      }
+    ]
+  },
+  "SR": {
+    "name": "Supply Chain Risk Management",
+    "controls": [
+      {
+        "id": "SR-1",
+        "title": "Discussion"
+      },
+      {
+        "id": "SR-2",
+        "title": "References"
+      },
+      {
+        "id": "SR-3",
+        "title": "SUPPLY CHAIN CONTROLS AND PROCESSES"
+      },
+      {
+        "id": "SR-4",
+        "title": "PROVENANCE"
+      },
+      {
+        "id": "SR-5",
+        "title": "ACQUISITION STRATEGIES, TOOLS, AND METHODS"
+      },
+      {
+        "id": "SR-6",
+        "title": "SUPPLIER ASSESSMENTS AND REVIEWS"
+      },
+      {
+        "id": "SR-7",
+        "title": "SUPPLY CHAIN OPERATIONS SECURITY"
+      },
+      {
+        "id": "SR-8",
+        "title": "NOTIFICATION AGREEMENTS"
+      },
+      {
+        "id": "SR-9",
+        "title": "TAMPER RESISTANCE AND DETECTION"
+      },
+      {
+        "id": "SR-10",
+        "title": "INSPECTION OF SYSTEMS OR COMPONENTS"
+      },
+      {
+        "id": "SR-11",
+        "title": "COMPONENT AUTHENTICITY"
+      },
+      {
+        "id": "SR-12",
+        "title": "COMPONENT DISPOSAL"
+      }
+    ]
+  }
+}

@@ -1,0 +1,332 @@
+[
+ {
+  "ep": "00",
+  "epTitle": "The Citadel Awakens",
+  "q": "In plain terms, a security 'control' is best described as:",
+  "options": [
+   "A type of computer",
+   "A safeguard that reduces risk",
+   "A government agency"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "00",
+  "epTitle": "The Citadel Awakens",
+  "q": "Where do the Low, Moderate, and High control baselines live now?",
+  "options": [
+   "In 800-53 itself",
+   "In NIST SP 800-53B",
+   "In the RMF"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "00",
+  "epTitle": "The Citadel Awakens",
+  "q": "How many control families does 800-53 Revision 5 have?",
+  "options": [
+   "Twelve",
+   "Seventeen",
+   "Twenty"
+  ],
+  "answer": 2
+ },
+ {
+  "ep": "01",
+  "epTitle": "The Outer Walls",
+  "q": "Which guardian proves you are who you claim, before you pass?",
+  "options": [
+   "AC — Access Control",
+   "IA — Identification & Authentication",
+   "PE — Physical"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "01",
+  "epTitle": "The Outer Walls",
+  "q": "'Only the access you truly need' is which control?",
+  "options": [
+   "AC-2 Account Management",
+   "AC-6 Least Privilege",
+   "IA-5 Authenticator Management"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "01",
+  "epTitle": "The Outer Walls",
+  "q": "An intruder tailgates through a propped door into the server room. Which family should stop it?",
+  "options": [
+   "PE — Physical",
+   "AU — Audit",
+   "SR — Supply Chain"
+  ],
+  "answer": 0
+ },
+ {
+  "ep": "02",
+  "epTitle": "The Watchtowers",
+  "q": "An intruder tries to delete the logs to hide. Which control blocks that?",
+  "options": [
+   "AU-2 Event Logging",
+   "AU-9 Protection of Audit Information",
+   "SI-4 System Monitoring"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "02",
+  "epTitle": "The Watchtowers",
+  "q": "Which family detects, contains, and recovers from a breach?",
+  "options": [
+   "IR — Incident Response",
+   "AU — Audit",
+   "AC — Access Control"
+  ],
+  "answer": 0
+ },
+ {
+  "ep": "03",
+  "epTitle": "The Keepers of the Pact",
+  "q": "A departing administrator still has their access a week later. Which control failed?",
+  "options": [
+   "PS-4 Personnel Termination",
+   "AT-2 Awareness Training",
+   "PT-5 Privacy Notice"
+  ],
+  "answer": 0
+ },
+ {
+  "ep": "03",
+  "epTitle": "The Keepers of the Pact",
+  "q": "Which family is new in Revision 5 and governs personal-data processing?",
+  "options": [
+   "AT — Training",
+   "PS — Personnel",
+   "PT — PII Processing & Transparency"
+  ],
+  "answer": 2
+ },
+ {
+  "ep": "04",
+  "epTitle": "The High Council",
+  "q": "A new system is ready to go live. Who formally accepts the risk to operate it?",
+  "options": [
+   "CA-6 Authorization",
+   "RA-3 Risk Assessment",
+   "PL-2 System Plan"
+  ],
+  "answer": 0
+ },
+ {
+  "ep": "04",
+  "epTitle": "The High Council",
+  "q": "Where are known weaknesses tracked until they're fixed?",
+  "options": [
+   "In the system plan",
+   "In a POA&M (CA-5)",
+   "In the audit log"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "05",
+  "epTitle": "The Forge",
+  "q": "A counterfeit network card arrives pre-tampered. Which control should catch it?",
+  "options": [
+   "CM-2 Baseline Configuration",
+   "SR-11 Component Authenticity",
+   "MA-2 Maintenance"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "05",
+  "epTitle": "The Forge",
+  "q": "Disabling unused ports and services is which control?",
+  "options": [
+   "CM-7 Least Functionality",
+   "SA-22 Unsupported Components",
+   "CM-8 Inventory"
+  ],
+  "answer": 0
+ },
+ {
+  "ep": "06",
+  "epTitle": "The Vaults & Lifelines",
+  "q": "Ransomware encrypts your servers. What gets you back fastest?",
+  "options": [
+   "A clean, tested backup (CP-9)",
+   "A firewall rule (SC-7)",
+   "A privacy notice (PT-5)"
+  ],
+  "answer": 0
+ },
+ {
+  "ep": "06",
+  "epTitle": "The Vaults & Lifelines",
+  "q": "A surplus hard drive is sold without being wiped. Which control failed?",
+  "options": [
+   "SC-8 Transmission",
+   "MP-6 Media Sanitization",
+   "CP-2 Contingency Plan"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "07",
+  "epTitle": "Siege Night",
+  "q": "Which guardian proves you are who you claim, before access?",
+  "options": [
+   "AC — Access Control",
+   "IA — Identification & Authentication",
+   "AU — Audit"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "07",
+  "epTitle": "Siege Night",
+  "q": "Where do the Low, Moderate, and High control baselines live?",
+  "options": [
+   "SP 800-53",
+   "SP 800-53B",
+   "SP 800-53A"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "07",
+  "epTitle": "Siege Night",
+  "q": "Ransomware hits and encrypts everything. What brings you back?",
+  "options": [
+   "CP-9 System Backup",
+   "AC-6 Least Privilege",
+   "AT-2 Training"
+  ],
+  "answer": 0
+ },
+ {
+  "ep": "07",
+  "epTitle": "Siege Night",
+  "q": "Which document tells you HOW to assess whether controls work?",
+  "options": [
+   "SP 800-53B",
+   "SP 800-53A",
+   "FIPS 199"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "07",
+  "epTitle": "Siege Night",
+  "q": "A senior official accepts the risk and lets the system operate. Which control?",
+  "options": [
+   "CA-6 Authorization",
+   "PL-2 System Plan",
+   "RA-3 Risk Assessment"
+  ],
+  "answer": 0
+ },
+ {
+  "ep": "08",
+  "epTitle": "The Campaign: the RMF",
+  "q": "How many steps are in the RMF (SP 800-37 Rev 2)?",
+  "options": [
+   "Five",
+   "Six",
+   "Seven"
+  ],
+  "answer": 2
+ },
+ {
+  "ep": "08",
+  "epTitle": "The Campaign: the RMF",
+  "q": "Which RMF step was newly added in Revision 2?",
+  "options": [
+   "Prepare",
+   "Authorize",
+   "Monitor"
+  ],
+  "answer": 0
+ },
+ {
+  "ep": "09",
+  "epTitle": "Know Your Realm",
+  "q": "A system is Confidentiality=Moderate, Integrity=Low, Availability=High. Its category is?",
+  "options": [
+   "Low",
+   "Moderate",
+   "High"
+  ],
+  "answer": 2
+ },
+ {
+  "ep": "09",
+  "epTitle": "Know Your Realm",
+  "q": "Which standard defines the Low / Moderate / High impact levels?",
+  "options": [
+   "FIPS 199",
+   "SP 800-53B",
+   "SP 800-37"
+  ],
+  "answer": 0
+ },
+ {
+  "ep": "10",
+  "epTitle": "The Armory: Baselines",
+  "q": "Where do the Low / Moderate / High baselines live?",
+  "options": [
+   "SP 800-53 (the catalog)",
+   "SP 800-53B",
+   "FIPS 199"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "10",
+  "epTitle": "The Armory: Baselines",
+  "q": "Adjusting a baseline — scoping out, swapping, adding controls — is called?",
+  "options": [
+   "Categorization",
+   "Tailoring",
+   "Authorization"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "11",
+  "epTitle": "The Reckoning",
+  "q": "What are the three assessment methods in SP 800-53A?",
+  "options": [
+   "Scan, Patch, Report",
+   "Examine, Interview, Test",
+   "Plan, Do, Check"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "11",
+  "epTitle": "The Reckoning",
+  "q": "A senior official accepts the residual risk and lets the system run. That decision is the?",
+  "options": [
+   "POA&M",
+   "ATO (Authorization to Operate)",
+   "SAR"
+  ],
+  "answer": 1
+ },
+ {
+  "ep": "11",
+  "epTitle": "The Reckoning",
+  "q": "Where are open weaknesses tracked until they're remediated?",
+  "options": [
+   "In the SAR",
+   "In a POA&M",
+   "In FIPS 199"
+  ],
+  "answer": 1
+ }
+]

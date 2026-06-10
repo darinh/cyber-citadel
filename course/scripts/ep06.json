@@ -1,0 +1,594 @@
+{
+ "id": "EP06",
+ "tag": "EP06",
+ "slug": "the_vaults_and_lifelines",
+ "beats": [
+  {
+   "year": "2017",
+   "headline": "A wiper erases a global shipping line overnight.",
+   "body": "Self-spreading malware destroyed tens of thousands of machines at a major shipping company. It came back only because one backup happened to be offline and out of reach during the attack.",
+   "mitre": "Data Destruction · T1485",
+   "teaches": "CP-9 · CP-2",
+   "scene": "coldopen",
+   "say": [
+    [
+     "NULL",
+     "Every gap, every shortcut, every forgotten door — I will find it. And if I can't get in, I'll burn it down."
+    ],
+    [
+     "VEGA",
+     "Not tonight. Seal the roads, guard the vaults, and prepare for the dark."
+    ],
+    [
+     "NOVA",
+     "Prepare for the worst, you mean."
+    ],
+    [
+     "VEGA",
+     "Always."
+    ]
+   ],
+   "min_seconds": 7.0
+  },
+  {
+   "scene": "map",
+   "title": "THE VAULTS",
+   "highlight": [],
+   "deps": [],
+   "subtitle": "",
+   "say": [
+    [
+     "NULL",
+     "If I can't break the walls, I'll snatch your secrets in transit, or wait for the lights to go out."
+    ],
+    [
+     "VEGA",
+     "Then we seal the roads, guard the vaults, and prepare for the dark."
+    ]
+   ]
+  },
+  {
+   "scene": "section",
+   "num": "06",
+   "title": "THE VAULTS & LIFELINES",
+   "subtitle": "Communications · Media · Contingency",
+   "say": [
+    [
+     "VEGA",
+     "Layer six protects the data itself, and keeps the city alive through disaster."
+    ],
+    [
+     "NARRATOR",
+     "Three families hold the line: System & Communications Protection, Media Protection, and Contingency Planning."
+    ]
+   ]
+  },
+  {
+   "scene": "map",
+   "title": "THE VAULTS & LIFELINES",
+   "highlight": [
+    "SC",
+    "MP",
+    "CP"
+   ],
+   "deps": [
+    [
+     "SC",
+     "AC"
+    ],
+    [
+     "CP",
+     "IR"
+    ]
+   ],
+   "subtitle": "",
+   "say": [
+    [
+     "NOVA",
+     "SC, MP, and CP. The warden of the roads, the steward of scrolls, and the keeper of lifelines."
+    ]
+   ]
+  },
+  {
+   "scene": "guardian",
+   "family": "SC",
+   "family_name": "System and Communications Protection",
+   "persona": "The Warden of Walls and Roads",
+   "protects": "Fortifies the ramparts and seals the roads between districts.",
+   "reality": "Boundary protection and cryptography that protect data in transit and at rest.",
+   "say": [
+    [
+     "VEGA",
+     "The Warden of Walls and Roads, System and Communications Protection."
+    ],
+    [
+     "VEGA",
+     "It fortifies the ramparts and seals the roads between districts."
+    ],
+    [
+     "VEGA",
+     "In reality, that's boundary protection and cryptography — guarding data as it moves and where it rests."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "System boundary",
+   "expand": null,
+   "plain": "The line you draw around a system: everything inside is 'your system' — the part you own, authorize, and defend. Drawing it well is one of the most consequential decisions in 800-53.",
+   "example": "Like the property line and fence around a building — it defines exactly what you're responsible for guarding.",
+   "cite": null,
+   "kicker": "PLAIN ENGLISH",
+   "say": [
+    [
+     "NOVA",
+     "What is 'the edge of the system'?"
+    ],
+    [
+     "VEGA",
+     "Draw a line around your computers, data, and the people who run them. Inside is your system. SC-7 watches that line."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "control",
+   "id": "SC-7",
+   "title": "Boundary Protection",
+   "plain": "Monitor and control traffic at the system's boundaries.",
+   "why": "The boundary is where outside meets inside; SC-7 decides what may cross.",
+   "say": [
+    [
+     "VEGA",
+     "SC-7, boundary protection, guards the edge of the system."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "Encryption — in transit & at rest",
+   "expand": null,
+   "plain": "Math that scrambles data with a secret key, so anyone who intercepts it sees gibberish. 'In transit' is data moving across a network; 'at rest' is data sitting on a disk or in a database.",
+   "example": "The padlock on a web address (HTTPS) is encryption in transit; a password-locked, encrypted laptop is encryption at rest.",
+   "cite": null,
+   "kicker": "PLAIN ENGLISH",
+   "say": [
+    [
+     "NOVA",
+     "You keep saying cryptography — what does it actually do?"
+    ],
+    [
+     "VEGA",
+     "It locks the data. Encrypt it in transit and at rest, and a thief without your key gets nothing."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "control",
+   "id": "SC-8",
+   "title": "Transmission Confidentiality and Integrity",
+   "plain": "Protect data in transit — its confidentiality and integrity.",
+   "why": "On the wire, encryption is what stops eavesdropping and tampering.",
+   "say": [
+    [
+     "NULL",
+     "I was listening on that line..."
+    ],
+    [
+     "VEGA",
+     "Then you heard noise. SC-8 protects data in transit, often with approved cryptography."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "SC-28",
+   "title": "Protection of Information at Rest",
+   "plain": "Protect data at rest — in storage.",
+   "why": "Stored data outlives the session; SC-28 keeps it encrypted and safe.",
+   "say": [
+    [
+     "NOVA",
+     "And the data just sitting in storage?"
+    ],
+    [
+     "VEGA",
+     "SC-28 protects it at rest, often with cryptography from SC-12 and SC-13."
+    ]
+   ]
+  },
+  {
+   "scene": "diagram",
+   "title": "The boundary decides what crosses",
+   "nodes": [
+    {
+     "label": "Untrusted network",
+     "x": 150,
+     "y": 470,
+     "w": 360,
+     "h": 140,
+     "color": "red"
+    },
+    {
+     "label": "Boundary protection (SC-7)",
+     "x": 780,
+     "y": 470,
+     "w": 380,
+     "h": 140,
+     "color": "gold"
+    },
+    {
+     "label": "Your system",
+     "x": 1430,
+     "y": 470,
+     "w": 340,
+     "h": 140,
+     "color": "mint"
+    }
+   ],
+   "arrows": [
+    [
+     0,
+     1,
+     "filtered"
+    ],
+    [
+     1,
+     2,
+     "allowed"
+    ]
+   ],
+   "say": [
+    [
+     "VEGA",
+     "Untrusted traffic meets the boundary, and only the allowed passes through."
+    ],
+    [
+     "NOVA",
+     "Filter at the edge, encrypt across the wire."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Monitor and control communications at the external managed interfaces to the system and at key internal managed interfaces within the system;",
+   "cite": "NIST SP 800-53r5  ·  SC-7 Boundary Protection",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Monitor and control communications at the external managed interfaces to the system and at key internal managed interfaces within the system;"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "SC",
+   "title": "System and Communications Protection",
+   "bullets": [
+    "SC-7 Boundary Protection — control traffic at the boundary",
+    "SC-8 Transmission Confidentiality and Integrity — protect data in transit (often encrypted)",
+    "SC-13 Cryptographic Protection — use approved cryptography",
+    "SC-28 Protection of Information at Rest — encrypt data at rest"
+   ],
+   "mnemonic": "“Guard the edge; encrypt everywhere.”",
+   "say": [
+    [
+     "VEGA",
+     "Protect data moving and still."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "SC",
+   "oath": "Filter at the edge; cipher on the wire.",
+   "controls": "SC-7 · SC-8 · SC-28",
+   "say": [
+    [
+     "VEGA",
+     "The Warden's oath. Filter at the edge; cipher on the wire."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "MP",
+   "family_name": "Media Protection",
+   "persona": "The Steward of Scrolls",
+   "protects": "Guards every scroll, and destroys the ones discarded.",
+   "reality": "Protecting digital and physical media, and sanitizing it before disposal or reuse.",
+   "say": [
+    [
+     "VEGA",
+     "The Steward of Scrolls, Media Protection."
+    ],
+    [
+     "NOVA",
+     "It guards every scroll, and destroys the ones discarded."
+    ],
+    [
+     "VEGA",
+     "By 'media,' NIST means storage: hard drives, SSDs, tapes, USB sticks, even printed paper. MP protects them — and wipes them before they're thrown away."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "MP-6",
+   "title": "Media Sanitization",
+   "plain": "Sanitize media before disposal or reuse — truly erase it.",
+   "why": "A discarded drive can still spill its data; MP-6 makes erasure final.",
+   "say": [
+    [
+     "VEGA",
+     "MP-6, media sanitization, ensures deleted really means gone."
+    ],
+    [
+     "NULL",
+     "Your old backup drive would have told me everything."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "MP-7",
+   "title": "Media Use",
+   "plain": "Restrict the use of removable media like USB drives.",
+   "why": "Removable media carries malware in and data out; MP-7 controls it.",
+   "say": [
+    [
+     "VEGA",
+     "And MP-7 controls removable media, the humble USB stick."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "Reading the [brackets]",
+   "expand": null,
+   "plain": "NIST writes controls as templates. Text in brackets like [Assignment: organization-defined frequency] is a blank YOU fill in — every 30 days, each quarter, whatever your risk calls for. The catalog gives the requirement; you set the value.",
+   "example": null,
+   "cite": null,
+   "kicker": "HOW TO READ A CONTROL · PARAMETERS",
+   "say": [
+    [
+     "VEGA",
+     "One reading tip before the next gold card. Notice the brackets in the catalog's text."
+    ],
+    [
+     "NOVA",
+     "So the brackets are blanks the organization fills in?"
+    ],
+    [
+     "VEGA",
+     "Exactly. The requirement is fixed; the value is yours."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "quote",
+   "quote": "Sanitize [organization-defined system media] prior to disposal, release out of organizational control, or release for reuse using [organization-defined sanitization techniques and procedures] ;",
+   "cite": "NIST SP 800-53r5  ·  MP-6 Media Sanitization",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Sanitize [organization-defined system media] prior to disposal, release out of organizational control, or release for reuse using [organization-defined sanitization techniques and procedures] ;"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "MP",
+   "title": "Media Protection",
+   "bullets": [
+    "MP-2 Media Access — restrict who can access media",
+    "MP-4 Media Storage — store media securely",
+    "MP-6 Media Sanitization — sanitize media before disposal",
+    "MP-7 Media Use — control removable media"
+   ],
+   "mnemonic": "“Guard the scroll; burn the discard.”",
+   "say": [
+    [
+     "VEGA",
+     "Data outlives the device. Wipe it like you mean it."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "MP",
+   "oath": "When it's gone, it's gone for good.",
+   "controls": "MP-6",
+   "say": [
+    [
+     "VEGA",
+     "The Steward's oath. When it's gone, it's gone for good."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "CP",
+   "family_name": "Contingency Planning",
+   "persona": "The Keeper of Lifelines",
+   "protects": "Plans for the day the towers fall, and how to rebuild.",
+   "reality": "Backups, alternate sites, and tested plans to recover operations after a disruption.",
+   "say": [
+    [
+     "VEGA",
+     "The Keeper of Lifelines, Contingency Planning."
+    ],
+    [
+     "VEGA",
+     "It plans for the day the towers fall, and how to rebuild."
+    ],
+    [
+     "VEGA",
+     "In reality, that's backups, alternate sites, and tested plans to recover operations after a disruption."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "CP-9",
+   "title": "System Backup",
+   "plain": "Back up your systems and data — and be able to restore.",
+   "why": "When ransomware strikes, a clean, tested backup is the way home.",
+   "say": [
+    [
+     "NOVA",
+     "What saves us from ransomware?"
+    ],
+    [
+     "VEGA",
+     "CP-9, system backup, a clean copy you can actually restore."
+    ],
+    [
+     "VEGA",
+     "'Clean' is the key word — a backup kept offline or unchangeable, where ransomware can't reach it. That's what saved the shipping line we opened with."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "CP-2",
+   "title": "Contingency Plan",
+   "plain": "Write and maintain a contingency plan — and CP-4 tests it.",
+   "why": "An untested plan is a guess; rehearsal turns disaster into routine.",
+   "say": [
+    [
+     "VEGA",
+     "CP-2 is the plan; CP-4 is the drill that proves it works."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Conduct backups of user-level information contained in [system components] [frequency];",
+   "cite": "NIST SP 800-53r5  ·  CP-9 System Backup",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Conduct backups of user-level information contained in [system components] [frequency];"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "CP",
+   "title": "Contingency Planning",
+   "bullets": [
+    "CP-2 Contingency Plan — have a contingency plan",
+    "CP-4 Contingency Plan Testing — test the plan",
+    "CP-9 System Backup — back up systems and data",
+    "CP-10 System Recovery and Reconstitution — recover and reconstitute"
+   ],
+   "mnemonic": "“Back it up; rehearse the recovery.”",
+   "say": [
+    [
+     "VEGA",
+     "Survival is planned in advance, never improvised."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "CP",
+   "oath": "We rehearse the dark, so we survive it.",
+   "controls": "CP-2 · CP-4 · CP-9",
+   "say": [
+    [
+     "VEGA",
+     "The Keeper's oath. We rehearse the dark, so we survive it."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "points",
+   "title": "The Vaults & Lifelines in the RMF",
+   "bullets": [
+    "SC and MP carry out the PROTECT function for data",
+    "CP delivers RECOVER — resilience when prevention fails",
+    "In practice: encrypt in transit and at rest, wipe media, test backups"
+   ],
+   "kicker": "HOW IT FITS",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "Prevention buys time. Recovery buys survival."
+    ]
+   ]
+  },
+  {
+   "scene": "quiz",
+   "q": "Ransomware encrypts your servers. What gets you back fastest?",
+   "options": [
+    "A clean, tested backup (CP-9)",
+    "A firewall rule (SC-7)",
+    "A privacy notice (PT-5)"
+   ],
+   "answer": 0,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Scenario: ransomware hits. What brings you home? Pause, and answer."
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "A surplus hard drive is sold without being wiped. Which control failed?",
+   "options": [
+    "SC-8 Transmission",
+    "MP-6 Media Sanitization",
+    "CP-2 Contingency Plan"
+   ],
+   "answer": 1,
+   "reveal": true,
+   "say": [
+    [
+     "VEGA",
+     "And the drive that left with its secrets intact?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "notebook",
+   "title": "Episode 06 — the Vaults & Lifelines",
+   "lines": [
+    "SC draws the boundary and encrypts data in transit and at rest (SC-7, SC-8, SC-28).",
+    "MP protects storage media and truly wipes it before disposal (MP-2, MP-6, MP-7).",
+    "CP backs up (clean = offline/immutable) and rehearses recovery (CP-2, CP-4, CP-9)."
+   ],
+   "mnemonic": "Prevention buys time; recovery buys survival.",
+   "say": [
+    [
+     "NOVA",
+     "Notebook: lock the data moving and still — and keep a backup the attacker can't touch."
+    ],
+    [
+     "VEGA",
+     "Data sealed, lifelines ready. The city can take a punch."
+    ],
+    [
+     "NULL",
+     "Then I'll bring everything, all at once. Siege night."
+    ],
+    [
+     "VEGA",
+     "We'll be ready. All twenty guardians, together."
+    ]
+   ],
+   "min_seconds": 5.0
+  }
+ ]
+}

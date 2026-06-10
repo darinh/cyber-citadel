@@ -1,0 +1,215 @@
+{
+ "id": "EP10",
+ "tag": "EP10",
+ "slug": "the_armory_baselines",
+ "beats": [
+  {
+   "scene": "section",
+   "num": "10",
+   "title": "THE ARMORY",
+   "subtitle": "Control Baselines & Tailoring · NIST SP 800-53B",
+   "say": [
+    [
+     "VEGA",
+     "You know the system's worth. Now draw your loadout from the armory."
+    ],
+    [
+     "NARRATOR",
+     "The baselines, and the tailoring guidance, live in SP 800-53B."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "What is a baseline?",
+   "bullets": [
+    "A pre-defined STARTING set of controls for an impact level",
+    "Three security baselines: Low, Moderate, High",
+    "Plus a separate Privacy baseline for systems that process PII",
+    "Your FIPS 199 level picks the SECURITY baseline: a Moderate system → Moderate baseline"
+   ],
+   "kicker": "800-53B",
+   "note": "",
+   "say": [
+    [
+     "NOVA",
+     "So a baseline is a ready-made kit?"
+    ],
+    [
+     "VEGA",
+     "A starting kit. Matched to how much the system matters."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "Tailoring & overlays",
+   "expand": null,
+   "plain": "Tailoring is adjusting the baseline to fit your system — removing what doesn't apply, adding what's missing, setting parameters, and justifying each change. An overlay is ready-made tailoring for a whole community.",
+   "example": null,
+   "cite": null,
+   "kicker": "PLAIN ENGLISH",
+   "say": [
+    [
+     "NOVA",
+     "Tailoring? Overlay?"
+    ],
+    [
+     "VEGA",
+     "Tailoring fits the kit to you — like Aegis Hospital dropping wireless because that app is wired-only, and adding a healthcare overlay. An overlay is shared tailoring, so you don't start from scratch."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "diagram",
+   "title": "The three security baselines (controls + enhancements)",
+   "nodes": [
+    {
+     "label": "LOW\n149 controls",
+     "x": 150,
+     "y": 460,
+     "w": 440,
+     "h": 170,
+     "color": "mint"
+    },
+    {
+     "label": "MODERATE\n287 controls",
+     "x": 740,
+     "y": 460,
+     "w": 440,
+     "h": 170,
+     "color": "gold"
+    },
+    {
+     "label": "HIGH\n370 controls",
+     "x": 1330,
+     "y": 460,
+     "w": 440,
+     "h": 170,
+     "color": "red"
+    }
+   ],
+   "arrows": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ]
+   ],
+   "say": [
+    [
+     "VEGA",
+     "Low draws 149 items. Moderate, 287. High, 370."
+    ],
+    [
+     "VEGA",
+     "Higher impact, more controls and enhancements, by design."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "Then you TAILOR it",
+   "bullets": [
+    "Scoping — drop controls that don't apply to your system",
+    "Compensating controls — swap in an alternative that meets the intent",
+    "Parameters — fill in organization-defined values (frequencies, roles)",
+    "Supplementation — ADD controls for risks the baseline misses"
+   ],
+   "kicker": "TAILORING",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "A baseline is a starting point, never the finish line. You tailor it to fit."
+    ],
+    [
+     "NULL",
+     "I look for the control you wrongly tailored away."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "Overlays & a key nuance",
+   "bullets": [
+    "Overlays — ready-made tailored baselines for a community (cloud, classified, mission-specific)",
+    "The Privacy baseline (96 controls) covers systems processing PII",
+    "Security baselines span 18 families — Program Management (PM) is org-wide, not in them"
+   ],
+   "kicker": "OVERLAYS",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "Overlays are shared tailoring, so you don't start from scratch."
+    ],
+    [
+     "NOVA",
+     "And remember, PM controls run across the whole organization, outside any baseline."
+    ]
+   ]
+  },
+  {
+   "scene": "quiz",
+   "q": "Where do the Low / Moderate / High baselines live?",
+   "options": [
+    "SP 800-53 (the catalog)",
+    "SP 800-53B",
+    "FIPS 199"
+   ],
+   "answer": 1,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Quick check. Which book holds the baselines? Pause, and answer."
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "Adjusting a baseline — scoping out, swapping, adding controls — is called?",
+   "options": [
+    "Categorization",
+    "Tailoring",
+    "Authorization"
+   ],
+   "answer": 1,
+   "reveal": true,
+   "say": [
+    [
+     "VEGA",
+     "And the act of adjusting the baseline to fit your system?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "points",
+   "title": "Episode 10 — remember this",
+   "bullets": [
+    "Baselines (800-53B): Low 149, Moderate 287, High 370, Privacy 96",
+    "Your FIPS 199 category selects the baseline",
+    "Then TAILOR: scope, compensate, set parameters, supplement, apply overlays"
+   ],
+   "kicker": "RECAP",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "Defenses chosen and fitted. Now, do they actually work?"
+    ],
+    [
+     "VEGA",
+     "Next: the reckoning, assessment and authorization."
+    ]
+   ]
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+{
+ "id": "EP04",
+ "title": "EP04",
+ "duration": 396.39,
+ "chapters": [
+  {
+   "t": 20.57,
+   "title": "The Inner Keep"
+  },
+  {
+   "t": 31.39,
+   "title": "The High Council"
+  },
+  {
+   "t": 46.61,
+   "title": "The High Council"
+  },
+  {
+   "t": 348.22,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 364.02,
+   "title": "Quiz 2"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "A new system is ready to go live. Who formally accepts the risk to operate it?",
+   "options": [
+    "CA-6 Authorization",
+    "RA-3 Risk Assessment",
+    "PL-2 System Plan"
+   ],
+   "answer": 0,
+   "t_question": 348.22,
+   "t_quiz": 353.72,
+   "t_reveal": 360.42,
+   "t_resume": 364.02
+  },
+  {
+   "n": 2,
+   "q": "Where are known weaknesses tracked until they're fixed?",
+   "options": [
+    "In the system plan",
+    "In a POA&M (CA-5)",
+    "In the audit log"
+   ],
+   "answer": 1,
+   "t_question": 364.02,
+   "t_quiz": 368.74,
+   "t_reveal": 375.44,
+   "t_resume": 379.04
+  }
+ ]
+}

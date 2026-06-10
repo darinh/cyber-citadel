@@ -1,0 +1,18 @@
+# Large/redistributable source (re-downloadable)
+NIST.SP.800-53r5.pdf
+# Python
+.venv/
+.venv_img/
+__pycache__/
+*.pyc
+# Temp audio chunks
+course/audio/_chunks/
+tools/_tmp/
+# Large local neural voice models (re-downloadable via piper.download_voices)
+tools/voices/
+# Large CC-BY source music tracks (re-downloadable via music2.ensure_assets); baked into videos
+tools/music_assets/
+# Audio work files (intermediate)
+course/audio/*.wav
+course/audio/*.mp3
+# NOTE: course/episodes/*.mp4 + .srt/.vtt ARE committed so GitHub Pages can serve them.

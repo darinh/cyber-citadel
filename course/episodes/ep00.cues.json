@@ -1,0 +1,83 @@
+{
+ "id": "EP00",
+ "title": "EP00",
+ "duration": 445.49,
+ "chapters": [
+  {
+   "t": 0.0,
+   "title": "The Citadel Awakens"
+  },
+  {
+   "t": 21.02,
+   "title": "Aegis Citadel"
+  },
+  {
+   "t": 180.79,
+   "title": "Twenty Families, Twenty Districts"
+  },
+  {
+   "t": 295.07,
+   "title": "Baselines Moved Out"
+  },
+  {
+   "t": 363.86,
+   "title": "The Road Ahead — Six Layers"
+  },
+  {
+   "t": 388.34,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 403.47,
+   "title": "Quiz 2"
+  },
+  {
+   "t": 418.37,
+   "title": "Quiz 3"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "In plain terms, a security 'control' is best described as:",
+   "options": [
+    "A type of computer",
+    "A safeguard that reduces risk",
+    "A government agency"
+   ],
+   "answer": 1,
+   "t_question": 388.34,
+   "t_quiz": 393.17,
+   "t_reveal": 399.87,
+   "t_resume": 403.47
+  },
+  {
+   "n": 2,
+   "q": "Where do the Low, Moderate, and High control baselines live now?",
+   "options": [
+    "In 800-53 itself",
+    "In NIST SP 800-53B",
+    "In the RMF"
+   ],
+   "answer": 1,
+   "t_question": 403.47,
+   "t_quiz": 408.07,
+   "t_reveal": 414.77,
+   "t_resume": 418.37
+  },
+  {
+   "n": 3,
+   "q": "How many control families does 800-53 Revision 5 have?",
+   "options": [
+    "Twelve",
+    "Seventeen",
+    "Twenty"
+   ],
+   "answer": 2,
+   "t_question": 418.37,
+   "t_quiz": 422.02,
+   "t_reveal": 428.72,
+   "t_resume": 432.32
+  }
+ ]
+}

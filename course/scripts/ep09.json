@@ -1,0 +1,223 @@
+{
+ "id": "EP09",
+ "tag": "EP09",
+ "slug": "know_your_realm",
+ "beats": [
+  {
+   "scene": "section",
+   "num": "09",
+   "title": "KNOW YOUR REALM",
+   "subtitle": "Security Categorization · FIPS 199",
+   "say": [
+    [
+     "VEGA",
+     "Before you pick defenses, you must know what you're defending, and how much it matters."
+    ],
+    [
+     "NARRATOR",
+     "This is categorization, and it begins with a federal standard: FIPS 199."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "FIPS · to categorize",
+   "expand": "FIPS = Federal Information Processing Standards",
+   "plain": "FIPS are mandatory U.S. federal standards. To 'categorize' a system is to rate how serious the harm would be — Low, Moderate, or High — if its confidentiality, integrity, or availability were lost.",
+   "example": null,
+   "cite": null,
+   "kicker": "PLAIN ENGLISH",
+   "say": [
+    [
+     "NOVA",
+     "FIPS? Categorize?"
+    ],
+    [
+     "VEGA",
+     "FIPS — Federal Information Processing Standards, the mandatory ones. Categorizing is sizing the stakes for C, I, and A — the triad from Episode zero."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "diagram",
+   "title": "Three security objectives",
+   "nodes": [
+    {
+     "label": "Confidentiality",
+     "x": 150,
+     "y": 470,
+     "w": 460,
+     "h": 150,
+     "color": "cyan"
+    },
+    {
+     "label": "Integrity",
+     "x": 730,
+     "y": 470,
+     "w": 460,
+     "h": 150,
+     "color": "gold"
+    },
+    {
+     "label": "Availability",
+     "x": 1310,
+     "y": 470,
+     "w": 460,
+     "h": 150,
+     "color": "mint"
+    }
+   ],
+   "arrows": [],
+   "say": [
+    [
+     "VEGA",
+     "FIPS 199 judges a system on three objectives."
+    ],
+    [
+     "NOVA",
+     "Confidentiality, Integrity, and Availability. The C-I-A triad."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "Rate each at Low, Moderate, or High",
+   "bullets": [
+    "Confidentiality — harm if data is disclosed",
+    "Integrity — harm if data is altered or destroyed",
+    "Availability — harm if access is disrupted",
+    "Each gets an impact level: Low, Moderate, or High"
+   ],
+   "kicker": "FIPS 199 · IMPACT",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "For each objective, ask: how bad is the worst-case impact?"
+    ],
+    [
+     "VEGA",
+     "Low, Moderate, or High."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "The high-water mark",
+   "bullets": [
+    "The system's overall category = the HIGHEST of the three",
+    "Example: Confidentiality Moderate, Integrity Low, Availability Moderate",
+    "...the system is categorized MODERATE",
+    "One High anywhere makes the whole system High"
+   ],
+   "kicker": "THE HIGH-WATER MARK",
+   "note": "",
+   "say": [
+    [
+     "NOVA",
+     "So one High pulls the whole system up?"
+    ],
+    [
+     "VEGA",
+     "Exactly. We call it the high-water mark. The worst case wins."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "Two more companions",
+   "bullets": [
+    "SP 800-60 — maps your information TYPES to impact levels",
+    "FIPS 200 — the minimum security requirements for federal systems",
+    "FIPS 200 is what mandates using SP 800-53 in the first place"
+   ],
+   "kicker": "FIPS 200 · SP 800-60",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "800-60 helps you rate each information type."
+    ],
+    [
+     "VEGA",
+     "And FIPS 200 sets the floor, and points you to 800-53."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "RA-2",
+   "title": "Security Categorization",
+   "plain": "Categorize the system and its information, and document the results.",
+   "why": "Categorization is itself a control, RA-2, the control behind the RMF Categorize step.",
+   "say": [
+    [
+     "VEGA",
+     "And the catalog has a control for exactly this: RA-2."
+    ],
+    [
+     "ARCHIVIST",
+     "Categorize the system and information it processes, stores, and transmits;"
+    ]
+   ]
+  },
+  {
+   "scene": "quiz",
+   "q": "A system is Confidentiality=Moderate, Integrity=Low, Availability=High. Its category is?",
+   "options": [
+    "Low",
+    "Moderate",
+    "High"
+   ],
+   "answer": 2,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Scenario time. What's the overall category? Pause, and answer."
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "Which standard defines the Low / Moderate / High impact levels?",
+   "options": [
+    "FIPS 199",
+    "SP 800-53B",
+    "SP 800-37"
+   ],
+   "answer": 0,
+   "reveal": true,
+   "say": [
+    [
+     "VEGA",
+     "And which standard sets the impact levels themselves?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "points",
+   "title": "Episode 09 — remember this",
+   "bullets": [
+    "FIPS 199 rates Confidentiality, Integrity, Availability as Low / Moderate / High",
+    "Overall category = the high-water mark (the highest of the three)",
+    "800-60 maps information types; FIPS 200 sets the floor and points to 800-53; RA-2 documents it"
+   ],
+   "kicker": "RECAP",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "We know the realm's worth. Now we choose its defenses."
+    ],
+    [
+     "VEGA",
+     "Next: the armory, and the baselines of 800-53B."
+    ]
+   ]
+  }
+ ]
+}

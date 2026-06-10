@@ -1,0 +1,602 @@
+{
+ "id": "EP04",
+ "tag": "EP04",
+ "slug": "the_high_council",
+ "beats": [
+  {
+   "year": "2015",
+   "headline": "Records of millions, taken on an unauthorized system.",
+   "body": "Background-investigation files on about 21 million people were stolen. Auditors had warned for years that key systems were running without a current authorization to operate.",
+   "mitre": "Governance failure · no valid ATO",
+   "teaches": "CA-6 · RA-3",
+   "scene": "coldopen",
+   "say": [
+    [
+     "NULL",
+     "Every gap, every shortcut, every forgotten door — I will find it."
+    ],
+    [
+     "VEGA",
+     "Not tonight. And the deepest gaps aren't in the walls — they're in the decisions above them."
+    ],
+    [
+     "NOVA",
+     "Decisions can be a vulnerability?"
+    ],
+    [
+     "VEGA",
+     "The costliest kind. Welcome to the High Council."
+    ]
+   ],
+   "min_seconds": 7.0
+  },
+  {
+   "scene": "map",
+   "title": "THE INNER KEEP",
+   "highlight": [],
+   "deps": [],
+   "subtitle": "",
+   "say": [
+    [
+     "NULL",
+     "Strike the plans, and every wall is built on sand."
+    ],
+    [
+     "VEGA",
+     "Then it's time you met the High Council, where the realm is governed."
+    ]
+   ]
+  },
+  {
+   "scene": "section",
+   "num": "04",
+   "title": "THE HIGH COUNCIL",
+   "subtitle": "Risk · Planning · Program · Assessment",
+   "say": [
+    [
+     "VEGA",
+     "Layer four is governance, the decisions above any single wall."
+    ],
+    [
+     "NARRATOR",
+     "Four families rule the keep: Risk Assessment, Planning, Program Management, and Assessment & Authorization."
+    ]
+   ]
+  },
+  {
+   "scene": "map",
+   "title": "THE HIGH COUNCIL",
+   "highlight": [
+    "RA",
+    "PL",
+    "PM",
+    "CA"
+   ],
+   "deps": [
+    [
+     "RA",
+     "CA"
+    ],
+    [
+     "PM",
+     "PL"
+    ]
+   ],
+   "subtitle": "",
+   "say": [
+    [
+     "NOVA",
+     "RA, PL, PM, and CA. The seer, the cartographer, the steward, and the inspector."
+    ]
+   ]
+  },
+  {
+   "scene": "guardian",
+   "family": "RA",
+   "family_name": "Risk Assessment",
+   "persona": "The Seer",
+   "protects": "Reads the omens: what could go wrong, and how badly.",
+   "reality": "Identifying and analyzing risk, including vulnerability scanning and threat assessment.",
+   "say": [
+    [
+     "VEGA",
+     "The Seer, Risk Assessment — though this seer never merely guesses."
+    ],
+    [
+     "VEGA",
+     "It doesn't read omens; it measures them: what could go wrong, how likely, and how badly."
+    ],
+    [
+     "VEGA",
+     "In reality, that's analyzing risk with hard evidence — vulnerability scans and threat intelligence."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "RA-3",
+   "title": "Risk Assessment",
+   "plain": "Assess the risk to the system — threats, vulnerabilities, likelihood, and impact.",
+   "why": "Risk is the compass; it tells you which controls actually matter for your system.",
+   "say": [
+    [
+     "VEGA",
+     "RA-3 is the formal risk assessment, the basis for every choice."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "RA-5",
+   "title": "Vulnerability Monitoring and Scanning",
+   "plain": "Scan for vulnerabilities, and act on what you find.",
+   "why": "An unscanned, unpatched service is the unseen crack in the wall.",
+   "say": [
+    [
+     "NOVA",
+     "How do we find the cracks before the Null does?"
+    ],
+    [
+     "VEGA",
+     "RA-5, vulnerability monitoring and scanning, hunts them down."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Monitor and scan for vulnerabilities in the system and hosted applications [organization-defined frequency and/or randomly in accordance with organization-defined process] and when new vulnerabilities potentially affecting the system are identified and reported;",
+   "cite": "NIST SP 800-53r5  ·  RA-5 Vulnerability Monitoring and Scanning",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Monitor and scan for vulnerabilities in the system and hosted applications [organization-defined frequency and/or randomly in accordance with organization-defined process] and when new vulnerabilities potentially affecting the system are identified and reported;"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "RA",
+   "title": "Risk Assessment",
+   "bullets": [
+    "RA-3 Risk Assessment — assess threats, vulnerabilities, and impact",
+    "RA-5 Vulnerability Monitoring and Scanning — scan for vulnerabilities and remediate",
+    "RA-7 Risk Response — respond to the risks you find"
+   ],
+   "mnemonic": "“Know the risk before you spend a coin.”",
+   "say": [
+    [
+     "VEGA",
+     "Risk first. It tells you where to spend your strength."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "RA",
+   "oath": "I do not guess the storm; I measure it.",
+   "controls": "RA-3 · RA-5",
+   "say": [
+    [
+     "VEGA",
+     "The Seer's oath. I do not guess the storm; I measure it."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "PL",
+   "family_name": "Planning",
+   "persona": "The Cartographer",
+   "protects": "Draws the map of the defense before the march.",
+   "reality": "System security and privacy plans, rules of behavior, and security architecture.",
+   "say": [
+    [
+     "VEGA",
+     "The Cartographer, Planning."
+    ],
+    [
+     "NOVA",
+     "It draws the map of the defense before the march."
+    ],
+    [
+     "VEGA",
+     "In reality, that's the system security and privacy plan, the rules of behavior, and the security architecture."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "PL-2",
+   "title": "System Security and Privacy Plans",
+   "plain": "Write a security and privacy plan for the system — the single source of truth.",
+   "why": "The plan says what the system is, who runs it, and which controls protect it.",
+   "say": [
+    [
+     "VEGA",
+     "PL-2 is the system security and privacy plan, the master map."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "PL-8",
+   "title": "Security and Privacy Architectures",
+   "plain": "Design a security and privacy architecture, on purpose, up front.",
+   "why": "Architecture decides where the walls go before a single stone is laid.",
+   "say": [
+    [
+     "VEGA",
+     "And PL-8 plans the architecture, defense by design."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Develop security and privacy plans for the system that:",
+   "cite": "NIST SP 800-53r5  ·  PL-2 System Security and Privacy Plans",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Develop security and privacy plans for the system that:"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "PL",
+   "title": "Planning",
+   "bullets": [
+    "PL-2 System Security and Privacy Plans — the system security & privacy plan",
+    "PL-4 Rules of Behavior — rules of behavior for users",
+    "PL-8 Security and Privacy Architectures — security & privacy architecture"
+   ],
+   "mnemonic": "“Plan the map before the march.”",
+   "say": [
+    [
+     "VEGA",
+     "No plan, no defense, just luck."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "PL",
+   "oath": "No march without a map.",
+   "controls": "PL-2",
+   "say": [
+    [
+     "VEGA",
+     "The Cartographer's oath. No march without a map."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "PM",
+   "family_name": "Program Management",
+   "persona": "The High Steward",
+   "protects": "Governs the whole realm's defense, above any single wall.",
+   "reality": "Organization-wide governance: the security and privacy program, roles, risk strategy, and resources.",
+   "say": [
+    [
+     "VEGA",
+     "The High Steward, Program Management."
+    ],
+    [
+     "VEGA",
+     "It governs the whole realm's defense, above any single system."
+    ],
+    [
+     "VEGA",
+     "In reality, that's organization-wide governance: the security and privacy program, roles, risk strategy, and resources."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "PM-9",
+   "title": "Risk Management Strategy",
+   "plain": "Set an organization-wide strategy to manage risk.",
+   "why": "PM steers the whole program; these controls run org-wide, not per-system.",
+   "say": [
+    [
+     "NOVA",
+     "Who sets the strategy for everything?"
+    ],
+    [
+     "VEGA",
+     "PM-9, the risk management strategy for the entire organization."
+    ]
+   ]
+  },
+  {
+   "scene": "points",
+   "title": "A note on Program Management",
+   "bullets": [
+    "PM controls are organization-wide, not tied to one system",
+    "They are deployed independently of the Low / Moderate / High baselines",
+    "Think governance: leadership, strategy, resources, and oversight"
+   ],
+   "kicker": "ACCURACY ANCHOR",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "Important: PM controls aren't selected per system from a baseline."
+    ],
+    [
+     "VEGA",
+     "They run across the whole organization, all the time."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Develops a comprehensive strategy to manage:",
+   "cite": "NIST SP 800-53r5  ·  PM-9 Risk Management Strategy",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Develops a comprehensive strategy to manage:"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "PM",
+   "title": "Program Management",
+   "bullets": [
+    "PM-2 Information Security Program Leadership Role — name the security program leadership",
+    "PM-9 Risk Management Strategy — the organization-wide risk strategy",
+    "PM-11 Mission and Business Process Definition — define mission and business processes",
+    "PM-31 Continuous Monitoring Strategy — the continuous monitoring strategy"
+   ],
+   "mnemonic": "“Govern the whole, not just the parts.”",
+   "say": [
+    [
+     "VEGA",
+     "Program management is the realm thinking as one."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "PM",
+   "oath": "One realm, one strategy — always.",
+   "controls": "PM-1 · PM-9",
+   "say": [
+    [
+     "VEGA",
+     "The High Steward's oath. One realm, one strategy — always."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "CA",
+   "family_name": "Assessment, Authorization, and Monitoring",
+   "persona": "The Inspector",
+   "protects": "Tests the defenses and signs off before the gates open.",
+   "reality": "Assessing controls, formally authorizing systems to operate, and continuously monitoring them.",
+   "say": [
+    [
+     "VEGA",
+     "The Inspector, Assessment, Authorization, and Monitoring."
+    ],
+    [
+     "NOVA",
+     "It tests the defenses, and signs off before the gates open."
+    ],
+    [
+     "VEGA",
+     "In reality, that's assessing controls, formally authorizing a system to operate, and watching it continuously."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "CA-6",
+   "title": "Authorization",
+   "plain": "An authorizing official formally accepts the risk and authorizes the system to operate.",
+   "why": "Authorization is a named, accountable leader putting their signature on the risk.",
+   "say": [
+    [
+     "VEGA",
+     "CA-6, authorization, the authorizing official says 'I accept this risk.' The agency we opened with ran key systems without this signature."
+    ],
+    [
+     "NULL",
+     "A signature won't stop me."
+    ],
+    [
+     "VEGA",
+     "No. But it puts a name on the wall the day something does. And CA-7 keeps watching after the ink dries."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "Authorization to Operate (ATO)",
+   "expand": "ATO = Authorization to Operate, granted by the Authorizing Official (AO)",
+   "plain": "A senior leader's formal, signed decision that a system's remaining risk is acceptable — so it may go live. It accepts risk; it does not guarantee safety.",
+   "example": null,
+   "cite": null,
+   "kicker": "PLAIN ENGLISH",
+   "say": [
+    [
+     "NOVA",
+     "So a real person signs for the risk?"
+    ],
+    [
+     "VEGA",
+     "The authorizing official — a senior, accountable leader — grants the A-T-O, and owns that decision."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "control",
+   "id": "CA-2",
+   "title": "Control Assessments",
+   "plain": "Independently assess whether the controls actually work.",
+   "why": "Selecting a control isn't enough; CA-2 checks it truly does its job.",
+   "say": [
+    [
+     "VEGA",
+     "CA-2 plans and runs the assessment, using procedures from companion doc 800-53A."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "POA&M",
+   "expand": "POA&M = Plan of Action & Milestones (CA-5)",
+   "plain": "A living to-do list of every known weakness you haven't fixed yet — each with an owner and a due date. It's how honest teams drive risk down over time.",
+   "example": null,
+   "cite": null,
+   "kicker": "PLAIN ENGLISH",
+   "say": [
+    [
+     "NOVA",
+     "And the gaps we find but can't close today?"
+    ],
+    [
+     "VEGA",
+     "They go on the POA&M. CA-5 requires it, and the authorizing official keeps an eye on it."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "quote",
+   "quote": "Select the appropriate assessor or assessment team for the type of assessment to be conducted;",
+   "cite": "NIST SP 800-53r5  ·  CA-2 Control Assessments",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Select the appropriate assessor or assessment team for the type of assessment to be conducted;"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "CA",
+   "title": "Assessment, Authorization, and Monitoring",
+   "bullets": [
+    "CA-2 Control Assessments — assess that controls work (per 800-53A)",
+    "CA-5 Plan of Action and Milestones — track weaknesses in a POA&M",
+    "CA-6 Authorization — authorize the system to operate",
+    "CA-7 Continuous Monitoring — monitor continuously"
+   ],
+   "mnemonic": "“Test it, sign it, watch it.”",
+   "say": [
+    [
+     "VEGA",
+     "Assess, authorize, and never stop monitoring."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "CA",
+   "oath": "Test before you trust; watch after you sign.",
+   "controls": "CA-2 · CA-6 · CA-7",
+   "say": [
+    [
+     "VEGA",
+     "The Inspector's oath. Test before you trust; watch after you sign."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "points",
+   "title": "The High Council drives the RMF",
+   "bullets": [
+    "RA → categorize and assess risk",
+    "PL → plan; PM → govern the whole program",
+    "CA → assess, authorize, and monitor the system"
+   ],
+   "kicker": "HOW IT FITS",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "If a layer maps onto the framework, it's this one."
+    ],
+    [
+     "NOVA",
+     "Risk, planning, governance, and assessment, the work behind the RMF lifecycle."
+    ]
+   ]
+  },
+  {
+   "scene": "quiz",
+   "q": "A new system is ready to go live. Who formally accepts the risk to operate it?",
+   "options": [
+    "CA-6 Authorization",
+    "RA-3 Risk Assessment",
+    "PL-2 System Plan"
+   ],
+   "answer": 0,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Scenario: go-live day. Whose signature is required? Pause, and answer."
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "Where are known weaknesses tracked until they're fixed?",
+   "options": [
+    "In the system plan",
+    "In a POA&M (CA-5)",
+    "In the audit log"
+   ],
+   "answer": 1,
+   "reveal": true,
+   "say": [
+    [
+     "VEGA",
+     "And where do we record the gaps we haven't closed yet?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "notebook",
+   "title": "Episode 04 — the High Council",
+   "lines": [
+    "RA finds and ranks risk with evidence (RA-3, RA-5, RA-7).",
+    "PL plans the defense; PM governs the whole organization (PL-2, PL-8; PM-9, PM-2).",
+    "CA assesses, authorizes (the ATO), tracks gaps (POA&M), and monitors (CA-2, CA-5, CA-6, CA-7)."
+   ],
+   "mnemonic": "Govern the whole; test it, sign it, watch it.",
+   "say": [
+    [
+     "NOVA",
+     "Notebook: this layer is the brain — it decides what the walls are even for."
+    ],
+    [
+     "VEGA",
+     "The realm is governed. Now, to where it's all built."
+    ],
+    [
+     "NULL",
+     "Built? I'll poison it at the source."
+    ],
+    [
+     "VEGA",
+     "Then we descend to the Forge."
+    ]
+   ],
+   "min_seconds": 5.0
+  }
+ ]
+}

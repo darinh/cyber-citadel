@@ -1,0 +1,75 @@
+{
+ "id": "EP01",
+ "title": "EP01",
+ "duration": 352.58,
+ "chapters": [
+  {
+   "t": 17.85,
+   "title": "Aegis Citadel — Nightfall"
+  },
+  {
+   "t": 33.87,
+   "title": "The Outer Walls"
+  },
+  {
+   "t": 46.76,
+   "title": "The Outer Walls"
+  },
+  {
+   "t": 289.07,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 304.2,
+   "title": "Quiz 2"
+  },
+  {
+   "t": 318.43,
+   "title": "Quiz 3"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "Which guardian proves you are who you claim, before you pass?",
+   "options": [
+    "AC — Access Control",
+    "IA — Identification & Authentication",
+    "PE — Physical"
+   ],
+   "answer": 1,
+   "t_question": 289.07,
+   "t_quiz": 293.9,
+   "t_reveal": 300.6,
+   "t_resume": 304.2
+  },
+  {
+   "n": 2,
+   "q": "'Only the access you truly need' is which control?",
+   "options": [
+    "AC-2 Account Management",
+    "AC-6 Least Privilege",
+    "IA-5 Authenticator Management"
+   ],
+   "answer": 1,
+   "t_question": 304.2,
+   "t_quiz": 308.13,
+   "t_reveal": 314.83,
+   "t_resume": 318.43
+  },
+  {
+   "n": 3,
+   "q": "An intruder tailgates through a propped door into the server room. Which family should stop it?",
+   "options": [
+    "PE — Physical",
+    "AU — Audit",
+    "SR — Supply Chain"
+   ],
+   "answer": 0,
+   "t_question": 318.43,
+   "t_quiz": 323.53,
+   "t_reveal": 330.23,
+   "t_resume": 333.83
+  }
+ ]
+}

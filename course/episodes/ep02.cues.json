@@ -1,0 +1,61 @@
+{
+ "id": "EP02",
+ "title": "EP02",
+ "duration": 333.65,
+ "chapters": [
+  {
+   "t": 17.17,
+   "title": "Inside The Walls"
+  },
+  {
+   "t": 28.49,
+   "title": "The Watchtowers"
+  },
+  {
+   "t": 42.33,
+   "title": "The Watchtowers"
+  },
+  {
+   "t": 156.51,
+   "title": "The Watch Catches A Shadow"
+  },
+  {
+   "t": 286.57,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 302.18,
+   "title": "Quiz 2"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "An intruder tries to delete the logs to hide. Which control blocks that?",
+   "options": [
+    "AU-2 Event Logging",
+    "AU-9 Protection of Audit Information",
+    "SI-4 System Monitoring"
+   ],
+   "answer": 1,
+   "t_question": 286.57,
+   "t_quiz": 291.88,
+   "t_reveal": 298.58,
+   "t_resume": 302.18
+  },
+  {
+   "n": 2,
+   "q": "Which family detects, contains, and recovers from a breach?",
+   "options": [
+    "IR — Incident Response",
+    "AU — Audit",
+    "AC — Access Control"
+   ],
+   "answer": 0,
+   "t_question": 302.18,
+   "t_quiz": 305.23,
+   "t_reveal": 311.93,
+   "t_resume": 315.53
+  }
+ ]
+}

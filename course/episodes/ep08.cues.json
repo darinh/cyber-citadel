@@ -1,0 +1,53 @@
+{
+ "id": "EP08",
+ "title": "EP08",
+ "duration": 136.69,
+ "chapters": [
+  {
+   "t": 0.0,
+   "title": "The Campaign"
+  },
+  {
+   "t": 20.72,
+   "title": "The Risk Management Framework"
+  },
+  {
+   "t": 98.97,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 113.84,
+   "title": "Quiz 2"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "How many steps are in the RMF (SP 800-37 Rev 2)?",
+   "options": [
+    "Five",
+    "Six",
+    "Seven"
+   ],
+   "answer": 2,
+   "t_question": 98.97,
+   "t_quiz": 103.54,
+   "t_reveal": 110.24,
+   "t_resume": 113.84
+  },
+  {
+   "n": 2,
+   "q": "Which RMF step was newly added in Revision 2?",
+   "options": [
+    "Prepare",
+    "Authorize",
+    "Monitor"
+   ],
+   "answer": 0,
+   "t_question": 113.84,
+   "t_quiz": 117.79,
+   "t_reveal": 124.49,
+   "t_resume": 128.09
+  }
+ ]
+}

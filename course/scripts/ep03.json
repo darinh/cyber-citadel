@@ -1,0 +1,554 @@
+{
+ "id": "EP03",
+ "tag": "EP03",
+ "slug": "the_keepers_of_the_pact",
+ "beats": [
+  {
+   "year": "2020",
+   "headline": "They didn't hack the computer. They called the staff.",
+   "body": "Attackers phoned employees, talked their way into an internal admin tool, and hijacked high-profile accounts. The exploit was a person, not a port.",
+   "mitre": "Phishing · T1566",
+   "teaches": "AT-2 · PS-3",
+   "scene": "coldopen",
+   "say": [
+    [
+     "NULL",
+     "Every gap, every shortcut, every forgotten door — I will find it."
+    ],
+    [
+     "VEGA",
+     "Not tonight. And the easiest door of all is a person who hasn't been trained."
+    ],
+    [
+     "NOVA",
+     "So the people are the perimeter too?"
+    ],
+    [
+     "VEGA",
+     "The most-attacked one. Let's defend them."
+    ]
+   ],
+   "min_seconds": 7.0
+  },
+  {
+   "scene": "map",
+   "title": "THE HUMAN GATE",
+   "highlight": [],
+   "deps": [],
+   "subtitle": "",
+   "say": [
+    [
+     "NULL",
+     "Walls and towers? Tedious. People are so much easier to fool."
+    ],
+    [
+     "VEGA",
+     "Which is why the strongest controls guard the people, and their data."
+    ]
+   ]
+  },
+  {
+   "scene": "section",
+   "num": "03",
+   "title": "THE KEEPERS OF THE PACT",
+   "subtitle": "Training · Personnel · Privacy",
+   "say": [
+    [
+     "VEGA",
+     "Layer three is human. Train them, trust them carefully, and honor their data."
+    ],
+    [
+     "NARRATOR",
+     "Three families keep the pact: Awareness & Training, Personnel Security, and Privacy."
+    ]
+   ]
+  },
+  {
+   "scene": "map",
+   "title": "THE KEEPERS OF THE PACT",
+   "highlight": [
+    "AT",
+    "PS",
+    "PT"
+   ],
+   "deps": [
+    [
+     "AT",
+     "IR"
+    ],
+    [
+     "PS",
+     "AC"
+    ]
+   ],
+   "subtitle": "",
+   "say": [
+    [
+     "NOVA",
+     "AT, PS, and PT. The teacher, the oathkeeper, and the privacy herald."
+    ]
+   ]
+  },
+  {
+   "scene": "guardian",
+   "family": "AT",
+   "family_name": "Awareness and Training",
+   "persona": "The Drillmaster",
+   "protects": "Trains every citizen to spot a trick at the gate.",
+   "reality": "Security and privacy awareness plus role-based training so people recognize and resist threats.",
+   "say": [
+    [
+     "VEGA",
+     "The Drillmaster, Awareness and Training."
+    ],
+    [
+     "VEGA",
+     "A trained citizen spots the trick at the gate before it opens."
+    ],
+    [
+     "VEGA",
+     "In reality, that's security and privacy training so people recognize and resist threats like phishing."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "Phishing",
+   "expand": null,
+   "plain": "A fake message — email, text, or phone call — designed to trick a person into giving up a password or clicking something harmful.",
+   "example": "An 'urgent' email that looks like IT, asking you to 'verify your password' on a lookalike page.",
+   "cite": null,
+   "kicker": "PLAIN ENGLISH",
+   "say": [
+    [
+     "NOVA",
+     "What is 'phishing,' exactly?"
+    ],
+    [
+     "VEGA",
+     "Bait for people. A message that looks legitimate but is a trap — and it's how most breaches actually begin."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "control",
+   "id": "AT-2",
+   "title": "Literacy Training and Awareness",
+   "plain": "Give every user security and privacy awareness training — including phishing.",
+   "why": "People are the most-targeted control surface; awareness is the cheapest strong defense.",
+   "say": [
+    [
+     "NOVA",
+     "How do you stop a perfect phishing email?"
+    ],
+    [
+     "VEGA",
+     "You train the human. AT-2 builds that instinct in everyone — the instinct that hangs up on the kind of call we opened with."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "AT-3",
+   "title": "Role-based Training",
+   "plain": "Give people role-based training for their specific security duties.",
+   "why": "An admin, a developer, and a clerk face different risks; AT-3 tailors the lesson.",
+   "say": [
+    [
+     "VEGA",
+     "And AT-3 trains people for their particular role."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Provide security and privacy literacy training to system users (including managers, senior executives, and contractors):",
+   "cite": "NIST SP 800-53r5  ·  AT-2 Literacy Training and Awareness",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Provide security and privacy literacy training to system users (including managers, senior executives, and contractors):"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "AT",
+   "title": "Awareness and Training",
+   "bullets": [
+    "AT-2 Literacy Training and Awareness — awareness training for everyone (incl. phishing)",
+    "AT-3 Role-based Training — role-based training for specific duties",
+    "AT-4 Training Records — keep training records"
+   ],
+   "mnemonic": "“A trained user is a control.”",
+   "say": [
+    [
+     "VEGA",
+     "The cheapest firewall you own is an alert human."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "AT",
+   "oath": "The sharpest blade is an alert mind.",
+   "controls": "AT-2",
+   "say": [
+    [
+     "VEGA",
+     "The Drillmaster's oath. The sharpest blade is an alert mind."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "PS",
+   "family_name": "Personnel Security",
+   "persona": "The Oathkeeper",
+   "protects": "Vets every guard, and reclaims the keys when they leave.",
+   "reality": "Screening personnel and adjusting access on transfer or termination; insider-risk safeguards.",
+   "say": [
+    [
+     "VEGA",
+     "The Oathkeeper, Personnel Security."
+    ],
+    [
+     "NULL",
+     "Every guard you hire... could be mine."
+    ],
+    [
+     "VEGA",
+     "In reality, that's screening people, adjusting access when they move or leave, and guarding against insider risk."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "PS-3",
+   "title": "Personnel Screening",
+   "plain": "Screen people before granting access — and rescreen as needed.",
+   "why": "Trust is granted, not assumed; screening is how the citadel vets its guards.",
+   "say": [
+    [
+     "VEGA",
+     "PS-3 screens people before they're trusted with access."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "PS-4",
+   "title": "Personnel Termination",
+   "plain": "When someone leaves, revoke access and recover assets — promptly.",
+   "why": "A departing admin who keeps access is a breach waiting to happen.",
+   "say": [
+    [
+     "NOVA",
+     "And when a guard leaves?"
+    ],
+    [
+     "VEGA",
+     "PS-4 reclaims the keys, on the way out the door."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Upon termination of individual employment:",
+   "cite": "NIST SP 800-53r5  ·  PS-4 Personnel Termination",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Upon termination of individual employment:"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "PS",
+   "title": "Personnel Security",
+   "bullets": [
+    "PS-3 Personnel Screening — screen people before access",
+    "PS-4 Personnel Termination — revoke access on termination",
+    "PS-5 Personnel Transfer — adjust access on transfer",
+    "PS-7 External Personnel Security — hold external workers to the same bar"
+   ],
+   "mnemonic": "“Vet them in, and key them out.”",
+   "say": [
+    [
+     "VEGA",
+     "Access should follow the person, and leave when they do."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "PS",
+   "oath": "Trust is earned at the gate, and returned at the door.",
+   "controls": "PS-3 · PS-4",
+   "say": [
+    [
+     "VEGA",
+     "The Oathkeeper's oath. Trust is earned at the gate, and returned at the door."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "PT",
+   "family_name": "Personally Identifiable Information Processing and Transparency",
+   "persona": "The Privacy Herald",
+   "protects": "Protects citizens' personal stories, and tells them how they are used.",
+   "reality": "Lawful, transparent processing of personally identifiable information, with consent and notice.",
+   "say": [
+    [
+     "VEGA",
+     "The Privacy Herald, P-T, Processing and Transparency of personal data."
+    ],
+    [
+     "NOVA",
+     "New in Revision 5, privacy now stands beside security."
+    ],
+    [
+     "VEGA",
+     "In reality, that's processing people's personal data lawfully and openly — with notice and consent where required."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "PII",
+   "expand": "Personally Identifiable Information",
+   "plain": "Information that can identify a specific person — on its own, or combined with other data.",
+   "example": "A name with a Social Security number, a home address, a medical record, or an account number.",
+   "cite": null,
+   "kicker": "PLAIN ENGLISH",
+   "say": [
+    [
+     "NOVA",
+     "P-I-I keeps coming up."
+    ],
+    [
+     "VEGA",
+     "Personally identifiable information — the data that points to a real human being. Privacy is about protecting it, and the person."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "control",
+   "id": "PT-2",
+   "title": "Authority to Process Personally Identifiable Information",
+   "plain": "Have lawful authority before processing people's personal information.",
+   "why": "Privacy starts with a simple question: are we even allowed to do this?",
+   "say": [
+    [
+     "VEGA",
+     "PT-2 demands a documented authority to process personal data."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "PT-5",
+   "title": "Privacy Notice",
+   "plain": "Tell people, clearly, how their personal information is used.",
+   "why": "Transparency is the promise behind the pact: no secret uses of personal data.",
+   "say": [
+    [
+     "VEGA",
+     "And PT-5 gives people honest notice of how their data is used."
+    ]
+   ]
+  },
+  {
+   "scene": "diagram",
+   "title": "The privacy pact, in order",
+   "nodes": [
+    {
+     "label": "Authority to process",
+     "x": 110,
+     "y": 470,
+     "w": 360,
+     "h": 140,
+     "color": "gold"
+    },
+    {
+     "label": "Purpose + Notice",
+     "x": 590,
+     "y": 470,
+     "w": 360,
+     "h": 140,
+     "color": "cyan"
+    },
+    {
+     "label": "Consent (where required)",
+     "x": 1070,
+     "y": 470,
+     "w": 360,
+     "h": 140,
+     "color": "mint"
+    },
+    {
+     "label": "Lawful processing",
+     "x": 1480,
+     "y": 470,
+     "w": 330,
+     "h": 140,
+     "color": "cyan"
+    }
+   ],
+   "arrows": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ]
+   ],
+   "say": [
+    [
+     "VEGA",
+     "Authority first, then purpose and notice, then consent where required, and process only as authorized."
+    ],
+    [
+     "NOVA",
+     "Permission where needed, and honesty, before the data is used."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Determine and document the [authority] that permits the [processing] of personally identifiable information;",
+   "cite": "NIST SP 800-53r5  ·  PT-2 Authority to Process Personally Identifiable Information",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Determine and document the [authority] that permits the [processing] of personally identifiable information;"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "PT",
+   "title": "Personally Identifiable Information Processing and Transparency",
+   "bullets": [
+    "PT-2 Authority to Process Personally Identifiable Information — have authority to process PII",
+    "PT-3 Personally Identifiable Information Processing Purposes — process PII only for stated purposes",
+    "PT-4 Consent — get consent where required",
+    "PT-5 Privacy Notice — give a clear privacy notice"
+   ],
+   "mnemonic": "“Allowed, honest, and only as promised.”",
+   "say": [
+    [
+     "VEGA",
+     "Security protects the data. Privacy honors the person."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "PT",
+   "oath": "By what right, for what purpose, with whose leave?",
+   "controls": "PT-2 · PT-5",
+   "say": [
+    [
+     "VEGA",
+     "The Privacy Herald's oath. By what right, for what purpose, with whose leave?"
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "points",
+   "title": "The Keepers in the RMF",
+   "bullets": [
+    "These are people and program controls, not just technical ones",
+    "PT weaves privacy through the whole catalog — new in Revision 5",
+    "In practice: train, screen, and process personal data lawfully and openly"
+   ],
+   "kicker": "HOW IT FITS",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "Not every control is a firewall. Some are a habit, a contract, a promise."
+    ]
+   ]
+  },
+  {
+   "scene": "quiz",
+   "q": "A departing administrator still has their access a week later. Which control failed?",
+   "options": [
+    "PS-4 Personnel Termination",
+    "AT-2 Awareness Training",
+    "PT-5 Privacy Notice"
+   ],
+   "answer": 0,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Scenario: a leaver kept their access. Which guardian dropped the ball?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "Which family is new in Revision 5 and governs personal-data processing?",
+   "options": [
+    "AT — Training",
+    "PS — Personnel",
+    "PT — PII Processing & Transparency"
+   ],
+   "answer": 2,
+   "reveal": true,
+   "say": [
+    [
+     "VEGA",
+     "And which guardian is the newcomer to the catalog?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "notebook",
+   "title": "Episode 03 — the Keepers of the Pact",
+   "lines": [
+    "AT trains the human firewall, including phishing (AT-2, AT-3, AT-4).",
+    "PS vets people in and keys them out (PS-3, PS-4, PS-5, PS-7).",
+    "PT keeps personal data (PII) lawful, honest, and as-promised (PT-2, PT-3, PT-5)."
+   ],
+   "mnemonic": "People are the perimeter — train them, screen them, and honor their data.",
+   "say": [
+    [
+     "NOVA",
+     "Notebook: not every control is a firewall — some are a habit, a contract, a promise."
+    ],
+    [
+     "VEGA",
+     "People kept, the pact honored."
+    ],
+    [
+     "NULL",
+     "Then I'll strike where no one is even looking. Your plans."
+    ],
+    [
+     "VEGA",
+     "Then it's time to meet the High Council."
+    ]
+   ],
+   "min_seconds": 5.0
+  }
+ ]
+}

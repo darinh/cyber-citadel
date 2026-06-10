@@ -1,0 +1,151 @@
+1
+00:00:00,350 --> 00:00:03,877
+You have met the twenty guardians. But knowing
+
+2
+00:00:03,877 --> 00:00:06,868
+them is not the same as deploying them.
+
+3
+00:00:07,168 --> 00:00:10,597
+VEGA:  You just watched Aegis Hospital secured end to
+
+4
+00:00:10,597 --> 00:00:13,281
+end. Now we slow down and learn each
+
+5
+00:00:13,281 --> 00:00:15,890
+step - and Nova, you're leading it.
+
+6
+00:00:16,190 --> 00:00:20,019
+NOVA:  From apprentice to running the campaign. Let's begin.
+
+7
+00:00:21,069 --> 00:00:24,488
+VEGA:  The plan of campaign has a name: the
+
+8
+00:00:24,488 --> 00:00:28,191
+Risk Management Framework, from 800-37.
+
+9
+00:00:28,491 --> 00:00:31,106
+NOVA:  The process that tells you what to do,
+
+10
+00:00:31,106 --> 00:00:32,345
+and in what order.
+
+11
+00:00:33,395 --> 00:00:36,310
+NOVA:  What makes the RMF a 'framework' and not
+
+12
+00:00:36,310 --> 00:00:37,549
+just a checklist?
+
+13
+00:00:37,849 --> 00:00:41,423
+VEGA:  It's the living process that ties the catalog,
+
+14
+00:00:41,423 --> 00:00:45,619
+the baselines, and the assessments into one repeatable
+
+15
+00:00:45,619 --> 00:00:46,396
+lifecycle.
+
+16
+00:00:47,446 --> 00:00:53,046
+VEGA:  Seven steps. Prepare, categorize, select, implement, assess, authorize,
+
+17
+00:00:53,046 --> 00:00:53,993
+and monitor.
+
+18
+00:00:54,293 --> 00:00:57,672
+NOVA:  And it's a cycle, monitoring never stops.
+
+19
+00:00:57,972 --> 00:01:01,518
+VEGA:  Prepare was added in Revision 2, getting the
+
+20
+00:01:01,518 --> 00:01:04,419
+organization and system ready first.
+
+21
+00:01:05,469 --> 00:01:08,101
+VEGA:  Each step has a job, and most are
+
+22
+00:01:08,101 --> 00:01:11,291
+guided by a supporting NIST publication.
+
+23
+00:01:17,469 --> 00:01:21,798
+VEGA:  Authorize, then monitor. A system is never simply
+
+24
+00:01:21,798 --> 00:01:22,416
+'done.'
+
+25
+00:01:22,716 --> 00:01:26,266
+NULL:  Good. Because I never stop, either.
+
+26
+00:01:27,316 --> 00:01:31,499
+VEGA:  These books travel together. Each answers one question
+
+27
+00:01:31,499 --> 00:01:32,738
+in the campaign.
+
+28
+00:01:33,038 --> 00:01:35,951
+NOVA:  So Act One taught the controls. Act Two
+
+29
+00:01:35,951 --> 00:01:38,042
+is how we actually use them.
+
+30
+00:01:39,316 --> 00:01:42,337
+NOVA:  Quick check. How many steps in the framework?
+
+31
+00:01:42,337 --> 00:01:43,545
+Pause, and answer.
+
+32
+00:01:50,595 --> 00:01:52,767
+VEGA:  The answer is C.
+
+33
+00:01:54,195 --> 00:01:57,010
+VEGA:  And which step did Revision 2 add at
+
+34
+00:01:57,010 --> 00:01:57,792
+the front?
+
+35
+00:02:04,842 --> 00:02:07,089
+VEGA:  The answer is A.
+
+36
+00:02:08,442 --> 00:02:11,580
+VEGA:  The map is set. First stop, knowing what
+
+37
+00:02:11,580 --> 00:02:12,914
+we're protecting.
+
+38
+00:02:13,214 --> 00:02:15,811
+VEGA:  Next: categorization.

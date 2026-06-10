@@ -1,0 +1,127 @@
+1
+00:00:00,350 --> 00:00:03,418
+VEGA:  Before you pick defenses, you must know what
+
+2
+00:00:03,418 --> 00:00:06,347
+you're defending, and how much it matters.
+
+3
+00:00:06,647 --> 00:00:11,058
+This is categorization, and it begins with a
+
+4
+00:00:11,058 --> 00:00:13,765
+federal standard: FIPS 199.
+
+5
+00:00:14,815 --> 00:00:16,969
+NOVA:  FIPS? Categorize?
+
+6
+00:00:17,269 --> 00:00:22,449
+VEGA:  FIPS - Federal Information Processing Standards, the mandatory
+
+7
+00:00:22,449 --> 00:00:26,291
+ones. Categorizing is sizing the stakes for C,
+
+8
+00:00:26,291 --> 00:00:29,048
+I, and A - the triad from Episode
+
+9
+00:00:29,048 --> 00:00:29,466
+zero.
+
+10
+00:00:30,516 --> 00:00:35,613
+VEGA:  FIPS 199 judges a system on three objectives.
+
+11
+00:00:35,913 --> 00:00:41,067
+NOVA:  Confidentiality, Integrity, and Availability. The C-I-A triad.
+
+12
+00:00:42,117 --> 00:00:45,450
+VEGA:  For each objective, ask: how bad is the
+
+13
+00:00:45,450 --> 00:00:46,989
+worst-case impact?
+
+14
+00:00:47,289 --> 00:00:49,761
+VEGA:  Low, Moderate, or High.
+
+15
+00:00:52,417 --> 00:00:55,071
+NOVA:  So one High pulls the whole system up?
+
+16
+00:00:55,371 --> 00:00:59,090
+VEGA:  Exactly. We call it the high-water mark. The
+
+17
+00:00:59,090 --> 00:01:00,443
+worst case wins.
+
+18
+00:01:02,717 --> 00:01:07,239
+VEGA:  800-60 helps you rate each information type.
+
+19
+00:01:07,539 --> 00:01:11,768
+VEGA:  And FIPS 200 sets the floor, and points
+
+20
+00:01:11,768 --> 00:01:13,286
+you to 800-53.
+
+21
+00:01:14,336 --> 00:01:18,237
+VEGA:  And the catalog has a control for exactly
+
+22
+00:01:18,237 --> 00:01:19,283
+this: RA-2.
+
+23
+00:01:19,583 --> 00:01:24,322
+ARCHIVIST:  Categorize the system and information it processes, stores,
+
+24
+00:01:24,322 --> 00:01:25,446
+and transmits;
+
+25
+00:01:26,496 --> 00:01:30,704
+NOVA:  Scenario time. What's the overall category? Pause, and
+
+26
+00:01:30,704 --> 00:01:31,250
+answer.
+
+27
+00:01:38,300 --> 00:01:40,472
+VEGA:  The answer is C.
+
+28
+00:01:41,900 --> 00:01:46,072
+VEGA:  And which standard sets the impact levels themselves?
+
+29
+00:01:53,122 --> 00:01:55,369
+VEGA:  The answer is A.
+
+30
+00:01:56,722 --> 00:02:00,059
+VEGA:  We know the realm's worth. Now we choose
+
+31
+00:02:00,059 --> 00:02:01,144
+its defenses.
+
+32
+00:02:01,444 --> 00:02:06,666
+VEGA:  Next: the armory, and the baselines of 800-53B.

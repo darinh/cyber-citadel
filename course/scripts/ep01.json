@@ -1,0 +1,564 @@
+{
+ "id": "EP01",
+ "tag": "EP01",
+ "slug": "the_outer_walls",
+ "beats": [
+  {
+   "year": "2021",
+   "headline": "One old password darkens a fuel pipeline.",
+   "body": "Attackers signed into a forgotten VPN account that had no second factor, and a pipeline serving much of the U.S. East Coast went offline. Not a zero-day — just one unguarded door.",
+   "mitre": "Valid Accounts · T1078",
+   "teaches": "IA-2 · AC-2",
+   "scene": "coldopen",
+   "say": [
+    [
+     "NULL",
+     "Every gap, every shortcut, every forgotten door — I will find it."
+    ],
+    [
+     "VEGA",
+     "Not tonight. One stolen login should never be enough to end a city."
+    ],
+    [
+     "NOVA",
+     "So where do we begin?"
+    ],
+    [
+     "VEGA",
+     "Where every attacker does — at the wall."
+    ]
+   ],
+   "min_seconds": 7.0
+  },
+  {
+   "scene": "map",
+   "title": "AEGIS CITADEL — NIGHTFALL",
+   "highlight": [],
+   "deps": [],
+   "subtitle": "",
+   "say": [
+    [
+     "NULL",
+     "Every fortress has a door. I only need one careless soul to leave one open."
+    ],
+    [
+     "VEGA",
+     "Then meet the three guardians of the gate. I'm Vega. This is the apprentice, Nova."
+    ],
+    [
+     "NOVA",
+     "Let's walk the walls."
+    ]
+   ]
+  },
+  {
+   "scene": "section",
+   "num": "01",
+   "title": "THE OUTER WALLS",
+   "subtitle": "Access Control · Identity · Physical",
+   "say": [
+    [
+     "VEGA",
+     "Layer one is the perimeter, who gets in, and what they may touch."
+    ],
+    [
+     "NARRATOR",
+     "Three families stand the wall: Access Control, Identification, and Physical."
+    ]
+   ]
+  },
+  {
+   "scene": "map",
+   "title": "THE OUTER WALLS",
+   "highlight": [
+    "AC",
+    "IA",
+    "PE"
+   ],
+   "deps": [
+    [
+     "AC",
+     "IA"
+    ],
+    [
+     "AC",
+     "AU"
+    ]
+   ],
+   "subtitle": "",
+   "say": [
+    [
+     "VEGA",
+     "Three districts light up the map: AC, IA, and PE."
+    ],
+    [
+     "NOVA",
+     "The gatekeepers of the city."
+    ]
+   ]
+  },
+  {
+   "scene": "guardian",
+   "family": "AC",
+   "family_name": "Access Control",
+   "persona": "The Gatekeeper",
+   "protects": "Who may enter the city, and what they may touch.",
+   "reality": "Policies and mechanisms that decide which users and processes may use which systems and data.",
+   "say": [
+    [
+     "VEGA",
+     "First, the Gatekeeper, Access Control."
+    ],
+    [
+     "VEGA",
+     "It decides who may enter, and exactly what they may touch."
+    ],
+    [
+     "VEGA",
+     "In the real world, that's the policies and mechanisms deciding which users and processes may use which systems and data."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "AC-2",
+   "title": "Account Management",
+   "plain": "Create, manage, review, and remove accounts across their whole lifecycle.",
+   "why": "Stale or rogue accounts are a favorite way in; managing them closes that door.",
+   "say": [
+    [
+     "NOVA",
+     "Where does access begin?"
+    ],
+    [
+     "VEGA",
+     "With accounts. AC-2 governs every account from birth to deletion."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "AC-6",
+   "title": "Least Privilege",
+   "plain": "Give every user and process only the access they truly need — nothing more.",
+   "why": "If an account is stolen, least privilege limits how far the intruder can reach.",
+   "say": [
+    [
+     "VEGA",
+     "Then the rule that saves you again and again, AC-6, Least Privilege."
+    ],
+    [
+     "NULL",
+     "Less for them to give me when I take an account..."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Employ the principle of least privilege, allowing only authorized accesses for users (or processes acting on behalf of users) that are necessary to accomplish assigned organizational tasks.",
+   "cite": "NIST SP 800-53r5  ·  AC-6 Least Privilege",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Employ the principle of least privilege, allowing only authorized accesses for users (or processes acting on behalf of users) that are necessary to accomplish assigned organizational tasks."
+    ]
+   ]
+  },
+  {
+   "scene": "diagram",
+   "title": "How the gate decides",
+   "nodes": [
+    {
+     "label": "User / Process",
+     "x": 170,
+     "y": 470,
+     "w": 360,
+     "h": 130,
+     "color": "cyan"
+    },
+    {
+     "label": "Policy Decision",
+     "x": 790,
+     "y": 470,
+     "w": 360,
+     "h": 130,
+     "color": "gold"
+    },
+    {
+     "label": "Enforcement Gate",
+     "x": 1410,
+     "y": 470,
+     "w": 360,
+     "h": 130,
+     "color": "mint"
+    }
+   ],
+   "arrows": [
+    [
+     0,
+     1,
+     "request"
+    ],
+    [
+     1,
+     2,
+     "allow / deny"
+    ]
+   ],
+   "say": [
+    [
+     "VEGA",
+     "Every request runs the same path: a policy decides, and a gate enforces it."
+    ],
+    [
+     "VEGA",
+     "Say Alice works in payroll. Policy lets her open payroll records; the same gate blocks Bob from marketing."
+    ],
+    [
+     "NOVA",
+     "Decide, then enforce. AC-3 is the enforcement."
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "AC",
+   "title": "Access Control",
+   "bullets": [
+    "AC-2 Account Management — manage the full account lifecycle",
+    "AC-3 Access Enforcement — enforce approved authorizations",
+    "AC-6 Least Privilege — grant only the minimum access needed"
+   ],
+   "mnemonic": "“Right person, right door, right reason.”",
+   "say": [
+    [
+     "VEGA",
+     "Lock these three into memory."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "AC",
+   "oath": "None pass unknown; none hold more than they need.",
+   "controls": "AC-3 · AC-6",
+   "say": [
+    [
+     "VEGA",
+     "Say the Gatekeeper's oath with me. None pass unknown; none hold more than they need."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "IA",
+   "family_name": "Identification and Authentication",
+   "persona": "The Seal-Bearer",
+   "protects": "Proves you are who you claim, before you pass.",
+   "reality": "Verifying the identity of users, devices, and processes before granting access.",
+   "say": [
+    [
+     "VEGA",
+     "Next, the Seal-Bearer, Identification and Authentication."
+    ],
+    [
+     "NOVA",
+     "Access Control trusts a name. This guardian proves the name is real."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "IA-2",
+   "title": "Identification and Authentication (Organizational Users)",
+   "plain": "Uniquely identify and authenticate organizational users before granting access.",
+   "why": "It's the difference between 'someone' and a known, accountable person.",
+   "say": [
+    [
+     "VEGA",
+     "IA-2 demands proof of identity for every organizational user."
+    ],
+    [
+     "VEGA",
+     "Its enhancements are where multi-factor authentication lives."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "Multi-factor authentication (MFA)",
+   "expand": "Something you know + something you have + something you are",
+   "plain": "Proving who you are with two or more different kinds of evidence — so one stolen password isn't enough to get in.",
+   "example": "A password (know) plus a one-time code from your phone (have) — or a fingerprint (are).",
+   "cite": null,
+   "kicker": "PLAIN ENGLISH",
+   "say": [
+    [
+     "NOVA",
+     "Multi-factor authentication — what is that, exactly?"
+    ],
+    [
+     "VEGA",
+     "Two kinds of proof instead of one. It's why the pipeline breach we opened with would have failed."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "control",
+   "id": "IA-5",
+   "title": "Authenticator Management",
+   "plain": "Manage authenticators — passwords, tokens, certificates — across their lifecycle.",
+   "why": "Weak or leaked credentials are a top breach vector; this control hardens them.",
+   "say": [
+    [
+     "NOVA",
+     "And the passwords and tokens themselves?"
+    ],
+    [
+     "VEGA",
+     "IA-5 manages them, strength, rotation, protection."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Uniquely identify and authenticate organizational users and associate that unique identification with processes acting on behalf of those users.",
+   "cite": "NIST SP 800-53r5  ·  IA-2 Identification and Authentication (Organizational Users)",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Uniquely identify and authenticate organizational users and associate that unique identification with processes acting on behalf of those users."
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "IA",
+   "title": "Identification and Authentication",
+   "bullets": [
+    "IA-2 Identification and Authentication (Organizational Users) — prove who organizational users are (MFA via enhancements)",
+    "IA-5 Authenticator Management — manage passwords, tokens, and certificates",
+    "IA-8 Identification and Authentication (Non-organizational Users) — authenticate non-organizational users too"
+   ],
+   "mnemonic": "“Prove it, before you move it.”",
+   "say": [
+    [
+     "VEGA",
+     "Identity first. Always."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "IA",
+   "oath": "Prove the name, or the gate stays shut.",
+   "controls": "IA-2",
+   "say": [
+    [
+     "VEGA",
+     "The Seal-Bearer's oath. Prove the name, or the gate stays shut."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "PE",
+   "family_name": "Physical and Environmental Protection",
+   "persona": "The Wall-Warden",
+   "protects": "Holds the physical gates, and guards against fire and flood.",
+   "reality": "Physical access controls plus protection from hazards like fire, power loss, and water.",
+   "say": [
+    [
+     "VEGA",
+     "Last on the wall, the Wall-Warden, Physical and Environmental Protection."
+    ],
+    [
+     "NULL",
+     "Why pick a lock... when I can walk through an open door?"
+    ],
+    [
+     "VEGA",
+     "In reality, PE is physical access control — guards, badges, locks — plus protection from hazards like fire, power loss, and water."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "PE-3",
+   "title": "Physical Access Control",
+   "plain": "Enforce who may physically enter — with guards, badges, locks, and logs.",
+   "why": "Code can't stop a person who strolls into the server room; PE can.",
+   "say": [
+    [
+     "VEGA",
+     "PE-3 enforces physical access at the doors themselves."
+    ],
+    [
+     "NOVA",
+     "Tailgating, propped doors, lost badges, this is where you stop them."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "PE-6",
+   "title": "Monitoring Physical Access",
+   "plain": "Monitor and review physical access to facilities.",
+   "why": "Watching the doors turns a break-in into an alarm, not a mystery.",
+   "say": [
+    [
+     "VEGA",
+     "And PE-6 watches and logs who comes and goes."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Enforce physical access authorizations at [entry and exit points] by:",
+   "cite": "NIST SP 800-53r5  ·  PE-3 Physical Access Control",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Enforce physical access authorizations at [entry and exit points] by:"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "PE",
+   "title": "Physical and Environmental Protection",
+   "bullets": [
+    "PE-2 Physical Access Authorizations — authorize who may enter facilities",
+    "PE-3 Physical Access Control — enforce entry at the doors",
+    "PE-6 Monitoring Physical Access — monitor and log physical access"
+   ],
+   "mnemonic": "“Lock the doors — and watch them.”",
+   "say": [
+    [
+     "VEGA",
+     "Physical security is security."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "PE",
+   "oath": "A door is a decision — and I decide.",
+   "controls": "PE-3",
+   "say": [
+    [
+     "VEGA",
+     "And the Wall-Warden's oath. A door is a decision — and I decide."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "points",
+   "title": "The Outer Walls in the RMF",
+   "bullets": [
+    "These families are SELECTED from a 800-53B baseline for your system",
+    "Then IMPLEMENTED as technical and physical controls",
+    "And ASSESSED and MONITORED by the High Council (CA, later in the series)"
+   ],
+   "kicker": "HOW IT FITS",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "Remember the framework? The wall is where you implement what you selected."
+    ],
+    [
+     "NOVA",
+     "Select from the baseline, implement here, assess later."
+    ]
+   ]
+  },
+  {
+   "scene": "quiz",
+   "q": "Which guardian proves you are who you claim, before you pass?",
+   "options": [
+    "AC — Access Control",
+    "IA — Identification & Authentication",
+    "PE — Physical"
+   ],
+   "answer": 1,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Guardian check. Who proves your identity? Pause, and answer."
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "'Only the access you truly need' is which control?",
+   "options": [
+    "AC-2 Account Management",
+    "AC-6 Least Privilege",
+    "IA-5 Authenticator Management"
+   ],
+   "answer": 1,
+   "reveal": true,
+   "say": [
+    [
+     "VEGA",
+     "And the rule that limits the blast radius?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "An intruder tailgates through a propped door into the server room. Which family should stop it?",
+   "options": [
+    "PE — Physical",
+    "AU — Audit",
+    "SR — Supply Chain"
+   ],
+   "answer": 0,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Scenario: someone tailgates into the server room. Whose watch is that?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "notebook",
+   "title": "Episode 01 — the Outer Walls",
+   "lines": [
+    "AC decides who may do what (AC-2, AC-3, AC-6).",
+    "IA proves the name is real before you pass — MFA lives in IA-2's enhancements.",
+    "PE guards the physical doors and environment (PE-2, PE-3, PE-6)."
+   ],
+   "mnemonic": "Right person, right door, right reason.",
+   "say": [
+    [
+     "NOVA",
+     "Notebook: the wall is access, identity, and physical — working together."
+    ],
+    [
+     "VEGA",
+     "Three guardians, one wall. The perimeter holds."
+    ],
+    [
+     "NULL",
+     "Fine. I'll stop knocking... and start hiding."
+    ],
+    [
+     "VEGA",
+     "Then we'll need the watchtowers. Next time."
+    ]
+   ],
+   "min_seconds": 5.0
+  }
+ ]
+}

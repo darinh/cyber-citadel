@@ -1,0 +1,562 @@
+{
+ "id": "EP05",
+ "tag": "EP05",
+ "slug": "the_forge",
+ "beats": [
+  {
+   "year": "2020",
+   "headline": "The malware was shipped in, signed and trusted.",
+   "body": "Attackers hid a backdoor inside a routine software update from a trusted vendor; roughly 18,000 organizations installed it themselves. They didn't break in — they were built in.",
+   "mitre": "Supply Chain Compromise · T1195.002",
+   "teaches": "SR-11 · SA-8 · CM-2",
+   "scene": "coldopen",
+   "say": [
+    [
+     "NULL",
+     "Every gap, every shortcut, every forgotten door — I will find it. Or I'll have you build it for me."
+    ],
+    [
+     "VEGA",
+     "Not tonight. We harden the forge itself — how systems are built, configured, and supplied."
+    ],
+    [
+     "NOVA",
+     "Even the parts we buy?"
+    ],
+    [
+     "VEGA",
+     "Especially those."
+    ]
+   ],
+   "min_seconds": 7.0
+  },
+  {
+   "scene": "map",
+   "title": "THE FORGE",
+   "highlight": [],
+   "deps": [],
+   "subtitle": "",
+   "say": [
+    [
+     "NULL",
+     "Why break in, when I can be built in? A flaw here, a tampered part there..."
+    ],
+    [
+     "VEGA",
+     "Then we harden the forge itself, where systems are made and supplied."
+    ]
+   ]
+  },
+  {
+   "scene": "section",
+   "num": "05",
+   "title": "THE FORGE",
+   "subtitle": "Acquisition · Configuration · Maintenance · Supply Chain",
+   "say": [
+    [
+     "VEGA",
+     "Layer five is how you build, buy, configure, maintain, and source."
+    ],
+    [
+     "NARRATOR",
+     "Four families work the forge: System Acquisition, Configuration Management, Maintenance, and Supply Chain Risk Management."
+    ]
+   ]
+  },
+  {
+   "scene": "map",
+   "title": "THE FORGE",
+   "highlight": [
+    "SA",
+    "CM",
+    "MA",
+    "SR"
+   ],
+   "deps": [
+    [
+     "SA",
+     "SR"
+    ],
+    [
+     "CM",
+     "SA"
+    ]
+   ],
+   "subtitle": "",
+   "say": [
+    [
+     "NOVA",
+     "SA, CM, MA, and SR. The quartermaster, the blueprint-master, the smith, and the caravan-master."
+    ]
+   ]
+  },
+  {
+   "scene": "guardian",
+   "family": "SA",
+   "family_name": "System and Services Acquisition",
+   "persona": "The Quartermaster",
+   "protects": "Buys and builds only what can be trusted.",
+   "reality": "Building security into the development life cycle and into systems and services you acquire.",
+   "say": [
+    [
+     "VEGA",
+     "The Quartermaster, System and Services Acquisition."
+    ],
+    [
+     "VEGA",
+     "It buys and builds only what can be trusted."
+    ],
+    [
+     "VEGA",
+     "In reality, that's building security into the development life cycle, and into the systems and services you acquire."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "SA-8",
+   "title": "Security and Privacy Engineering Principles",
+   "plain": "Apply security and privacy engineering principles when you design and build.",
+   "why": "Security bolted on later is weak; SA-8 bakes it in from the first sketch.",
+   "say": [
+    [
+     "VEGA",
+     "SA-8 builds security in by design, not as an afterthought."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "SA-22",
+   "title": "Unsupported System Components",
+   "plain": "Replace unsupported components — software past its end of life.",
+   "why": "Unsupported software gets no patches; it's a permanently open window.",
+   "say": [
+    [
+     "NOVA",
+     "What about software no one updates anymore?"
+    ],
+    [
+     "VEGA",
+     "SA-22 says replace it, or arrange alternate support. Unsupported is risk you must manage."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Apply the following systems security and privacy engineering principles in the specification, design, development, implementation, and modification of the system and system components:",
+   "cite": "NIST SP 800-53r5  ·  SA-8 Security and Privacy Engineering Principles",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Apply the following systems security and privacy engineering principles in the specification, design, development, implementation, and modification of the system and system components:"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "SA",
+   "title": "System and Services Acquisition",
+   "bullets": [
+    "SA-3 System Development Life Cycle — build security into the life cycle",
+    "SA-4 Acquisition Process — put security in acquisition contracts",
+    "SA-8 Security and Privacy Engineering Principles — engineer with security principles",
+    "SA-22 Unsupported System Components — replace unsupported components"
+   ],
+   "mnemonic": "“Build it secure, or don't buy it.”",
+   "say": [
+    [
+     "VEGA",
+     "Trust is forged in, never sprinkled on."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "SA",
+   "oath": "Built in, never sprinkled on.",
+   "controls": "SA-8",
+   "say": [
+    [
+     "VEGA",
+     "The Quartermaster's oath. Built in, never sprinkled on."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "CM",
+   "family_name": "Configuration Management",
+   "persona": "The Master of Blueprints",
+   "protects": "Keeps the master plans and forbids unsanctioned change.",
+   "reality": "Baseline configurations and change control so systems stay in a known, secure state.",
+   "say": [
+    [
+     "VEGA",
+     "The Master of Blueprints, Configuration Management."
+    ],
+    [
+     "NULL",
+     "One quiet, undocumented change... and I have a door no one remembers."
+    ],
+    [
+     "VEGA",
+     "In reality, that's keeping a known, approved configuration and controlling every change, so systems stay in a trusted state."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "Two kinds of 'baseline'",
+   "expand": null,
+   "plain": "Heads up: 'baseline' means two different things. A CONTROL baseline (from 800-53B) is your starting set of controls. A CONFIGURATION baseline (CM-2) is the known-good snapshot of a system's settings, versions, and components.",
+   "example": null,
+   "cite": null,
+   "kicker": "WORD WARNING · TWO BASELINES",
+   "say": [
+    [
+     "NOVA",
+     "We already met 'baseline' back in Episode 00."
+    ],
+    [
+     "VEGA",
+     "Different baseline. That was the control baseline. CM-2 is the configuration baseline — drift from it, and you have a question to answer."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "control",
+   "id": "CM-2",
+   "title": "Baseline Configuration",
+   "plain": "Keep a known, documented baseline configuration of the system.",
+   "why": "If you don't know the 'normal,' you can't spot the tampering.",
+   "say": [
+    [
+     "VEGA",
+     "CM-2 holds the baseline, the master blueprint of the system."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "CM-7",
+   "title": "Least Functionality",
+   "plain": "Turn off what you don't need — least functionality.",
+   "why": "Every extra service and port is another door; CM-7 closes the unused ones.",
+   "say": [
+    [
+     "VEGA",
+     "CM-7 is least functionality. Computers talk on numbered channels — ports — and run background programs — services."
+    ],
+    [
+     "NOVA",
+     "And every one you don't need is another door."
+    ],
+    [
+     "VEGA",
+     "Exactly. CM-7 closes the ports and services you never use."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Develop, document, and maintain under configuration control, a current baseline configuration of the system;",
+   "cite": "NIST SP 800-53r5  ·  CM-2 Baseline Configuration",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Develop, document, and maintain under configuration control, a current baseline configuration of the system;"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "CM",
+   "title": "Configuration Management",
+   "bullets": [
+    "CM-2 Baseline Configuration — keep a known baseline configuration",
+    "CM-3 Configuration Change Control — control every change",
+    "CM-7 Least Functionality — least functionality — disable the unneeded",
+    "CM-8 System Component Inventory — inventory your components"
+   ],
+   "mnemonic": "“Know normal; approve every change.”",
+   "say": [
+    [
+     "VEGA",
+     "A known system is a defensible system."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "CM",
+   "oath": "A known system is a defended system.",
+   "controls": "CM-2 · CM-7",
+   "say": [
+    [
+     "VEGA",
+     "The Blueprint-Master's oath. A known system is a defended system."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "MA",
+   "family_name": "Maintenance",
+   "persona": "The Smith",
+   "protects": "Tends the machinery, and watches who holds the tools.",
+   "reality": "Controlled system maintenance, including safeguards for remote and third-party maintenance.",
+   "say": [
+    [
+     "VEGA",
+     "The Smith, Maintenance."
+    ],
+    [
+     "NOVA",
+     "It tends the machinery, and watches who holds the tools."
+    ],
+    [
+     "VEGA",
+     "In reality, that's controlled system maintenance — including safeguards for remote and third-party work."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "MA-2",
+   "title": "Controlled Maintenance",
+   "plain": "Control and log maintenance — who, what, when, and approved.",
+   "why": "Maintenance touches the guts of a system; uncontrolled, it's a perfect cover.",
+   "say": [
+    [
+     "VEGA",
+     "MA-2 controls maintenance, scheduled, approved, and recorded."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "MA-4",
+   "title": "Nonlocal Maintenance",
+   "plain": "Guard remote maintenance sessions tightly.",
+   "why": "A remote maintenance link is a powerful door; MA-4 keeps it locked and watched.",
+   "say": [
+    [
+     "NULL",
+     "Your remote support line was going to be my way in."
+    ],
+    [
+     "VEGA",
+     "MA-4 saw to that. Remote maintenance, tightly controlled."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Schedule, document, and review records of maintenance, repair, and replacement on system components in accordance with manufacturer or vendor specifications and/or organizational requirements;",
+   "cite": "NIST SP 800-53r5  ·  MA-2 Controlled Maintenance",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Schedule, document, and review records of maintenance, repair, and replacement on system components in accordance with manufacturer or vendor specifications and/or organizational requirements;"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "MA",
+   "title": "Maintenance",
+   "bullets": [
+    "MA-2 Controlled Maintenance — control and record maintenance",
+    "MA-4 Nonlocal Maintenance — secure remote maintenance",
+    "MA-5 Maintenance Personnel — vet maintenance personnel"
+   ],
+   "mnemonic": "“Mind the hands on the machine.”",
+   "say": [
+    [
+     "VEGA",
+     "Maintenance is access. Treat it like access."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "MA",
+   "oath": "Every tool is a key, and I guard the keys.",
+   "controls": "MA-2 · MA-4",
+   "say": [
+    [
+     "VEGA",
+     "The Smith's oath. Every tool is a key, and I guard the keys."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "SR",
+   "family_name": "Supply Chain Risk Management",
+   "persona": "The Caravan-Master",
+   "protects": "Guards the roads your supplies travel, all the way to the source.",
+   "reality": "Managing risk from suppliers, components, and the supply chain: authenticity and provenance.",
+   "say": [
+    [
+     "VEGA",
+     "The Caravan-Master, Supply Chain Risk Management, new in Revision 5."
+    ],
+    [
+     "VEGA",
+     "It guards the roads your supplies travel, all the way to the source."
+    ],
+    [
+     "VEGA",
+     "In reality, that's managing risk from suppliers and components — the SolarWinds-style attack we opened with, where a trusted update carried a hidden backdoor."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "SR-11",
+   "title": "Component Authenticity",
+   "plain": "Detect and prevent counterfeit components.",
+   "why": "A tampered part can arrive pre-compromised; SR-11 checks what you're given is real.",
+   "say": [
+    [
+     "NOVA",
+     "How do we trust the parts themselves?"
+    ],
+    [
+     "VEGA",
+     "SR-11, component authenticity, hunts counterfeits and tampering."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Develop and implement anti-counterfeit policy and procedures that include the means to detect and prevent counterfeit components from entering the system;",
+   "cite": "NIST SP 800-53r5  ·  SR-11 Component Authenticity",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Develop and implement anti-counterfeit policy and procedures that include the means to detect and prevent counterfeit components from entering the system;"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "SR",
+   "title": "Supply Chain Risk Management",
+   "bullets": [
+    "SR-3 Supply Chain Controls and Processes — supply chain controls and processes",
+    "SR-5 Acquisition Strategies, Tools, and Methods — strategies for acquiring components",
+    "SR-8 Notification Agreements — notification agreements with suppliers",
+    "SR-11 Component Authenticity — detect and prevent counterfeits"
+   ],
+   "mnemonic": "“Trust the road, all the way to the source.”",
+   "say": [
+    [
+     "VEGA",
+     "Your security is only as strong as your weakest supplier."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "SR",
+   "oath": "I trust no part I cannot trace.",
+   "controls": "SR-11",
+   "say": [
+    [
+     "VEGA",
+     "The Caravan-Master's oath. I trust no part I cannot trace."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "points",
+   "title": "The Forge in the RMF",
+   "bullets": [
+    "CM keeps IMPLEMENTATION honest and supports MONITORING",
+    "SA and SR push security upstream — into building and buying",
+    "In practice: secure SDLC, locked-down configs, vetted suppliers"
+   ],
+   "kicker": "HOW IT FITS",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "The best breach is the one designed out before it's built."
+    ]
+   ]
+  },
+  {
+   "scene": "quiz",
+   "q": "A counterfeit network card arrives pre-tampered. Which control should catch it?",
+   "options": [
+    "CM-2 Baseline Configuration",
+    "SR-11 Component Authenticity",
+    "MA-2 Maintenance"
+   ],
+   "answer": 1,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Scenario: a tampered part in the box. Whose job is that? Pause, and answer."
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "Disabling unused ports and services is which control?",
+   "options": [
+    "CM-7 Least Functionality",
+    "SA-22 Unsupported Components",
+    "CM-8 Inventory"
+   ],
+   "answer": 0,
+   "reveal": true,
+   "say": [
+    [
+     "VEGA",
+     "And shutting the doors you never use?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "notebook",
+   "title": "Episode 05 — the Forge",
+   "lines": [
+    "SA builds and buys security in (SA-3, SA-8, SA-22).",
+    "CM keeps a known config and controls every change (CM-2, CM-7, CM-8).",
+    "MA guards maintenance; SR guards the supply chain (MA-2, MA-4; SR-3, SR-11)."
+   ],
+   "mnemonic": "The best breach is the one designed out before it's built.",
+   "say": [
+    [
+     "NOVA",
+     "Notebook: secure how you build, configure, maintain, and source — the attacker counts on you skipping one."
+    ],
+    [
+     "VEGA",
+     "The forge is hardened, from source to system."
+    ],
+    [
+     "NULL",
+     "Then I'll take your secrets in transit, or your backups."
+    ],
+    [
+     "VEGA",
+     "Then we ride for the Vaults and the Lifelines."
+    ]
+   ],
+   "min_seconds": 5.0
+  }
+ ]
+}

@@ -1,0 +1,591 @@
+{
+ "id": "EP02",
+ "tag": "EP02",
+ "slug": "the_watchtowers",
+ "beats": [
+  {
+   "year": "2017",
+   "headline": "A missed patch, unseen for weeks.",
+   "body": "A known flaw in a public web app went unpatched. With monitoring crippled by an expired security certificate, the intrusion ran undetected for about 76 days while data on roughly 147 million people was taken.",
+   "mitre": "Exploit Public-Facing App · T1190",
+   "teaches": "SI-2 · SI-4 · AU-6",
+   "scene": "coldopen",
+   "say": [
+    [
+     "NULL",
+     "Every gap, every shortcut, every forgotten door — I will find it."
+    ],
+    [
+     "VEGA",
+     "Not tonight. Even if you slip in, you will not move unseen."
+    ],
+    [
+     "NOVA",
+     "Because someone's watching?"
+    ],
+    [
+     "VEGA",
+     "Because the watchtowers never sleep."
+    ]
+   ],
+   "min_seconds": 7.0
+  },
+  {
+   "scene": "map",
+   "title": "INSIDE THE WALLS",
+   "highlight": [],
+   "deps": [],
+   "subtitle": "",
+   "say": [
+    [
+     "NULL",
+     "I slipped a careless credential past your wall. Now I move in the shadows."
+    ],
+    [
+     "VEGA",
+     "Shadows don't last here. The watchtowers never sleep."
+    ]
+   ]
+  },
+  {
+   "scene": "section",
+   "num": "02",
+   "title": "THE WATCHTOWERS",
+   "subtitle": "Audit · Integrity · Incident Response",
+   "say": [
+    [
+     "VEGA",
+     "Layer two assumes someone got in. Now we see them, stop the rot, and respond."
+    ],
+    [
+     "NARRATOR",
+     "Three families keep watch: Audit, System Integrity, and Incident Response."
+    ]
+   ]
+  },
+  {
+   "scene": "map",
+   "title": "THE WATCHTOWERS",
+   "highlight": [
+    "AU",
+    "SI",
+    "IR"
+   ],
+   "deps": [
+    [
+     "AU",
+     "AC"
+    ],
+    [
+     "SI",
+     "IR"
+    ]
+   ],
+   "subtitle": "",
+   "say": [
+    [
+     "NOVA",
+     "AU, SI, and IR. The eyes, the immune system, and the firefighters."
+    ]
+   ]
+  },
+  {
+   "scene": "guardian",
+   "family": "AU",
+   "family_name": "Audit and Accountability",
+   "persona": "The Chronicler",
+   "protects": "Records every footstep, so no deed goes unseen.",
+   "reality": "Logging security-relevant events and being able to review them and hold actors accountable.",
+   "say": [
+    [
+     "VEGA",
+     "The Chronicler, Audit and Accountability."
+    ],
+    [
+     "VEGA",
+     "It records every footstep, so no deed goes unseen."
+    ],
+    [
+     "VEGA",
+     "In reality, that's logging security-relevant events so you can review them and hold people accountable."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "Audit log",
+   "expand": null,
+   "plain": "A timestamped record of what happened on a system — who signed in, what they touched, what changed. It is the evidence you read after something goes wrong.",
+   "example": "Like a building's sign-in sheet and camera timeline, but for a computer system.",
+   "cite": null,
+   "kicker": "PLAIN ENGLISH",
+   "say": [
+    [
+     "NOVA",
+     "What exactly is a 'log'?"
+    ],
+    [
+     "VEGA",
+     "A diary the system keeps. A Windows Event Log, a syslog, a tool like Splunk — same idea."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "control",
+   "id": "AU-2",
+   "title": "Event Logging",
+   "plain": "Decide which events the system logs to support the audit function.",
+   "why": "You can't review what you never recorded; logging is where accountability begins.",
+   "say": [
+    [
+     "VEGA",
+     "AU-2 chooses what's worth logging."
+    ],
+    [
+     "NULL",
+     "So I'll just delete the logs when I'm done."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "AU-9",
+   "title": "Protection of Audit Information",
+   "plain": "Protect audit information and logging tools from unauthorized change or deletion.",
+   "why": "This is what stops an intruder from erasing their own tracks.",
+   "say": [
+    [
+     "VEGA",
+     "Not so fast. AU-9 protects the logs themselves."
+    ],
+    [
+     "NOVA",
+     "So the Null can't quietly rewrite history."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Identify the types of events that the system is capable of logging in support of the audit function:",
+   "cite": "NIST SP 800-53r5  ·  AU-2 Event Logging",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Identify the types of events that the system is capable of logging in support of the audit function:"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "AU",
+   "title": "Audit and Accountability",
+   "bullets": [
+    "AU-2 Event Logging — decide what events to log",
+    "AU-3 Content of Audit Records — capture enough detail in each record",
+    "AU-6 Audit Record Review, Analysis, and Reporting — review and analyze the logs",
+    "AU-9 Protection of Audit Information — protect the logs from tampering"
+   ],
+   "mnemonic": "“Log it, protect it, read it.”",
+   "say": [
+    [
+     "VEGA",
+     "A log no one reads, or one that can be erased, is no log at all."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "AU",
+   "oath": "Every footstep written; no page erased.",
+   "controls": "AU-2 · AU-9",
+   "say": [
+    [
+     "VEGA",
+     "The Chronicler's oath. Every footstep written; no page erased."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "SI",
+   "family_name": "System and Information Integrity",
+   "persona": "The Healer",
+   "protects": "Finds the rot, cures the sickness, keeps the truth true.",
+   "reality": "Flaw remediation, malicious-code protection, system monitoring, and integrity verification.",
+   "say": [
+    [
+     "VEGA",
+     "The Healer, System and Information Integrity."
+    ],
+    [
+     "NOVA",
+     "It finds the rot, cures the sickness, and keeps the truth true."
+    ],
+    [
+     "VEGA",
+     "In reality, that's patching flaws, blocking malicious code, monitoring for intrusions, and verifying nothing was tampered with."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "SI-2",
+   "title": "Flaw Remediation",
+   "plain": "Find, report, and fix system flaws — and patch them in good time.",
+   "why": "Unpatched flaws are the cracks attackers pour through; SI-2 seals them.",
+   "say": [
+    [
+     "VEGA",
+     "SI-2 is flaw remediation, the discipline of patching."
+    ]
+   ]
+  },
+  {
+   "scene": "control",
+   "id": "SI-4",
+   "title": "System Monitoring",
+   "plain": "Monitor the system to detect attacks, intrusions, and unusual activity.",
+   "why": "It's the tower's spyglass, watching traffic and behavior for trouble.",
+   "say": [
+    [
+     "VEGA",
+     "And SI-4 watches the system for signs of an intruder."
+    ],
+    [
+     "NULL",
+     "Every move I make... another tower turns my way."
+    ]
+   ]
+  },
+  {
+   "scene": "map",
+   "title": "THE WATCH CATCHES A SHADOW",
+   "highlight": [
+    "AU",
+    "SI",
+    "IR"
+   ],
+   "deps": [],
+   "subtitle": "",
+   "say": [
+    [
+     "NULL",
+     "Six days I moved in your shadows before a single tower turned."
+    ],
+    [
+     "NOVA",
+     "Six days?!"
+    ],
+    [
+     "VEGA",
+     "Six days — but SI-4 saw the anomaly, and AU-9 kept the logs he tripped. He got in. He did not get out clean."
+    ],
+    [
+     "NULL",
+     "...this time."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Identify, report, and correct system flaws;",
+   "cite": "NIST SP 800-53r5  ·  SI-2 Flaw Remediation",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Identify, report, and correct system flaws;"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "SI",
+   "title": "System and Information Integrity",
+   "bullets": [
+    "SI-2 Flaw Remediation — patch flaws promptly",
+    "SI-3 Malicious Code Protection — stop malicious code",
+    "SI-4 System Monitoring — monitor for intrusions",
+    "SI-7 Software, Firmware, and Information Integrity — verify software and data integrity"
+   ],
+   "mnemonic": "“Patch, detect, verify.”",
+   "say": [
+    [
+     "VEGA",
+     "Integrity is keeping the system clean and honest."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "SI",
+   "oath": "Find the rot, close the wound, keep it true.",
+   "controls": "SI-2 · SI-4 · SI-7",
+   "say": [
+    [
+     "VEGA",
+     "The Healer's oath. Find the rot, close the wound, keep it true."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "guardian",
+   "family": "IR",
+   "family_name": "Incident Response",
+   "persona": "The Firewatch",
+   "protects": "Sounds the alarm and contains the blaze.",
+   "reality": "Detecting, reporting, analyzing, containing, and recovering from security incidents.",
+   "say": [
+    [
+     "VEGA",
+     "The Firewatch, Incident Response."
+    ],
+    [
+     "VEGA",
+     "When something burns, it sounds the alarm and contains the blaze."
+    ],
+    [
+     "VEGA",
+     "In reality, that's detecting, reporting, analyzing, containing, and recovering from security incidents."
+    ]
+   ]
+  },
+  {
+   "scene": "define",
+   "term": "Security incident",
+   "expand": null,
+   "plain": "An event that actually harms a system or its data, or breaks the rules meant to protect them — a real breach, not just a warning light.",
+   "example": "A ransomware infection, a stolen laptop full of patient data, or a hijacked account.",
+   "cite": null,
+   "kicker": "PLAIN ENGLISH",
+   "say": [
+    [
+     "NOVA",
+     "When does a threat become an 'incident'?"
+    ],
+    [
+     "VEGA",
+     "The moment it stops being hypothetical — malware runs, data leaks, a system goes down."
+    ]
+   ],
+   "min_seconds": 6.5
+  },
+  {
+   "scene": "control",
+   "id": "IR-4",
+   "title": "Incident Handling",
+   "plain": "Run a capability to detect, contain, eradicate, and recover from incidents.",
+   "why": "A breach is a question of when; IR-4 is having the answer rehearsed.",
+   "say": [
+    [
+     "NOVA",
+     "What happens the moment we spot the Null?"
+    ],
+    [
+     "VEGA",
+     "IR-4 takes over, handling the incident end to end."
+    ]
+   ]
+  },
+  {
+   "scene": "diagram",
+   "title": "The incident response lifecycle",
+   "nodes": [
+    {
+     "label": "Preparation",
+     "x": 70,
+     "y": 470,
+     "w": 300,
+     "h": 150,
+     "color": "cyan"
+    },
+    {
+     "label": "Detection & Analysis",
+     "x": 440,
+     "y": 470,
+     "w": 300,
+     "h": 150,
+     "color": "gold"
+    },
+    {
+     "label": "Containment",
+     "x": 810,
+     "y": 470,
+     "w": 300,
+     "h": 150,
+     "color": "mint"
+    },
+    {
+     "label": "Eradication",
+     "x": 1180,
+     "y": 470,
+     "w": 300,
+     "h": 150,
+     "color": "mint"
+    },
+    {
+     "label": "Recovery",
+     "x": 1550,
+     "y": 470,
+     "w": 300,
+     "h": 150,
+     "color": "cyan"
+    }
+   ],
+   "arrows": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "say": [
+    [
+     "VEGA",
+     "Every incident follows a rhythm: prepare, detect, contain, eradicate, recover."
+    ],
+    [
+     "NOVA",
+     "And IR-8 writes the plan that makes it routine."
+    ]
+   ]
+  },
+  {
+   "scene": "quote",
+   "quote": "Implement an incident handling capability for incidents that is consistent with the incident response plan and includes preparation, detection and analysis, containment, eradication, and recovery;",
+   "cite": "NIST SP 800-53r5  ·  IR-4 Incident Handling",
+   "say": [
+    [
+     "ARCHIVIST",
+     "Implement an incident handling capability for incidents that is consistent with the incident response plan and includes preparation, detection and analysis, containment, eradication, and recovery;"
+    ]
+   ]
+  },
+  {
+   "scene": "cheatcard",
+   "family": "IR",
+   "title": "Incident Response",
+   "bullets": [
+    "IR-2 Incident Response Training — train people for their incident roles",
+    "IR-4 Incident Handling — handle incidents end to end",
+    "IR-6 Incident Reporting — report incidents to the right people",
+    "IR-8 Incident Response Plan — write and maintain the response plan"
+   ],
+   "mnemonic": "“Plan, detect, contain, recover.”",
+   "say": [
+    [
+     "VEGA",
+     "The best responders practiced before the fire."
+    ]
+   ]
+  },
+  {
+   "scene": "oath",
+   "family": "IR",
+   "oath": "When it burns, we are already running.",
+   "controls": "IR-4 · IR-8",
+   "say": [
+    [
+     "VEGA",
+     "The Firewatch's oath. When it burns, we are already running."
+    ]
+   ],
+   "min_seconds": 4.5
+  },
+  {
+   "scene": "points",
+   "title": "The Watchtowers in the RMF",
+   "bullets": [
+    "AU, SI, and IR power the MONITOR step — continuous vigilance",
+    "They embody the Detect and Respond security functions",
+    "Protect your logs (AU-9) or the whole watch can be blinded"
+   ],
+   "kicker": "HOW IT FITS",
+   "note": "",
+   "say": [
+    [
+     "VEGA",
+     "Selecting and implementing was the wall. Watching is how you keep it."
+    ]
+   ]
+  },
+  {
+   "scene": "quiz",
+   "q": "An intruder tries to delete the logs to hide. Which control blocks that?",
+   "options": [
+    "AU-2 Event Logging",
+    "AU-9 Protection of Audit Information",
+    "SI-4 System Monitoring"
+   ],
+   "answer": 1,
+   "reveal": true,
+   "say": [
+    [
+     "NOVA",
+     "Scenario: the Null deletes logs. What stops it? Pause, and answer."
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "quiz",
+   "q": "Which family detects, contains, and recovers from a breach?",
+   "options": [
+    "IR — Incident Response",
+    "AU — Audit",
+    "AC — Access Control"
+   ],
+   "answer": 0,
+   "reveal": true,
+   "say": [
+    [
+     "VEGA",
+     "And who runs toward the fire?"
+    ]
+   ],
+   "min_seconds": 7
+  },
+  {
+   "scene": "notebook",
+   "title": "Episode 02 — the Watchtowers",
+   "lines": [
+    "AU sees and remembers — and protects its own records (AU-2, AU-6, AU-9).",
+    "SI keeps the system clean and honest: patch, detect, verify (SI-2, SI-4, SI-7).",
+    "IR turns a crisis into a rehearsed routine (IR-4, IR-6, IR-8)."
+   ],
+   "mnemonic": "Log it, protect it, read it — then run toward the fire.",
+   "say": [
+    [
+     "NOVA",
+     "Notebook: assume they got in, then see them, heal the system, and answer fast."
+    ],
+    [
+     "VEGA",
+     "Seen, healed, and answered. The towers hold."
+    ],
+    [
+     "NULL",
+     "Then I'll turn your own people against you."
+    ],
+    [
+     "VEGA",
+     "Then we ride to the Keepers of the Pact."
+    ]
+   ],
+   "min_seconds": 5.0
+  }
+ ]
+}

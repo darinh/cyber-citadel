@@ -1,0 +1,57 @@
+{
+ "id": "EP05",
+ "title": "EP05",
+ "duration": 395.73,
+ "chapters": [
+  {
+   "t": 19.92,
+   "title": "The Forge"
+  },
+  {
+   "t": 32.12,
+   "title": "The Forge"
+  },
+  {
+   "t": 48.28,
+   "title": "The Forge"
+  },
+  {
+   "t": 345.4,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 361.4,
+   "title": "Quiz 2"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "A counterfeit network card arrives pre-tampered. Which control should catch it?",
+   "options": [
+    "CM-2 Baseline Configuration",
+    "SR-11 Component Authenticity",
+    "MA-2 Maintenance"
+   ],
+   "answer": 1,
+   "t_question": 345.4,
+   "t_quiz": 351.1,
+   "t_reveal": 357.8,
+   "t_resume": 361.4
+  },
+  {
+   "n": 2,
+   "q": "Disabling unused ports and services is which control?",
+   "options": [
+    "CM-7 Least Functionality",
+    "SA-22 Unsupported Components",
+    "CM-8 Inventory"
+   ],
+   "answer": 0,
+   "t_question": 361.4,
+   "t_quiz": 364.95,
+   "t_reveal": 371.65,
+   "t_resume": 375.25
+  }
+ ]
+}

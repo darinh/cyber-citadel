@@ -1,0 +1,49 @@
+{
+ "id": "EP10",
+ "title": "EP10",
+ "duration": 119.2,
+ "chapters": [
+  {
+   "t": 0.0,
+   "title": "The Armory"
+  },
+  {
+   "t": 79.16,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 94.19,
+   "title": "Quiz 2"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "Where do the Low / Moderate / High baselines live?",
+   "options": [
+    "SP 800-53 (the catalog)",
+    "SP 800-53B",
+    "FIPS 199"
+   ],
+   "answer": 1,
+   "t_question": 79.16,
+   "t_quiz": 83.89,
+   "t_reveal": 90.59,
+   "t_resume": 94.19
+  },
+  {
+   "n": 2,
+   "q": "Adjusting a baseline — scoping out, swapping, adding controls — is called?",
+   "options": [
+    "Categorization",
+    "Tailoring",
+    "Authorization"
+   ],
+   "answer": 1,
+   "t_question": 94.19,
+   "t_quiz": 98.76,
+   "t_reveal": 105.46,
+   "t_resume": 109.06
+  }
+ ]
+}

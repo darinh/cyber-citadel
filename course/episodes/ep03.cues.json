@@ -1,0 +1,57 @@
+{
+ "id": "EP03",
+ "title": "EP03",
+ "duration": 323.0,
+ "chapters": [
+  {
+   "t": 19.2,
+   "title": "The Human Gate"
+  },
+  {
+   "t": 30.95,
+   "title": "The Keepers Of The Pact"
+  },
+  {
+   "t": 45.28,
+   "title": "The Keepers Of The Pact"
+  },
+  {
+   "t": 274.98,
+   "title": "Quiz 1"
+  },
+  {
+   "t": 290.3,
+   "title": "Quiz 2"
+  }
+ ],
+ "quizzes": [
+  {
+   "n": 1,
+   "q": "A departing administrator still has their access a week later. Which control failed?",
+   "options": [
+    "PS-4 Personnel Termination",
+    "AT-2 Awareness Training",
+    "PT-5 Privacy Notice"
+   ],
+   "answer": 0,
+   "t_question": 274.98,
+   "t_quiz": 280.0,
+   "t_reveal": 286.7,
+   "t_resume": 290.3
+  },
+  {
+   "n": 2,
+   "q": "Which family is new in Revision 5 and governs personal-data processing?",
+   "options": [
+    "AT — Training",
+    "PS — Personnel",
+    "PT — PII Processing & Transparency"
+   ],
+   "answer": 2,
+   "t_question": 290.3,
+   "t_quiz": 294.6,
+   "t_reveal": 301.3,
+   "t_resume": 304.9
+  }
+ ]
+}
