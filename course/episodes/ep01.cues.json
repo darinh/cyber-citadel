@@ -1,30 +1,30 @@
 {
  "id": "EP01",
  "title": "EP01",
- "duration": 352.58,
+ "duration": 317.62,
  "chapters": [
   {
-   "t": 17.85,
+   "t": 15.67,
    "title": "Aegis Citadel — Nightfall"
   },
   {
-   "t": 33.87,
+   "t": 32.27,
    "title": "The Outer Walls"
   },
   {
-   "t": 46.76,
+   "t": 43.07,
    "title": "The Outer Walls"
   },
   {
-   "t": 289.07,
+   "t": 255.99,
    "title": "Quiz 1"
   },
   {
-   "t": 304.2,
+   "t": 271.15,
    "title": "Quiz 2"
   },
   {
-   "t": 318.43,
+   "t": 284.32,
    "title": "Quiz 3"
   }
  ],
@@ -38,10 +38,10 @@
     "PE — Physical"
    ],
    "answer": 1,
-   "t_question": 289.07,
-   "t_quiz": 293.9,
-   "t_reveal": 300.6,
-   "t_resume": 304.2
+   "t_question": 255.99,
+   "t_quiz": 260.85,
+   "t_reveal": 267.55,
+   "t_resume": 271.15
   },
   {
    "n": 2,
@@ -52,10 +52,10 @@
     "IA-5 Authenticator Management"
    ],
    "answer": 1,
-   "t_question": 304.2,
-   "t_quiz": 308.13,
-   "t_reveal": 314.83,
-   "t_resume": 318.43
+   "t_question": 271.15,
+   "t_quiz": 274.02,
+   "t_reveal": 280.72,
+   "t_resume": 284.32
   },
   {
    "n": 3,
@@ -66,10 +66,10 @@
     "SR — Supply Chain"
    ],
    "answer": 0,
-   "t_question": 318.43,
-   "t_quiz": 323.53,
-   "t_reveal": 330.23,
-   "t_resume": 333.83
+   "t_question": 284.32,
+   "t_quiz": 289.73,
+   "t_reveal": 296.43,
+   "t_resume": 300.03
   }
  ]
 }

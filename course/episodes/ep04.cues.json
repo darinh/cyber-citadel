@@ -1,26 +1,26 @@
 {
  "id": "EP04",
  "title": "EP04",
- "duration": 396.39,
+ "duration": 350.19,
  "chapters": [
   {
-   "t": 20.57,
+   "t": 17.51,
    "title": "The Inner Keep"
   },
   {
-   "t": 31.39,
+   "t": 26.87,
    "title": "The High Council"
   },
   {
-   "t": 46.61,
+   "t": 39.51,
    "title": "The High Council"
   },
   {
-   "t": 348.22,
+   "t": 304.97,
    "title": "Quiz 1"
   },
   {
-   "t": 364.02,
+   "t": 321.24,
    "title": "Quiz 2"
   }
  ],
@@ -34,10 +34,10 @@
     "PL-2 System Plan"
    ],
    "answer": 0,
-   "t_question": 348.22,
-   "t_quiz": 353.72,
-   "t_reveal": 360.42,
-   "t_resume": 364.02
+   "t_question": 304.97,
+   "t_quiz": 310.94,
+   "t_reveal": 317.64,
+   "t_resume": 321.24
   },
   {
    "n": 2,
@@ -48,10 +48,10 @@
     "In the audit log"
    ],
    "answer": 1,
-   "t_question": 364.02,
-   "t_quiz": 368.74,
-   "t_reveal": 375.44,
-   "t_resume": 379.04
+   "t_question": 321.24,
+   "t_quiz": 324.27,
+   "t_reveal": 330.97,
+   "t_resume": 334.57
   }
  ]
 }

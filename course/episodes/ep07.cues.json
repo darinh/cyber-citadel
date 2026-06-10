@@ -1,46 +1,46 @@
 {
  "id": "EP07",
  "title": "FINALE",
- "duration": 216.35,
+ "duration": 211.15,
  "chapters": [
   {
    "t": 0.0,
    "title": "Siege Night"
   },
   {
-   "t": 15.82,
+   "t": 16.96,
    "title": "Siege Night"
   },
   {
-   "t": 23.42,
+   "t": 23.5,
    "title": "The City Stands As One"
   },
   {
-   "t": 105.36,
+   "t": 101.52,
    "title": "Guardian Roll Call"
   },
   {
-   "t": 111.06,
+   "t": 106.55,
    "title": "Quiz 1"
   },
   {
-   "t": 124.67,
+   "t": 119.98,
    "title": "Quiz 2"
   },
   {
-   "t": 137.97,
+   "t": 133.57,
    "title": "Quiz 3"
   },
   {
-   "t": 151.57,
+   "t": 147.44,
    "title": "Quiz 4"
   },
   {
-   "t": 165.53,
+   "t": 161.19,
    "title": "Quiz 5"
   },
   {
-   "t": 204.33,
+   "t": 198.69,
    "title": "The Campaign"
   }
  ],
@@ -54,10 +54,10 @@
     "AU — Audit"
    ],
    "answer": 1,
-   "t_question": 111.06,
-   "t_quiz": 114.37,
-   "t_reveal": 121.07,
-   "t_resume": 124.67
+   "t_question": 106.55,
+   "t_quiz": 109.68,
+   "t_reveal": 116.38,
+   "t_resume": 119.98
   },
   {
    "n": 2,
@@ -68,10 +68,10 @@
     "SP 800-53A"
    ],
    "answer": 1,
-   "t_question": 124.67,
-   "t_quiz": 127.67,
-   "t_reveal": 134.37,
-   "t_resume": 137.97
+   "t_question": 119.98,
+   "t_quiz": 123.27,
+   "t_reveal": 129.97,
+   "t_resume": 133.57
   },
   {
    "n": 3,
@@ -82,10 +82,10 @@
     "AT-2 Training"
    ],
    "answer": 0,
-   "t_question": 137.97,
-   "t_quiz": 141.27,
-   "t_reveal": 147.97,
-   "t_resume": 151.57
+   "t_question": 133.57,
+   "t_quiz": 137.14,
+   "t_reveal": 143.84,
+   "t_resume": 147.44
   },
   {
    "n": 4,
@@ -96,10 +96,10 @@
     "FIPS 199"
    ],
    "answer": 1,
-   "t_question": 151.57,
-   "t_quiz": 155.23,
-   "t_reveal": 161.93,
-   "t_resume": 165.53
+   "t_question": 147.44,
+   "t_quiz": 150.89,
+   "t_reveal": 157.59,
+   "t_resume": 161.19
   },
   {
    "n": 5,
@@ -110,10 +110,10 @@
     "RA-3 Risk Assessment"
    ],
    "answer": 0,
-   "t_question": 165.53,
-   "t_quiz": 169.11,
-   "t_reveal": 175.81,
-   "t_resume": 179.41
+   "t_question": 161.19,
+   "t_quiz": 164.89,
+   "t_reveal": 171.59,
+   "t_resume": 175.19
   }
  ]
 }

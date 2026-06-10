@@ -1,22 +1,22 @@
 {
  "id": "EP08",
  "title": "EP08",
- "duration": 136.69,
+ "duration": 128.38,
  "chapters": [
   {
    "t": 0.0,
    "title": "The Campaign"
   },
   {
-   "t": 20.72,
+   "t": 18.04,
    "title": "The Risk Management Framework"
   },
   {
-   "t": 98.97,
+   "t": 92.06,
    "title": "Quiz 1"
   },
   {
-   "t": 113.84,
+   "t": 106.81,
    "title": "Quiz 2"
   }
  ],
@@ -30,10 +30,10 @@
     "Seven"
    ],
    "answer": 2,
-   "t_question": 98.97,
-   "t_quiz": 103.54,
-   "t_reveal": 110.24,
-   "t_resume": 113.84
+   "t_question": 92.06,
+   "t_quiz": 96.51,
+   "t_reveal": 103.21,
+   "t_resume": 106.81
   },
   {
    "n": 2,
@@ -44,10 +44,10 @@
     "Monitor"
    ],
    "answer": 0,
-   "t_question": 113.84,
-   "t_quiz": 117.79,
-   "t_reveal": 124.49,
-   "t_resume": 128.09
+   "t_question": 106.81,
+   "t_quiz": 109.48,
+   "t_reveal": 116.18,
+   "t_resume": 119.78
   }
  ]
 }

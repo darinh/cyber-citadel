@@ -1,127 +1,127 @@
 1
-00:00:00,350 --> 00:00:03,387
+00:00:00,350 --> 00:00:02,590
 VEGA:  You know the system's worth. Now draw your
 
 2
-00:00:03,387 --> 00:00:05,122
+00:00:02,590 --> 00:00:03,870
 loadout from the armory.
 
 3
-00:00:05,422 --> 00:00:10,949
+00:00:04,170 --> 00:00:09,095
 The baselines, and the tailoring guidance, live in
 
 4
-00:00:10,949 --> 00:00:12,165
+00:00:09,095 --> 00:00:10,178
 SP 800-53B.
 
 5
-00:00:13,215 --> 00:00:15,969
+00:00:11,228 --> 00:00:14,610
 NOVA:  So a baseline is a ready-made kit?
 
 6
-00:00:16,269 --> 00:00:19,427
+00:00:14,910 --> 00:00:17,134
 VEGA:  A starting kit. Matched to how much the
 
 7
-00:00:19,427 --> 00:00:20,641
+00:00:17,134 --> 00:00:17,990
 system matters.
 
 8
-00:00:23,515 --> 00:00:25,769
+00:00:21,528 --> 00:00:23,670
 NOVA:  Tailoring? Overlay?
 
 9
-00:00:26,069 --> 00:00:28,653
+00:00:23,970 --> 00:00:26,082
 VEGA:  Tailoring fits the kit to you - like
 
 10
-00:00:28,653 --> 00:00:32,386
+00:00:26,082 --> 00:00:29,133
 Aegis Hospital dropping wireless because that app is
 
 11
-00:00:32,386 --> 00:00:36,333
+00:00:29,133 --> 00:00:32,359
 wired-only, and adding a healthcare overlay. An overlay
 
 12
-00:00:36,333 --> 00:00:39,492
+00:00:32,359 --> 00:00:34,941
 is shared tailoring, so you don't start from
 
 13
-00:00:39,492 --> 00:00:40,066
+00:00:34,941 --> 00:00:35,410
 scratch.
 
 14
-00:00:41,116 --> 00:00:49,263
+00:00:36,460 --> 00:00:41,700
 VEGA:  Low draws 149 items. Moderate, 287. High, 370.
 
 15
-00:00:49,563 --> 00:00:54,460
+00:00:42,000 --> 00:00:46,000
 VEGA:  Higher impact, more controls and enhancements, by design.
 
 16
-00:00:55,510 --> 00:00:58,761
+00:00:47,050 --> 00:00:49,565
 VEGA:  A baseline is a starting point, never the
 
 17
-00:00:58,761 --> 00:01:01,457
+00:00:49,565 --> 00:00:51,650
 finish line. You tailor it to fit.
 
 18
-00:01:01,757 --> 00:01:05,654
+00:00:51,950 --> 00:00:55,224
 NULL:  I look for the control you wrongly tailored
 
 19
-00:01:05,654 --> 00:01:06,107
+00:00:55,224 --> 00:00:55,605
 away.
 
 20
-00:01:07,157 --> 00:01:10,909
+00:00:57,350 --> 00:01:00,416
 VEGA:  Overlays are shared tailoring, so you don't start
 
 21
-00:01:10,909 --> 00:01:11,904
+00:01:00,416 --> 00:01:01,230
 from scratch.
 
 22
-00:01:12,204 --> 00:01:15,756
+00:01:01,530 --> 00:01:04,745
 NOVA:  And remember, PM controls run across the whole
 
 23
-00:01:15,756 --> 00:01:18,458
+00:01:04,745 --> 00:01:07,192
 organization, outside any baseline.
 
 24
-00:01:19,508 --> 00:01:23,110
+00:01:08,242 --> 00:01:11,847
 NOVA:  Quick check. Which book holds the baselines? Pause,
 
 25
-00:01:23,110 --> 00:01:23,887
+00:01:11,847 --> 00:01:12,624
 and answer.
 
 26
-00:01:30,937 --> 00:01:33,109
+00:01:19,674 --> 00:01:20,954
 VEGA:  The answer is B.
 
 27
-00:01:34,537 --> 00:01:37,553
+00:01:23,274 --> 00:01:25,503
 VEGA:  And the act of adjusting the baseline to
 
 28
-00:01:37,553 --> 00:01:38,759
+00:01:25,503 --> 00:01:26,394
 fit your system?
 
 29
-00:01:45,809 --> 00:01:47,981
+00:01:33,444 --> 00:01:34,724
 VEGA:  The answer is B.
 
 30
-00:01:49,409 --> 00:01:53,512
+00:01:37,044 --> 00:01:41,000
 VEGA:  Defenses chosen and fitted. Now, do they actually
 
 31
-00:01:53,512 --> 00:01:53,931
+00:01:41,000 --> 00:01:41,404
 work?
 
 32
-00:01:54,231 --> 00:01:58,503
+00:01:41,704 --> 00:01:44,744
 VEGA:  Next: the reckoning, assessment and authorization.

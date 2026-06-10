@@ -1,18 +1,18 @@
 {
  "id": "EP10",
  "title": "EP10",
- "duration": 119.2,
+ "duration": 105.44,
  "chapters": [
   {
    "t": 0.0,
    "title": "The Armory"
   },
   {
-   "t": 79.16,
+   "t": 67.89,
    "title": "Quiz 1"
   },
   {
-   "t": 94.19,
+   "t": 82.92,
    "title": "Quiz 2"
   }
  ],
@@ -26,10 +26,10 @@
     "FIPS 199"
    ],
    "answer": 1,
-   "t_question": 79.16,
-   "t_quiz": 83.89,
-   "t_reveal": 90.59,
-   "t_resume": 94.19
+   "t_question": 67.89,
+   "t_quiz": 72.62,
+   "t_reveal": 79.32,
+   "t_resume": 82.92
   },
   {
    "n": 2,
@@ -40,10 +40,10 @@
     "Authorization"
    ],
    "answer": 1,
-   "t_question": 94.19,
-   "t_quiz": 98.76,
-   "t_reveal": 105.46,
-   "t_resume": 109.06
+   "t_question": 82.92,
+   "t_quiz": 86.39,
+   "t_reveal": 93.09,
+   "t_resume": 96.69
   }
  ]
 }

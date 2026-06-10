@@ -1,26 +1,26 @@
 {
  "id": "EP03",
  "title": "EP03",
- "duration": 323.0,
+ "duration": 290.71,
  "chapters": [
   {
-   "t": 19.2,
+   "t": 16.11,
    "title": "The Human Gate"
   },
   {
-   "t": 30.95,
+   "t": 26.71,
    "title": "The Keepers Of The Pact"
   },
   {
-   "t": 45.28,
+   "t": 38.35,
    "title": "The Keepers Of The Pact"
   },
   {
-   "t": 274.98,
+   "t": 242.68,
    "title": "Quiz 1"
   },
   {
-   "t": 290.3,
+   "t": 258.6,
    "title": "Quiz 2"
   }
  ],
@@ -34,10 +34,10 @@
     "PT-5 Privacy Notice"
    ],
    "answer": 0,
-   "t_question": 274.98,
-   "t_quiz": 280.0,
-   "t_reveal": 286.7,
-   "t_resume": 290.3
+   "t_question": 242.68,
+   "t_quiz": 248.3,
+   "t_reveal": 255.0,
+   "t_resume": 258.6
   },
   {
    "n": 2,
@@ -48,10 +48,10 @@
     "PT — PII Processing & Transparency"
    ],
    "answer": 2,
-   "t_question": 290.3,
-   "t_quiz": 294.6,
-   "t_reveal": 301.3,
-   "t_resume": 304.9
+   "t_question": 258.6,
+   "t_quiz": 261.79,
+   "t_reveal": 268.49,
+   "t_resume": 272.09
   }
  ]
 }

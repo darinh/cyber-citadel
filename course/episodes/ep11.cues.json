@@ -1,26 +1,26 @@
 {
  "id": "EP11",
  "title": "FINALE",
- "duration": 170.37,
+ "duration": 158.63,
  "chapters": [
   {
    "t": 0.0,
    "title": "The Reckoning"
   },
   {
-   "t": 82.57,
+   "t": 73.25,
    "title": "Quiz 1"
   },
   {
-   "t": 98.1,
+   "t": 88.56,
    "title": "Quiz 2"
   },
   {
-   "t": 112.55,
+   "t": 102.17,
    "title": "Quiz 3"
   },
   {
-   "t": 139.77,
+   "t": 127.95,
    "title": "Cyber Citadel"
   }
  ],
@@ -34,10 +34,10 @@
     "Plan, Do, Check"
    ],
    "answer": 1,
-   "t_question": 82.57,
-   "t_quiz": 87.8,
-   "t_reveal": 94.5,
-   "t_resume": 98.1
+   "t_question": 73.25,
+   "t_quiz": 78.26,
+   "t_reveal": 84.96,
+   "t_resume": 88.56
   },
   {
    "n": 2,
@@ -48,10 +48,10 @@
     "SAR"
    ],
    "answer": 1,
-   "t_question": 98.1,
-   "t_quiz": 102.25,
-   "t_reveal": 108.95,
-   "t_resume": 112.55
+   "t_question": 88.56,
+   "t_quiz": 91.87,
+   "t_reveal": 98.57,
+   "t_resume": 102.17
   },
   {
    "n": 3,
@@ -62,10 +62,10 @@
     "In FIPS 199"
    ],
    "answer": 1,
-   "t_question": 112.55,
-   "t_quiz": 116.54,
-   "t_reveal": 123.24,
-   "t_resume": 126.84
+   "t_question": 102.17,
+   "t_quiz": 105.0,
+   "t_reveal": 111.7,
+   "t_resume": 115.3
   }
  ]
 }

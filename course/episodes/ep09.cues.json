@@ -1,18 +1,18 @@
 {
  "id": "EP09",
  "title": "EP09",
- "duration": 127.37,
+ "duration": 112.63,
  "chapters": [
   {
    "t": 0.0,
    "title": "Know Your Realm"
   },
   {
-   "t": 86.15,
+   "t": 74.44,
    "title": "Quiz 1"
   },
   {
-   "t": 101.55,
+   "t": 90.07,
    "title": "Quiz 2"
   }
  ],
@@ -26,10 +26,10 @@
     "High"
    ],
    "answer": 2,
-   "t_question": 86.15,
-   "t_quiz": 91.25,
-   "t_reveal": 97.95,
-   "t_resume": 101.55
+   "t_question": 74.44,
+   "t_quiz": 79.77,
+   "t_reveal": 86.47,
+   "t_resume": 90.07
   },
   {
    "n": 2,
@@ -40,10 +40,10 @@
     "SP 800-37"
    ],
    "answer": 0,
-   "t_question": 101.55,
-   "t_quiz": 106.07,
-   "t_reveal": 112.77,
-   "t_resume": 116.37
+   "t_question": 90.07,
+   "t_quiz": 93.42,
+   "t_reveal": 100.12,
+   "t_resume": 103.72
   }
  ]
 }

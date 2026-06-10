@@ -1,30 +1,30 @@
 {
  "id": "EP02",
  "title": "EP02",
- "duration": 333.65,
+ "duration": 302.52,
  "chapters": [
   {
-   "t": 17.17,
+   "t": 16.67,
    "title": "Inside The Walls"
   },
   {
-   "t": 28.49,
+   "t": 26.99,
    "title": "The Watchtowers"
   },
   {
-   "t": 42.33,
+   "t": 39.79,
    "title": "The Watchtowers"
   },
   {
-   "t": 156.51,
+   "t": 138.41,
    "title": "The Watch Catches A Shadow"
   },
   {
-   "t": 286.57,
+   "t": 257.97,
    "title": "Quiz 1"
   },
   {
-   "t": 302.18,
+   "t": 274.24,
    "title": "Quiz 2"
   }
  ],
@@ -38,10 +38,10 @@
     "SI-4 System Monitoring"
    ],
    "answer": 1,
-   "t_question": 286.57,
-   "t_quiz": 291.88,
-   "t_reveal": 298.58,
-   "t_resume": 302.18
+   "t_question": 257.97,
+   "t_quiz": 263.94,
+   "t_reveal": 270.64,
+   "t_resume": 274.24
   },
   {
    "n": 2,
@@ -52,10 +52,10 @@
     "AC — Access Control"
    ],
    "answer": 0,
-   "t_question": 302.18,
-   "t_quiz": 305.23,
-   "t_reveal": 311.93,
-   "t_resume": 315.53
+   "t_question": 274.24,
+   "t_quiz": 276.63,
+   "t_reveal": 283.33,
+   "t_resume": 286.93
   }
  ]
 }

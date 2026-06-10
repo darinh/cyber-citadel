@@ -1,26 +1,26 @@
 {
  "id": "EP06",
  "title": "EP06",
- "duration": 384.64,
+ "duration": 341.89,
  "chapters": [
   {
-   "t": 18.97,
+   "t": 17.47,
    "title": "The Vaults"
   },
   {
-   "t": 31.87,
+   "t": 29.27,
    "title": "The Vaults & Lifelines"
   },
   {
-   "t": 48.19,
+   "t": 43.23,
    "title": "The Vaults & Lifelines"
   },
   {
-   "t": 334.39,
+   "t": 293.1,
    "title": "Quiz 1"
   },
   {
-   "t": 349.94,
+   "t": 309.38,
    "title": "Quiz 2"
   }
  ],
@@ -34,10 +34,10 @@
     "A privacy notice (PT-5)"
    ],
    "answer": 0,
-   "t_question": 334.39,
-   "t_quiz": 339.64,
-   "t_reveal": 346.34,
-   "t_resume": 349.94
+   "t_question": 293.1,
+   "t_quiz": 299.08,
+   "t_reveal": 305.78,
+   "t_resume": 309.38
   },
   {
    "n": 2,
@@ -48,10 +48,10 @@
     "CP-2 Contingency Plan"
    ],
    "answer": 1,
-   "t_question": 349.94,
-   "t_quiz": 354.01,
-   "t_reveal": 360.71,
-   "t_resume": 364.31
+   "t_question": 309.38,
+   "t_quiz": 312.45,
+   "t_reveal": 319.15,
+   "t_resume": 322.75
   }
  ]
 }

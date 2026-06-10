@@ -1,379 +1,379 @@
 1
-00:00:00,350 --> 00:00:04,446
+00:00:00,350 --> 00:00:04,496
 NULL:  Every gap, every shortcut, every forgotten door -
 
 2
-00:00:04,446 --> 00:00:05,700
+00:00:04,496 --> 00:00:05,765
 I will find it.
 
 3
-00:00:06,000 --> 00:00:09,714
+00:00:06,065 --> 00:00:08,956
 VEGA:  Not tonight. One stolen login should never be
 
 4
-00:00:09,714 --> 00:00:11,447
+00:00:08,956 --> 00:00:10,305
 enough to end a city.
 
 5
-00:00:11,747 --> 00:00:13,651
+00:00:10,605 --> 00:00:12,427
 NOVA:  So where do we begin?
 
 6
-00:00:13,951 --> 00:00:17,148
+00:00:12,727 --> 00:00:14,967
 VEGA:  Where every attacker does - at the wall.
 
 7
-00:00:18,198 --> 00:00:21,330
+00:00:16,017 --> 00:00:19,455
 NULL:  Every fortress has a door. I only need
 
 8
-00:00:21,330 --> 00:00:24,298
+00:00:19,455 --> 00:00:22,712
 one careless soul to leave one open.
 
 9
-00:00:24,598 --> 00:00:27,837
+00:00:23,012 --> 00:00:25,584
 VEGA:  Then meet the three guardians of the gate.
 
 10
-00:00:27,837 --> 00:00:30,845
+00:00:25,584 --> 00:00:27,972
 I'm Vega. This is the apprentice, Nova.
 
 11
-00:00:31,145 --> 00:00:33,174
+00:00:28,272 --> 00:00:31,574
 NOVA:  Let's walk the walls.
 
 12
-00:00:34,224 --> 00:00:37,300
+00:00:32,624 --> 00:00:35,074
 VEGA:  Layer one is the perimeter, who gets in,
 
 13
-00:00:37,300 --> 00:00:39,146
+00:00:35,074 --> 00:00:36,544
 and what they may touch.
 
 14
-00:00:39,446 --> 00:00:44,917
+00:00:36,844 --> 00:00:41,414
 Three families stand the wall: Access Control, Identification,
 
 15
-00:00:44,917 --> 00:00:46,064
+00:00:41,414 --> 00:00:42,372
 and Physical.
 
 16
-00:00:47,114 --> 00:00:51,169
+00:00:43,422 --> 00:00:46,907
 VEGA:  Three districts light up the map: AC, IA,
 
 17
-00:00:51,169 --> 00:00:51,861
+00:00:46,907 --> 00:00:47,502
 and PE.
 
 18
-00:00:52,161 --> 00:00:54,515
+00:00:47,802 --> 00:00:49,904
 NOVA:  The gatekeepers of the city.
 
 19
-00:00:55,565 --> 00:00:59,012
+00:00:50,954 --> 00:00:53,554
 VEGA:  First, the Gatekeeper, Access Control.
 
 20
-00:00:59,312 --> 00:01:02,791
+00:00:53,854 --> 00:00:56,654
 VEGA:  It decides who may enter, and exactly what
 
 21
-00:01:02,791 --> 00:01:04,034
+00:00:56,654 --> 00:00:57,654
 they may touch.
 
 22
-00:01:04,334 --> 00:01:07,554
+00:00:57,954 --> 00:01:00,745
 VEGA:  In the real world, that's the policies and
 
 23
-00:01:07,554 --> 00:01:11,618
+00:01:00,745 --> 00:01:04,266
 mechanisms deciding which users and processes may use
 
 24
-00:01:11,618 --> 00:01:13,381
+00:01:04,266 --> 00:01:05,794
 which systems and data.
 
 25
-00:01:14,431 --> 00:01:16,585
+00:01:06,844 --> 00:01:08,826
 NOVA:  Where does access begin?
 
 26
-00:01:16,885 --> 00:01:21,412
+00:01:09,126 --> 00:01:12,928
 VEGA:  With accounts. AC-2 governs every account from birth
 
 27
-00:01:21,412 --> 00:01:22,457
+00:01:12,928 --> 00:01:13,806
 to deletion.
 
 28
-00:01:23,507 --> 00:01:26,738
+00:01:14,856 --> 00:01:17,805
 VEGA:  Then the rule that saves you again and
 
 29
-00:01:26,738 --> 00:01:29,204
+00:01:17,805 --> 00:01:20,056
 again, AC-6, Least Privilege.
 
 30
-00:01:29,504 --> 00:01:32,019
+00:01:20,356 --> 00:01:22,263
 NULL:  Less for them to give me when I
 
 31
-00:01:32,019 --> 00:01:33,479
+00:01:22,263 --> 00:01:23,371
 take an account...
 
 32
-00:01:34,529 --> 00:01:38,409
+00:01:24,421 --> 00:01:28,136
 ARCHIVIST:  Employ the principle of least privilege, allowing only
 
 33
-00:01:38,409 --> 00:01:42,216
+00:01:28,136 --> 00:01:31,782
 authorized accesses for users (or processes acting on
 
 34
-00:01:42,216 --> 00:01:45,737
+00:01:31,782 --> 00:01:35,153
 behalf of users) that are necessary to accomplish
 
 35
-00:01:45,737 --> 00:01:47,892
+00:01:35,153 --> 00:01:37,217
 assigned organizational tasks.
 
 36
-00:01:48,942 --> 00:01:52,615
+00:01:38,267 --> 00:01:41,037
 VEGA:  Every request runs the same path: a policy
 
 37
-00:01:52,615 --> 00:01:55,414
+00:01:41,037 --> 00:01:43,147
 decides, and a gate enforces it.
 
 38
-00:01:55,714 --> 00:01:59,248
+00:01:43,447 --> 00:01:45,911
 VEGA:  Say Alice works in payroll. Policy lets her
 
 39
-00:01:59,248 --> 00:02:03,028
+00:01:45,911 --> 00:01:48,547
 open payroll records; the same gate blocks Bob
 
 40
-00:02:03,028 --> 00:02:04,261
+00:01:48,547 --> 00:01:49,407
 from marketing.
 
 41
-00:02:04,561 --> 00:02:08,790
+00:01:49,707 --> 00:01:53,769
 NOVA:  Decide, then enforce. AC-3 is the enforcement.
 
 42
-00:02:09,840 --> 00:02:12,612
+00:01:54,819 --> 00:01:56,819
 VEGA:  Lock these three into memory.
 
 43
-00:02:18,440 --> 00:02:21,831
+00:02:03,419 --> 00:02:05,942
 VEGA:  Say the Gatekeeper's oath with me. None pass
 
 44
-00:02:21,831 --> 00:02:24,837
+00:02:05,942 --> 00:02:08,179
 unknown; none hold more than they need.
 
 45
-00:02:25,887 --> 00:02:30,809
+00:02:09,229 --> 00:02:13,189
 VEGA:  Next, the Seal-Bearer, Identification and Authentication.
 
 46
-00:02:31,109 --> 00:02:34,825
+00:02:13,489 --> 00:02:17,058
 NOVA:  Access Control trusts a name. This guardian proves
 
 47
-00:02:34,825 --> 00:02:36,088
+00:02:17,058 --> 00:02:18,271
 the name is real.
 
 48
-00:02:37,138 --> 00:02:42,635
+00:02:19,321 --> 00:02:23,464
 VEGA:  IA-2 demands proof of identity for every organizational
 
 49
-00:02:42,635 --> 00:02:43,135
+00:02:23,464 --> 00:02:23,841
 user.
 
 50
-00:02:43,435 --> 00:02:48,382
+00:02:24,141 --> 00:02:27,581
 VEGA:  Its enhancements are where multi-factor authentication lives.
 
 51
-00:02:49,432 --> 00:02:53,511
+00:02:28,631 --> 00:02:32,333
 NOVA:  Multi-factor authentication - what is that, exactly?
 
 52
-00:02:53,811 --> 00:02:56,653
+00:02:32,633 --> 00:02:34,718
 VEGA:  Two kinds of proof instead of one. It's
 
 53
-00:02:56,653 --> 00:02:59,859
+00:02:34,718 --> 00:02:37,071
 why the pipeline breach we opened with would
 
 54
-00:02:59,859 --> 00:03:00,733
+00:02:37,071 --> 00:02:37,713
 have failed.
 
 55
-00:03:01,783 --> 00:03:04,737
+00:02:38,763 --> 00:02:41,065
 NOVA:  And the passwords and tokens themselves?
 
 56
-00:03:05,037 --> 00:03:09,984
+00:02:41,365 --> 00:02:45,365
 VEGA:  IA-5 manages them, strength, rotation, protection.
 
 57
-00:03:11,034 --> 00:03:16,458
+00:02:46,415 --> 00:02:51,000
 ARCHIVIST:  Uniquely identify and authenticate organizational users and associate
 
 58
-00:03:16,458 --> 00:03:21,018
+00:02:51,000 --> 00:02:54,854
 that unique identification with processes acting on behalf
 
 59
-00:03:21,018 --> 00:03:22,197
+00:02:54,854 --> 00:02:55,851
 of those users.
 
 60
-00:03:23,247 --> 00:03:26,169
+00:02:56,901 --> 00:02:59,101
 VEGA:  Identity first. Always.
 
 61
-00:03:31,847 --> 00:03:35,425
+00:03:05,501 --> 00:03:08,617
 VEGA:  The Seal-Bearer's oath. Prove the name, or the
 
 62
-00:03:35,425 --> 00:03:36,669
+00:03:08,617 --> 00:03:09,701
 gate stays shut.
 
 63
-00:03:37,719 --> 00:03:41,601
+00:03:10,751 --> 00:03:13,388
 VEGA:  Last on the wall, the Wall-Warden, Physical and
 
 64
-00:03:41,601 --> 00:03:43,666
+00:03:13,388 --> 00:03:14,791
 Environmental Protection.
 
 65
-00:03:43,966 --> 00:03:46,686
+00:03:15,091 --> 00:03:17,449
 NULL:  Why pick a lock... when I can walk
 
 66
-00:03:46,686 --> 00:03:48,366
+00:03:17,449 --> 00:03:18,906
 through an open door?
 
 67
-00:03:48,666 --> 00:03:52,134
+00:03:19,206 --> 00:03:22,767
 VEGA:  In reality, PE is physical access control -
 
 68
-00:03:52,134 --> 00:03:56,327
+00:03:22,767 --> 00:03:27,073
 guards, badges, locks - plus protection from hazards
 
 69
-00:03:56,327 --> 00:03:58,988
+00:03:27,073 --> 00:03:29,806
 like fire, power loss, and water.
 
 70
-00:04:00,038 --> 00:04:05,285
+00:03:30,856 --> 00:03:34,696
 VEGA:  PE-3 enforces physical access at the doors themselves.
 
 71
-00:04:05,585 --> 00:04:09,187
+00:03:34,996 --> 00:03:38,494
 NOVA:  Tailgating, propped doors, lost badges, this is where
 
 72
-00:04:09,187 --> 00:04:10,139
+00:03:38,494 --> 00:03:39,418
 you stop them.
 
 73
-00:04:11,189 --> 00:04:15,086
+00:03:40,468 --> 00:03:43,304
 VEGA:  And PE-6 watches and logs who comes and
 
 74
-00:04:15,086 --> 00:04:15,586
+00:03:43,304 --> 00:03:43,668
 goes.
 
 75
-00:04:17,689 --> 00:04:22,373
+00:03:46,968 --> 00:03:52,028
 ARCHIVIST:  Enforce physical access authorizations at [entry and exit
 
 76
-00:04:22,373 --> 00:04:23,277
+00:03:52,028 --> 00:03:53,004
 points] by:
 
 77
-00:04:24,327 --> 00:04:27,424
+00:03:54,054 --> 00:03:56,534
 VEGA:  Physical security is security.
 
 78
-00:04:32,927 --> 00:04:36,067
+00:04:02,654 --> 00:04:05,155
 VEGA:  And the Wall-Warden's oath. A door is a
 
 79
-00:04:36,067 --> 00:04:37,999
+00:04:05,155 --> 00:04:06,694
 decision - and I decide.
 
 80
-00:04:39,049 --> 00:04:42,268
+00:04:07,744 --> 00:04:10,062
 VEGA:  Remember the framework? The wall is where you
 
 81
-00:04:42,268 --> 00:04:44,271
+00:04:10,062 --> 00:04:11,504
 implement what you selected.
 
 82
-00:04:44,571 --> 00:04:48,375
+00:04:11,804 --> 00:04:15,026
 NOVA:  Select from the baseline, implement here, assess later.
 
 83
-00:04:49,425 --> 00:04:53,373
+00:04:16,344 --> 00:04:20,312
 NOVA:  Guardian check. Who proves your identity? Pause, and
 
 84
-00:04:53,373 --> 00:04:53,904
+00:04:20,312 --> 00:04:20,846
 answer.
 
 85
-00:05:00,954 --> 00:05:03,126
+00:04:27,896 --> 00:04:29,176
 VEGA:  The answer is B.
 
 86
-00:05:04,554 --> 00:05:08,126
+00:04:31,496 --> 00:04:34,016
 VEGA:  And the rule that limits the blast radius?
 
 87
-00:05:15,176 --> 00:05:17,348
+00:04:41,066 --> 00:04:42,346
 VEGA:  The answer is B.
 
 88
-00:05:18,776 --> 00:05:22,565
+00:04:44,666 --> 00:04:48,701
 NOVA:  Scenario: someone tailgates into the server room. Whose
 
 89
-00:05:22,565 --> 00:05:23,530
+00:04:48,701 --> 00:04:49,728
 watch is that?
 
 90
-00:05:30,580 --> 00:05:32,827
+00:04:56,778 --> 00:04:58,338
 VEGA:  The answer is A.
 
 91
-00:05:34,180 --> 00:05:37,936
+00:05:00,378 --> 00:05:04,671
 NOVA:  Notebook: the wall is access, identity, and physical
 
 92
-00:05:37,936 --> 00:05:39,309
+00:05:04,671 --> 00:05:06,240
 - working together.
 
 93
-00:05:39,609 --> 00:05:43,681
+00:05:06,540 --> 00:05:09,700
 VEGA:  Three guardians, one wall. The perimeter holds.
 
 94
-00:05:43,981 --> 00:05:47,956
+00:05:10,000 --> 00:05:13,815
 NULL:  Fine. I'll stop knocking... and start hiding.
 
 95
-00:05:48,256 --> 00:05:51,878
+00:05:14,115 --> 00:05:16,915
 VEGA:  Then we'll need the watchtowers. Next time.
