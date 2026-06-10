@@ -21,7 +21,11 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import scene
-import tts2 as tts
+import os
+if os.environ.get("CC_TTS", "").lower() in ("chatterbox", "cbx", "3"):
+    import tts3 as tts
+else:
+    import tts2 as tts
 import music
 import music2
 import sfx as SFX

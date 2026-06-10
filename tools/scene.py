@@ -595,22 +595,31 @@ def s_oath(img, b):
 
 
 def s_notebook(img, b):
-    """'Nova's notebook' recap page — a friendly handwritten-feeling takeaway card."""
+    """'Nova's notebook' recap page. Ruled lines sit UNDER each written line
+    (never crossing the text) and use a solid dim ink so they never distract."""
     col = GOLD
-    neon_rrect(img, [210, 198, W - 210, 902], 18, col, width=2, fill=(26, 24, 16, 236))
+    neon_rrect(img, [210, 198, W - 210, 902], 18, col, width=2, fill=(24, 22, 15, 238))
     d = ImageDraw.Draw(img)
-    for yy in range(392, 858, 60):
-        d.line([(300, yy), (W - 260, yy)], fill=(255, 255, 255, 16), width=1)
-    d.line([(338, 250), (338, 858)], fill=col + (110,), width=2)
-    tracked_text(d, (280, 232), "NOVA'S NOTEBOOK", FSB(26), col, tracking=8)
-    d.text((280, 278), b.get("title", ""), font=FB(52), fill=INK)
+    RULE = (58, 54, 42)      # solid, very dim warm ink (alpha-on-RGB isn't blended, so use a real color)
+    MARGIN = (120, 104, 64)
+    tracked_text(d, (282, 236), "NOVA'S NOTEBOOK", FSB(26), col, tracking=8)
+    d.text((282, 282), b.get("title", ""), font=FB(50), fill=INK)
+    d.line([(304, 372), (304, 862)], fill=MARGIN, width=2)   # margin rule
+    fnt = FSL(38); lh = int(fnt.size * 1.44); x0 = 344; maxw = W - 720
     y = 384
     for ln in b.get("lines", []):
-        d.text((300, y - 2), "\u2022", font=FB(34), fill=col)
-        y = draw_wrapped(d, (366, y), ln, FSL(38), INK, W - 700, 1.3) + 14
+        first = True
+        for seg in wrap(d, ln, fnt, maxw):
+            ry = y + lh - 9
+            d.line([(x0, ry), (W - 280, ry)], fill=RULE, width=1)   # rule beneath the writing
+            if first:
+                d.text((308, y + 2), "\u2022", font=FB(30), fill=col); first = False
+            d.text((x0, y), seg, font=fnt, fill=INK)
+            y += lh
+        y += 12
     if b.get("mnemonic"):
-        tracked_text(d, (366, 832), "REMEMBER", FSB(22), col, tracking=6)
-        d.text((600, 824), b["mnemonic"], font=FSB(36), fill=col)
+        tracked_text(d, (344, 838), "REMEMBER", FSB(22), col, tracking=6)
+        d.text((566, 830), b["mnemonic"], font=FSB(34), fill=col)
     return img
 
 

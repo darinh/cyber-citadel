@@ -1,38 +1,38 @@
 {
  "id": "EP00",
  "title": "EP00",
- "duration": 445.49,
+ "duration": 385.51,
  "chapters": [
   {
    "t": 0.0,
    "title": "The Citadel Awakens"
   },
   {
-   "t": 21.02,
+   "t": 19.39,
    "title": "Aegis Citadel"
   },
   {
-   "t": 180.79,
+   "t": 154.14,
    "title": "Twenty Families, Twenty Districts"
   },
   {
-   "t": 295.07,
+   "t": 251.91,
    "title": "Baselines Moved Out"
   },
   {
-   "t": 363.86,
+   "t": 311.22,
    "title": "The Road Ahead — Six Layers"
   },
   {
-   "t": 388.34,
+   "t": 331.81,
    "title": "Quiz 1"
   },
   {
-   "t": 403.47,
+   "t": 346.34,
    "title": "Quiz 2"
   },
   {
-   "t": 418.37,
+   "t": 361.05,
    "title": "Quiz 3"
   }
  ],
@@ -46,10 +46,10 @@
     "A government agency"
    ],
    "answer": 1,
-   "t_question": 388.34,
-   "t_quiz": 393.17,
-   "t_reveal": 399.87,
-   "t_resume": 403.47
+   "t_question": 331.81,
+   "t_quiz": 336.04,
+   "t_reveal": 342.74,
+   "t_resume": 346.34
   },
   {
    "n": 2,
@@ -60,10 +60,10 @@
     "In the RMF"
    ],
    "answer": 1,
-   "t_question": 403.47,
-   "t_quiz": 408.07,
-   "t_reveal": 414.77,
-   "t_resume": 418.37
+   "t_question": 346.34,
+   "t_quiz": 350.75,
+   "t_reveal": 357.45,
+   "t_resume": 361.05
   },
   {
    "n": 3,
@@ -74,10 +74,10 @@
     "Twenty"
    ],
    "answer": 2,
-   "t_question": 418.37,
-   "t_quiz": 422.02,
-   "t_reveal": 428.72,
-   "t_resume": 432.32
+   "t_question": 361.05,
+   "t_quiz": 363.52,
+   "t_reveal": 370.22,
+   "t_resume": 373.82
   }
  ]
 }
