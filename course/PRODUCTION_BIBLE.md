@@ -73,6 +73,23 @@ disclaimer.
 - **Quizzes** per episode + a final **"Guardian Roll Call"** 20-question quiz.
 - RMF mapping in every episode; "why these controls"; brief implementation pitfalls.
 
+## 6a. Production rules (writers' checklist — authoritative full set in `GENERATION_PLAYBOOK.md` §11)
+Ratified by a 5-LLM council reviewing the shipped v3.1 series. The critical creative rules:
+- **NULL is never neutral/defeated/helpful/teaching** — every line drips contempt or threat;
+  present in EVERY episode (≥2 lines, incl. Act II); catchphrase escalates per episode; he
+  reacts to each flagship control.
+- **NOVA** never uses a term before it's defined or names a guardian before Vega introduces it;
+  her growth is **shown** (she decides, Vega coaches). **VEGA** ≤55% of lines/episode.
+  **ARCHIVIST** speaks ONLY verbatim catalog text + citation — never paraphrase/opinion.
+- **Quizzes:** read the full question + options aloud; at reveal read the **correct answer text +
+  a one-line "why"** (never just the letter); frame ≥1 quiz/episode as a NULL challenge.
+- **Every episode** opens with a real-incident cold open and closes on a NULL escalation
+  cliffhanger; a Citadel integrity meter shows stakes; Nova's Notebook recaps with callbacks.
+- **Accuracy:** never call enhancements "optional" without "unless selected by baseline/tailoring";
+  tailoring needs **AO approval**; name enhancement IDs (e.g., IA-2(1)); Discussion is informative.
+- **Audio:** STT-gate every line; persist+approve clips (never ship from `_tmp`); see
+  `GENERATION_PLAYBOOK.md` §12 for the regeneration architecture.
+
 ## 7. Production pipeline (local)
 - **Scene engine** (`tools/scene.py`, Pillow): a small set of declarative **scene types**
   (title, map, character-dialog, control-card, archivist-quote, diagram, quiz, cheat-card,

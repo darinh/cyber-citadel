@@ -399,7 +399,7 @@ draft → deterministic gate (`verify_script.py`) → local-LLM auditor (`audit_
 multi-LLM council (hosted via the `task` tool with varied `model` + local via
 `tools/council_ollama.py`) → harvest findings → **validate each finding against existing
 conventions/code before applying** (a reviewer can be wrong; verify against the repo) → fix →
-re-run gates → only then render/scale. Record material outcomes in the Changelog (§11).
+re-run gates → only then render/scale. Record material outcomes in the Changelog (§14).
 
 > **Why concrete seeds/knobs live in THIS file (not only the Bible):** the user's standing
 > directive is "remember the seed and inputs." The playbook is the human-readable record of
@@ -409,14 +409,159 @@ re-run gates → only then render/scale. Record material outcomes in the Changel
 ---
 
 ## 10. Known gaps / backlog
-See `VNEXT.md`. Headline aspiration: true **character animation** (lip-sync / motion) instead
-of static avatars + motion graphics — revisit with dedicated animation/video models, reusing
-the §4 fixed-base-reference identity so the animated character stays the same person.
-**Also backlog:** wire expression-by-intent avatars into the renderer (§4 STATUS note).
+See `VNEXT.md` and the detailed, council-prioritized backlog in **§13**. Headline aspiration:
+true **character animation** (lip-sync / motion) instead of static avatars + motion graphics.
 
 ---
 
-## 11. Changelog of learnings
+## 11. PRODUCTION RULES (council-ratified — do not repeat these mistakes)
+*Ratified by a 5-LLM council (gpt-5.5, gemini-3.1-pro, claude-opus-4.6, gemma3:27b, gpt-oss:20b)
+reviewing the shipped v3.1 series. Each rule exists because we got it wrong at least once.
+Treat as a script-review + render checklist. "Mistakes are okay; repeating them is not."*
+
+### A. Character & dialogue
+- **NULL is never neutral.** Every NULL line drips contempt, menace, disdain, or tactical
+  threat. **Test: could Vega or the Narrator say this line? If yes, it fails.** (Killed lines:
+  EP08 "Good. Because I never stop, either." / EP7B "Good. Because neither do I." — villain
+  agreeing with the hero.)
+- **NULL never sounds defeated, bewildered, or helpful.** A repelled attack = fury or tactical
+  regrouping, never confusion ("one of these should have worked…") or self-narrated defeat
+  ("every move I make, another tower turns my way"). **NULL never teaches** — he covets,
+  threatens, mocks; explaining *why* something matters is Vega's job.
+- **NULL is present in EVERY episode (≥2 active-threat lines)** — including Act II. An episode
+  with 0 NULL lines (EP09) is a bug; the villain looming keeps stakes alive.
+- **The NULL cold-open catchphrase escalates/varies each episode** and previews that episode's
+  threat vector; never repeat it verbatim across episodes (it was identical 4× in EP01–04).
+- **NULL reacts to each flagship control** with a 1-line contemptuous/frustrated cutaway, so
+  controls visibly *hurt* him.
+- **NOVA never uses a term before it's defined** on-screen, and **never names a guardian persona
+  before Vega introduces it** (she may say the family code). Her growth is **shown** (she
+  decides; Vega coaches), not just declared in the finale.
+- **VEGA stays mentor** (calm authority; never panics/fights/asks novice questions) and should
+  hold **≤55% of lines per episode** (redistribute exposition to Narrator/Nova).
+- **THE ARCHIVIST speaks ONLY verbatim catalog text + an on-screen citation.** Never paraphrase,
+  list section headings, give opinions, or converse. (Killed: EP00 "Identifier. Control.
+  Discussion…" — that's paraphrase, not a quote.)
+
+### B. Story & structure
+- **Every episode opens with a real-incident cold open** (year + headline + MITRE technique) —
+  Act II included (EP08–11 currently have none).
+- **Every episode closes on a NULL escalation cliffhanger** that names/implies the next topic.
+- **Act II uses the same dramatic engine as Act I:** NULL is actively probing a new target;
+  frame each RMF step as a race against NULL (the siege is *coming*, not past).
+- **A Citadel "integrity meter" is visible every episode** — drops on NULL beats, rises on
+  control beats — so the learner always sees the stakes.
+- **Nova's Notebook closes every episode** with consistent styling + a callback to a prior entry
+  (spaced repetition).
+
+### C. Pedagogy & quizzes
+- **Quiz THINK phase:** narration reads the **full question AND all option texts aloud** (today
+  it only says a vague "pause and answer" — fails audio-only/visually-impaired learners).
+- **Quiz REVEAL:** read the **full correct ANSWER TEXT (not just the letter) + a one-sentence
+  "why"** (incl. why the distractor is wrong). e.g. "The answer is B — SP 800-53B; baselines
+  moved out of the main catalog in Rev 5."
+- **Frame ≥1 quiz/episode as a NULL challenge** ("I just did X — what stops me?").
+- **Never call enhancements "optional"** without the caveat *"unless selected by your baseline or
+  tailoring."* **Name ≥1 notable enhancement by official ID** per control beat that references
+  enhancements (e.g., IA-2(1), AC-6(1)).
+- **Tailoring decisions require Authorizing Official (AO) approval** — say so whenever tailoring
+  is mentioned.
+- **Never describe the Discussion section as a requirement** (it's informative, not normative).
+- Reaffirmed: **baselines live in SP 800-53B** (say it every time); **RMF mapped every episode**;
+  always **translate the metaphor back to real-world meaning**; **controls ≥50% of runtime**.
+
+### D. Audio (see §12 for the architecture that enforces these)
+- **Never ship unaudited audio.** Every rendered line passes an STT recall gate (≥0.85);
+  manual overrides are recorded.
+- **Approved audio is persistent + immutable.** It lives under `course/audio/`, never `_tmp/`;
+  approved/"locked" clips are never silently overwritten. A render with all clips approved
+  invokes **no** TTS.
+- **Final mix passes integrated-loudness + true-peak checks** (add a limiter); **microfade**
+  concat seams; **NULL's processed voice passes the same intelligibility gate** as everyone.
+- **Caption timing derives from real clip timing** (prefer word-level ASR alignment), not the
+  current character-count apportioning (which drifts).
+- **Pronunciation fixes go in `preprocess()`/the map**, never ad-hoc misspelling in scripts.
+  Inter-line dead air ≤300 ms unless the silence is scripted.
+
+### E. Engagement devices (feasible with Pillow + ffmpeg + TTS + SFX)
+NULL reaction cutaways · Citadel integrity meter · per-family guardian sigils/icons ·
+NULL-challenge quiz framing · split-screen "debate" 2-shots (Vega vs NULL) · escalating
+catchphrase · cross-episode callbacks · richer avatar micro-expressions · kinetic emphasis on
+key terms. Prioritized in §13.
+
+---
+
+## 12. AUDIO REGENERATION ARCHITECTURE (planned — the user's "fix one clip, reassemble" ask)
+**Problem:** per-line WAVs are synthesized into a `_tmp` build dir that is wiped each render
+(`build_episode2.py` build_beat_audio), so a single bad line can't be fixed without re-running
+the episode, and there's no record of which clips are "good."
+
+**Design — persistent per-line clip store + manifest:**
+```
+course/audio/<EPID>/
+  manifest.json
+  beat000/ line00_NULL.wav  line01_VEGA.wav  ...
+  beat001/ line00_VEGA.wav  ...
+```
+Manifest entry per line: `{line_id "EP00.b000.l00", beat_index, line_index, speaker, text,
+preprocessed_text, text_hash, engine, settings_hash, effects_hash, clip_path, duration,
+loudness_lufs, true_peak_db, stt_recall, approved, locked}`.
+
+**Workflow:**
+- `--regen-line EP00.b000.l01` synthesizes a *candidate* (`…candidate.wav`), audits it (STT
+  recall + loudness + leading/trailing-silence + pronunciation-map diff), and promotes it
+  atomically only if it passes or `--force`. **Never overwrites a `locked` clip.**
+- **Reassembly recomputes** beat durations from manifest clip durations, so captions, avatar
+  cues, quiz cues, and chapters all move deterministically when one clip's length changes.
+- A full render with all clips `approved` does **no** TTS (fast, reproducible).
+
+**Minimal code changes:** `build_episode2.py` — `load/save_audio_manifest()`, make
+`build_beat_audio` manifest-aware + use persistent paths, add CLI `--regen-line/--regen-beat/
+--no-tts/--require-approved`. `tts3.py` — expose `settings_hash/effects_hash/engine_id` and
+return per-clip metadata (duration, LUFS, peak); keep the hash cache as acceleration only, not
+as the approval source.
+
+---
+
+## 13. Council review findings + prioritized backlog (2025 v3.1 review)
+**Council verdicts:** Audio (gpt-5.5) = *BLOCK for scaling*; Pedagogy (gemini) =
+*APPROVE-WITH-CHANGES*; Story/Engagement (opus) = *Narrative B-, Character B, Engagement C+*.
+Act I (EP00–07) is genuinely engaging; **Act II (EP08–11) is the weak spot** (NULL absent, no
+cold opens, Nova's leadership told-not-shown). STT audit: word-dropping mostly fixed (good); the
+residual audio risk is pronunciation/prosody/sync + the *cost of fixing one mistake*.
+
+**Confirmed character violations to fix (verified vs scripts):** EP02 "every move I make…another
+tower" (NULL helpless); EP07 "one of these should have worked…" (bewildered); EP00 map "no
+second copy of trust" (teaching); EP05 MA-4 "was going to be my way in" (defeated); EP08/EP7B
+"Good. Because…" (agreeable); EP00 anatomy Archivist line (non-verbatim); EP01–06 Nova names
+personas before intro; EP09 zero NULL lines.
+
+**Prioritized backlog (impact ÷ effort):**
+1. **Quiz read-aloud** — read full Q+options in think phase; read correct-answer text + one-line
+   "why" at reveal. *(High impact, low effort; script+`build_episode2.py` quiz beat.)*
+2. **NULL character-line fixes** (the violations above). *(High, low — script edits.)*
+3. **Pedagogy accuracy patches** — enhancement "optional" caveat, AO-approval for tailoring,
+   name enhancement IDs. *(High accuracy value, low effort.)*
+4. **Act II revival** — add cold opens, restore NULL presence (≥2 lines/ep), escalate the
+   catchphrase, give Nova on-screen decisions. *(High, medium — scripting.)*
+5. **Audio per-line clip + manifest + STT gate** (§12). *(High maintainability, medium — code.)*
+6. **Engagement: NULL reaction cutaways + Citadel integrity meter + guardian sigils.**
+   *(High engagement, medium — Pillow/ffmpeg scene types.)*
+7. **Audio polish** — word-level caption alignment, final loudness/limiter, microfade seams.
+   *(Medium, medium.)*
+
+> Re-rendering is expensive — batch these into ONE re-render pass after the script/code changes
+> land and pass the gates + a council spot-check, per §8.
+
+---
+
+## 14. Changelog of learnings
+- **2025 — full-series council review (5 LLMs).** Reviewed shipped v3.1 across audio, pedagogy,
+  story, character, quizzes, and regeneration. Recorded §11 Production Rules, §12 audio
+  regeneration architecture, and §13 findings/backlog. Headline mistakes captured: NULL breaks
+  character (agreeable/defeated/teaching lines) + vanishes in Act II; quizzes don't read the
+  question/options/answer aloud; enhancements wrongly called "optional"; audio has no STT gate
+  and clips aren't persistent/approvable.
 - **2025 — image-gen recording pass.** Recorded the remaining image-generation inputs +
   setup/guidance so the avatar/image work is reproducible on a fresh machine: added §4a
   (`.venv_img` + IP-Adapter install + exact `tools/_ipa/` model layout from `h94/IP-Adapter`),
