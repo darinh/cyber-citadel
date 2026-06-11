@@ -472,25 +472,30 @@ Treat as a script-review + render checklist. "Mistakes are okay; repeating them 
   always **translate the metaphor back to real-world meaning**; **controls ≥50% of runtime**.
 
 ### D. Audio (see §12 for the architecture that enforces these)
-- **Audio defects here are ACOUSTIC, not word-level — STT word-recall is NOT enough.** STT can
-  confirm every word is present while the clip is acoustically garbled. **Verify clips with
-  acoustic metrics**: echo via autocorrelation peak in the 50–200 ms window (slap-back echo > ~0.28
-  = garbled), and spectral **rolloff** (low = muddy / consonants smeared). Scan every clip:
-  `tools/audio_scan.py` (acoustic: echo/clip/muddiness) + `tools/audio_qa.py` (per-clip STT
-  word-recall). Real example: NULL's "Crown Data" clip passed STT recall but had echo@95ms=0.37
-  + rolloff 2517 Hz and sounded broken. (STT flags on numbers/IDs like "800-53"→"853" are FALSE
-  positives — the audio is correct.)
-- **TTS effect chains must not garble speech.** No slap-back echo (the NULL bug was
-  `aecho=...:95:0.34`); keep echo subtle/short; don't over-lowpass (NULL went 4600→7200 Hz).
-  NULL stays deep (pitch 0.84) but intelligible.
-- **Chatterbox fails on ultra-short fragments** (≲3–4 words, esp. with leading `...` or `?!`):
-  it garbles or repeats them (e.g. "Six days?!"→"Ace?", "...this time."→"This time. This time.").
-  Re-rolling rarely helps — **reword/lengthen the line** (→ "Wait — six whole days?!",
-  "Clean enough... this time.").
-- **Fix one bad clip surgically, don't re-render everything:** `tools/regen_line.py <ep> <clip>`
-  busts that clip's voice cache for a fresh take, invalidates only its beat, and re-muxes the
-  episode. (The beat cache key includes a **voice fingerprint** so a voice/FX change actually
-  re-synths the affected beats instead of silently reusing old audio.)
+- **Why TTS errors happen:** Chatterbox is an **autoregressive, stochastic** neural TTS — it
+  samples audio tokens with temperature, so any take can drop/repeat/garble words (like an LLM).
+  It destabilizes most on **ALL-CAPS words** (spells them: "HIGH"→"H-I-G-H"), numbers, IDs, and
+  **ultra-short fragments**. Mitigations, in order: harden input (preprocessor), gate output
+  (STT verify), reword the unfixable.
+- **Self-correcting synth gate (`tts3.synth_line`, `CC_VERIFY=1`):** every freshly synthesized
+  clip is transcribed (faster-whisper) and **auto re-rolled up to 4×** if a content word is
+  dropped/repeated/garbled/truncated; the best take is kept and anything still failing is logged
+  to `tools/_tmp/synth_verify_fails.log` for a reword. This makes bad takes never ship.
+- **Preprocessor hardening (`tts.py`):** ALL-CAPS emphasis words are lowercased so they're spoken
+  not spelled (acronyms/codes protected); acronyms/IDs/numbers expanded. Keep emphasis in the
+  on-screen text, not the spoken text.
+- **Audio defects are ACOUSTIC too — STT word-recall alone is NOT enough.** Also verify with
+  acoustic metrics: echo autocorrelation (slap-back > ~0.28 = garbled) + spectral rolloff (low =
+  muddy). Scan: `tools/audio_scan.py` (acoustic) + `tools/audio_qa.py` (per-clip STT). Example:
+  NULL's "Crown Data" passed STT recall but had echo@95ms=0.37 + rolloff 2517 Hz.
+- **STT vs audio:** flags on numbers/IDs/compounds/quotes ("800-53"→"853", "oathkeeper"→"Oath
+  Keeper", "'log'"→"log") are FALSE positives — the audio is correct. Distinguish with an LLM/human
+  pass (the gate ignores number-words + <3-content-word lines to avoid looping).
+- **TTS effect chains must not garble speech.** No slap-back echo; don't over-lowpass.
+- **Ultra-short fragments**: reword/lengthen (re-rolling won't fix them).
+- **Fix one bad clip surgically:** `tools/regen_line.py <ep> <clip>...` re-rolls listed clips +
+  re-muxes the episode. The beat cache key includes a **voice fingerprint** so voice/FX changes
+  re-synth the affected beats instead of reusing old audio.
 - **Never ship unaudited audio.** Every line passes `audio_qa.py` (STT recall) AND `audio_scan.py`
   (acoustic); review flags, regen real defects. Approved audio persists under `course/render/<ep>/lines/`.
 - **Final mix passes integrated-loudness + true-peak checks** (loudnorm −16 + limiter).
@@ -599,6 +604,13 @@ well below that, and color grading / HUD / audio mastering raise polish but NOT 
 ---
 
 ## 14. Changelog of learnings
+- **2025 — full audio QA + self-correcting gate.** Root cause of recurring audio errors: Chatterbox
+  is autoregressive/stochastic and garbles ALL-CAPS/numbers/short fragments. Transcribed all 642
+  line clips (large-v3) and compared each to the script with **3 LLM agents + a deterministic
+  check**; fixed every real defect (~38 re-rolled, 16 reworded for systematic failures). Permanent
+  fix: ALL-CAPS preprocessor hardening + a **synth-time STT-verify-and-retry gate** (tts3) so bad
+  takes never ship, + multi-clip `regen_line.py`. Lesson: gate audio AT SYNTH, and distinguish
+  real garbles from STT number/acronym/compound/quote artifacts (see §11.D).
 - **2025 — audio QA + repair pass.** Found the reported garble: NULL's FX chain had a 95 ms
   slap-back echo + lowpass 4600 that smeared speech (objective: echo 0.37, rolloff 2517 Hz) —
   STT word-recall had passed it. Fixed the FX (subtle echo, lowpass 7200), re-rendered (echo gone
