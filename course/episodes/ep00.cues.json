@@ -1,7 +1,7 @@
 {
  "id": "EP00",
  "title": "EP00",
- "duration": 392.91,
+ "duration": 449.77,
  "chapters": [
   {
    "t": 0.0,
@@ -12,27 +12,27 @@
    "title": "Aegis Citadel"
   },
   {
-   "t": 158.98,
+   "t": 159.14,
    "title": "Twenty Families, Twenty Districts"
   },
   {
-   "t": 259.59,
+   "t": 252.33,
    "title": "Baselines Moved Out"
   },
   {
-   "t": 319.14,
+   "t": 311.88,
    "title": "The Road Ahead — Six Layers"
   },
   {
-   "t": 339.73,
+   "t": 332.47,
    "title": "Quiz 1"
   },
   {
-   "t": 354.26,
+   "t": 369.75,
    "title": "Quiz 2"
   },
   {
-   "t": 368.97,
+   "t": 409.77,
    "title": "Quiz 3"
   }
  ],
@@ -46,10 +46,11 @@
     "A government agency"
    ],
    "answer": 1,
-   "t_question": 339.73,
-   "t_quiz": 343.96,
-   "t_reveal": 350.66,
-   "t_resume": 354.26
+   "why": "A control is a safeguard or countermeasure — it reduces risk to the system and its data.",
+   "t_question": 332.47,
+   "t_quiz": 352.76,
+   "t_reveal": 359.46,
+   "t_resume": 369.75
   },
   {
    "n": 2,
@@ -60,10 +61,11 @@
     "In the RMF"
    ],
    "answer": 1,
-   "t_question": 354.26,
-   "t_quiz": 358.67,
-   "t_reveal": 365.37,
-   "t_resume": 368.97
+   "why": "In Revision 5 the Low, Moderate, and High baselines moved out into companion volume 800-53B.",
+   "t_question": 369.75,
+   "t_quiz": 392.14,
+   "t_reveal": 398.84,
+   "t_resume": 409.77
   },
   {
    "n": 3,
@@ -74,10 +76,11 @@
     "Twenty"
    ],
    "answer": 2,
-   "t_question": 368.97,
-   "t_quiz": 371.44,
-   "t_reveal": 378.14,
-   "t_resume": 381.74
+   "why": "Revision 5 organizes its controls into twenty families.",
+   "t_question": 409.77,
+   "t_quiz": 424.94,
+   "t_reveal": 431.64,
+   "t_resume": 438.61
   }
  ]
 }

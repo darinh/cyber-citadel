@@ -1,7 +1,7 @@
 {
  "id": "EP05",
  "title": "EP05",
- "duration": 358.87,
+ "duration": 408.96,
  "chapters": [
   {
    "t": 17.63,
@@ -16,11 +16,11 @@
    "title": "The Forge"
   },
   {
-   "t": 310.04,
+   "t": 310.16,
    "title": "Quiz 1"
   },
   {
-   "t": 326.59,
+   "t": 351.98,
    "title": "Quiz 2"
   }
  ],
@@ -34,10 +34,11 @@
     "MA-2 Maintenance"
    ],
    "answer": 1,
-   "t_question": 310.04,
-   "t_quiz": 316.29,
-   "t_reveal": 322.99,
-   "t_resume": 326.59
+   "why": "SR-11, Component Authenticity, is aimed at catching counterfeit or tampered parts.",
+   "t_question": 310.16,
+   "t_quiz": 334.95,
+   "t_reveal": 341.65,
+   "t_resume": 351.98
   },
   {
    "n": 2,
@@ -48,10 +49,11 @@
     "CM-8 Inventory"
    ],
    "answer": 0,
-   "t_question": 326.59,
-   "t_quiz": 329.06,
-   "t_reveal": 335.76,
-   "t_resume": 339.36
+   "why": "CM-7, Least Functionality, disables the ports, services, and features you don't need.",
+   "t_question": 351.98,
+   "t_quiz": 372.3,
+   "t_reveal": 379.0,
+   "t_resume": 389.45
   }
  ]
 }

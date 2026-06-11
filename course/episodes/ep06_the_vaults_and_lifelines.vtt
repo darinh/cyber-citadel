@@ -397,45 +397,105 @@ NOVA:  Scenario: ransomware hits. What brings you home? Pause,
 and answer.
 
 100
-00:05:06.126 --> 00:05:07.686
-VEGA:  The answer is A.
+00:04:59.376 --> 00:05:02.850
+Ransomware encrypts your servers. What gets you back
 
 101
-00:05:09.726 --> 00:05:12.041
-VEGA:  And the drive that left with its secrets
+00:05:02.850 --> 00:05:03.384
+fastest?
 
 102
-00:05:12.041 --> 00:05:12.446
-intact?
+00:05:03.684 --> 00:05:08.557
+Your options. A. A clean, tested backup (CP-9).
 
 103
-00:05:19.496 --> 00:05:20.776
-VEGA:  The answer is B.
+00:05:08.557 --> 00:05:12.600
+B. A firewall rule (SC-7). C. A privacy
 
 104
-00:05:23.096 --> 00:05:25.913
-NOVA:  Notebook: lock the data moving and still -
+00:05:12.600 --> 00:05:14.052
+notice (PT-5).
 
 105
-00:05:25.913 --> 00:05:28.798
-and keep a backup the attacker can't touch.
+00:05:14.352 --> 00:05:17.254
+NOVA:  Pause here and lock in your answer.
 
 106
-00:05:29.098 --> 00:05:32.516
-VEGA:  Data sealed, lifelines ready. The city can take
+00:05:24.304 --> 00:05:27.160
+VEGA:  The answer is A. A clean, tested backup
 
 107
-00:05:32.516 --> 00:05:33.098
-a punch.
+00:05:27.160 --> 00:05:30.016
+(CP-9). A clean, tested backup - CP-9 -
 
 108
-00:05:33.398 --> 00:05:37.551
-NULL:  Then I'll bring everything, all at once. Siege
+00:05:30.016 --> 00:05:33.384
+is what restores you fastest after ransomware.
 
 109
-00:05:37.551 --> 00:05:38.093
-night.
+00:05:34.434 --> 00:05:36.749
+VEGA:  And the drive that left with its secrets
 
 110
-00:05:38.393 --> 00:05:41.193
+00:05:36.749 --> 00:05:37.154
+intact?
+
+111
+00:05:37.454 --> 00:05:40.315
+A surplus hard drive is sold without being
+
+112
+00:05:40.315 --> 00:05:42.222
+wiped. Which control failed?
+
+113
+00:05:42.522 --> 00:05:47.694
+Your options. A. SC-8 Transmission. B. MP-6 Media
+
+114
+00:05:47.694 --> 00:05:51.810
+Sanitization. C. CP-2 Contingency Plan.
+
+115
+00:05:52.110 --> 00:05:55.012
+NOVA:  Pause here and lock in your answer.
+
+116
+00:06:02.062 --> 00:06:06.065
+VEGA:  The answer is B. MP-6 Media Sanitization. MP-6,
+
+117
+00:06:06.065 --> 00:06:11.175
+Media Sanitization, ensures drives are wiped before disposal
+
+118
+00:06:11.175 --> 00:06:11.942
+or reuse.
+
+119
+00:06:12.992 --> 00:06:15.809
+NOVA:  Notebook: lock the data moving and still -
+
+120
+00:06:15.809 --> 00:06:18.694
+and keep a backup the attacker can't touch.
+
+121
+00:06:18.994 --> 00:06:22.412
+VEGA:  Data sealed, lifelines ready. The city can take
+
+122
+00:06:22.412 --> 00:06:22.994
+a punch.
+
+123
+00:06:23.294 --> 00:06:27.447
+NULL:  Then I'll bring everything, all at once. Siege
+
+124
+00:06:27.447 --> 00:06:27.989
+night.
+
+125
+00:06:28.289 --> 00:06:31.089
 VEGA:  We'll be ready. All twenty guardians, together.

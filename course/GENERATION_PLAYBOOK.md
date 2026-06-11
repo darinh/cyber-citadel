@@ -490,6 +490,14 @@ NULL-challenge quiz framing · split-screen "debate" 2-shots (Vega vs NULL) · e
 catchphrase · cross-episode callbacks · richer avatar micro-expressions · kinetic emphasis on
 key terms. Prioritized in §13.
 
+### F. Encoding / file-size (deployability)
+- **NO temporal film grain** (`noise=...:allf=t`). Per-frame noise destroys H.264 inter-frame
+  prediction and bloated episodes ~9x (ep00 25MB → 226MB), blowing past **GitHub's 100MB
+  per-file limit**. A clean grade (eq + vignette + light unsharp) keeps files deployable
+  (~30–45MB for a 7-min 1080p). If you want texture, use a *static* overlay, not temporal noise.
+- **Verify file sizes before deploy** (no file > ~95MB for GitHub); episodes are committed for
+  Pages, so size is a hard constraint, not a nicety.
+
 ---
 
 ## 12. INCREMENTAL RENDER ARCHITECTURE (IMPLEMENTED v3.2 — "fix one part, reassemble")
@@ -552,9 +560,39 @@ personas before intro; EP09 zero NULL lines.
 > Re-rendering is cheaper now (§12 incremental), but still batch big content changes into ONE
 > pass after the gates + a council spot-check, per §8.
 
+### Cinematic ceiling — PROVEN finding (don't re-attempt blindly)
+**True "Hollywood" = animated, lip-synced characters in dynamic scenes. This pipeline's format
+(designed slides + Ken-Burns + a ~150px corner character portrait + TTS) has a hard ceiling
+well below that, and color grading / HUD / audio mastering raise polish but NOT the format.**
+- **Tested locally:** 2D viseme lip-flap on the avatars via IP-Adapter (matched closed/open mouth
+  frames, same seed, scale 0.8). Result: identity holds, but (a) the corner avatar is too small
+  for lip motion to read, and (b) frame-to-frame head/hair/eye drift causes a visible *wobble*.
+  **Verdict: not worth it in the corner-portrait format.** Clean lip-sync models (Wav2Lip/
+  SadTalker) are trained on real faces and tend to fail/look uncanny on anime art.
+- **The real path to cinematic** (a different, larger project — needs the user's go-ahead):
+  1. **Redesign to large character "stage" scenes** (visual-novel close-ups), not corner avatars,
+     so character motion can actually be seen.
+  2. **Clean animation**, one of: SDXL **mouth-inpainting** visemes (mask the mouth so only it
+     changes → no wobble) driven by an audio phoneme/amplitude envelope; a rigged 2D puppet; or a
+     dedicated talking-head model that handles stylized faces.
+  3. **Living backgrounds** via image-to-video (SVD/AnimateDiff on the 4090) behind transparent
+     UI — reliable cinematic motion, but requires separating the UI layer from the background in
+     `scene.py`.
+  4. **Editing grammar:** shot variety, push-ins, match cuts, crossfades (xfade was dropped for
+     A/V-sync safety; revisit now that beat durations are known via the §12 manifest).
+- **Honest status:** what ships is a **premium animated explainer**, not a cinematic animated
+  series. Calling it "Hollywood" would be inaccurate.
+
 ---
 
 ## 14. Changelog of learnings
+- **2025 — v3.3 engagement + cinematic pass.** Added the **Citadel integrity-meter HUD**
+  (running stakes; dips on attacks, rises on controls) and honest **"FROM THE FIELD" Act II cold
+  opens** (EP08–11, no fabricated breaches) with NULL menace. **Proved** (PoC) that corner-avatar
+  lip-sync isn't viable locally (too small to read + frame wobble) — documented the real path to
+  cinema in §13. **Caught at verify-before-deploy:** temporal film grain bloated episodes ~9x
+  (ep00 25→226MB, over GitHub's 100MB limit) → removed grain, kept the clean grade (§11.F);
+  ep00 back to ~41MB. Honest framing: premium animated explainer, not "Hollywood."
 - **2025 — v3.2 production upgrade (implementation).** Built the **incremental render
   architecture** (§12): per-beat + per-line artifacts persist under `course/render/<ep>/`,
   content-hash keyed, so editing one part rebuilds a few files (verified: no-op re-render does

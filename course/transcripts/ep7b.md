@@ -77,7 +77,7 @@
   • Monitor: quarterly scans, annual reviews, re-authorize after the big upgrade
   • A system is never simply 'done'
 **VEGA:** The CIO signs the authorization to operate. Then the watch begins — and never ends.
-**NULL:** Good. Because neither do I.
+**NULL:** Cute — a checklist against me? I live in the gaps between your steps.
 
 *[NOTEBOOK: The campaign, in one breath]*
   • Categorize the system (HIGH) → select a baseline (800-53B) → tailor it to fit.

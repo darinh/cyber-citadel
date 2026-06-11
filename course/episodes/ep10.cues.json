@@ -1,18 +1,18 @@
 {
  "id": "EP10",
  "title": "EP10",
- "duration": 105.44,
+ "duration": 163.19,
  "chapters": [
   {
-   "t": 0.0,
+   "t": 10.53,
    "title": "The Armory"
   },
   {
-   "t": 67.89,
+   "t": 78.42,
    "title": "Quiz 1"
   },
   {
-   "t": 82.92,
+   "t": 119.04,
    "title": "Quiz 2"
   }
  ],
@@ -26,10 +26,11 @@
     "FIPS 199"
    ],
    "answer": 1,
-   "t_question": 67.89,
-   "t_quiz": 72.62,
-   "t_reveal": 79.32,
-   "t_resume": 82.92
+   "why": "The baselines live in 800-53B; 800-53 holds the controls themselves.",
+   "t_question": 78.42,
+   "t_quiz": 100.45,
+   "t_reveal": 107.15,
+   "t_resume": 119.04
   },
   {
    "n": 2,
@@ -40,10 +41,11 @@
     "Authorization"
    ],
    "answer": 1,
-   "t_question": 82.92,
-   "t_quiz": 86.39,
-   "t_reveal": 93.09,
-   "t_resume": 96.69
+   "why": "Adjusting a baseline — scoping, swapping, adding — is tailoring, approved by the authorizing official.",
+   "t_question": 119.04,
+   "t_quiz": 137.97,
+   "t_reveal": 144.66,
+   "t_resume": 154.44
   }
  ]
 }

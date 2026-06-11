@@ -1,26 +1,26 @@
 {
  "id": "EP11",
  "title": "FINALE",
- "duration": 158.63,
+ "duration": 237.23,
  "chapters": [
   {
-   "t": 0.0,
+   "t": 12.16,
    "title": "The Reckoning"
   },
   {
-   "t": 73.25,
+   "t": 85.41,
    "title": "Quiz 1"
   },
   {
-   "t": 88.56,
+   "t": 124.27,
    "title": "Quiz 2"
   },
   {
-   "t": 102.17,
+   "t": 161.07,
    "title": "Quiz 3"
   },
   {
-   "t": 127.95,
+   "t": 206.56,
    "title": "Cyber Citadel"
   }
  ],
@@ -34,10 +34,11 @@
     "Plan, Do, Check"
    ],
    "answer": 1,
-   "t_question": 73.25,
-   "t_quiz": 78.26,
-   "t_reveal": 84.96,
-   "t_resume": 88.56
+   "why": "SP 800-53A uses three assessment methods: examine, interview, and test.",
+   "t_question": 85.41,
+   "t_quiz": 107.44,
+   "t_reveal": 114.14,
+   "t_resume": 124.27
   },
   {
    "n": 2,
@@ -48,10 +49,11 @@
     "SAR"
    ],
    "answer": 1,
-   "t_question": 88.56,
-   "t_quiz": 91.87,
-   "t_reveal": 98.57,
-   "t_resume": 102.17
+   "why": "The official's acceptance of residual risk is the Authorization to Operate.",
+   "t_question": 124.27,
+   "t_quiz": 145.16,
+   "t_reveal": 151.86,
+   "t_resume": 161.07
   },
   {
    "n": 3,
@@ -62,10 +64,11 @@
     "In FIPS 199"
    ],
    "answer": 1,
-   "t_question": 102.17,
-   "t_quiz": 105.0,
-   "t_reveal": 111.7,
-   "t_resume": 115.3
+   "why": "Open weaknesses are tracked in a POA&M until they're remediated.",
+   "t_question": 161.07,
+   "t_quiz": 178.56,
+   "t_reveal": 185.26,
+   "t_resume": 193.91
   }
  ]
 }

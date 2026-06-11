@@ -1,22 +1,22 @@
 {
  "id": "EP08",
  "title": "EP08",
- "duration": 128.38,
+ "duration": 178.44,
  "chapters": [
   {
-   "t": 0.0,
+   "t": 11.69,
    "title": "The Campaign"
   },
   {
-   "t": 18.04,
+   "t": 29.73,
    "title": "The Risk Management Framework"
   },
   {
-   "t": 92.06,
+   "t": 106.63,
    "title": "Quiz 1"
   },
   {
-   "t": 106.81,
+   "t": 140.61,
    "title": "Quiz 2"
   }
  ],
@@ -30,10 +30,11 @@
     "Seven"
    ],
    "answer": 2,
-   "t_question": 92.06,
-   "t_quiz": 96.51,
-   "t_reveal": 103.21,
-   "t_resume": 106.81
+   "why": "The RMF has seven steps: Prepare, Categorize, Select, Implement, Assess, Authorize, Monitor.",
+   "t_question": 106.63,
+   "t_quiz": 123.7,
+   "t_reveal": 130.4,
+   "t_resume": 140.61
   },
   {
    "n": 2,
@@ -44,10 +45,11 @@
     "Monitor"
    ],
    "answer": 0,
-   "t_question": 106.81,
-   "t_quiz": 109.48,
-   "t_reveal": 116.18,
-   "t_resume": 119.78
+   "why": "Prepare is the step added in RMF Revision 2.",
+   "t_question": 140.61,
+   "t_quiz": 155.33,
+   "t_reveal": 162.03,
+   "t_resume": 169.84
   }
  ]
 }

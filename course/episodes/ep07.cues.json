@@ -1,7 +1,7 @@
 {
  "id": "EP07",
  "title": "FINALE",
- "duration": 211.15,
+ "duration": 327.1,
  "chapters": [
   {
    "t": 0.0,
@@ -16,31 +16,31 @@
    "title": "The City Stands As One"
   },
   {
-   "t": 101.52,
+   "t": 103.24,
    "title": "Guardian Roll Call"
   },
   {
-   "t": 106.55,
+   "t": 108.27,
    "title": "Quiz 1"
   },
   {
-   "t": 119.98,
+   "t": 145.73,
    "title": "Quiz 2"
   },
   {
-   "t": 133.57,
+   "t": 180.83,
    "title": "Quiz 3"
   },
   {
-   "t": 147.44,
+   "t": 217.29,
    "title": "Quiz 4"
   },
   {
-   "t": 161.19,
+   "t": 253.39,
    "title": "Quiz 5"
   },
   {
-   "t": 198.69,
+   "t": 314.64,
    "title": "The Campaign"
   }
  ],
@@ -54,10 +54,11 @@
     "AU — Audit"
    ],
    "answer": 1,
-   "t_question": 106.55,
-   "t_quiz": 109.68,
-   "t_reveal": 116.38,
-   "t_resume": 119.98
+   "why": "Identification and Authentication proves identity before access is granted.",
+   "t_question": 108.27,
+   "t_quiz": 129.06,
+   "t_reveal": 135.76,
+   "t_resume": 145.73
   },
   {
    "n": 2,
@@ -68,10 +69,11 @@
     "SP 800-53A"
    ],
    "answer": 1,
-   "t_question": 119.98,
-   "t_quiz": 123.27,
-   "t_reveal": 129.97,
-   "t_resume": 133.57
+   "why": "The baselines live in companion volume 800-53B.",
+   "t_question": 145.73,
+   "t_quiz": 166.4,
+   "t_reveal": 173.1,
+   "t_resume": 180.83
   },
   {
    "n": 3,
@@ -82,10 +84,11 @@
     "AT-2 Training"
    ],
    "answer": 0,
-   "t_question": 133.57,
-   "t_quiz": 137.14,
-   "t_reveal": 143.84,
-   "t_resume": 147.44
+   "why": "CP-9, System Backup, is what brings you back after encryption.",
+   "t_question": 180.83,
+   "t_quiz": 201.82,
+   "t_reveal": 208.52,
+   "t_resume": 217.29
   },
   {
    "n": 4,
@@ -96,10 +99,11 @@
     "FIPS 199"
    ],
    "answer": 1,
-   "t_question": 147.44,
-   "t_quiz": 150.89,
-   "t_reveal": 157.59,
-   "t_resume": 161.19
+   "why": "SP 800-53A is the assessment companion — it tells you HOW to test controls.",
+   "t_question": 217.29,
+   "t_quiz": 236.72,
+   "t_reveal": 243.42,
+   "t_resume": 253.39
   },
   {
    "n": 5,
@@ -110,10 +114,11 @@
     "RA-3 Risk Assessment"
    ],
    "answer": 0,
-   "t_question": 161.19,
-   "t_quiz": 164.89,
-   "t_reveal": 171.59,
-   "t_resume": 175.19
+   "why": "CA-6, Authorization, is the official's formal acceptance of risk.",
+   "t_question": 253.39,
+   "t_quiz": 275.26,
+   "t_reveal": 281.96,
+   "t_resume": 291.13
   }
  ]
 }

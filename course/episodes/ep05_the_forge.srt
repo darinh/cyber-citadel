@@ -251,161 +251,213 @@ safeguards for remote and third-party work.
 VEGA:  MA-2 controls maintenance, scheduled, approved, and recorded.
 
 64
-00:03:32,227 --> 00:03:35,311
-NULL:  Your remote support line was going to be
+00:03:32,227 --> 00:03:35,634
+NULL:  Your remote support line… I had such plans
 
 65
-00:03:35,311 --> 00:03:36,082
-my way in.
+00:03:35,634 --> 00:03:36,202
+for it.
 
 66
-00:03:36,382 --> 00:03:40,342
+00:03:36,502 --> 00:03:40,462
 VEGA:  MA-4 saw to that. Remote maintenance, tightly controlled.
 
 67
-00:03:41,392 --> 00:03:45,541
+00:03:41,512 --> 00:03:45,661
 ARCHIVIST:  Schedule, document, and review records of maintenance, repair,
 
 68
-00:03:45,541 --> 00:03:49,222
+00:03:45,661 --> 00:03:49,342
 and replacement on system components in accordance with
 
 69
-00:03:49,222 --> 00:03:54,108
+00:03:49,342 --> 00:03:54,228
 manufacturer or vendor specifications and/or organizational requirements;
 
 70
-00:03:55,158 --> 00:03:58,798
+00:03:55,278 --> 00:03:58,918
 VEGA:  Maintenance is access. Treat it like access.
 
 71
-00:04:03,758 --> 00:04:06,386
+00:04:03,878 --> 00:04:06,506
 VEGA:  The Smith's oath. Every tool is a key,
 
 72
-00:04:06,386 --> 00:04:07,838
+00:04:06,506 --> 00:04:07,958
 and I guard the keys.
 
 73
-00:04:08,888 --> 00:04:12,599
+00:04:09,008 --> 00:04:12,719
 VEGA:  The Caravan-Master, Supply Chain Risk Management, new in
 
 74
-00:04:12,599 --> 00:04:13,328
+00:04:12,719 --> 00:04:13,448
 Revision 5.
 
 75
-00:04:13,628 --> 00:04:15,777
+00:04:13,748 --> 00:04:15,897
 VEGA:  It guards the roads your supplies travel, all
 
 76
-00:04:15,777 --> 00:04:16,828
+00:04:15,897 --> 00:04:16,948
 the way to the source.
 
 77
-00:04:17,128 --> 00:04:20,306
+00:04:17,248 --> 00:04:20,426
 VEGA:  In reality, that's managing risk from suppliers and
 
 78
-00:04:20,306 --> 00:04:23,795
+00:04:20,426 --> 00:04:23,915
 components - the SolarWinds-style attack we opened with,
 
 79
-00:04:23,795 --> 00:04:26,848
+00:04:23,915 --> 00:04:26,968
 where a trusted update carried a hidden backdoor.
 
 80
-00:04:27,898 --> 00:04:30,240
+00:04:28,018 --> 00:04:30,360
 NOVA:  How do we trust the parts themselves?
 
 81
-00:04:30,540 --> 00:04:35,020
+00:04:30,660 --> 00:04:35,140
 VEGA:  SR-11, component authenticity, hunts counterfeits and tampering.
 
 82
-00:04:36,070 --> 00:04:39,900
+00:04:36,190 --> 00:04:40,020
 ARCHIVIST:  Develop and implement anti-counterfeit policy and procedures that
 
 83
-00:04:39,900 --> 00:04:42,905
+00:04:40,020 --> 00:04:43,025
 include the means to detect and prevent counterfeit
 
 84
-00:04:42,905 --> 00:04:45,026
+00:04:43,025 --> 00:04:45,146
 components from entering the system;
 
 85
-00:04:46,076 --> 00:04:48,193
+00:04:46,196 --> 00:04:48,313
 VEGA:  Your security is only as strong as your
 
 86
-00:04:48,193 --> 00:04:49,116
+00:04:48,313 --> 00:04:49,236
 weakest supplier.
 
 87
-00:04:56,376 --> 00:04:59,742
+00:04:56,496 --> 00:04:59,862
 VEGA:  The Caravan-Master's oath. I trust no part I
 
 88
-00:04:59,742 --> 00:05:00,736
+00:04:59,862 --> 00:05:00,856
 cannot trace.
 
 89
-00:05:01,786 --> 00:05:03,921
+00:05:01,906 --> 00:05:04,041
 VEGA:  The best breach is the one designed out
 
 90
-00:05:03,921 --> 00:05:04,906
+00:05:04,041 --> 00:05:05,026
 before it's built.
 
 91
-00:05:10,386 --> 00:05:13,816
+00:05:10,506 --> 00:05:13,936
 NOVA:  Scenario: a tampered part in the box. Whose
 
 92
-00:05:13,816 --> 00:05:16,288
+00:05:13,936 --> 00:05:16,408
 job is that? Pause, and answer.
 
 93
-00:05:23,338 --> 00:05:24,618
-VEGA:  The answer is B.
+00:05:16,708 --> 00:05:20,848
+A counterfeit network card arrives pre-tampered. Which control
 
 94
-00:05:26,938 --> 00:05:29,058
-VEGA:  And shutting the doors you never use?
+00:05:20,848 --> 00:05:21,916
+should catch it?
 
 95
-00:05:36,108 --> 00:05:37,668
-VEGA:  The answer is A.
+00:05:22,216 --> 00:05:27,466
+Your options. A. CM-2 Baseline Configuration. B. SR-11
 
 96
-00:05:39,708 --> 00:05:43,403
-NOVA:  Notebook: secure how you build, configure, maintain, and
+00:05:27,466 --> 00:05:31,744
+Component Authenticity. C. MA-2 Maintenance.
 
 97
-00:05:43,403 --> 00:05:46,306
-source - the attacker counts on you skipping
+00:05:32,044 --> 00:05:34,946
+NOVA:  Pause here and lock in your answer.
 
 98
-00:05:46,306 --> 00:05:46,570
-one.
+00:05:41,996 --> 00:05:45,869
+VEGA:  The answer is B. SR-11 Component Authenticity. SR-11,
 
 99
-00:05:46,870 --> 00:05:49,990
-VEGA:  The forge is hardened, from source to system.
+00:05:45,869 --> 00:05:50,180
+Component Authenticity, is aimed at catching counterfeit or
 
 100
-00:05:50,290 --> 00:05:53,784
-NULL:  Then I'll take your secrets in transit, or
+00:05:50,180 --> 00:05:51,276
+tampered parts.
 
 101
-00:05:53,784 --> 00:05:54,865
-your backups.
+00:05:52,326 --> 00:05:54,446
+VEGA:  And shutting the doors you never use?
 
 102
-00:05:55,165 --> 00:05:57,498
-VEGA:  Then we ride for the Vaults and the
+00:05:54,746 --> 00:05:59,354
+Disabling unused ports and services is which control?
 
 103
-00:05:57,498 --> 00:05:58,165
+00:05:59,654 --> 00:06:04,835
+Your options. A. CM-7 Least Functionality. B. SA-22
+
+104
+00:06:04,835 --> 00:06:09,102
+Unsupported Components. C. CM-8 Inventory.
+
+105
+00:06:09,402 --> 00:06:12,304
+NOVA:  Pause here and lock in your answer.
+
+106
+00:06:19,354 --> 00:06:22,935
+VEGA:  The answer is A. CM-7 Least Functionality. CM-7,
+
+107
+00:06:22,935 --> 00:06:27,635
+Least Functionality, disables the ports, services, and features
+
+108
+00:06:27,635 --> 00:06:28,754
+you don't need.
+
+109
+00:06:29,804 --> 00:06:33,499
+NOVA:  Notebook: secure how you build, configure, maintain, and
+
+110
+00:06:33,499 --> 00:06:36,402
+source - the attacker counts on you skipping
+
+111
+00:06:36,402 --> 00:06:36,666
+one.
+
+112
+00:06:36,966 --> 00:06:40,086
+VEGA:  The forge is hardened, from source to system.
+
+113
+00:06:40,386 --> 00:06:43,880
+NULL:  Then I'll take your secrets in transit, or
+
+114
+00:06:43,880 --> 00:06:44,961
+your backups.
+
+115
+00:06:45,261 --> 00:06:47,594
+VEGA:  Then we ride for the Vaults and the
+
+116
+00:06:47,594 --> 00:06:48,261
 Lifelines.

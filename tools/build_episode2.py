@@ -442,9 +442,10 @@ def assemble(spec_path, limit=None):
         f"loudnorm=I=-16:TP=-1.5:LRA=11,alimiter=level_in=1:level_out=1:limit=0.95[a];"
     )
     # cinematic grade applied to the picture BEFORE burning captions (so text stays crisp):
-    # gentle contrast/saturation lift, vignette, fine film grain, light sharpen.
+    # gentle contrast/saturation lift, vignette, light sharpen. (Temporal film grain was REMOVED
+    # — per-frame noise destroyed H.264 compression, bloating files ~9x past GitHub's 100MB limit.)
     grade = ("eq=contrast=1.06:saturation=1.12:gamma=0.99,vignette,"
-             "noise=alls=4:allf=t,unsharp=5:5:0.35:5:5:0.0")
+             "unsharp=5:5:0.30:5:5:0.0")
     video_fc = (f"[0:v]fade=t=in:st=0:d=0.6,fade=t=out:st={T-0.8:.2f}:d=0.8[vb];"
                 + av_chain + f"{prev}{grade}[grd];[grd]subtitles=ep.ass[v]")
     run(["ffmpeg", "-y", "-i", "video.mp4", "-i", "narr.wav", "-i", "music.wav", "-i", "sfx.wav",

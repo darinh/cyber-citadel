@@ -1,7 +1,7 @@
 {
  "id": "EP06",
  "title": "EP06",
- "duration": 341.89,
+ "duration": 391.79,
  "chapters": [
   {
    "t": 17.47,
@@ -20,7 +20,7 @@
    "title": "Quiz 1"
   },
   {
-   "t": 309.38,
+   "t": 334.08,
    "title": "Quiz 2"
   }
  ],
@@ -34,10 +34,11 @@
     "A privacy notice (PT-5)"
    ],
    "answer": 0,
+   "why": "A clean, tested backup — CP-9 — is what restores you fastest after ransomware.",
    "t_question": 293.1,
-   "t_quiz": 299.08,
-   "t_reveal": 305.78,
-   "t_resume": 309.38
+   "t_quiz": 317.25,
+   "t_reveal": 323.95,
+   "t_resume": 334.08
   },
   {
    "n": 2,
@@ -48,10 +49,11 @@
     "CP-2 Contingency Plan"
    ],
    "answer": 1,
-   "t_question": 309.38,
-   "t_quiz": 312.45,
-   "t_reveal": 319.15,
-   "t_resume": 322.75
+   "why": "MP-6, Media Sanitization, ensures drives are wiped before disposal or reuse.",
+   "t_question": 334.08,
+   "t_quiz": 355.01,
+   "t_reveal": 361.71,
+   "t_resume": 372.64
   }
  ]
 }

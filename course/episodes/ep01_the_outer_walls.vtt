@@ -197,185 +197,277 @@ VEGA:  IA-2 demands proof of identity for every organizational
 user.
 
 50
-00:02:24.141 --> 00:02:27.581
-VEGA:  Its enhancements are where multi-factor authentication lives.
+00:02:24.141 --> 00:02:27.984
+VEGA:  Its enhancements - like IA-2(1) and IA-2(2) -
 
 51
-00:02:28.631 --> 00:02:32.333
-NOVA:  Multi-factor authentication - what is that, exactly?
+00:02:27.984 --> 00:02:31.741
+are where multi-factor authentication lives.
 
 52
-00:02:32.633 --> 00:02:34.718
-VEGA:  Two kinds of proof instead of one. It's
+00:02:32.791 --> 00:02:36.493
+NOVA:  Multi-factor authentication - what is that, exactly?
 
 53
-00:02:34.718 --> 00:02:37.071
-why the pipeline breach we opened with would
+00:02:36.793 --> 00:02:38.878
+VEGA:  Two kinds of proof instead of one. It's
 
 54
-00:02:37.071 --> 00:02:37.713
-have failed.
+00:02:38.878 --> 00:02:41.231
+why the pipeline breach we opened with would
 
 55
-00:02:38.763 --> 00:02:41.065
-NOVA:  And the passwords and tokens themselves?
+00:02:41.231 --> 00:02:41.873
+have failed.
 
 56
-00:02:41.365 --> 00:02:45.365
-VEGA:  IA-5 manages them, strength, rotation, protection.
+00:02:42.923 --> 00:02:45.225
+NOVA:  And the passwords and tokens themselves?
 
 57
-00:02:46.415 --> 00:02:51.000
-ARCHIVIST:  Uniquely identify and authenticate organizational users and associate
+00:02:45.525 --> 00:02:49.525
+VEGA:  IA-5 manages them, strength, rotation, protection.
 
 58
-00:02:51.000 --> 00:02:54.854
-that unique identification with processes acting on behalf
+00:02:50.575 --> 00:02:55.160
+ARCHIVIST:  Uniquely identify and authenticate organizational users and associate
 
 59
-00:02:54.854 --> 00:02:55.851
-of those users.
+00:02:55.160 --> 00:02:59.014
+that unique identification with processes acting on behalf
 
 60
-00:02:56.901 --> 00:02:59.101
-VEGA:  Identity first. Always.
+00:02:59.014 --> 00:03:00.011
+of those users.
 
 61
-00:03:05.501 --> 00:03:08.617
-VEGA:  The Seal-Bearer's oath. Prove the name, or the
+00:03:01.061 --> 00:03:03.261
+VEGA:  Identity first. Always.
 
 62
-00:03:08.617 --> 00:03:09.701
-gate stays shut.
+00:03:09.661 --> 00:03:12.777
+VEGA:  The Seal-Bearer's oath. Prove the name, or the
 
 63
-00:03:10.751 --> 00:03:13.388
-VEGA:  Last on the wall, the Wall-Warden, Physical and
+00:03:12.777 --> 00:03:13.861
+gate stays shut.
 
 64
-00:03:13.388 --> 00:03:14.791
-Environmental Protection.
+00:03:14.911 --> 00:03:17.548
+VEGA:  Last on the wall, the Wall-Warden, Physical and
 
 65
-00:03:15.091 --> 00:03:17.449
-NULL:  Why pick a lock... when I can walk
+00:03:17.548 --> 00:03:18.951
+Environmental Protection.
 
 66
-00:03:17.449 --> 00:03:18.906
-through an open door?
+00:03:19.251 --> 00:03:21.609
+NULL:  Why pick a lock... when I can walk
 
 67
-00:03:19.206 --> 00:03:22.767
-VEGA:  In reality, PE is physical access control -
+00:03:21.609 --> 00:03:23.066
+through an open door?
 
 68
-00:03:22.767 --> 00:03:27.073
-guards, badges, locks - plus protection from hazards
+00:03:23.366 --> 00:03:26.927
+VEGA:  In reality, PE is physical access control -
 
 69
-00:03:27.073 --> 00:03:29.806
-like fire, power loss, and water.
+00:03:26.927 --> 00:03:31.233
+guards, badges, locks - plus protection from hazards
 
 70
-00:03:30.856 --> 00:03:34.696
-VEGA:  PE-3 enforces physical access at the doors themselves.
+00:03:31.233 --> 00:03:33.966
+like fire, power loss, and water.
 
 71
-00:03:34.996 --> 00:03:38.494
-NOVA:  Tailgating, propped doors, lost badges, this is where
+00:03:35.016 --> 00:03:38.856
+VEGA:  PE-3 enforces physical access at the doors themselves.
 
 72
-00:03:38.494 --> 00:03:39.418
-you stop them.
+00:03:39.156 --> 00:03:42.654
+NOVA:  Tailgating, propped doors, lost badges, this is where
 
 73
-00:03:40.468 --> 00:03:43.304
-VEGA:  And PE-6 watches and logs who comes and
+00:03:42.654 --> 00:03:43.578
+you stop them.
 
 74
-00:03:43.304 --> 00:03:43.668
-goes.
+00:03:44.628 --> 00:03:47.464
+VEGA:  And PE-6 watches and logs who comes and
 
 75
-00:03:46.968 --> 00:03:52.028
-ARCHIVIST:  Enforce physical access authorizations at [entry and exit
+00:03:47.464 --> 00:03:47.828
+goes.
 
 76
-00:03:52.028 --> 00:03:53.004
-points] by:
+00:03:51.128 --> 00:03:56.188
+ARCHIVIST:  Enforce physical access authorizations at [entry and exit
 
 77
-00:03:54.054 --> 00:03:56.534
-VEGA:  Physical security is security.
+00:03:56.188 --> 00:03:57.164
+points] by:
 
 78
-00:04:02.654 --> 00:04:05.155
-VEGA:  And the Wall-Warden's oath. A door is a
+00:03:58.214 --> 00:04:00.694
+VEGA:  Physical security is security.
 
 79
-00:04:05.155 --> 00:04:06.694
-decision - and I decide.
+00:04:06.814 --> 00:04:09.315
+VEGA:  And the Wall-Warden's oath. A door is a
 
 80
-00:04:07.744 --> 00:04:10.062
-VEGA:  Remember the framework? The wall is where you
+00:04:09.315 --> 00:04:10.854
+decision - and I decide.
 
 81
-00:04:10.062 --> 00:04:11.504
-implement what you selected.
+00:04:11.904 --> 00:04:14.222
+VEGA:  Remember the framework? The wall is where you
 
 82
-00:04:11.804 --> 00:04:15.026
-NOVA:  Select from the baseline, implement here, assess later.
+00:04:14.222 --> 00:04:15.664
+implement what you selected.
 
 83
-00:04:16.344 --> 00:04:20.312
-NOVA:  Guardian check. Who proves your identity? Pause, and
+00:04:15.964 --> 00:04:19.186
+NOVA:  Select from the baseline, implement here, assess later.
 
 84
-00:04:20.312 --> 00:04:20.846
-answer.
+00:04:20.504 --> 00:04:24.472
+NOVA:  Guardian check. Who proves your identity? Pause, and
 
 85
-00:04:27.896 --> 00:04:29.176
-VEGA:  The answer is B.
+00:04:24.472 --> 00:04:25.006
+answer.
 
 86
-00:04:31.496 --> 00:04:34.016
-VEGA:  And the rule that limits the blast radius?
+00:04:25.306 --> 00:04:28.627
+Which guardian proves you are who you claim,
 
 87
-00:04:41.066 --> 00:04:42.346
-VEGA:  The answer is B.
+00:04:28.627 --> 00:04:29.834
+before you pass?
 
 88
-00:04:44.666 --> 00:04:48.701
-NOVA:  Scenario: someone tailgates into the server room. Whose
+00:04:30.134 --> 00:04:33.967
+Your options. A. AC - Access Control. B.
 
 89
-00:04:48.701 --> 00:04:49.728
-watch is that?
+00:04:33.967 --> 00:04:38.280
+IA - Identification & Authentication. C. PE -
 
 90
-00:04:56.778 --> 00:04:58.338
-VEGA:  The answer is A.
+00:04:38.280 --> 00:04:39.142
+Physical.
 
 91
-00:05:00.378 --> 00:05:04.671
-NOVA:  Notebook: the wall is access, identity, and physical
+00:04:39.442 --> 00:04:42.344
+NOVA:  Pause here and lock in your answer.
 
 92
-00:05:04.671 --> 00:05:06.240
-- working together.
+00:04:49.394 --> 00:04:52.171
+VEGA:  The answer is B. IA - Identification &
 
 93
-00:05:06.540 --> 00:05:09.700
-VEGA:  Three guardians, one wall. The perimeter holds.
+00:04:52.171 --> 00:04:57.140
+Authentication. Identification and Authentication proves who you are
 
 94
-00:05:10.000 --> 00:05:13.815
-NULL:  Fine. I'll stop knocking... and start hiding.
+00:04:57.140 --> 00:04:58.674
+before you're let in.
 
 95
-00:05:14.115 --> 00:05:16.915
+00:04:59.724 --> 00:05:02.244
+VEGA:  And the rule that limits the blast radius?
+
+96
+00:05:02.544 --> 00:05:05.496
+'Only the access you truly need' is which
+
+97
+00:05:05.496 --> 00:05:06.072
+control?
+
+98
+00:05:06.372 --> 00:05:11.444
+Your options. A. AC-2 Account Management. B. AC-6
+
+99
+00:05:11.444 --> 00:05:16.620
+Least Privilege. C. IA-5 Authenticator Management.
+
+100
+00:05:16.920 --> 00:05:19.822
+NOVA:  Pause here and lock in your answer.
+
+101
+00:05:26.872 --> 00:05:30.288
+VEGA:  The answer is B. AC-6 Least Privilege. AC-6,
+
+102
+00:05:30.288 --> 00:05:34.402
+Least Privilege, grants only the access someone truly
+
+103
+00:05:34.402 --> 00:05:36.032
+needs - nothing more.
+
+104
+00:05:37.082 --> 00:05:41.117
+NOVA:  Scenario: someone tailgates into the server room. Whose
+
+105
+00:05:41.117 --> 00:05:42.144
+watch is that?
+
+106
+00:05:42.444 --> 00:05:45.534
+An intruder tailgates through a propped door into
+
+107
+00:05:45.534 --> 00:05:48.372
+the server room. Which family should stop it?
+
+108
+00:05:48.672 --> 00:05:52.675
+Your options. A. PE - Physical. B. AU
+
+109
+00:05:52.675 --> 00:05:55.920
+- Audit. C. SR - Supply Chain.
+
+110
+00:05:56.220 --> 00:05:59.122
+NOVA:  Pause here and lock in your answer.
+
+111
+00:06:06.172 --> 00:06:08.738
+VEGA:  The answer is A. PE - Physical. Physical
+
+112
+00:06:08.738 --> 00:06:12.523
+and Environmental Protection stops tailgating into the room
+
+113
+00:06:12.523 --> 00:06:12.972
+itself.
+
+114
+00:06:14.022 --> 00:06:18.315
+NOVA:  Notebook: the wall is access, identity, and physical
+
+115
+00:06:18.315 --> 00:06:19.884
+- working together.
+
+116
+00:06:20.184 --> 00:06:23.344
+VEGA:  Three guardians, one wall. The perimeter holds.
+
+117
+00:06:23.644 --> 00:06:27.459
+NULL:  Fine. I'll stop knocking... and start hiding.
+
+118
+00:06:27.759 --> 00:06:30.559
 VEGA:  Then we'll need the watchtowers. Next time.
