@@ -4,6 +4,23 @@
  "slug": "the_campaign_rmf",
  "beats": [
   {
+   "scene": "coldopen",
+   "label": "FROM THE FIELD",
+   "headline": "Years of operation. Nobody ever signed for the risk.",
+   "body": "Auditors keep finding live systems with no current authorization — the danger never formally weighed, never owned. The Risk Management Framework exists so that is never an accident.",
+   "min_seconds": 7.0,
+   "say": [
+    [
+     "NULL",
+     "Skip the owner, skip the sign-off — and no one even knows I'm already inside."
+    ],
+    [
+     "VEGA",
+     "Not here. Tonight we learn the framework that makes someone accountable."
+    ]
+   ]
+  },
+  {
    "scene": "title",
    "kicker": "A NIST SP 800-53r5 TRAINING SERIES",
    "badge": "ACT II",

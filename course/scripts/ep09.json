@@ -4,15 +4,28 @@
  "slug": "know_your_realm",
  "beats": [
   {
-   "scene": "section",
-   "num": "09",
-   "title": "KNOW YOUR REALM",
-   "subtitle": "Security Categorization · FIPS 199",
+   "scene": "coldopen",
+   "label": "FROM THE FIELD",
+   "headline": "Tagged 'low value' — so it was guarded like it.",
+   "body": "Put high-impact data on a system labeled low, and the crown jewels get junk-tier protection. Get the category wrong, and every choice after it is wrong too.",
+   "min_seconds": 7.0,
    "say": [
     [
      "NULL",
      "Tell me a system doesn't matter — and I'll make it the one that ends you."
     ],
+    [
+     "VEGA",
+     "So first, Nova, we learn to judge what a system is truly worth."
+    ]
+   ]
+  },
+  {
+   "scene": "section",
+   "num": "09",
+   "title": "KNOW YOUR REALM",
+   "subtitle": "Security Categorization · FIPS 199",
+   "say": [
     [
      "VEGA",
      "Before you pick defenses, you must know what you're defending, and how much it matters."

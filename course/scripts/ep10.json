@@ -4,6 +4,23 @@
  "slug": "the_armory_baselines",
  "beats": [
   {
+   "scene": "coldopen",
+   "label": "FROM THE FIELD",
+   "headline": "They scoped out a control they 'didn't need'.",
+   "body": "A baseline trimmed to taste — no justification, no approval — until the gap it left became the open door. Tailoring is a decision you must be able to defend.",
+   "min_seconds": 7.0,
+   "say": [
+    [
+     "NULL",
+     "Cut the control you find inconvenient. I'll be waiting in the space it left."
+    ],
+    [
+     "VEGA",
+     "Which is why every change is justified — and the authorizing official signs for it."
+    ]
+   ]
+  },
+  {
    "scene": "section",
    "num": "10",
    "title": "THE ARMORY",

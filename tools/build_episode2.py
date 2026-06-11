@@ -75,7 +75,7 @@ def run(cmd, cwd=None):
 # reuses unchanged beats and rebuilds only the few that changed, so editing one
 # line/slide costs a few files, not the whole episode.
 RENDER_ROOT = ROOT / "course" / "render"
-RENDER_VER = "v3.2"          # bump to force a full rebuild when render logic changes
+RENDER_VER = "v3.3"          # bump to force a full rebuild when render logic changes
 
 
 def _sha(*parts):
@@ -333,9 +333,21 @@ def assemble(spec_path, limit=None):
         return start, bdur, narr_end
 
     qn = 0
+    integ = 100.0
     for i, beat in enumerate(beats):
         sc = beat.get("scene")
         lines = [(s[0], s[1]) for s in beat.get("say", [])]
+        # running Citadel-integrity stakes meter: dips on attacks, rises as controls are taught
+        _has_null = any(s[0] == "NULL" for s in beat.get("say", []))
+        if sc == "coldopen":
+            integ = max(22, integ - 18)
+        elif _has_null:
+            integ = max(22, integ - 9)
+        elif sc in ("control", "quiz", "cheatcard", "oath"):
+            integ = min(100, integ + 7)
+        elif sc in ("points", "define", "diagram", "notebook"):
+            integ = min(100, integ + 3)
+        beat = dict(beat); beat["_integrity"] = round(integ)
         if sc == "quiz":
             qn += 1
             opts = beat.get("options", [])

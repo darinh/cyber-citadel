@@ -187,7 +187,7 @@ def set_background(path):
     _BG_IMG = im.convert("RGBA")
 
 
-def frame(tag_left="AEGIS CITADEL", tag_right=""):
+def frame(tag_left="AEGIS CITADEL", tag_right="", integrity=None):
     base = gradient_bg()
     base = add_grid(base)
     base = add_vignette(base)
@@ -213,6 +213,8 @@ def frame(tag_left="AEGIS CITADEL", tag_right=""):
                              (70, H - 60, 1, -1), (W - 70, H - 60, -1, -1)]:
         d.line([(cx, cy), (cx + 26 * dx, cy)], fill=CYAN + (180,), width=3)
         d.line([(cx, cy), (cx, cy + 26 * dy)], fill=CYAN + (180,), width=3)
+    if integrity is not None:
+        integrity_bar(img, integrity)
     return img
 
 
@@ -244,6 +246,32 @@ def emblem(img, cx, cy, r, color, glyph, sub=""):
         sf = FSB(26)
         tw = d.textlength(sub, font=sf)
         d.text((cx - tw / 2, cy + r + 16), sub, font=sf, fill=INK)
+
+
+def integrity_bar(img, value):
+    """Centered top-chrome stakes HUD: 'CITADEL INTEGRITY ▮▮▮▮▮▯▯ NN%'.
+    Dips on attacks (cold opens / NULL beats), rises as controls are taught."""
+    d = ImageDraw.Draw(img)
+    val = max(0, min(100, int(round(value))))
+    col = MINT if val >= 67 else (GOLD if val >= 34 else RED)
+    segs, sw, gap = 10, 14, 5
+    bw = segs * (sw + gap) - gap
+    lab, pct = "CITADEL INTEGRITY", f"{val}%"
+    lf, pf = FSB(18), FB(18)
+    lw = d.textlength(lab, font=lf)
+    pw = d.textlength(pct, font=pf)
+    x = int((W - (lw + 16 + bw + 14 + pw)) // 2)
+    y = 33
+    d.text((x, y), lab, font=lf, fill=MUTED)
+    bx = int(x + lw + 16)
+    filled = round(val * segs / 100)
+    for i in range(segs):
+        sx = bx + i * (sw + gap)
+        d.rectangle([sx, y + 2, sx + sw, y + 16],
+                    fill=col + (255,) if i < filled else (70, 80, 120, 150))
+    d.text((bx + bw + 14, y), pct, font=pf, fill=col)
+
+
 
 
 # ---- scene renderers -----------------------------------------------------
@@ -548,7 +576,7 @@ def s_coldopen(img, b):
     col = RED
     d = ImageDraw.Draw(img)
     d.polygon([(150, 250), (172, 250), (161, 230)], fill=col)
-    tracked_text(d, (192, 226), "BREACH OF THE WEEK", FSB(30), col, tracking=8)
+    tracked_text(d, (192, 226), b.get("label", "BREACH OF THE WEEK"), FSB(30), col, tracking=8)
     if b.get("year"):
         g = glow_layer(lambda dd: dd.text((W - 150, 196), b["year"], font=FB(120),
                        fill=col + (255,), anchor="ra"), col, blur=18)
@@ -633,7 +661,7 @@ RENDERERS = {
 
 def render(beat: dict, out_path: str, t: float = 1.0):
     tag_r = beat.get("tag", "")
-    img = frame(tag_right=tag_r)
+    img = frame(tag_right=tag_r, integrity=beat.get("_integrity"))
     RENDERERS[beat["scene"]](img, dict(beat, _t=t))
     img = caption_strip(img)
     img = img.convert("RGB")

@@ -4,6 +4,23 @@
  "slug": "the_reckoning",
  "beats": [
   {
+   "scene": "coldopen",
+   "label": "FROM THE FIELD",
+   "headline": "The assessment found the gaps. It shipped anyway.",
+   "body": "Weaknesses raised, risk noted — then waved through under deadline pressure. Assessment and authorization protect you only when the decision is honest.",
+   "min_seconds": 7.0,
+   "say": [
+    [
+     "NULL",
+     "Rush the sign-off, bury the findings. That is the door I love best."
+    ],
+    [
+     "VEGA",
+     "Tonight, the reckoning — prove the controls work, then decide with eyes open."
+    ]
+   ]
+  },
+  {
    "scene": "section",
    "num": "11",
    "title": "THE RECKONING",
