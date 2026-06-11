@@ -378,6 +378,7 @@ $env:CC_TTS='chatterbox'; python tools\render_all.py ep00
 ---
 
 ## 9. Reuse for a NEW course/topic (the generalization)
+> **Full step-by-step + the episode-spec/scene-type field contract: `course/AUTHORING_NEW_COURSE.md`.**
 This pipeline is topic-agnostic. To target a different standard / body of knowledge:
 1. **Build the truth layer first.** Parse the authoritative source into `truth.json` with a
    stable contract the renderer + gates rely on: `TRUTH[family]` with

@@ -9,8 +9,10 @@ autonomously; review plans + artifacts with a **council of multiple agents and L
 - `course/PRODUCTION_BIBLE.md` — the authoritative creative + technical spec (concept,
   cast, 8-episode map, accuracy rules, pipeline). Follow it.
 - `course/GENERATION_PLAYBOOK.md` — **hard-won learnings**: reusable recipes, exact prompts,
-  seeds, voice knobs, pitfalls, and review process (the seed for a future training-content
-  generator). Read before producing/regenerating anything.
+  seeds, voice knobs, pitfalls, the review process, **§11 Production Rules**, **§12 incremental
+  render architecture**. Read before producing/regenerating anything.
+- `course/AUTHORING_NEW_COURSE.md` — operator's manual for reusing this engine on a **different
+  topic** (pipeline, step-by-step, and the episode-spec/scene-type field contract).
 - Session plan: `~/.copilot/session-state/<id>/plan.md`.
 
 ## Keep the playbook current (do not skip)
