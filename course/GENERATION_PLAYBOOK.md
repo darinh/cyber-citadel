@@ -476,17 +476,23 @@ Treat as a script-review + render checklist. "Mistakes are okay; repeating them 
   confirm every word is present while the clip is acoustically garbled. **Verify clips with
   acoustic metrics**: echo via autocorrelation peak in the 50–200 ms window (slap-back echo > ~0.28
   = garbled), and spectral **rolloff** (low = muddy / consonants smeared). Scan every clip:
-  `tools/_tmp/broad_acoustic.py` (FFT autocorr — fast). Real example: NULL's "Crown Data" clip
-  passed STT recall but had echo@95ms=0.37 + rolloff 2517 Hz and sounded broken.
+  `tools/audio_scan.py` (acoustic: echo/clip/muddiness) + `tools/audio_qa.py` (per-clip STT
+  word-recall). Real example: NULL's "Crown Data" clip passed STT recall but had echo@95ms=0.37
+  + rolloff 2517 Hz and sounded broken. (STT flags on numbers/IDs like "800-53"→"853" are FALSE
+  positives — the audio is correct.)
 - **TTS effect chains must not garble speech.** No slap-back echo (the NULL bug was
   `aecho=...:95:0.34`); keep echo subtle/short; don't over-lowpass (NULL went 4600→7200 Hz).
   NULL stays deep (pitch 0.84) but intelligible.
+- **Chatterbox fails on ultra-short fragments** (≲3–4 words, esp. with leading `...` or `?!`):
+  it garbles or repeats them (e.g. "Six days?!"→"Ace?", "...this time."→"This time. This time.").
+  Re-rolling rarely helps — **reword/lengthen the line** (→ "Wait — six whole days?!",
+  "Clean enough... this time.").
 - **Fix one bad clip surgically, don't re-render everything:** `tools/regen_line.py <ep> <clip>`
   busts that clip's voice cache for a fresh take, invalidates only its beat, and re-muxes the
   episode. (The beat cache key includes a **voice fingerprint** so a voice/FX change actually
   re-synths the affected beats instead of silently reusing old audio.)
-- **Never ship unaudited audio.** Every line passes the STT recall gate (≥0.85) AND the acoustic
-  scan; manual overrides recorded. Approved audio persists under `course/render/<ep>/lines/`.
+- **Never ship unaudited audio.** Every line passes `audio_qa.py` (STT recall) AND `audio_scan.py`
+  (acoustic); review flags, regen real defects. Approved audio persists under `course/render/<ep>/lines/`.
 - **Final mix passes integrated-loudness + true-peak checks** (loudnorm −16 + limiter).
 - **Caption timing** ideally derives from real clip timing (prefer word-level ASR alignment).
 - **Pronunciation fixes go in `preprocess()`/the map**, never ad-hoc misspelling in scripts.
@@ -593,6 +599,14 @@ well below that, and color grading / HUD / audio mastering raise polish but NOT 
 ---
 
 ## 14. Changelog of learnings
+- **2025 — audio QA + repair pass.** Found the reported garble: NULL's FX chain had a 95 ms
+  slap-back echo + lowpass 4600 that smeared speech (objective: echo 0.37, rolloff 2517 Hz) —
+  STT word-recall had passed it. Fixed the FX (subtle echo, lowpass 7200), re-rendered (echo gone
+  on all 45 NULL clips). Built permanent QA tools: `tools/audio_scan.py` (acoustic echo/clip/
+  muddiness) + `tools/audio_qa.py` (per-clip STT) + `tools/regen_line.py` (surgical one-clip
+  re-roll + re-mux); added a **voice fingerprint** to the beat cache key so voice/FX changes
+  re-synth. Full per-clip pass caught 6 word-level defects (garbled/dropped/repeated); fixed by
+  re-roll, and reworded 2 ultra-short fragments Chatterbox can't synth. Rules in §11.D.
 - **2025 — v3.3 engagement + cinematic pass.** Added the **Citadel integrity-meter HUD**
   (running stakes; dips on attacks, rises on controls) and honest **"FROM THE FIELD" Act II cold
   opens** (EP08–11, no fabricated breaches) with NULL menace. **Proved** (PoC) that corner-avatar
