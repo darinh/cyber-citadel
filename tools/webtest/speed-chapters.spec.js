@@ -147,38 +147,68 @@ test.describe('interactive quiz (play-in-background)', () => {
     await ready(page);
     await page.evaluate(() => { document.querySelector('#vid').muted = true; });
     await page.evaluate((t) => { const v = document.querySelector('#vid'); v.currentTime = t; v.play(); }, q.t_question + 0.4);
-    await page.waitForSelector('#ov.show', { timeout: 12000 });
+    await page.waitForSelector('#qhot.show', { timeout: 12000 });
   }
 
-  test('quiz appears WHILE the video keeps playing (not paused)', async ({ page }) => {
+  test('quiz hotspots appear WHILE the video keeps playing (no blur over the video/subtitles)', async ({ page }) => {
     const q = q1();
     await reachQuestion(page, q);
-    const st = await page.evaluate(() => ({
-      soft: document.querySelector('#ov').classList.contains('soft'),
-      opts: document.querySelectorAll('#ovopts .opt').length,
-      paused: document.querySelector('#vid').paused,
-    }));
-    expect(st.soft).toBe(true);
-    expect(st.opts).toBe(q.options.length);
-    expect(st.paused).toBe(false);            // audio keeps playing behind the quiz
+    const st = await page.evaluate(() => {
+      const h = document.querySelector('#qhot'); const cs = getComputedStyle(h);
+      return {
+        hots: document.querySelectorAll('#qhot .hot').length,
+        paused: document.querySelector('#vid').paused,
+        bg: cs.backgroundColor,
+        bd: cs.backdropFilter || cs.webkitBackdropFilter || 'none',
+      };
+    });
+    expect(st.hots).toBe(q.options.length);
+    expect(st.paused).toBe(false);                                  // audio keeps playing behind
+    // the hotspot layer must be fully transparent — no dark tint or blur over the captions
+    expect(['rgba(0, 0, 0, 0)', 'transparent']).toContain(st.bg);
+    expect(st.bd).toBe('none');
+  });
+
+  test('hotspots sit EXACTLY over the rendered option boxes', async ({ page }) => {
+    const q = q1();
+    await reachQuestion(page, q);
+    const got = await page.evaluate(() => {
+      const s = document.querySelector('.stage').getBoundingClientRect();
+      return [...document.querySelectorAll('#qhot .hot')].map(h => {
+        const r = h.getBoundingClientRect();
+        return [(r.left - s.left) / s.width, (r.top - s.top) / s.height, r.width / s.width, r.height / s.height];
+      });
+    });
+    expect(got.length).toBe(q.opt_rects.length);
+    got.forEach((h, i) => {
+      for (let k = 0; k < 4; k++) expect(Math.abs(h[k] - q.opt_rects[i][k])).toBeLessThan(0.015);
+    });
   });
 
   test('quiz STILL displays for a returning user who already answered (regression)', async ({ page }) => {
     const q = q1();
     // simulate prior sessions: every ep00 quiz already answered in localStorage
     await page.addInitScript(() => { try { localStorage.setItem('cc_ans', JSON.stringify({ ep00: { '1': true, '2': true, '3': true } })); } catch (e) {} });
-    await reachQuestion(page, q);            // must still open the overlay
-    const opts = await page.evaluate(() => document.querySelectorAll('#ovopts .opt').length);
-    expect(opts).toBe(q.options.length);
+    await reachQuestion(page, q);            // must still open the hotspots
+    const hots = await page.evaluate(() => document.querySelectorAll('#qhot .hot').length);
+    expect(hots).toBe(q.options.length);
+  });
+
+  test('options are clickable the MOMENT they appear (before the lock-in point)', async ({ page }) => {
+    const q = q1();
+    await reachQuestion(page, q);                                   // ~t_question+0.4, before lock-in
+    expect(await page.evaluate(() => document.querySelector('#vid').currentTime)).toBeLessThan(q.t_quiz);
+    await page.evaluate((a) => document.querySelectorAll('#qhot .hot')[a].click(), q.answer);
+    await page.waitForFunction(() => /correct|not quite/i.test(document.querySelector('#qstatus').textContent), null, { timeout: 4000 });
   });
 
   test('answering skips ahead to the reveal and resumes', async ({ page }) => {
     const q = q1();
     await reachQuestion(page, q);
-    await page.evaluate((a) => document.querySelectorAll('#ovopts .opt')[a].click(), q.answer);
+    await page.evaluate((a) => document.querySelectorAll('#qhot .hot')[a].click(), q.answer);
     await page.waitForFunction((tr) => document.querySelector('#vid').currentTime >= tr - 0.6, q.t_reveal, { timeout: 8000 });
-    const fb = await page.textContent('#ovfb');
-    expect(fb).toContain('Correct');
+    expect(await page.textContent('#qstatus')).toContain('Correct');
+    expect(await page.evaluate(() => document.querySelector('#qhot .hot.ok') !== null)).toBe(true);
     expect(await page.evaluate(() => document.querySelector('#vid').paused)).toBe(false);
   });
 
@@ -187,16 +217,17 @@ test.describe('interactive quiz (play-in-background)', () => {
     await reachQuestion(page, q);
     await page.evaluate((t) => { document.querySelector('#vid').currentTime = t; }, q.t_quiz + 0.3);
     await page.waitForFunction(() => document.querySelector('#vid').paused === true, null, { timeout: 8000 });
-    expect((await page.textContent('#ovhint')).toLowerCase()).toContain('pick an answer');
+    expect((await page.textContent('#qstatus')).toLowerCase()).toContain('pick an answer');
+    expect(await page.evaluate(() => document.querySelector('#qhot').classList.contains('waiting'))).toBe(true);
   });
 
-  test('overlay closes after the resume point', async ({ page }) => {
+  test('hotspots close after the resume point', async ({ page }) => {
     const q = q1();
     await reachQuestion(page, q);
-    await page.evaluate((a) => document.querySelectorAll('#ovopts .opt')[a].click(), q.answer);
+    await page.evaluate((a) => document.querySelectorAll('#qhot .hot')[a].click(), q.answer);
     await page.evaluate((t) => { document.querySelector('#vid').currentTime = t; }, q.t_resume + 0.3);
-    await page.waitForFunction(() => !document.querySelector('#ov').classList.contains('show'), null, { timeout: 8000 });
-    expect(await page.evaluate(() => document.querySelector('#ov').classList.contains('show'))).toBe(false);
+    await page.waitForFunction(() => !document.querySelector('#qhot').classList.contains('show'), null, { timeout: 8000 });
+    expect(await page.evaluate(() => document.querySelector('#qhot').classList.contains('show'))).toBe(false);
   });
 });
 

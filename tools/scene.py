@@ -513,28 +513,45 @@ def s_diagram(img, b):
     return img
 
 
+def quiz_layout(b):
+    """SINGLE source of truth for quiz option-box geometry, in 1920x1080 px.
+    Shared by s_quiz (drawing) and build_episode2/cues.json (interactive
+    click-hotspots) so the web buttons sit EXACTLY on the rendered boxes.
+    Returns a list of (x0, y0, x1, y1), one per option. Mirrors the layout in
+    s_quiz: kicker @175, question wrapped from y=250 (FB58, 1.2 leading, max_w
+    1500), +30, then 96px-tall boxes stacked every 120px, 1240px wide, centered."""
+    d = ImageDraw.Draw(Image.new("RGB", (W, H)))
+    lh = int(FB(58).size * 1.2)
+    nlines = len(wrap(d, b.get("q", ""), FB(58), 1500))
+    y = 250 + nlines * lh + 30
+    boxes = []
+    for _ in b.get("options", []):
+        boxes.append((W / 2 - 620, y, W / 2 + 620, y + 96))
+        y += 120
+    return boxes
+
+
 def s_quiz(img, b):
     d = ImageDraw.Draw(img)
     tracked_text(d, (W / 2, 175), b.get("kicker", "GUARDIAN CHECK \u00B7 PAUSE AND ANSWER"),
                  FSB(28), GOLD, tracking=8, anchor_center=True)
-    y = draw_wrapped(d, (W / 2, 250), b.get("q", ""), FB(58), INK, 1500, 1.2, center=True)
-    y += 30
+    draw_wrapped(d, (W / 2, 250), b.get("q", ""), FB(58), INK, 1500, 1.2, center=True)
     ans = b.get("answer", -1)
+    boxes = quiz_layout(b)
     for i, opt in enumerate(b.get("options", [])):
+        x0, y0, x1, y1 = boxes[i]
         letter = chr(65 + i)
         correct = (i == ans) and b.get("reveal")
         col = MINT if correct else CYAN
-        box = [W / 2 - 620, y, W / 2 + 620, y + 96]
-        neon_rrect(img, box, 16, col, width=2 if not correct else 4,
+        neon_rrect(img, [x0, y0, x1, y1], 16, col, width=2 if not correct else 4,
                    fill=(18, 40, 36, 240) if correct else (16, 22, 52, 235))
         dd = ImageDraw.Draw(img)
-        dd.text((W / 2 - 560, y + 24), letter, font=FB(48), fill=col)
-        draw_fit(dd, (W / 2 - 470, y + 30), opt, FSB, 40, INK, 980)
+        dd.text((x0 + 60, y0 + 24), letter, font=FB(48), fill=col)
+        draw_fit(dd, (x0 + 150, y0 + 30), opt, FSB, 40, INK, 980)
         if correct:
-            cxp, cyp = W / 2 + 545, y + 48
+            cxp, cyp = x1 - 75, y0 + 48
             dd.line([(cxp, cyp), (cxp + 16, cyp + 20), (cxp + 48, cyp - 24)],
                     fill=MINT, width=9, joint="curve")
-        y += 120
     return img
 
 

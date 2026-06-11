@@ -375,8 +375,14 @@ def assemble(spec_path, limit=None):
             r_start, r_dur, _ = add_clip(rbeat, i * 10 + 1, [["VEGA", reveal_text]],
                                          max(REVEAL_HOLD, 4.5), static=True)
             sfx_cues.append((r_start + 0.02, "chime", -12))
+            # normalized (fraction-of-frame) geometry of each on-screen option box, so the
+            # web player can place transparent click-hotspots EXACTLY over the rendered boxes.
+            _bx = scene.quiz_layout(qbeat)
+            opt_rects = [[round(x0 / scene.W, 5), round(y0 / scene.H, 5),
+                          round((x1 - x0) / scene.W, 5), round((y1 - y0) / scene.H, 5)]
+                         for (x0, y0, x1, y1) in _bx]
             quiz_cues.append({"n": qn, "q": beat.get("q", ""), "options": opts,
-                              "answer": ans, "why": why,
+                              "answer": ans, "why": why, "opt_rects": opt_rects,
                               "t_question": round(q_start, 2),
                               "t_quiz": round(q_start + q_narr, 2),
                               "t_reveal": round(r_start, 2),

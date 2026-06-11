@@ -33,15 +33,16 @@ a{color:var(--cy);text-decoration:none}
 .overlay.show{display:flex}
 .overlay .qk{letter-spacing:.25em;color:var(--go);font-weight:700;font-size:clamp(11px,1.4vw,16px)}
 .overlay .q{font-size:clamp(18px,2.6vw,34px);font-weight:700;text-align:center;margin:.4em 0 .7em;max-width:1000px}
-.opts{display:flex;flex-direction:column;gap:10px;width:min(820px,92%)}
-.opt{display:flex;gap:14px;align-items:center;padding:clamp(10px,1.4vw,16px) 18px;border-radius:12px;border:1px solid #2a3257;background:#121937;color:var(--ink);font-size:clamp(14px,1.7vw,20px);cursor:pointer;text-align:left;transition:.12s}
-.opt:hover{border-color:var(--cy);transform:translateY(-1px)}
-.opt .L{font-weight:800;color:var(--cy);min-width:24px}
-.opt.ok{border-color:var(--mint);background:#10312b}.opt.ok .L{color:var(--mint)}
-.opt.no{border-color:var(--mg);background:#311022}.opt.no .L{color:var(--mg)}
-.opt[disabled]{cursor:default}
-.fb{margin-top:14px;font-size:clamp(14px,1.8vw,20px);min-height:1.4em}
-.fb .good{color:var(--mint)}.fb .bad{color:var(--mg)}
+/* interactive quiz: transparent click-hotspots laid exactly over the video's option boxes */
+.qhot{position:absolute;inset:0;display:none;z-index:3}
+.qhot.show{display:block}
+.qhot .hot{position:absolute;border:2px solid transparent;border-radius:12px;background:transparent;cursor:pointer;padding:0;margin:0;-webkit-appearance:none;appearance:none;outline:none;transition:border-color .12s,box-shadow .12s,background-color .12s}
+.qhot .hot:hover,.qhot .hot:focus-visible{border-color:var(--cy);box-shadow:0 0 16px rgba(56,225,255,.55),inset 0 0 22px rgba(56,225,255,.12)}
+.qhot .hot.ok{border-color:var(--mint);box-shadow:0 0 18px rgba(94,234,212,.6),inset 0 0 26px rgba(94,234,212,.18)}
+.qhot .hot.no{border-color:var(--mg);box-shadow:0 0 18px rgba(255,60,172,.5),inset 0 0 26px rgba(255,60,172,.15)}
+.qhot.locked .hot{cursor:default}
+.qhot.waiting .hot{animation:hotpulse 1.15s ease-in-out infinite}
+@keyframes hotpulse{0%,100%{border-color:rgba(56,225,255,.35);box-shadow:0 0 0 rgba(56,225,255,0)}50%{border-color:var(--cy);box-shadow:0 0 16px rgba(56,225,255,.5),inset 0 0 18px rgba(56,225,255,.10)}}
 .cont{margin-top:12px;background:var(--cy);color:#04121a;font-weight:700;border:0;border-radius:10px;padding:11px 26px;font-size:16px;cursor:pointer;display:none}
 .cont.show{display:inline-block}
 .meta{display:flex;align-items:baseline;gap:12px;margin:14px 2px 2px}
@@ -64,7 +65,10 @@ a{color:var(--cy);text-decoration:none}
 .overlay .ghost:hover{border-color:var(--cy)}
 .nxcount{color:var(--mut);font-size:14px;margin-top:16px;min-height:1.2em}
 .overlay.soft{background:rgba(6,9,24,.45);backdrop-filter:blur(1.5px)}
-.ovhint{margin-top:14px;color:var(--cy);font-size:15px;min-height:1.3em;letter-spacing:.04em}
+/* quiz status sits BELOW the video so it never covers the burned-in subtitles */
+.qstatus{min-height:0;margin:0 2px;color:var(--cy);font-size:14px;letter-spacing:.03em}
+.qstatus.show{min-height:1.5em;margin:10px 2px 0}
+.qstatus .good{color:var(--mint);font-weight:600}.qstatus .bad{color:var(--mg);font-weight:600}
 </style></head><body>
 <div class="top">
   <span class="logo">CYBER CITADEL</span><span class="sub">Interactive course · NIST SP 800-53r5 &amp; the RMF</span>
@@ -78,13 +82,9 @@ a{color:var(--cy);text-decoration:none}
   <main class="main">
     <div class="stage">
       <video id="vid" controls preload="metadata" crossorigin="anonymous"></video>
-      <div class="overlay" id="ov">
-        <div class="qk" id="ovk">GUARDIAN CHECK · PICK YOUR ANSWER</div>
-        <div class="q" id="ovq"></div>
-        <div class="opts" id="ovopts"></div>
-        <div class="fb" id="ovfb"></div>
-        <div class="ovhint" id="ovhint"></div>
-      </div>
+      <!-- interactive quiz: transparent click-hotspots laid EXACTLY over the video's own
+           rendered option boxes (no blur), so the burned-in subtitles stay readable. -->
+      <div class="qhot" id="qhot" aria-hidden="true"></div>
       <div class="overlay nx" id="nx">
         <div class="qk" id="nxk">UP NEXT</div>
         <div class="q" id="nxtitle"></div>
@@ -96,6 +96,7 @@ a{color:var(--cy);text-decoration:none}
         <div class="nxcount" id="nxcount"></div>
       </div>
     </div>
+    <div class="qstatus" id="qstatus" role="status" aria-live="polite"></div>
     <div class="meta"><h2 id="eptitle">—</h2><span class="fam" id="epfam"></span></div>
     <p class="syn" id="epsyn"></p>
     <div class="speedbar">
@@ -211,7 +212,7 @@ vid.addEventListener('timeupdate',()=>{
   if(activeQuiz){
     const q=activeQuiz;
     // reached the "lock in" point without answering THIS view -> pause and wait
-    if(!responded && t>=q.t_quiz-0.05 && !vid.paused){ vid.pause(); setHint('\u23F8  Pick an answer to continue'); }
+    if(!responded && t>=q.t_quiz-0.05 && !vid.paused){ vid.pause(); setWaiting(); }
     if(t>=q.t_resume-0.05) closeQuiz();
     return;
   }
@@ -252,32 +253,36 @@ function showComplete(){
 }
 function openQuiz(q){
   activeQuiz=q; responded=false;
-  $('#ovk').textContent='GUARDIAN CHECK \u00B7 PICK YOUR ANSWER';
-  $('#ovq').textContent=q.q;
-  const o=$('#ovopts'); o.innerHTML=''; $('#ovfb').innerHTML=''; setHint('');
-  q.options.forEach((opt,i)=>{
-    const b=document.createElement('button'); b.className='opt';
-    b.innerHTML=`<span class="L">${String.fromCharCode(65+i)}</span><span>${opt}</span>`;
-    b.onclick=()=>pick(q,i,o); o.appendChild(b);
+  const host=$('#qhot'); host.innerHTML=''; host.classList.remove('locked','waiting');
+  // a transparent, clickable button placed EXACTLY over each rendered option box.
+  // Live from the moment the boxes appear; hover/focus draws an outline + pointer cursor.
+  (q.opt_rects||[]).forEach((r,i)=>{
+    const b=document.createElement('button'); b.type='button'; b.className='hot';
+    b.style.left=(r[0]*100)+'%'; b.style.top=(r[1]*100)+'%';
+    b.style.width=(r[2]*100)+'%'; b.style.height=(r[3]*100)+'%';
+    b.setAttribute('aria-label','Answer '+String.fromCharCode(65+i)+(q.options&&q.options[i]?': '+q.options[i]:''));
+    b.onclick=()=>pick(q,i);
+    host.appendChild(b);
   });
-  $('#ov').classList.add('show','soft');     // 'soft' = translucent so the video plays/visible behind
+  host.classList.add('show'); setStatus('');
 }
-function pick(q,i,o){
+function pick(q,i){
   if(responded) return;
   responded=true;
   const right=i===q.answer;
   if(!ansStore[cur.id]) ansStore[cur.id]={};
   if(ansStore[cur.id][q.n]===undefined){ ansStore[cur.id][q.n]=right; answered.add(q.n); saveScore(); }
-  [...o.children].forEach((c,j)=>{c.disabled=true; if(j===q.answer)c.classList.add('ok'); else if(j===i)c.classList.add('no');});
-  $('#ovfb').innerHTML=right?'<span class="good">\u2713 Correct!</span>':'<span class="bad">Not quite \u2014 the answer is '+String.fromCharCode(65+q.answer)+'.</span>';
-  setHint('\u25B6  Resuming\u2026');
+  const host=$('#qhot'); host.classList.remove('waiting'); host.classList.add('locked');
+  [...host.children].forEach((c,j)=>{ if(j===q.answer)c.classList.add('ok'); else if(j===i)c.classList.add('no'); });
+  setStatus(right?'<span class="good">\u2713 Correct!</span>':'<span class="bad">Not quite \u2014 the answer is '+String.fromCharCode(65+q.answer)+'.</span>');
   // answered: skip ahead to the reveal narration (if we hadn't reached it) and keep playing
   if(q.t_reveal!=null && vid.currentTime<q.t_reveal-0.1){ vid.currentTime=q.t_reveal; }
   vid.play().catch(()=>{});
 }
-function closeQuiz(){ activeQuiz=null; responded=false; $('#ov').classList.remove('show','soft'); setHint(''); }
-function setHint(s){ const h=$('#ovhint'); if(h) h.textContent=s||''; }
-function hideOverlay(){ $('#ov').classList.remove('show','soft'); setHint(''); }
+function closeQuiz(){ activeQuiz=null; responded=false; const h=$('#qhot'); h.classList.remove('show','waiting','locked'); h.innerHTML=''; setStatus(''); }
+function setWaiting(){ if(activeQuiz&&!responded){ $('#qhot').classList.add('waiting'); setStatus('\u23F8  Pick an answer above to continue \u2014 the video is paused.'); } }
+function setStatus(s){ const el=$('#qstatus'); if(!el)return; el.innerHTML=s||''; el.classList.toggle('show',!!s); }
+function hideOverlay(){ closeQuiz(); }
 init();
 </script>
 </body></html>

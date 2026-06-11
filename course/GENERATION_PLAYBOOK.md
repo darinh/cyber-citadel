@@ -655,6 +655,26 @@ well below that, and color grading / HUD / audio mastering raise polish but NOT 
 ---
 
 ## 14. Changelog of learnings
+- **2026-06 — quiz UX: transparent click-hotspots laid EXACTLY over the video's own option
+  boxes (no blur over the burned-in subtitles).** The user wanted the interactive answers to be
+  *just the buttons* — clickable regions sitting precisely on the boxes the video already renders,
+  with a hover outline + pointer cursor — instead of a full-screen translucent/blurred panel that
+  covered the captions. Implementation: `scene.quiz_layout(beat)` is now the **single source of
+  truth** for option-box geometry (kicker@175, question wrapped from y=250 FB58/1.2/max1500, +30,
+  then 96px boxes every 120px, 1240px wide, centered); `s_quiz` draws from it (pixel-identical, so
+  **no re-render needed**) and `build_episode2` emits **normalized `opt_rects`** (`[x,y,w,h]` as
+  fractions of 1920x1080) into each `cues.json` quiz cue. `watch.html` replaced `#ov` (the blur
+  panel) with `#qhot`, a transparent layer of `.hot` buttons positioned by `opt_rects` as
+  percentages of the 16:9 stage (the video fills the stage with no letterbox, so % maps 1:1 to the
+  frame). Hover/focus draws a cyan outline + glow; a per-view answer tints the picked box mint/red
+  and highlights the correct one; the lock-in pause now pulses the hotspots and shows a status line
+  **below** the stage (never over the captions). Hotspots are live from `t_question` (the moment the
+  boxes appear), not just at lock-in. The 30 existing cues were back-filled by recomputing
+  `opt_rects` from each cue's own `q`+`options` (same `quiz_layout`), so the feature shipped without
+  re-rendering any mp4. Added Playwright tests: hotspots **align within 1.5%** of the rendered boxes,
+  the layer is **transparent with no backdrop blur**, and options are **clickable the moment they
+  appear**. 51/51 across Chromium/Firefox/WebKit. Lesson: to overlay interactive UI on rendered
+  video, export the renderer's geometry into the cue file — never re-derive font metrics in JS.
 - **2026-06 — interactive quiz never showed for returning viewers (root cause) + a regression
   gate + a WebKit test-harness nudge.** The user reported repeatedly that "the interactive test is
   never displayed." Root cause in `watch.html`: the `timeupdate` open loop gated on
