@@ -652,6 +652,21 @@ well below that, and color grading / HUD / audio mastering raise polish but NOT 
 ---
 
 ## 14. Changelog of learnings
+- **2026-06 — reusable SKILLS library + work-item backlog + web-player upgrades.** Captured the
+  pipeline as discoverable **skills** in `.copilot/skills/` (screenplay-review, accuracy-verification,
+  base-avatar-creation, avatar-expression-variants, tts-narration, music-bed, video-assembly,
+  quiz-and-reference, course-production orchestrator), junctioned into `~/.copilot/skills/` for
+  local discovery and committed so they travel with the repo (instructions point agents there).
+  Durable backlog now lives in **GitHub issues** (labels skill/pipeline/content/web); agents run
+  `gh issue list` for work. Web player (`watch.html`): added **playback-speed** control
+  (persisted, pitch-preserved, keyboard, re-applied per source load), **sidebar chapter list**
+  with `m:ss` markers under the active episode, and **poster thumbnails** (`tools/make_posters.py`,
+  no more black screens). Established a reusable **Playwright cross-browser test harness**
+  (`tools/webtest`, Chromium/Firefox/WebKit, range-capable static server) — chose Playwright over
+  Puppeteer specifically for real WebKit (pitch-preservation is engine-dependent); 30/30 green.
+  Also kicked off a 3-LLM **screenplay-review council** over all 13 transcripts — confirmed the
+  EP00 "exist" echo and found a systematic NOVA-as-learner slip (she drops control IDs/history
+  before they're taught) to fix in the scripts.
 - **2026-06 — THE mux bug (root cause of the "still fucked up audio") + final-mp4 verification.**
   Despite all upstream audio being clean (per-line clips, beat WAVs, `narr.wav`, and even an
   isolated audio-only mix ALL transcribed perfectly), the SHIPPED mp4 dropped ~2.8 s of speech at

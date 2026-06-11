@@ -29,3 +29,8 @@ test-results/
 playwright-report/
 .playwright/
 
+
+# Agent scratch dumps
+all_scripts*.txt
+course/all_scripts*.txt
+course/extract*.py
