@@ -1,0 +1,12 @@
+{
+  "name": "cyber-citadel-webtest",
+  "private": true,
+  "description": "Cross-browser UI tests for the Cyber Citadel web player (watch.html / index.html).",
+  "scripts": {
+    "test": "playwright test --config tools/webtest/playwright.config.js",
+    "test:install": "playwright install chromium firefox webkit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}

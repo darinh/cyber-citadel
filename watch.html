@@ -20,6 +20,12 @@ a{color:var(--cy);text-decoration:none}
 .ep .n{font-family:Consolas,monospace;color:var(--cy);font-weight:700;min-width:34px}
 .ep .t{font-size:15px}.ep .f{font-size:12px;color:var(--go);font-family:Consolas,monospace}
 .ep .chk{margin-left:auto;color:var(--mint)}
+.epchaps{margin:2px 6px 10px 38px;display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--line);padding-left:8px}
+.epchap{display:flex;gap:9px;align-items:baseline;padding:5px 8px;border-radius:8px;cursor:pointer;color:var(--mut);font-size:13px;border:1px solid transparent}
+.epchap:hover{background:#121937;border-color:var(--line);color:var(--ink)}
+.epchap.cur{color:var(--ink)}.epchap.cur .ct{color:var(--go)}
+.epchap .ct{font-family:Consolas,monospace;color:var(--cy);font-size:12px;min-width:36px;text-align:right}
+.epchap .cl{flex:1}
 .main{padding:18px 22px;max-width:1180px}
 .stage{position:relative;background:#05071a;border:1px solid var(--line);border-radius:14px;overflow:hidden;aspect-ratio:16/9}
 .stage video{width:100%;height:100%;display:block;background:#05071a}
@@ -42,6 +48,12 @@ a{color:var(--cy);text-decoration:none}
 .meta h2{margin:0;font-size:24px}.meta .fam{color:var(--go);font-family:Consolas,monospace}
 .syn{color:var(--mut);margin:.3em 2px 0}
 .chaps{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.speedbar{display:flex;align-items:center;gap:8px;margin:14px 2px 0;flex-wrap:wrap}
+.speedbar .splbl{font-size:12px;letter-spacing:.18em;color:var(--mut)}
+.spbtn{font-size:13px;background:#121937;border:1px solid var(--line);border-radius:20px;padding:5px 12px;cursor:pointer;color:var(--mut);font-family:Consolas,monospace}
+.spbtn:hover{border-color:var(--cy);color:var(--ink)}
+.spbtn.on{border-color:var(--cy);background:#13224a;color:var(--cy);font-weight:700}
+.speedbar .sphint{font-size:12px;color:var(--mut);margin-left:auto}
 .chip{font-size:12px;background:#121937;border:1px solid var(--line);border-radius:20px;padding:5px 12px;cursor:pointer;color:var(--mut)}
 .chip:hover{border-color:var(--cy);color:var(--ink)}
 .links{margin:18px 2px;color:var(--mut);font-size:14px}
@@ -84,6 +96,11 @@ a{color:var(--cy);text-decoration:none}
     </div>
     <div class="meta"><h2 id="eptitle">—</h2><span class="fam" id="epfam"></span></div>
     <p class="syn" id="epsyn"></p>
+    <div class="speedbar">
+      <span class="splbl">SPEED</span>
+      <div class="spbtns" id="spbtns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      <span class="sphint">keys: <b>&lt;</b> slower · <b>&gt;</b> faster · <b>0</b> reset</span>
+    </div>
     <div class="chaps" id="chaps"></div>
     <p class="note">The video pauses at each quiz so you can answer — take your time. Your score is tracked across the course and saved in this browser.</p>
   </main>
@@ -103,10 +120,40 @@ function killTracks(){try{const t=vid.textTracks||[];for(let i=0;i<t.length;i++)
 vid.addEventListener('loadedmetadata',killTracks);
 vid.addEventListener('play',killTracks);
 
+// --- playback speed (persists across episodes; playbackRate resets on src load) ---
+const SPEEDS=[0.75,1,1.25,1.5,1.75,2];
+let speed=parseFloat(localStorage.getItem('cc_speed')||'1')||1;
+function applySpeed(){
+  try{vid.preservesPitch=vid.mozPreservesPitch=vid.webkitPreservesPitch=true;}catch(e){}
+  vid.playbackRate=speed;
+  document.querySelectorAll('#spbtns .spbtn').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.s)===speed));
+}
+function setSpeed(s){ speed=Math.min(2,Math.max(0.5,Math.round(s*100)/100)); localStorage.setItem('cc_speed',speed); applySpeed(); }
+function buildSpeed(){
+  const w=$('#spbtns'); w.innerHTML='';
+  SPEEDS.forEach(s=>{ const b=document.createElement('button'); b.className='spbtn'; b.dataset.s=s;
+    b.textContent=(s===1?'1×':s+'×'); b.onclick=()=>setSpeed(s); w.appendChild(b); });
+  applySpeed();
+}
+// re-apply whenever a new episode source loads (playbackRate would otherwise reset to 1)
+vid.addEventListener('loadedmetadata',applySpeed);
+vid.addEventListener('seeked',highlightChap);   // keep sidebar chapter highlight in sync when scrubbing
+vid.addEventListener('ratechange',()=>{ // keep UI in sync if the browser's native menu changes it
+  if(Math.abs(vid.playbackRate-speed)>0.001){ speed=vid.playbackRate; localStorage.setItem('cc_speed',speed);
+    document.querySelectorAll('#spbtns .spbtn').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.s)===speed)); }
+});
+document.addEventListener('keydown',e=>{
+  if(/input|textarea|select/i.test((e.target.tagName||'')))return;
+  const i=SPEEDS.indexOf(SPEEDS.reduce((p,c)=>Math.abs(c-speed)<Math.abs(p-speed)?c:p,1));
+  if(e.key==='>'||e.key==='.'){ setSpeed(SPEEDS[Math.min(SPEEDS.length-1,i+1)]); e.preventDefault(); }
+  else if(e.key==='<'||e.key===','){ setSpeed(SPEEDS[Math.max(0,i-1)]); e.preventDefault(); }
+  else if(e.key==='0'){ setSpeed(1); e.preventDefault(); }
+});
+
 async function init(){
   try{ manifest=await (await fetch('course/episodes/manifest.json',{cache:'no-store'})).json(); }
   catch(e){ $('#eplist').innerHTML='<p style="color:var(--mut)">No manifest found.</p>'; return; }
-  saveScore(); renderList(); selectEp(manifest[0]);
+  saveScore(); renderList(); buildSpeed(); selectEp(manifest[0]);
 }
 function renderList(){
   $('#eplist').innerHTML='';
@@ -115,17 +162,37 @@ function renderList(){
     d.dataset.id=ep.id;
     d.innerHTML=`<span class="n">${ep.num}</span><div><div class="t">${ep.title}</div><div class="f">${ep.families||''}</div></div><span class="chk">${done.has(ep.id)?'✓':''}</span>`;
     d.onclick=()=>selectEp(ep); $('#eplist').appendChild(d);
+    // under the ACTIVE episode, list its chapters with time-markers (e.g. 1:04)
+    if(cur&&cur.id===ep.id&&cues&&(cues.chapters||[]).length){
+      const wrap=document.createElement('div'); wrap.className='epchaps'; wrap.id='navchaps';
+      cues.chapters.forEach((ch,ci)=>{
+        const r=document.createElement('div'); r.className='epchap'; r.dataset.t=ch.t;
+        r.innerHTML=`<span class="ct">${fmtTime(ch.t)}</span><span class="cl">${ch.title}</span>`;
+        r.onclick=()=>{ activeQuiz=null; hideOverlay(); vid.currentTime=ch.t; vid.play().catch(()=>{}); };
+        wrap.appendChild(r);
+      });
+      $('#eplist').appendChild(wrap);
+    }
   });
+  highlightChap();
+}
+function fmtTime(s){ s=Math.max(0,Math.round(s)); const m=Math.floor(s/60); return m+':'+String(s%60).padStart(2,'0'); }
+function highlightChap(){
+  const rows=document.querySelectorAll('#navchaps .epchap'); if(!rows.length||!cues) return;
+  const t=vid.currentTime; let idx=-1;
+  (cues.chapters||[]).forEach((ch,i)=>{ if(t>=ch.t-0.25) idx=i; });
+  rows.forEach((r,i)=>r.classList.toggle('cur',i===idx));
 }
 async function selectEp(ep){
   cur=ep; cues=null; activeQuiz=null; hideOverlay(); clearNext();
   answered=new Set(Object.keys(ansStore[ep.id]||{}).map(Number));
   document.querySelectorAll('.ep').forEach(e=>e.classList.toggle('active',e.dataset.id===ep.id));
+  vid.poster=ep.poster||(ep.video?ep.video.replace(/\.mp4$/,'.jpg'):'');
   vid.src=ep.video; vid.load();
   $('#eptitle').textContent=ep.title; $('#epfam').textContent=ep.families||'';
   $('#epsyn').textContent=ep.synopsis||'';
   try{ cues=await (await fetch(ep.cues,{cache:'no-store'})).json(); }catch(e){ cues={quizzes:[],chapters:[]}; }
-  renderChaps();
+  renderChaps(); renderList();
 }
 function renderChaps(){
   const c=$('#chaps'); c.innerHTML='';
@@ -136,6 +203,7 @@ function renderChaps(){
 }
 vid.addEventListener('timeupdate',()=>{
   if(!cues||activeQuiz) return;
+  highlightChap();
   for(const q of cues.quizzes||[]){
     const tq=(q.t_quiz!=null?q.t_quiz:q.t_question);
     if(!answered.has(q.n) && vid.currentTime>=tq-0.05 && vid.currentTime<q.t_reveal-0.2){ openQuiz(q); break; }

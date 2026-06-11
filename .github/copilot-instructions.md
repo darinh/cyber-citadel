@@ -13,7 +13,17 @@ autonomously; review plans + artifacts with a **council of multiple agents and L
   render architecture**. Read before producing/regenerating anything.
 - `course/AUTHORING_NEW_COURSE.md` — operator's manual for reusing this engine on a **different
   topic** (pipeline, step-by-step, and the episode-spec/scene-type field contract).
+- `.copilot/skills/` — **reusable skills** for each pipeline capability (screenplay review,
+  avatars, TTS, music, video assembly, quizzes/reference, accuracy). Prefer invoking the
+  relevant skill over re-deriving steps from context; keep skills current as you learn.
 - Session plan: `~/.copilot/session-state/<id>/plan.md`.
+
+## Work items / backlog (check this for what to do)
+Durable work is tracked as **GitHub issues** in `darinh/cyber-citadel`. At the start of a work
+session (and when looking for the next task), run `gh issue list --state open` and pick up items
+by label: **skill** (build a reusable skill), **pipeline** (production tooling), **content**
+(script/dialogue/accuracy), **web** (player/site). Reference the issue number in commits and
+close issues (`gh issue close N`) when the work ships. Don't keep the backlog only in chat/context.
 
 ## Keep the playbook current (do not skip)
 Whenever you discover a non-obvious technique, fix a painful bug, settle a creative/voice/

@@ -23,3 +23,9 @@ tools/music_assets/
 course/audio/*.wav
 course/audio/*.mp3
 # NOTE: course/episodes/*.mp4 + .srt/.vtt ARE committed so GitHub Pages can serve them.
+# Node / Playwright web-test harness (tools/webtest is committed; deps + outputs are not)
+node_modules/
+test-results/
+playwright-report/
+.playwright/
+

@@ -6,6 +6,7 @@
   "families": "Orientation",
   "synopsis": "What 800-53 is, why it exists, how to read a control, why baselines moved to 800-53B, and where it all fits in the RMF.",
   "video": "course/episodes/ep00_the_citadel_awakens.mp4",
+  "poster": "course/episodes/ep00_the_citadel_awakens.jpg",
   "cues": "course/episodes/ep00.cues.json",
   "quizzes": 3
  },
@@ -16,6 +17,7 @@
   "families": "AC · IA · PE",
   "synopsis": "Who gets in, and what they may touch: access control, identity, and physical security.",
   "video": "course/episodes/ep01_the_outer_walls.mp4",
+  "poster": "course/episodes/ep01_the_outer_walls.jpg",
   "cues": "course/episodes/ep01.cues.json",
   "quizzes": 3
  },
@@ -26,6 +28,7 @@
   "families": "AU · SI · IR",
   "synopsis": "See the intruder, keep the system honest, and respond: audit, integrity, incident response.",
   "video": "course/episodes/ep02_the_watchtowers.mp4",
+  "poster": "course/episodes/ep02_the_watchtowers.jpg",
   "cues": "course/episodes/ep02.cues.json",
   "quizzes": 2
  },
@@ -36,6 +39,7 @@
   "families": "AT · PS · PT",
   "synopsis": "People and privacy: awareness training, personnel security, and PII processing & transparency.",
   "video": "course/episodes/ep03_the_keepers_of_the_pact.mp4",
+  "poster": "course/episodes/ep03_the_keepers_of_the_pact.jpg",
   "cues": "course/episodes/ep03.cues.json",
   "quizzes": 2
  },
@@ -46,6 +50,7 @@
   "families": "RA · PL · PM · CA",
   "synopsis": "Govern and assess: risk assessment, planning, program management, and assessment & authorization.",
   "video": "course/episodes/ep04_the_high_council.mp4",
+  "poster": "course/episodes/ep04_the_high_council.jpg",
   "cues": "course/episodes/ep04.cues.json",
   "quizzes": 2
  },
@@ -56,6 +61,7 @@
   "families": "SA · CM · MA · SR",
   "synopsis": "Build, configure, maintain, and source securely, including the supply chain.",
   "video": "course/episodes/ep05_the_forge.mp4",
+  "poster": "course/episodes/ep05_the_forge.jpg",
   "cues": "course/episodes/ep05.cues.json",
   "quizzes": 2
  },
@@ -66,6 +72,7 @@
   "families": "SC · MP · CP",
   "synopsis": "Protect the data and survive disaster: communications protection, media protection, contingency planning.",
   "video": "course/episodes/ep06_the_vaults_and_lifelines.mp4",
+  "poster": "course/episodes/ep06_the_vaults_and_lifelines.jpg",
   "cues": "course/episodes/ep06.cues.json",
   "quizzes": 2
  },
@@ -76,6 +83,7 @@
   "families": "All 20 + RMF",
   "synopsis": "Act I finale: defense in depth, the full RMF at a glance, and how 800-53 gets used in practice.",
   "video": "course/episodes/ep07_siege_night.mp4",
+  "poster": "course/episodes/ep07_siege_night.jpg",
   "cues": "course/episodes/ep07.cues.json",
   "quizzes": 5
  },
@@ -86,6 +94,7 @@
   "families": "Worked Example · Aegis Hospital",
   "synopsis": "One real system walked end to end through the RMF — categorize, select, tailor, implement, assess, authorize, monitor — with a named human cast (System Owner, AO, ISSO, Privacy Officer, Assessor).",
   "video": "course/episodes/ep7b_the_campaign_briefing.mp4",
+  "poster": "course/episodes/ep7b_the_campaign_briefing.jpg",
   "cues": "course/episodes/ep7b.cues.json",
   "quizzes": 0
  },
@@ -96,6 +105,7 @@
   "families": "SP 800-37r2",
   "synopsis": "Act II begins. The 7-step Risk Management Framework and how the NIST document family fits together.",
   "video": "course/episodes/ep08_the_campaign_rmf.mp4",
+  "poster": "course/episodes/ep08_the_campaign_rmf.jpg",
   "cues": "course/episodes/ep08.cues.json",
   "quizzes": 2
  },
@@ -106,6 +116,7 @@
   "families": "FIPS 199/200 · 800-60",
   "synopsis": "Security categorization: rating Confidentiality/Integrity/Availability, the high-water mark, minimum requirements.",
   "video": "course/episodes/ep09_know_your_realm.mp4",
+  "poster": "course/episodes/ep09_know_your_realm.jpg",
   "cues": "course/episodes/ep09.cues.json",
   "quizzes": 2
  },
@@ -116,6 +127,7 @@
   "families": "SP 800-53B",
   "synopsis": "Control baselines (Low 149 / Moderate 287 / High 370 / Privacy 96) and how to tailor them with overlays.",
   "video": "course/episodes/ep10_the_armory_baselines.mp4",
+  "poster": "course/episodes/ep10_the_armory_baselines.jpg",
   "cues": "course/episodes/ep10.cues.json",
   "quizzes": 2
  },
@@ -126,6 +138,7 @@
   "families": "800-53A · 800-137",
   "synopsis": "Assessment methods (examine/interview/test), the SAR and POA&M, authorization (ATO), continuous monitoring.",
   "video": "course/episodes/ep11_the_reckoning.mp4",
+  "poster": "course/episodes/ep11_the_reckoning.jpg",
   "cues": "course/episodes/ep11.cues.json",
   "quizzes": 3
  }

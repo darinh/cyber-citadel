@@ -155,8 +155,11 @@ def build_manifest():
                 nq = len(json.loads(cf.read_text(encoding="utf-8")).get("quizzes", []))
             except Exception:
                 nq = 0
+        pjpg = EPISODES / f"{epid}_{slug}.jpg"
+        poster = f"course/episodes/{epid}_{slug}.jpg" if pjpg.exists() else ""
         eps.append({"id": epid, "num": num, "title": title, "families": fams,
                     "synopsis": syn, "video": f"course/episodes/{epid}_{slug}.mp4",
+                    "poster": poster,
                     "cues": f"course/episodes/{epid}.cues.json", "quizzes": nq})
     (EPISODES / "manifest.json").write_text(json.dumps(eps, indent=1, ensure_ascii=False), encoding="utf-8")
     print("wrote manifest.json |", len(eps), "episodes")
@@ -174,9 +177,11 @@ def build_index(quizzes):
         dur = probe(mp4)
         durtxt = fmt_dur(dur) if dur else "&mdash;"
         rel = f"course/episodes/{epid}_{slug}.mp4"
+        pjpg = EPISODES / f"{epid}_{slug}.jpg"
+        poster = f"course/episodes/{epid}_{slug}.jpg" if pjpg.exists() else ""
         # Captions are baked into the video; do NOT attach a soft subtitle track
         # (it would double up and some players force-show track 1). VTT stays on disk.
-        video = (f'<video controls preload="none" poster="">'
+        video = (f'<video controls preload="none" poster="{poster}">'
                  f'<source src="{rel}" type="video/mp4"></video>') if mp4.exists() else \
                 '<div class="missing">video renders to this folder</div>'
         cards.append(f'''
