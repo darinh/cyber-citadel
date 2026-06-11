@@ -246,6 +246,27 @@ network : "an abstract dark void with a faint constellation of cyan and gold lig
 **license-clean** (piper MIT-ish voices, Kokoro Apache-2.0, Chatterbox = Resemble AI **MIT**).
 Keep the prior engine as a fallback (`CC_TTS` env switch).
 
+**Better-engine evaluation (3-LLM council, 2026-06: gpt-5.5 + gemini-3.1-pro + claude-sonnet-4.6,
+primary-source-verified).** The learner asked repeatedly for a more reliable voice. Findings:
+- **The recurring "fucked up audio" was primarily the MUX BUG (§11.D), not Chatterbox** — fixing
+  the mux removed most of the pain. An engine swap is OPTIONAL future work, not required.
+- **Architecture is what kills word-drops:** autoregressive engines (Chatterbox, XTTS, Fish,
+  Orpheus, Zonos, Dia, Llasa, Higgs) sample tokens and can drop/repeat/garble; **non-autoregressive
+  / flow-matching** engines generate the whole utterance at once and structurally do not.
+- **#1 for reliability — F5-TTS** (NAR flow-matching; MIT *code*; zero-shot clone from a 3–10 s ref;
+  ~2–4 GB VRAM; ~7× realtime on a 4090; native Windows pip; deterministic per seed). **Caveat
+  (verified at source — 2 of 3 LLMs got this WRONG): the pretrained WEIGHTS are CC-BY-NC-4.0**
+  (Emilia dataset) → fine for this personal/non-commercial course, NOT clean if it ever goes commercial.
+- **#1 license-clean — CosyVoice2/3** (Apache-2.0 code+weights; zero-shot clone; strong published
+  WER; repetition-aware sampling + built-in number/symbol normalization). Partly AR, so less
+  bulletproof than F5 but still strong; the production-clean pick if commercial use is possible.
+- **Not viable as cloners:** Kokoro / MeloTTS / Parler (no zero-shot ref-WAV cloning).
+  **Non-commercial weights:** XTTS-v2 (CPML), Fish-Speech, Higgs, Llasa.
+- **Migration cost:** any swap re-clones all 6 voices, re-tunes expressiveness, invalidates the
+  voicecache, and forces a full re-render. The STT-verify gate is engine-agnostic — keep it regardless.
+- **Decision (2026-06):** stay on Chatterbox (mux bug fixed; quality is good). For max reliability
+  later, prototype **F5-TTS** and A/B the historically-hard lines via `verify_episode.py` before migrating.
+
 **Casting matters and is a user decision.** THE ARCHIVIST must be a **young British female**
 (explicit correction after a male render). VEGA uses a **younger male** timbre. Get casting
 signed off before bulk render.
@@ -472,6 +493,30 @@ Treat as a script-review + render checklist. "Mistakes are okay; repeating them 
   always **translate the metaphor back to real-world meaning**; **controls ≥50% of runtime**.
 
 ### D. Audio (see §12 for the architecture that enforces these)
+- **⭐ VERIFY THE FINAL MP4, NOT JUST UPSTREAM CLIPS.** The most expensive mistake this project
+  made: QA'ing per-line clips / beat WAVs / `narr.wav` (ALL clean) while the SHIPPED mp4 dropped
+  ~2–3 s of speech. **Run `tools/verify_episode.py [ep...]` on the delivered mp4** (.venv_tts) — it
+  transcribes the encoded video (large-v3) and sequence-aligns it to the script, failing on any
+  contiguous missing run of *content* words. It is **self-confirming**: number/acronym/letter
+  readback is filtered ("800-53"→"853", spelled numbers, control IDs never false-fail), AND every
+  candidate missing-run is **re-confirmed by re-transcribing just that region** (via the render
+  manifest's per-line start+duration) before it is allowed to fail — because faster-whisper's
+  long-form pass omits short isolated lines that ARE present (confirmed: ep04 "Who sets the
+  strategy…" / ep06 "What is the edge…" flagged by the full pass, both verbatim-present locally).
+  Pass thresholds: `confirmed_missing_run < 4` and `recall ≥ 0.85`. This gate is the LAST line of
+  defense before deploy; all 13 episodes must read `OK`.
+- **⭐ ROOT CAUSE of the recurring "fucked up audio" = a MUX BUG, not the TTS.** Combining the
+  audio mix (`amix` + `sidechaincompress`) and the heavy video graph (`subtitles` + avatar
+  overlays + libx264) in ONE ffmpeg `-filter_complex` made ffmpeg **non-deterministically DROP
+  audio samples at scene boundaries** (a different amount each run; upstream artifacts stayed
+  clean, which is why it hid for so long). FIX (shipped in `build_episode2.py`): **render the
+  mixed audio in its OWN ffmpeg pass → `mix.wav`, then mux the video and map that audio RAW
+  (`-map 1:a`, no audio filter in the video graph).** Rule: never put a non-trivial audio
+  filtergraph and a heavy video filtergraph in the same `-filter_complex`.
+- **STT hallucinates repetition loops.** faster-whisper can emit "a threat is a threat is a
+  threat…" for perfectly clean audio (a decoding-loop artifact). Re-check a suspected loop by
+  **freshly re-extracting just that region** before treating it as a defect. These are EXTRA
+  words, never a drop, so `verify_episode.py` is immune (it only fails on MISSING content).
 - **Why TTS errors happen:** Chatterbox is an **autoregressive, stochastic** neural TTS — it
   samples audio tokens with temperature, so any take can drop/repeat/garble words (like an LLM).
   It destabilizes most on **ALL-CAPS words** (spells them: "HIGH"→"H-I-G-H"), numbers, IDs, and
@@ -535,7 +580,10 @@ course/render/<epid>/
   Per-line WAVs persist under `lines/` for inspection. Bump `RENDER_VER` to force a full rebuild
   when render *logic* changes.
 - Final mux (concat + music duck + SFX + avatars + burned captions + **cinematic grade** +
-  **audio master**) always runs; it's fast relative to synth/scene render.
+  **audio master**) always runs; it's fast relative to synth/scene render. **It is TWO ffmpeg
+  passes:** (A) audio-only filtergraph → `mix.wav`; (B) video-only filtergraph + audio mapped RAW.
+  This decoupling is mandatory — see §11.D (one combined `-filter_complex` drops audio samples).
+  Always run `tools/verify_episode.py` on the result before packaging/deploy.
 
 **Future enhancement (not yet built):** promote the per-line clips to a richer manifest
 (`text_hash`, `stt_recall`, `loudness`, `approved`, `locked`) with a `--regen-line` candidate→
@@ -604,6 +652,21 @@ well below that, and color grading / HUD / audio mastering raise polish but NOT 
 ---
 
 ## 14. Changelog of learnings
+- **2026-06 — THE mux bug (root cause of the "still fucked up audio") + final-mp4 verification.**
+  Despite all upstream audio being clean (per-line clips, beat WAVs, `narr.wav`, and even an
+  isolated audio-only mix ALL transcribed perfectly), the SHIPPED mp4 dropped ~2.8 s of speech at
+  a scene boundary (VEGA's "Picture an organization's information as a walled…"). Bisected it to a
+  **ffmpeg filtergraph bug**: putting the audio mix (`amix`+`sidechaincompress`) and the heavy
+  video graph (`subtitles`+avatar overlays+libx264) in ONE `-filter_complex` **non-deterministically
+  drops audio samples**. FIX: **two-pass mux** — audio-only graph → `mix.wav`, then video graph with
+  audio mapped RAW (`-map 1:a`). Added `tools/verify_episode.py` (transcribe the FINAL mp4, align to
+  script, fail on contiguous missing *content* runs; number/acronym/letter readback filtered). Also
+  learned: **faster-whisper hallucinates repetition loops** ("a threat is a threat is a threat…") on
+  clean audio — re-extract the region to confirm before chasing it. Re-rendered all 13 with the
+  two-pass mux; every episode passes `verify_episode.py`. Lesson: **QA the delivered artifact, not
+  upstream intermediates.** Also ran a **3-LLM council on better TTS engines** (§5): F5-TTS is the
+  most reliable architecture (NAR) but its weights are CC-BY-NC; CosyVoice2/3 is the Apache-clean
+  pick; the recurring pain was the mux, not Chatterbox, so no engine swap was needed.
 - **2025 — full audio QA + self-correcting gate.** Root cause of recurring audio errors: Chatterbox
   is autoregressive/stochastic and garbles ALL-CAPS/numbers/short fragments. Transcribed all 642
   line clips (large-v3) and compared each to the script with **3 LLM agents + a deterministic

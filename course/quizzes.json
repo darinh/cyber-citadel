@@ -277,7 +277,7 @@
  {
   "ep": "10",
   "epTitle": "The Armory: Baselines",
-  "q": "Where do the Low / Moderate / High baselines live?",
+  "q": "Where do the Low, Moderate, and High baselines live?",
   "options": [
    "SP 800-53 (the catalog)",
    "SP 800-53B",

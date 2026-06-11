@@ -430,22 +430,38 @@ def assemble(spec_path, limit=None):
     for sp, s0, e0 in avatar_cues:
         if (AVATAR_DIR / f"{sp}.png").exists():
             speakers.setdefault(sp, []).append((s0, e0))
+    # Avatar input indices: in PASS B the inputs are [0]=video, [1]=mix.wav, then the avatar
+    # PNGs, so overlays reference input index (2 + k).
     av_inputs, av_chain, prev = [], "", "[vb]"
     for k, (sp, wins) in enumerate(speakers.items()):
         av_inputs += ["-loop", "1", "-i", str(AVATAR_DIR / f"{sp}.png")]
         en = "+".join(f"between(t,{s:.2f},{e:.2f})" for s, e in wins)
-        av_chain += f"{prev}[{4 + k}:v]overlay={AV_X}:{AV_Y}:enable='{en}'[av{k}];"
+        av_chain += f"{prev}[{2 + k}:v]overlay={AV_X}:{AV_Y}:enable='{en}'[av{k}];"
         prev = f"[av{k}]"
+
+    # PASS A — mix the final audio in an AUDIO-ONLY filtergraph, then map it RAW into the video
+    # mux (PASS B). CRITICAL: combining this audio graph (amix + sidechaincompress) with the
+    # heavy video graph (avatar overlays + burned subtitles + libx264) in ONE -filter_complex
+    # made ffmpeg NON-DETERMINISTICALLY DROP ~2-3s of speech at scene boundaries — the per-line
+    # clips, beat WAVs and concatenated narr.wav were ALL clean, only the combined mux corrupted
+    # it. Rendering audio separately and mapping it unfiltered fixes this completely. Always QA
+    # the FINAL mp4 (not upstream clips) — see GENERATION_PLAYBOOK §11.D / verify_episode.py.
     audio_fc = (
-        f"[1:a]aresample={MSR},aformat=channel_layouts=stereo[narr];"
-        f"[2:a]aresample={MSR},aformat=channel_layouts=stereo,volume=0.42[mus];"
-        f"[3:a]aformat=channel_layouts=stereo[sfx];"
+        f"[0:a]aresample={MSR},aformat=channel_layouts=stereo[narr];"
+        f"[1:a]aresample={MSR},aformat=channel_layouts=stereo,volume=0.42[mus];"
+        f"[2:a]aformat=channel_layouts=stereo[sfx];"
         f"[narr]asplit=2[narrA][narrSC];"
         f"[mus][narrSC]sidechaincompress=threshold=0.05:ratio=7:attack=5:release=320[mduck];"
         f"[narrA][mduck][sfx]amix=inputs=3:normalize=0:dropout_transition=0[mix];"
         f"[mix]afade=t=in:st=0:d=0.6,afade=t=out:st={T-0.8:.2f}:d=0.8,"
-        f"loudnorm=I=-16:TP=-1.5:LRA=11,alimiter=level_in=1:level_out=1:limit=0.95[a];"
+        f"loudnorm=I=-16:TP=-1.5:LRA=11,alimiter=level_in=1:level_out=1:limit=0.95[a]"
     )
+    run(["ffmpeg", "-y", "-i", "narr.wav", "-i", "music.wav", "-i", "sfx.wav",
+         "-filter_complex", audio_fc, "-map", "[a]", "-t", f"{T:.3f}",
+         "-c:a", "pcm_s16le", "-ar", str(MSR), "-ac", "2", "mix.wav"], cwd=str(bdir))
+
+    # PASS B — video filtergraph ONLY (grade -> avatars -> burned captions); audio is the
+    # pre-mixed mix.wav mapped RAW (no audio filter here, so the video graph cannot corrupt it).
     # cinematic grade applied to the picture BEFORE burning captions (so text stays crisp):
     # gentle contrast/saturation lift, vignette, light sharpen. (Temporal film grain was REMOVED
     # — per-frame noise destroyed H.264 compression, bloating files ~9x past GitHub's 100MB limit.)
@@ -453,8 +469,8 @@ def assemble(spec_path, limit=None):
              "unsharp=5:5:0.30:5:5:0.0")
     video_fc = (f"[0:v]fade=t=in:st=0:d=0.6,fade=t=out:st={T-0.8:.2f}:d=0.8[vb];"
                 + av_chain + f"{prev}{grade}[grd];[grd]subtitles=ep.ass[v]")
-    run(["ffmpeg", "-y", "-i", "video.mp4", "-i", "narr.wav", "-i", "music.wav", "-i", "sfx.wav",
-         *av_inputs, "-filter_complex", audio_fc + video_fc, "-map", "[v]", "-map", "[a]",
+    run(["ffmpeg", "-y", "-i", "video.mp4", "-i", "mix.wav",
+         *av_inputs, "-filter_complex", video_fc, "-map", "[v]", "-map", "1:a",
          "-t", f"{T:.3f}",
          "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p",
          "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(final)], cwd=str(bdir))
