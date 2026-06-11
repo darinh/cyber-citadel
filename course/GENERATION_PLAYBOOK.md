@@ -472,17 +472,24 @@ Treat as a script-review + render checklist. "Mistakes are okay; repeating them 
   always **translate the metaphor back to real-world meaning**; **controls ≥50% of runtime**.
 
 ### D. Audio (see §12 for the architecture that enforces these)
-- **Never ship unaudited audio.** Every rendered line passes an STT recall gate (≥0.85);
-  manual overrides are recorded.
-- **Approved audio is persistent + immutable.** It lives under `course/audio/`, never `_tmp/`;
-  approved/"locked" clips are never silently overwritten. A render with all clips approved
-  invokes **no** TTS.
-- **Final mix passes integrated-loudness + true-peak checks** (add a limiter); **microfade**
-  concat seams; **NULL's processed voice passes the same intelligibility gate** as everyone.
-- **Caption timing derives from real clip timing** (prefer word-level ASR alignment), not the
-  current character-count apportioning (which drifts).
+- **Audio defects here are ACOUSTIC, not word-level — STT word-recall is NOT enough.** STT can
+  confirm every word is present while the clip is acoustically garbled. **Verify clips with
+  acoustic metrics**: echo via autocorrelation peak in the 50–200 ms window (slap-back echo > ~0.28
+  = garbled), and spectral **rolloff** (low = muddy / consonants smeared). Scan every clip:
+  `tools/_tmp/broad_acoustic.py` (FFT autocorr — fast). Real example: NULL's "Crown Data" clip
+  passed STT recall but had echo@95ms=0.37 + rolloff 2517 Hz and sounded broken.
+- **TTS effect chains must not garble speech.** No slap-back echo (the NULL bug was
+  `aecho=...:95:0.34`); keep echo subtle/short; don't over-lowpass (NULL went 4600→7200 Hz).
+  NULL stays deep (pitch 0.84) but intelligible.
+- **Fix one bad clip surgically, don't re-render everything:** `tools/regen_line.py <ep> <clip>`
+  busts that clip's voice cache for a fresh take, invalidates only its beat, and re-muxes the
+  episode. (The beat cache key includes a **voice fingerprint** so a voice/FX change actually
+  re-synths the affected beats instead of silently reusing old audio.)
+- **Never ship unaudited audio.** Every line passes the STT recall gate (≥0.85) AND the acoustic
+  scan; manual overrides recorded. Approved audio persists under `course/render/<ep>/lines/`.
+- **Final mix passes integrated-loudness + true-peak checks** (loudnorm −16 + limiter).
+- **Caption timing** ideally derives from real clip timing (prefer word-level ASR alignment).
 - **Pronunciation fixes go in `preprocess()`/the map**, never ad-hoc misspelling in scripts.
-  Inter-line dead air ≤300 ms unless the silence is scripted.
 
 ### E. Engagement devices (feasible with Pillow + ffmpeg + TTS + SFX)
 NULL reaction cutaways · Citadel integrity meter · per-family guardian sigils/icons ·

@@ -1,201 +1,201 @@
 WEBVTT
 
 1
-00:00:00.350 --> 00:00:02.763
+00:00:00.350 --> 00:00:03.103
 NULL:  Tell me a system doesn't matter - and
 
 2
-00:00:02.763 --> 00:00:05.045
+00:00:03.103 --> 00:00:05.708
 I'll make it the one that ends you.
 
 3
-00:00:05.345 --> 00:00:07.331
+00:00:06.008 --> 00:00:07.994
 VEGA:  So first, Nova, we learn to judge what
 
 4
-00:00:07.331 --> 00:00:08.585
+00:00:07.994 --> 00:00:09.248
 a system is truly worth.
 
 5
-00:00:09.635 --> 00:00:11.968
+00:00:10.298 --> 00:00:12.631
 VEGA:  Before you pick defenses, you must know what
 
 6
-00:00:11.968 --> 00:00:14.195
+00:00:12.631 --> 00:00:14.858
 you're defending, and how much it matters.
 
 7
-00:00:14.495 --> 00:00:17.921
+00:00:15.158 --> 00:00:18.584
 This is categorization, and it begins with a
 
 8
-00:00:17.921 --> 00:00:20.023
+00:00:18.584 --> 00:00:20.686
 federal standard: FIPS 199.
 
 9
-00:00:21.073 --> 00:00:22.735
+00:00:21.736 --> 00:00:23.398
 NOVA:  FIPS? Categorize?
 
 10
-00:00:23.035 --> 00:00:27.248
+00:00:23.698 --> 00:00:27.911
 VEGA:  FIPS - Federal Information Processing Standards, the mandatory
 
 11
-00:00:27.248 --> 00:00:30.373
+00:00:27.911 --> 00:00:31.036
 ones. Categorizing is sizing the stakes for C,
 
 12
-00:00:30.373 --> 00:00:32.615
+00:00:31.036 --> 00:00:33.278
 I, and A - the triad from Episode
 
 13
-00:00:32.615 --> 00:00:32.955
+00:00:33.278 --> 00:00:33.618
 zero.
 
 14
-00:00:34.005 --> 00:00:37.645
+00:00:34.668 --> 00:00:38.308
 VEGA:  FIPS 199 judges a system on three objectives.
 
 15
-00:00:37.945 --> 00:00:42.767
+00:00:38.608 --> 00:00:43.430
 NOVA:  Confidentiality, Integrity, and Availability. The C-I-A triad.
 
 16
-00:00:43.817 --> 00:00:46.636
+00:00:44.480 --> 00:00:47.299
 VEGA:  For each objective, ask: how bad is the
 
 17
-00:00:46.636 --> 00:00:47.937
+00:00:47.299 --> 00:00:48.600
 worst-case impact?
 
 18
-00:00:48.237 --> 00:00:50.117
+00:00:48.900 --> 00:00:50.820
 VEGA:  Low, Moderate, or High.
 
 19
-00:00:54.117 --> 00:00:56.859
+00:00:54.780 --> 00:00:57.522
 NOVA:  So one High pulls the whole system up?
 
 20
-00:00:57.159 --> 00:01:00.268
+00:00:57.822 --> 00:01:00.931
 VEGA:  Exactly. We call it the high-water mark. The
 
 21
-00:01:00.268 --> 00:01:01.399
+00:01:00.931 --> 00:01:02.062
 worst case wins.
 
 22
-00:01:04.417 --> 00:01:07.657
+00:01:05.080 --> 00:01:08.320
 VEGA:  800-60 helps you rate each information type.
 
 23
-00:01:07.957 --> 00:01:11.018
+00:01:08.620 --> 00:01:11.681
 VEGA:  And FIPS 200 sets the floor, and points
 
 24
-00:01:11.018 --> 00:01:12.117
+00:01:11.681 --> 00:01:12.780
 you to 800-53.
 
 25
-00:01:13.167 --> 00:01:16.412
+00:01:13.830 --> 00:01:17.260
 NULL:  Mislabel it low, and you'll guard it like
 
 26
-00:01:16.412 --> 00:01:19.182
+00:01:17.260 --> 00:01:20.188
 nothing. That is where I will live.
 
 27
-00:01:19.482 --> 00:01:22.699
+00:01:20.488 --> 00:01:23.705
 VEGA:  And the catalog has a control for exactly
 
 28
-00:01:22.699 --> 00:01:23.562
+00:01:23.705 --> 00:01:24.568
 this: RA-2.
 
 29
-00:01:23.862 --> 00:01:28.288
+00:01:24.868 --> 00:01:29.294
 ARCHIVIST:  Categorize the system and information it processes, stores,
 
 30
-00:01:28.288 --> 00:01:29.338
+00:01:29.294 --> 00:01:30.344
 and transmits;
 
 31
-00:01:30.388 --> 00:01:34.798
+00:01:31.394 --> 00:01:35.804
 NOVA:  Scenario time. What's the overall category? Pause, and
 
 32
-00:01:34.798 --> 00:01:35.370
+00:01:35.804 --> 00:01:36.376
 answer.
 
 33
-00:01:35.670 --> 00:01:43.865
+00:01:36.676 --> 00:01:44.871
 A system is Confidentiality=Moderate, Integrity=Low, Availability=High. Its category
 
 34
-00:01:43.865 --> 00:01:44.158
+00:01:44.871 --> 00:01:45.164
 is?
 
 35
-00:01:44.458 --> 00:01:48.626
+00:01:45.464 --> 00:01:49.632
 Your options. A. Low. B. Moderate. C. High.
 
 36
-00:01:48.926 --> 00:01:51.828
+00:01:49.932 --> 00:01:52.834
 NOVA:  Pause here and lock in your answer.
 
 37
-00:01:58.878 --> 00:02:01.828
+00:01:59.884 --> 00:02:02.834
 VEGA:  The answer is C. High. Categorization takes the
 
 38
-00:02:01.828 --> 00:02:04.464
+00:02:02.834 --> 00:02:05.470
 high-water mark - the highest of the three
 
 39
-00:02:04.464 --> 00:02:06.158
+00:02:05.470 --> 00:02:07.164
 objectives - so it is High.
 
 40
-00:02:07.208 --> 00:02:10.208
+00:02:08.214 --> 00:02:11.214
 VEGA:  And which standard sets the impact levels themselves?
 
 41
-00:02:10.508 --> 00:02:13.205
+00:02:11.514 --> 00:02:14.211
 Which standard defines the Low / Moderate /
 
 42
-00:02:13.205 --> 00:02:14.396
+00:02:14.211 --> 00:02:15.402
 High impact levels?
 
 43
-00:02:14.696 --> 00:02:21.718
+00:02:15.702 --> 00:02:22.724
 Your options. A. FIPS 199. B. SP 800-53B.
 
 44
-00:02:21.718 --> 00:02:23.944
+00:02:22.724 --> 00:02:24.950
 C. SP 800-37.
 
 45
-00:02:24.244 --> 00:02:27.146
+00:02:25.250 --> 00:02:28.152
 NOVA:  Pause here and lock in your answer.
 
 46
-00:02:34.196 --> 00:02:37.144
+00:02:35.202 --> 00:02:38.150
 VEGA:  The answer is A. FIPS 199. FIPS 199
 
 47
-00:02:37.144 --> 00:02:41.356
+00:02:38.150 --> 00:02:42.362
 defines the Low, Moderate, and High impact levels.
 
 48
-00:02:42.406 --> 00:02:45.063
+00:02:43.412 --> 00:02:46.069
 VEGA:  We know the realm's worth. Now we choose
 
 49
-00:02:45.063 --> 00:02:45.926
+00:02:46.069 --> 00:02:46.932
 its defenses.
 
 50
-00:02:46.226 --> 00:02:50.266
+00:02:47.232 --> 00:02:51.272
 VEGA:  Next: the armory, and the baselines of 800-53B.

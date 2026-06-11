@@ -1,46 +1,46 @@
 {
  "id": "EP07",
  "title": "FINALE",
- "duration": 327.1,
+ "duration": 324.45,
  "chapters": [
   {
    "t": 0.0,
    "title": "Siege Night"
   },
   {
-   "t": 16.96,
+   "t": 15.67,
    "title": "Siege Night"
   },
   {
-   "t": 23.5,
+   "t": 22.2,
    "title": "The City Stands As One"
   },
   {
-   "t": 103.24,
+   "t": 101.65,
    "title": "Guardian Roll Call"
   },
   {
-   "t": 108.27,
+   "t": 106.68,
    "title": "Quiz 1"
   },
   {
-   "t": 145.73,
+   "t": 144.14,
    "title": "Quiz 2"
   },
   {
-   "t": 180.83,
+   "t": 179.24,
    "title": "Quiz 3"
   },
   {
-   "t": 217.29,
+   "t": 215.7,
    "title": "Quiz 4"
   },
   {
-   "t": 253.39,
+   "t": 251.8,
    "title": "Quiz 5"
   },
   {
-   "t": 314.64,
+   "t": 311.99,
    "title": "The Campaign"
   }
  ],
@@ -55,10 +55,10 @@
    ],
    "answer": 1,
    "why": "Identification and Authentication proves identity before access is granted.",
-   "t_question": 108.27,
-   "t_quiz": 129.06,
-   "t_reveal": 135.76,
-   "t_resume": 145.73
+   "t_question": 106.68,
+   "t_quiz": 127.47,
+   "t_reveal": 134.17,
+   "t_resume": 144.14
   },
   {
    "n": 2,
@@ -70,10 +70,10 @@
    ],
    "answer": 1,
    "why": "The baselines live in companion volume 800-53B.",
-   "t_question": 145.73,
-   "t_quiz": 166.4,
-   "t_reveal": 173.1,
-   "t_resume": 180.83
+   "t_question": 144.14,
+   "t_quiz": 164.81,
+   "t_reveal": 171.51,
+   "t_resume": 179.24
   },
   {
    "n": 3,
@@ -85,10 +85,10 @@
    ],
    "answer": 0,
    "why": "CP-9, System Backup, is what brings you back after encryption.",
-   "t_question": 180.83,
-   "t_quiz": 201.82,
-   "t_reveal": 208.52,
-   "t_resume": 217.29
+   "t_question": 179.24,
+   "t_quiz": 200.23,
+   "t_reveal": 206.93,
+   "t_resume": 215.7
   },
   {
    "n": 4,
@@ -100,10 +100,10 @@
    ],
    "answer": 1,
    "why": "SP 800-53A is the assessment companion — it tells you HOW to test controls.",
-   "t_question": 217.29,
-   "t_quiz": 236.72,
-   "t_reveal": 243.42,
-   "t_resume": 253.39
+   "t_question": 215.7,
+   "t_quiz": 235.13,
+   "t_reveal": 241.83,
+   "t_resume": 251.8
   },
   {
    "n": 5,
@@ -115,10 +115,10 @@
    ],
    "answer": 0,
    "why": "CA-6, Authorization, is the official's formal acceptance of risk.",
-   "t_question": 253.39,
-   "t_quiz": 275.26,
-   "t_reveal": 281.96,
-   "t_resume": 291.13
+   "t_question": 251.8,
+   "t_quiz": 273.67,
+   "t_reveal": 280.37,
+   "t_resume": 289.54
   }
  ]
 }

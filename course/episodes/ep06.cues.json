@@ -1,26 +1,26 @@
 {
  "id": "EP06",
  "title": "EP06",
- "duration": 391.79,
+ "duration": 390.02,
  "chapters": [
   {
-   "t": 17.47,
+   "t": 16.65,
    "title": "The Vaults"
   },
   {
-   "t": 29.27,
+   "t": 28.44,
    "title": "The Vaults & Lifelines"
   },
   {
-   "t": 43.23,
+   "t": 42.4,
    "title": "The Vaults & Lifelines"
   },
   {
-   "t": 293.1,
+   "t": 291.2,
    "title": "Quiz 1"
   },
   {
-   "t": 334.08,
+   "t": 332.18,
    "title": "Quiz 2"
   }
  ],
@@ -35,10 +35,10 @@
    ],
    "answer": 0,
    "why": "A clean, tested backup — CP-9 — is what restores you fastest after ransomware.",
-   "t_question": 293.1,
-   "t_quiz": 317.25,
-   "t_reveal": 323.95,
-   "t_resume": 334.08
+   "t_question": 291.2,
+   "t_quiz": 315.35,
+   "t_reveal": 322.05,
+   "t_resume": 332.18
   },
   {
    "n": 2,
@@ -50,10 +50,10 @@
    ],
    "answer": 1,
    "why": "MP-6, Media Sanitization, ensures drives are wiped before disposal or reuse.",
-   "t_question": 334.08,
-   "t_quiz": 355.01,
-   "t_reveal": 361.71,
-   "t_resume": 372.64
+   "t_question": 332.18,
+   "t_quiz": 353.1,
+   "t_reveal": 359.8,
+   "t_resume": 370.73
   }
  ]
 }

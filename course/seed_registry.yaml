@@ -140,7 +140,7 @@ voice:
     VEGA:      { exaggeration: 0.62, cfg_weight: 0.46, temperature: 0.80, ref_note: "younger male timbre" }
     NOVA:      { exaggeration: 0.70, cfg_weight: 0.42, temperature: 0.85, ref_note: "young, eager, most expressive" }
     ARCHIVIST: { exaggeration: 0.38, cfg_weight: 0.58, temperature: 0.72, ref_note: "young British female; calm, measured" }
-    "NULL":     { exaggeration: 0.82, cfg_weight: 0.28, temperature: 0.70, post_pitch: 0.84, ref_note: "ffmpeg rubberband pitch=0.84 deepen + subboost/lowpass menace" }
+    "NULL":     { exaggeration: 0.82, cfg_weight: 0.28, temperature: 0.70, post_pitch: 0.84, ref_note: "deep (rubberband pitch=0.84) + subboost; CLEANED FX: subtle short echo (38ms) + lowpass 7200 for intelligibility (was slap-back 95ms echo + lowpass 4600 which garbled speech)" }
     HERALD:    { exaggeration: 0.58, cfg_weight: 0.46, temperature: 0.80 }
   fallback_piper_voices:                            # tts.py SPEAKER_VOICE (old engine)
     NARRATOR: en_GB-alan-medium

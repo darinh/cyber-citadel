@@ -159,97 +159,97 @@ VEGA:  Tailoring is fitting the kit to the system
 - not an excuse to delete protections.
 
 41
-00:01:45,582 --> 00:01:49,218
+00:01:45,582 --> 00:01:49,117
 NULL:  I look for the one control you wrongly
 
 42
-00:01:49,218 --> 00:01:50,557
+00:01:49,117 --> 00:01:50,420
 tailored away.
 
 43
-00:01:50,857 --> 00:01:53,401
+00:01:50,720 --> 00:01:53,264
 VEGA:  Which is why every change is justified and
 
 44
-00:01:53,401 --> 00:01:56,065
+00:01:53,264 --> 00:01:55,928
 written down - we drop wireless only because
 
 45
-00:01:56,065 --> 00:01:57,337
+00:01:55,928 --> 00:01:57,200
 this system has none.
 
 46
-00:01:58,387 --> 00:02:01,564
+00:01:58,250 --> 00:02:01,427
 VEGA:  Now Raj's team puts the controls to work.
 
 47
-00:02:01,564 --> 00:02:04,587
+00:02:01,427 --> 00:02:04,450
 The catalog says WHAT; they choose HOW.
 
 48
-00:02:04,887 --> 00:02:07,709
+00:02:04,750 --> 00:02:07,572
 NOVA:  Same requirement, many possible tools.
 
 49
-00:02:08,759 --> 00:02:11,814
+00:02:08,622 --> 00:02:11,677
 VEGA:  An outside assessor checks the work three ways:
 
 50
-00:02:11,814 --> 00:02:13,439
+00:02:11,677 --> 00:02:13,302
 examine, interview, test.
 
 51
-00:02:13,739 --> 00:02:17,050
+00:02:13,602 --> 00:02:16,913
 NOVA:  Selecting a control isn't proof it works. Assessment
 
 52
-00:02:17,050 --> 00:02:17,241
+00:02:16,913 --> 00:02:17,104
 is.
 
 53
-00:02:19,059 --> 00:02:21,561
+00:02:18,922 --> 00:02:21,424
 NOVA:  What about the weaknesses the assessor found?
 
 54
-00:02:21,861 --> 00:02:24,696
+00:02:21,724 --> 00:02:24,559
 VEGA:  The risk that remains - residual risk. The
 
 55
-00:02:24,696 --> 00:02:27,261
+00:02:24,559 --> 00:02:27,124
 CIO weighs it before anyone goes live.
 
 56
-00:02:28,311 --> 00:02:31,636
+00:02:28,174 --> 00:02:31,499
 VEGA:  The CIO signs the authorization to operate. Then
 
 57
-00:02:31,636 --> 00:02:33,991
+00:02:31,499 --> 00:02:33,854
 the watch begins - and never ends.
 
 58
-00:02:34,291 --> 00:02:37,564
+00:02:34,154 --> 00:02:37,222
 NULL:  Cute - a checklist against me? I live
 
 59
-00:02:37,564 --> 00:02:40,306
+00:02:37,222 --> 00:02:39,792
 in the gaps between your steps.
 
 60
-00:02:41,356 --> 00:02:43,921
+00:02:40,842 --> 00:02:43,407
 NOVA:  I just watched a whole system get secured,
 
 61
-00:02:43,921 --> 00:02:44,898
+00:02:43,407 --> 00:02:44,384
 start to finish.
 
 62
-00:02:45,198 --> 00:02:47,421
+00:02:44,684 --> 00:02:46,907
 VEGA:  You did. Now we'll slow down and learn
 
 63
-00:02:47,421 --> 00:02:49,644
+00:02:46,907 --> 00:02:49,130
 each step in depth - starting with the
 
 64
-00:02:49,644 --> 00:02:50,638
+00:02:49,130 --> 00:02:50,124
 framework itself.

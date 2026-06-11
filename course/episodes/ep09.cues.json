@@ -1,18 +1,18 @@
 {
  "id": "EP09",
  "title": "EP09",
- "duration": 170.97,
+ "duration": 171.97,
  "chapters": [
   {
-   "t": 9.29,
+   "t": 9.95,
    "title": "Know Your Realm"
   },
   {
-   "t": 90.04,
+   "t": 91.04,
    "title": "Quiz 1"
   },
   {
-   "t": 126.86,
+   "t": 127.86,
    "title": "Quiz 2"
   }
  ],
@@ -27,10 +27,10 @@
    ],
    "answer": 2,
    "why": "Categorization takes the high-water mark — the highest of the three objectives — so it is High.",
-   "t_question": 90.04,
-   "t_quiz": 111.83,
-   "t_reveal": 118.53,
-   "t_resume": 126.86
+   "t_question": 91.04,
+   "t_quiz": 112.83,
+   "t_reveal": 119.53,
+   "t_resume": 127.86
   },
   {
    "n": 2,
@@ -42,10 +42,10 @@
    ],
    "answer": 0,
    "why": "FIPS 199 defines the Low, Moderate, and High impact levels.",
-   "t_question": 126.86,
-   "t_quiz": 147.15,
-   "t_reveal": 153.85,
-   "t_resume": 162.06
+   "t_question": 127.86,
+   "t_quiz": 148.15,
+   "t_reveal": 154.85,
+   "t_resume": 163.06
   }
  ]
 }

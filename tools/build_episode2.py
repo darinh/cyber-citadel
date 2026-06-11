@@ -300,8 +300,13 @@ def assemble(spec_path, limit=None):
         sc = beat["scene"]
         fade_in = sc in ("title", "section")
         vis = {k: v for k, v in beat.items() if k != "say"}     # visual-only fields
+        # voice fingerprint: re-synth a beat when a speaker's voice settings/effects change,
+        # not just when text changes (otherwise a voice fix silently reuses the old audio).
+        _cast = getattr(tts, "CAST", {})
+        _fx = getattr(tts, "EFFECTS", {})
+        vfp = [(s, _cast.get(s), _fx.get(s)) for s, _ in lines]
         bkey = _sha(RENDER_VER, json.dumps(vis, sort_keys=True, ensure_ascii=False),
-                    [(s, t) for s, t in lines], round(min_s, 3), round(extra_tail, 3),
+                    [(s, t) for s, t in lines], vfp, round(min_s, 3), round(extra_tail, 3),
                     idx, bool(static), countdown, fade_in)
         used_keys.add(str(idx))
         clip = rdir / f"b{idx:03d}.mp4"

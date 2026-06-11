@@ -1,279 +1,279 @@
 1
-00:00:00,350 --> 00:00:04,424
+00:00:00,350 --> 00:00:04,303
 NULL:  Rush the sign-off, bury the findings. That is
 
 2
-00:00:04,424 --> 00:00:06,325
+00:00:04,303 --> 00:00:06,148
 the door I love best.
 
 3
-00:00:06,625 --> 00:00:09,746
+00:00:06,448 --> 00:00:09,569
 VEGA:  Tonight, the reckoning - prove the controls work,
 
 4
-00:00:09,746 --> 00:00:11,465
+00:00:09,569 --> 00:00:11,288
 then decide with eyes open.
 
 5
-00:00:12,515 --> 00:00:14,996
+00:00:12,338 --> 00:00:14,819
 VEGA:  The walls are built. But a defense you
 
 6
-00:00:14,996 --> 00:00:16,955
+00:00:14,819 --> 00:00:16,778
 haven't tested is only a hope.
 
 7
-00:00:17,255 --> 00:00:21,706
+00:00:17,078 --> 00:00:21,529
 Now: assessment, authorization, and the watch that never
 
 8
-00:00:21,706 --> 00:00:22,103
+00:00:21,529 --> 00:00:21,926
 ends.
 
 9
-00:00:23,153 --> 00:00:26,393
+00:00:22,976 --> 00:00:26,216
 VEGA:  800-53A gives assessors three methods.
 
 10
-00:00:26,693 --> 00:00:30,008
+00:00:26,516 --> 00:00:29,831
 NOVA:  Examine the evidence, interview the people, and test
 
 11
-00:00:30,008 --> 00:00:31,155
+00:00:29,831 --> 00:00:30,978
 the system itself.
 
 12
-00:00:32,205 --> 00:00:34,746
+00:00:32,028 --> 00:00:34,569
 VEGA:  The findings become a report, and every gap
 
 13
-00:00:34,746 --> 00:00:36,165
+00:00:34,569 --> 00:00:35,988
 gets a plan to close it.
 
 14
-00:00:40,805 --> 00:00:43,772
+00:00:40,628 --> 00:00:43,595
 VEGA:  Every step leaves a document. Together, they let
 
 15
-00:00:43,772 --> 00:00:45,565
+00:00:43,595 --> 00:00:45,388
 a leader make an honest call.
 
 16
-00:00:45,865 --> 00:00:50,567
+00:00:45,688 --> 00:00:50,390
 NOVA:  Assess, report, plan, package, authorize.
 
 17
-00:00:51,617 --> 00:00:55,097
+00:00:51,440 --> 00:00:54,920
 VEGA:  The catalog control behind all this is CA-2.
 
 18
-00:00:55,397 --> 00:00:58,786
+00:00:55,220 --> 00:00:58,609
 ARCHIVIST:  Select the appropriate assessor or assessment team for
 
 19
-00:00:58,786 --> 00:01:01,233
+00:00:58,609 --> 00:01:01,056
 the type of assessment to be conducted;
 
 20
-00:01:02,283 --> 00:01:04,605
+00:01:02,106 --> 00:01:04,428
 NOVA:  So someone has to own the risk and
 
 21
-00:01:04,605 --> 00:01:05,425
+00:01:04,428 --> 00:01:05,248
 sign for it?
 
 22
-00:01:05,725 --> 00:01:09,069
+00:01:05,548 --> 00:01:08,892
 VEGA:  Yes. The authorizing official grants the ATO, and
 
 23
-00:01:09,069 --> 00:01:10,365
+00:01:08,892 --> 00:01:10,188
 owns that decision.
 
 24
-00:01:10,665 --> 00:01:14,160
+00:01:10,488 --> 00:01:13,526
 NULL:  A signature... still won't stop me.
 
 25
-00:01:15,210 --> 00:01:18,330
+00:01:14,576 --> 00:01:17,696
 VEGA:  Which is why the final step never ends:
 
 26
-00:01:18,330 --> 00:01:20,570
+00:01:17,696 --> 00:01:19,936
 CA-7, continuous monitoring.
 
 27
-00:01:20,870 --> 00:01:24,240
+00:01:20,236 --> 00:01:23,606
 VEGA:  SP 800-137 is the playbook for that ongoing
 
 28
-00:01:24,240 --> 00:01:24,710
+00:01:23,606 --> 00:01:24,076
 watch.
 
 29
-00:01:25,760 --> 00:01:29,657
+00:01:25,126 --> 00:01:29,023
 NOVA:  Final stretch. Name the three assessment methods. Pause,
 
 30
-00:01:29,657 --> 00:01:30,422
+00:01:29,023 --> 00:01:29,788
 and answer.
 
 31
-00:01:30,722 --> 00:01:34,506
+00:01:30,088 --> 00:01:33,872
 What are the three assessment methods in SP
 
 32
-00:01:34,506 --> 00:01:35,210
+00:01:33,872 --> 00:01:34,576
 800-53A?
 
 33
-00:01:35,510 --> 00:01:40,541
+00:01:34,876 --> 00:01:39,907
 Your options. A. Scan, Patch, Report. B. Examine,
 
 34
-00:01:40,541 --> 00:01:44,238
+00:01:39,907 --> 00:01:43,604
 Interview, Test. C. Plan, Do, Check.
 
 35
-00:01:44,538 --> 00:01:47,440
+00:01:43,904 --> 00:01:46,806
 NOVA:  Pause here and lock in your answer.
 
 36
-00:01:54,490 --> 00:01:58,138
+00:01:53,856 --> 00:01:57,504
 VEGA:  The answer is B. Examine, Interview, Test. SP
 
 37
-00:01:58,138 --> 00:02:03,165
+00:01:57,504 --> 00:02:02,531
 800-53A uses three assessment methods: examine, interview, and
 
 38
-00:02:03,165 --> 00:02:03,570
+00:02:02,531 --> 00:02:02,936
 test.
 
 39
-00:02:04,620 --> 00:02:07,251
+00:02:03,986 --> 00:02:06,617
 VEGA:  And the decision that lets the system go
 
 40
-00:02:07,251 --> 00:02:07,580
+00:02:06,617 --> 00:02:06,946
 live?
 
 41
-00:02:07,880 --> 00:02:11,454
+00:02:07,246 --> 00:02:10,820
 A senior official accepts the residual risk and
 
 42
-00:02:11,454 --> 00:02:14,648
+00:02:10,820 --> 00:02:14,014
 lets the system run. That decision is the?
 
 43
-00:02:14,948 --> 00:02:20,123
+00:02:14,314 --> 00:02:19,489
 Your options. A. POA&M. B. ATO (Authorization to
 
 44
-00:02:20,123 --> 00:02:21,956
+00:02:19,489 --> 00:02:21,322
 Operate). C. SAR.
 
 45
-00:02:22,256 --> 00:02:25,158
+00:02:21,622 --> 00:02:24,524
 NOVA:  Pause here and lock in your answer.
 
 46
-00:02:32,208 --> 00:02:35,418
+00:02:31,574 --> 00:02:34,784
 VEGA:  The answer is B. ATO (Authorization to Operate).
 
 47
-00:02:35,418 --> 00:02:38,696
+00:02:34,784 --> 00:02:38,062
 The official's acceptance of residual risk is the
 
 48
-00:02:38,696 --> 00:02:40,368
+00:02:38,062 --> 00:02:39,734
 Authorization to Operate.
 
 49
-00:02:41,418 --> 00:02:43,123
+00:02:40,784 --> 00:02:42,489
 VEGA:  And where do we track the gaps we
 
 50
-00:02:43,123 --> 00:02:43,898
+00:02:42,489 --> 00:02:43,264
 haven't closed?
 
 51
-00:02:44,198 --> 00:02:47,846
+00:02:43,564 --> 00:02:47,212
 Where are open weaknesses tracked until they're remediated?
 
 52
-00:02:48,146 --> 00:02:52,371
+00:02:47,512 --> 00:02:51,737
 Your options. A. In the SAR. B. In
 
 53
-00:02:52,371 --> 00:02:55,354
+00:02:51,737 --> 00:02:54,720
 a POA&M. C. In FIPS 199.
 
 54
-00:02:55,654 --> 00:02:58,556
+00:02:55,020 --> 00:02:57,922
 NOVA:  Pause here and lock in your answer.
 
 55
-00:03:05,606 --> 00:03:08,362
+00:03:04,972 --> 00:03:07,728
 VEGA:  The answer is B. In a POA&M. Open
 
 56
-00:03:08,362 --> 00:03:12,287
+00:03:07,728 --> 00:03:11,653
 weaknesses are tracked in a POA&M until they're
 
 57
-00:03:12,287 --> 00:03:13,206
+00:03:11,653 --> 00:03:12,572
 remediated.
 
 58
-00:03:14,256 --> 00:03:19,794
+00:03:13,622 --> 00:03:19,160
 VEGA:  Categorize, select, implement, assess, authorize, monitor. You've walked
 
 59
-00:03:19,794 --> 00:03:21,256
+00:03:19,160 --> 00:03:20,622
 the whole campaign.
 
 60
-00:03:21,556 --> 00:03:24,022
+00:03:20,922 --> 00:03:23,388
 NOVA:  From a single control... to a system that's
 
 61
-00:03:24,022 --> 00:03:25,858
+00:03:23,388 --> 00:03:25,224
 authorized and watched for life.
 
 62
-00:03:26,908 --> 00:03:29,470
+00:03:26,274 --> 00:03:28,836
 NOVA:  In Episode zero, I didn't even know what
 
 63
-00:03:29,470 --> 00:03:33,250
+00:03:28,836 --> 00:03:32,616
 eight-hundred fifty-three was. Tonight, I'm signing for it.
 
 64
-00:03:33,550 --> 00:03:36,310
+00:03:32,916 --> 00:03:35,676
 VEGA:  Then sign, Castellan - and keep the watch.
 
 65
-00:03:36,610 --> 00:03:38,865
+00:03:35,976 --> 00:03:38,214
 NULL:  ...until next time.
 
 66
-00:03:39,165 --> 00:03:42,546
+00:03:38,514 --> 00:03:41,895
 NOVA:  There's always a next time. That's the job.
 
 67
-00:03:42,546 --> 00:03:44,747
+00:03:41,895 --> 00:03:44,096
 CA-7 - the watch never ends.
 
 68
-00:03:45,047 --> 00:03:49,500
+00:03:44,396 --> 00:03:48,849
 Episode zero promised: protect it, and you thrive.
 
 69
-00:03:49,500 --> 00:03:53,151
+00:03:48,849 --> 00:03:52,500
 You protected it. Now you never stop. The
 
 70
-00:03:53,151 --> 00:03:56,535
+00:03:52,500 --> 00:03:55,884
 story was ours; the controls are real.

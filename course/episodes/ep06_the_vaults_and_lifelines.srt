@@ -1,499 +1,499 @@
 1
-00:00:00,350 --> 00:00:04,389
+00:00:00,350 --> 00:00:04,008
 NULL:  Every gap, every shortcut, every forgotten door -
 
 2
-00:00:04,389 --> 00:00:06,862
+00:00:04,008 --> 00:00:06,247
 I will find it. And if I can't
 
 3
-00:00:06,862 --> 00:00:09,005
+00:00:06,247 --> 00:00:08,188
 get in, I'll burn it down.
 
 4
-00:00:09,305 --> 00:00:12,000
+00:00:08,488 --> 00:00:11,183
 VEGA:  Not tonight. Seal the roads, guard the vaults,
 
 5
-00:00:12,000 --> 00:00:13,465
+00:00:11,183 --> 00:00:12,648
 and prepare for the dark.
 
 6
-00:00:13,765 --> 00:00:15,667
+00:00:12,948 --> 00:00:14,850
 NOVA:  Prepare for the worst, you mean.
 
 7
-00:00:15,967 --> 00:00:16,767
+00:00:15,150 --> 00:00:15,950
 VEGA:  Always.
 
 8
-00:00:17,817 --> 00:00:20,488
+00:00:17,000 --> 00:00:19,664
 NULL:  If I can't break the walls, I'll snatch
 
 9
-00:00:20,488 --> 00:00:23,228
+00:00:19,664 --> 00:00:22,397
 your secrets in transit, or wait for the
 
 10
-00:00:23,228 --> 00:00:24,392
+00:00:22,397 --> 00:00:23,558
 lights to go out.
 
 11
-00:00:24,692 --> 00:00:27,102
+00:00:23,858 --> 00:00:26,268
 VEGA:  Then we seal the roads, guard the vaults,
 
 12
-00:00:27,102 --> 00:00:28,572
+00:00:26,268 --> 00:00:27,738
 and prepare for the dark.
 
 13
-00:00:29,622 --> 00:00:32,497
+00:00:28,788 --> 00:00:31,663
 VEGA:  Layer six protects the data itself, and keeps
 
 14
-00:00:32,497 --> 00:00:34,542
+00:00:31,663 --> 00:00:33,708
 the city alive through disaster.
 
 15
-00:00:34,842 --> 00:00:38,615
+00:00:34,008 --> 00:00:37,781
 Three families hold the line: System & Communications
 
 16
-00:00:38,615 --> 00:00:42,530
+00:00:37,781 --> 00:00:41,696
 Protection, Media Protection, and Contingency Planning.
 
 17
-00:00:43,580 --> 00:00:45,836
+00:00:42,746 --> 00:00:45,002
 NOVA:  SC, MP, and CP. The warden of the
 
 18
-00:00:45,836 --> 00:00:48,913
+00:00:45,002 --> 00:00:48,079
 roads, the steward of scrolls, and the keeper
 
 19
-00:00:48,913 --> 00:00:49,802
+00:00:48,079 --> 00:00:48,968
 of lifelines.
 
 20
-00:00:50,852 --> 00:00:53,716
+00:00:50,018 --> 00:00:52,882
 VEGA:  The Warden of Walls and Roads, System and
 
 21
-00:00:53,716 --> 00:00:55,532
+00:00:52,882 --> 00:00:54,698
 Communications Protection.
 
 22
-00:00:55,832 --> 00:00:58,689
+00:00:54,998 --> 00:00:57,855
 VEGA:  It fortifies the ramparts and seals the roads
 
 23
-00:00:58,689 --> 00:00:59,832
+00:00:57,855 --> 00:00:58,998
 between districts.
 
 24
-00:01:00,132 --> 00:01:03,631
+00:00:59,298 --> 00:01:02,797
 VEGA:  In reality, that's boundary protection and cryptography -
 
 25
-00:01:03,631 --> 00:01:05,964
+00:01:02,797 --> 00:01:05,130
 guarding data as it moves and where it
 
 26
-00:01:05,964 --> 00:01:06,332
+00:01:05,130 --> 00:01:05,498
 rests.
 
 27
-00:01:07,382 --> 00:01:09,804
+00:01:06,548 --> 00:01:08,970
 NOVA:  What is 'the edge of the system'?
 
 28
-00:01:10,104 --> 00:01:13,145
+00:01:09,270 --> 00:01:12,311
 VEGA:  Draw a line around your computers, data, and
 
 29
-00:01:13,145 --> 00:01:15,841
+00:01:12,311 --> 00:01:15,007
 the people who run them. Inside is your
 
 30
-00:01:15,841 --> 00:01:17,984
+00:01:15,007 --> 00:01:17,150
 system. SC-7 watches that line.
 
 31
-00:01:19,034 --> 00:01:22,464
+00:01:18,200 --> 00:01:21,630
 VEGA:  SC-7, boundary protection, guards the edge of the
 
 32
-00:01:22,464 --> 00:01:22,954
+00:01:21,630 --> 00:01:22,120
 system.
 
 33
-00:01:25,534 --> 00:01:28,178
+00:01:24,700 --> 00:01:27,344
 NOVA:  You keep saying cryptography - what does it
 
 34
-00:01:28,178 --> 00:01:28,916
+00:01:27,344 --> 00:01:28,082
 actually do?
 
 35
-00:01:29,216 --> 00:01:31,803
+00:01:28,382 --> 00:01:30,969
 VEGA:  It locks the data. Encrypt it in transit
 
 36
-00:01:31,803 --> 00:01:34,196
+00:01:30,969 --> 00:01:33,362
 and at rest, and a thief without your
 
 37
-00:01:34,196 --> 00:01:35,296
+00:01:33,362 --> 00:01:34,462
 key gets nothing.
 
 38
-00:01:36,346 --> 00:01:40,001
+00:01:35,512 --> 00:01:37,950
 NULL:  I was listening on that line...
 
 39
-00:01:40,301 --> 00:01:43,114
+00:01:38,250 --> 00:01:41,063
 VEGA:  Then you heard noise. SC-8 protects data in
 
 40
-00:01:43,114 --> 00:01:45,861
+00:01:41,063 --> 00:01:43,810
 transit, often with approved cryptography.
 
 41
-00:01:46,911 --> 00:01:49,733
+00:01:44,860 --> 00:01:47,682
 NOVA:  And the data just sitting in storage?
 
 42
-00:01:50,033 --> 00:01:54,427
+00:01:47,982 --> 00:01:52,376
 VEGA:  SC-28 protects it at rest, often with cryptography
 
 43
-00:01:54,427 --> 00:01:56,273
+00:01:52,376 --> 00:01:54,222
 from SC-12 and SC-13.
 
 44
-00:01:57,323 --> 00:02:00,090
+00:01:55,272 --> 00:01:58,039
 VEGA:  Untrusted traffic meets the boundary, and only the
 
 45
-00:02:00,090 --> 00:02:01,363
+00:01:58,039 --> 00:01:59,312
 allowed passes through.
 
 46
-00:02:01,663 --> 00:02:04,725
+00:01:59,612 --> 00:02:02,674
 NOVA:  Filter at the edge, encrypt across the wire.
 
 47
-00:02:05,775 --> 00:02:09,562
+00:02:03,724 --> 00:02:07,511
 ARCHIVIST:  Monitor and control communications at the external managed
 
 48
-00:02:09,562 --> 00:02:12,435
+00:02:07,511 --> 00:02:10,384
 interfaces to the system and at key internal
 
 49
-00:02:12,435 --> 00:02:14,851
+00:02:10,384 --> 00:02:12,800
 managed interfaces within the system;
 
 50
-00:02:15,901 --> 00:02:18,421
+00:02:13,850 --> 00:02:16,370
 VEGA:  Protect data moving and still.
 
 51
-00:02:26,201 --> 00:02:29,138
+00:02:24,150 --> 00:02:27,087
 VEGA:  The Warden's oath. Filter at the edge; cipher
 
 52
-00:02:29,138 --> 00:02:29,921
+00:02:27,087 --> 00:02:27,870
 on the wire.
 
 53
-00:02:30,971 --> 00:02:33,291
+00:02:28,920 --> 00:02:31,240
 VEGA:  The Steward of Scrolls, Media Protection.
 
 54
-00:02:33,591 --> 00:02:36,653
+00:02:31,540 --> 00:02:34,602
 NOVA:  It guards every scroll, and destroys the ones
 
 55
-00:02:36,653 --> 00:02:37,333
+00:02:34,602 --> 00:02:35,282
 discarded.
 
 56
-00:02:37,633 --> 00:02:40,944
+00:02:35,582 --> 00:02:38,893
 VEGA:  By 'media,' NIST means storage: hard drives, SSDs,
 
 57
-00:02:40,944 --> 00:02:44,255
+00:02:38,893 --> 00:02:42,204
 tapes, USB sticks, even printed paper. MP protects
 
 58
-00:02:44,255 --> 00:02:47,102
+00:02:42,204 --> 00:02:45,051
 them - and wipes them before they're thrown
 
 59
-00:02:47,102 --> 00:02:47,433
+00:02:45,051 --> 00:02:45,382
 away.
 
 60
-00:02:48,483 --> 00:02:53,403
+00:02:46,432 --> 00:02:51,352
 VEGA:  MP-6, media sanitization, ensures deleted really means gone.
 
 61
-00:02:53,703 --> 00:02:56,821
+00:02:51,652 --> 00:02:54,882
 NULL:  Your old backup drive would have told me
 
 62
-00:02:56,821 --> 00:02:57,678
+00:02:54,882 --> 00:02:55,770
 everything.
 
 63
-00:02:58,728 --> 00:03:02,648
+00:02:56,820 --> 00:03:00,740
 VEGA:  And MP-7 controls removable media, the humble USB
 
 64
-00:03:02,648 --> 00:03:03,128
+00:03:00,740 --> 00:03:01,220
 stick.
 
 65
-00:03:05,228 --> 00:03:07,448
+00:03:03,320 --> 00:03:05,540
 VEGA:  One reading tip before the next gold card.
 
 66
-00:03:07,448 --> 00:03:09,668
+00:03:05,540 --> 00:03:07,760
 Notice the brackets in the catalog's text.
 
 67
-00:03:09,968 --> 00:03:12,740
+00:03:08,060 --> 00:03:10,832
 NOVA:  So the brackets are blanks the organization fills
 
 68
-00:03:12,740 --> 00:03:12,910
+00:03:10,832 --> 00:03:11,002
 in?
 
 69
-00:03:13,210 --> 00:03:16,722
+00:03:11,302 --> 00:03:14,814
 VEGA:  Exactly. The requirement is fixed; the value is
 
 70
-00:03:16,722 --> 00:03:17,170
+00:03:14,814 --> 00:03:15,262
 yours.
 
 71
-00:03:18,220 --> 00:03:23,006
+00:03:16,312 --> 00:03:21,098
 ARCHIVIST:  Sanitize [organization-defined system media] prior to disposal, release
 
 72
-00:03:23,006 --> 00:03:26,444
+00:03:21,098 --> 00:03:24,536
 out of organizational control, or release for reuse
 
 73
-00:03:26,444 --> 00:03:31,096
+00:03:24,536 --> 00:03:29,188
 using [organization-defined sanitization techniques and procedures] ;
 
 74
-00:03:32,146 --> 00:03:34,666
+00:03:30,238 --> 00:03:32,758
 VEGA:  Data outlives the device. Wipe it like you
 
 75
-00:03:34,666 --> 00:03:35,146
+00:03:32,758 --> 00:03:33,238
 mean it.
 
 76
-00:03:42,446 --> 00:03:45,279
+00:03:40,538 --> 00:03:43,371
 VEGA:  The Steward's oath. When it's gone, it's gone
 
 77
-00:03:45,279 --> 00:03:45,846
+00:03:43,371 --> 00:03:43,938
 for good.
 
 78
-00:03:46,946 --> 00:03:49,386
+00:03:45,038 --> 00:03:47,478
 VEGA:  The Keeper of Lifelines, Contingency Planning.
 
 79
-00:03:49,686 --> 00:03:51,800
+00:03:47,778 --> 00:03:49,892
 VEGA:  It plans for the day the towers fall,
 
 80
-00:03:51,800 --> 00:03:52,886
+00:03:49,892 --> 00:03:50,978
 and how to rebuild.
 
 81
-00:03:53,186 --> 00:03:56,508
+00:03:51,278 --> 00:03:54,600
 VEGA:  In reality, that's backups, alternate sites, and tested
 
 82
-00:03:56,508 --> 00:03:59,346
+00:03:54,600 --> 00:03:57,438
 plans to recover operations after a disruption.
 
 83
-00:04:00,396 --> 00:04:02,818
+00:03:58,488 --> 00:04:00,910
 NOVA:  What saves us from ransomware?
 
 84
-00:04:03,118 --> 00:04:05,946
+00:04:01,210 --> 00:04:04,038
 VEGA:  CP-9, system backup, a clean copy you can
 
 85
-00:04:05,946 --> 00:04:07,118
+00:04:04,038 --> 00:04:05,210
 actually restore.
 
 86
-00:04:07,418 --> 00:04:09,346
+00:04:05,510 --> 00:04:07,438
 VEGA:  'Clean' is the key word - a backup
 
 87
-00:04:09,346 --> 00:04:12,636
+00:04:07,438 --> 00:04:10,728
 kept offline or unchangeable, where ransomware can't reach
 
 88
-00:04:12,636 --> 00:04:15,017
+00:04:10,728 --> 00:04:13,109
 it. That's what saved the shipping line we
 
 89
-00:04:15,017 --> 00:04:15,698
+00:04:13,109 --> 00:04:13,790
 opened with.
 
 90
-00:04:16,748 --> 00:04:19,348
+00:04:14,840 --> 00:04:17,440
 VEGA:  CP-2 is the plan; CP-4 is the drill
 
 91
-00:04:19,348 --> 00:04:20,908
+00:04:17,440 --> 00:04:19,000
 that proves it works.
 
 92
-00:04:23,248 --> 00:04:27,398
+00:04:21,340 --> 00:04:25,490
 ARCHIVIST:  Conduct backups of user-level information contained in [system
 
 93
-00:04:27,398 --> 00:04:29,004
+00:04:25,490 --> 00:04:27,096
 components] [frequency];
 
 94
-00:04:30,054 --> 00:04:33,494
+00:04:28,146 --> 00:04:31,586
 VEGA:  Survival is planned in advance, never improvised.
 
 95
-00:04:40,354 --> 00:04:42,828
+00:04:38,446 --> 00:04:40,920
 VEGA:  The Keeper's oath. We rehearse the dark, so
 
 96
-00:04:42,828 --> 00:04:43,634
+00:04:40,920 --> 00:04:41,726
 we survive it.
 
 97
-00:04:44,854 --> 00:04:47,974
+00:04:42,946 --> 00:04:46,066
 VEGA:  Prevention buys time. Recovery buys survival.
 
 98
-00:04:53,454 --> 00:04:58,139
+00:04:51,546 --> 00:04:56,231
 NOVA:  Scenario: ransomware hits. What brings you home? Pause,
 
 99
-00:04:58,139 --> 00:04:59,076
+00:04:56,231 --> 00:04:57,168
 and answer.
 
 100
-00:04:59,376 --> 00:05:02,850
+00:04:57,468 --> 00:05:00,942
 Ransomware encrypts your servers. What gets you back
 
 101
-00:05:02,850 --> 00:05:03,384
+00:05:00,942 --> 00:05:01,476
 fastest?
 
 102
-00:05:03,684 --> 00:05:08,557
+00:05:01,776 --> 00:05:06,649
 Your options. A. A clean, tested backup (CP-9).
 
 103
-00:05:08,557 --> 00:05:12,600
+00:05:06,649 --> 00:05:10,692
 B. A firewall rule (SC-7). C. A privacy
 
 104
-00:05:12,600 --> 00:05:14,052
+00:05:10,692 --> 00:05:12,144
 notice (PT-5).
 
 105
-00:05:14,352 --> 00:05:17,254
+00:05:12,444 --> 00:05:15,346
 NOVA:  Pause here and lock in your answer.
 
 106
-00:05:24,304 --> 00:05:27,160
+00:05:22,396 --> 00:05:25,252
 VEGA:  The answer is A. A clean, tested backup
 
 107
-00:05:27,160 --> 00:05:30,016
+00:05:25,252 --> 00:05:28,108
 (CP-9). A clean, tested backup - CP-9 -
 
 108
-00:05:30,016 --> 00:05:33,384
+00:05:28,108 --> 00:05:31,476
 is what restores you fastest after ransomware.
 
 109
-00:05:34,434 --> 00:05:36,749
+00:05:32,526 --> 00:05:34,841
 VEGA:  And the drive that left with its secrets
 
 110
-00:05:36,749 --> 00:05:37,154
+00:05:34,841 --> 00:05:35,246
 intact?
 
 111
-00:05:37,454 --> 00:05:40,315
+00:05:35,546 --> 00:05:38,407
 A surplus hard drive is sold without being
 
 112
-00:05:40,315 --> 00:05:42,222
+00:05:38,407 --> 00:05:40,314
 wiped. Which control failed?
 
 113
-00:05:42,522 --> 00:05:47,694
+00:05:40,614 --> 00:05:45,786
 Your options. A. SC-8 Transmission. B. MP-6 Media
 
 114
-00:05:47,694 --> 00:05:51,810
+00:05:45,786 --> 00:05:49,902
 Sanitization. C. CP-2 Contingency Plan.
 
 115
-00:05:52,110 --> 00:05:55,012
+00:05:50,202 --> 00:05:53,104
 NOVA:  Pause here and lock in your answer.
 
 116
-00:06:02,062 --> 00:06:06,065
+00:06:00,154 --> 00:06:04,157
 VEGA:  The answer is B. MP-6 Media Sanitization. MP-6,
 
 117
-00:06:06,065 --> 00:06:11,175
+00:06:04,157 --> 00:06:09,267
 Media Sanitization, ensures drives are wiped before disposal
 
 118
-00:06:11,175 --> 00:06:11,942
+00:06:09,267 --> 00:06:10,034
 or reuse.
 
 119
-00:06:12,992 --> 00:06:15,809
+00:06:11,084 --> 00:06:13,901
 NOVA:  Notebook: lock the data moving and still -
 
 120
-00:06:15,809 --> 00:06:18,694
+00:06:13,901 --> 00:06:16,786
 and keep a backup the attacker can't touch.
 
 121
-00:06:18,994 --> 00:06:22,412
+00:06:17,086 --> 00:06:20,504
 VEGA:  Data sealed, lifelines ready. The city can take
 
 122
-00:06:22,412 --> 00:06:22,994
+00:06:20,504 --> 00:06:21,086
 a punch.
 
 123
-00:06:23,294 --> 00:06:27,447
+00:06:21,386 --> 00:06:25,666
 NULL:  Then I'll bring everything, all at once. Siege
 
 124
-00:06:27,447 --> 00:06:27,989
+00:06:25,666 --> 00:06:26,224
 night.
 
 125
-00:06:28,289 --> 00:06:31,089
+00:06:26,524 --> 00:06:29,324
 VEGA:  We'll be ready. All twenty guardians, together.
