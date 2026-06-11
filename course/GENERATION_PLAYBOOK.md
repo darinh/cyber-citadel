@@ -669,12 +669,16 @@ well below that, and color grading / HUD / audio mastering raise polish but NOT 
   frame). Hover/focus draws a cyan outline + glow; a per-view answer tints the picked box mint/red
   and highlights the correct one; the lock-in pause now pulses the hotspots and shows a status line
   **below** the stage (never over the captions). Hotspots are live from `t_question` (the moment the
-  boxes appear), not just at lock-in. The 30 existing cues were back-filled by recomputing
+  boxes appear), not just at lock-in. The hotspot corner radius is driven by a `--qhotr` CSS var
+  (a `ResizeObserver` sets it to `stageWidth/120` = the video's 16px-in-1920-frame box radius), so
+  the corners keep matching the video's when the window/video is resized — a fixed `px` radius drifts.
+  The 30 existing cues were back-filled by recomputing
   `opt_rects` from each cue's own `q`+`options` (same `quiz_layout`), so the feature shipped without
   re-rendering any mp4. Added Playwright tests: hotspots **align within 1.5%** of the rendered boxes,
-  the layer is **transparent with no backdrop blur**, and options are **clickable the moment they
-  appear**. 51/51 across Chromium/Firefox/WebKit. Lesson: to overlay interactive UI on rendered
-  video, export the renderer's geometry into the cue file — never re-derive font metrics in JS.
+  the layer is **transparent with no backdrop blur**, options are **clickable the moment they
+  appear**, and the **corner radius rescales** with the stage. 54/54 across Chromium/Firefox/WebKit.
+  Lesson: to overlay interactive UI on rendered video, export the renderer's geometry into the cue
+  file (never re-derive font metrics in JS) and scale fixed-px chrome like the radius to the display.
 - **2026-06 — interactive quiz never showed for returning viewers (root cause) + a regression
   gate + a WebKit test-harness nudge.** The user reported repeatedly that "the interactive test is
   never displayed." Root cause in `watch.html`: the `timeupdate` open loop gated on

@@ -185,6 +185,24 @@ test.describe('interactive quiz (play-in-background)', () => {
     });
   });
 
+  test('hotspot corner radius scales with the stage (tracks the video box on resize)', async ({ page }) => {
+    const q = q1();
+    await reachQuestion(page, q);
+    const read = () => page.evaluate(() => {
+      const s = document.querySelector('.stage'), h = document.querySelector('#qhot .hot');
+      return { r: parseFloat(getComputedStyle(h).borderTopLeftRadius), expected: s.clientWidth / 120 };
+    });
+    await page.setViewportSize({ width: 1600, height: 900 });
+    await page.waitForTimeout(150);
+    const wide = await read();
+    expect(Math.abs(wide.r - wide.expected)).toBeLessThan(1.0);   // radius == video box radius
+    await page.setViewportSize({ width: 700, height: 900 });       // narrow (sidebar collapses)
+    await page.waitForTimeout(150);
+    const narrow = await read();
+    expect(Math.abs(narrow.r - narrow.expected)).toBeLessThan(1.0);
+    expect(Math.abs(narrow.r - wide.r)).toBeGreaterThan(0.5);      // it actually rescaled
+  });
+
   test('quiz STILL displays for a returning user who already answered (regression)', async ({ page }) => {
     const q = q1();
     // simulate prior sessions: every ep00 quiz already answered in localStorage

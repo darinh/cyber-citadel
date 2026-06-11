@@ -36,7 +36,7 @@ a{color:var(--cy);text-decoration:none}
 /* interactive quiz: transparent click-hotspots laid exactly over the video's option boxes */
 .qhot{position:absolute;inset:0;display:none;z-index:3}
 .qhot.show{display:block}
-.qhot .hot{position:absolute;border:2px solid transparent;border-radius:12px;background:transparent;cursor:pointer;padding:0;margin:0;-webkit-appearance:none;appearance:none;outline:none;transition:border-color .12s,box-shadow .12s,background-color .12s}
+.qhot .hot{position:absolute;border:2px solid transparent;border-radius:var(--qhotr,12px);background:transparent;cursor:pointer;padding:0;margin:0;-webkit-appearance:none;appearance:none;outline:none;transition:border-color .12s,box-shadow .12s,background-color .12s}
 .qhot .hot:hover,.qhot .hot:focus-visible{border-color:var(--cy);box-shadow:0 0 16px rgba(56,225,255,.55),inset 0 0 22px rgba(56,225,255,.12)}
 .qhot .hot.ok{border-color:var(--mint);box-shadow:0 0 18px rgba(94,234,212,.6),inset 0 0 26px rgba(94,234,212,.18)}
 .qhot .hot.no{border-color:var(--mg);box-shadow:0 0 18px rgba(255,60,172,.5),inset 0 0 26px rgba(255,60,172,.15)}
@@ -117,6 +117,11 @@ function scoreParts(){let c=0,n=0;for(const ep in ansStore)for(const k in ansSto
 function saveScore(){localStorage.setItem('cc_ans',JSON.stringify(ansStore));const[c,n]=scoreParts();const t=totalQuizzes();$('#score').textContent=c+'/'+n+(t?(' \u00b7 '+t+' total'):'');}
 function resetProgress(){if(!confirm('Reset your score and progress?'))return;for(const k in ansStore)delete ansStore[k];done.clear();localStorage.removeItem('cc_done');saveScore();renderList();}
 const vid=$('#vid');
+// Match the hotspot corner radius to the video's rendered box radius (16px in a 1920px
+// frame => stageWidth/120) so the corners track the video when the window/video resizes.
+const stageEl=document.querySelector('.stage');
+function updateHotR(){ if(stageEl) stageEl.style.setProperty('--qhotr',(stageEl.clientWidth/120).toFixed(2)+'px'); }
+if(stageEl){ if(window.ResizeObserver) new ResizeObserver(updateHotR).observe(stageEl); else window.addEventListener('resize',updateHotR); updateHotR(); }
 // Captions are baked into the videos; keep any soft text track OFF.
 function killTracks(){try{const t=vid.textTracks||[];for(let i=0;i<t.length;i++)t[i].mode='disabled';}catch(e){}}
 vid.addEventListener('loadedmetadata',killTracks);
