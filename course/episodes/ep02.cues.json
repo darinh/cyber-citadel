@@ -1,7 +1,7 @@
 {
  "id": "EP02",
  "title": "EP02",
- "duration": 352.32,
+ "duration": 353.2,
  "chapters": [
   {
    "t": 16.33,
@@ -20,11 +20,11 @@
    "title": "The Watch Catches A Shadow"
   },
   {
-   "t": 261.73,
+   "t": 262.61,
    "title": "Quiz 1"
   },
   {
-   "t": 302.19,
+   "t": 303.07,
    "title": "Quiz 2"
   }
  ],
@@ -39,10 +39,10 @@
    ],
    "answer": 1,
    "why": "AU-9, Protection of Audit Information, keeps an intruder from deleting or altering the logs.",
-   "t_question": 261.73,
-   "t_quiz": 284.72,
-   "t_reveal": 291.42,
-   "t_resume": 302.19
+   "t_question": 262.61,
+   "t_quiz": 285.6,
+   "t_reveal": 292.3,
+   "t_resume": 303.07
   },
   {
    "n": 2,
@@ -54,10 +54,10 @@
    ],
    "answer": 0,
    "why": "Incident Response is the family that detects, contains, and recovers from a breach.",
-   "t_question": 302.19,
-   "t_quiz": 320.36,
-   "t_reveal": 327.06,
-   "t_resume": 336.59
+   "t_question": 303.07,
+   "t_quiz": 321.24,
+   "t_reveal": 327.94,
+   "t_resume": 337.47
   }
  ]
 }
