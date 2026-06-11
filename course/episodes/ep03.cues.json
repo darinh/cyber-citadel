@@ -1,7 +1,7 @@
 {
  "id": "EP03",
  "title": "EP03",
- "duration": 344.98,
+ "duration": 352.86,
  "chapters": [
   {
    "t": 16.93,
@@ -16,11 +16,11 @@
    "title": "The Citadel Map"
   },
   {
-   "t": 244.99,
+   "t": 252.87,
    "title": "Quiz 1"
   },
   {
-   "t": 287.21,
+   "t": 295.09,
    "title": "Quiz 2"
   }
  ],
@@ -35,10 +35,6 @@
    ],
    "answer": 0,
    "why": "PS-4, Personnel Termination, revokes access the moment someone leaves.",
-   "t_question": 244.99,
-   "t_quiz": 270.62,
-   "t_reveal": 277.32,
-   "t_resume": 287.21,
    "opt_rects": [
     [
      0.17708,
@@ -58,7 +54,11 @@
      0.64583,
      0.08889
     ]
-   ]
+   ],
+   "t_question": 252.87,
+   "t_quiz": 278.5,
+   "t_reveal": 285.2,
+   "t_resume": 295.09
   },
   {
    "n": 2,
@@ -70,10 +70,6 @@
    ],
    "answer": 2,
    "why": "PT, PII Processing and Transparency, is the privacy family new in Revision 5.",
-   "t_question": 287.21,
-   "t_quiz": 308.34,
-   "t_reveal": 315.04,
-   "t_resume": 326.89,
    "opt_rects": [
     [
      0.17708,
@@ -93,7 +89,11 @@
      0.64583,
      0.08889
     ]
-   ]
+   ],
+   "t_question": 295.09,
+   "t_quiz": 316.22,
+   "t_reveal": 322.92,
+   "t_resume": 334.77
   }
  ]
 }

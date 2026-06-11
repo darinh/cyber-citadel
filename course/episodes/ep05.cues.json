@@ -1,7 +1,7 @@
 {
  "id": "EP05",
  "title": "EP05",
- "duration": 404.28,
+ "duration": 409.8,
  "chapters": [
   {
    "t": 16.77,
@@ -16,11 +16,11 @@
    "title": "The Citadel Map"
   },
   {
-   "t": 307.49,
+   "t": 313.01,
    "title": "Quiz 1"
   },
   {
-   "t": 347.67,
+   "t": 353.19,
    "title": "Quiz 2"
   }
  ],
@@ -35,10 +35,6 @@
    ],
    "answer": 1,
    "why": "SR-11, Component Authenticity, is aimed at catching counterfeit or tampered parts.",
-   "t_question": 307.49,
-   "t_quiz": 330.64,
-   "t_reveal": 337.34,
-   "t_resume": 347.67,
    "opt_rects": [
     [
      0.17708,
@@ -58,7 +54,11 @@
      0.64583,
      0.08889
     ]
-   ]
+   ],
+   "t_question": 313.01,
+   "t_quiz": 336.16,
+   "t_reveal": 342.86,
+   "t_resume": 353.19
   },
   {
    "n": 2,
@@ -70,10 +70,6 @@
    ],
    "answer": 0,
    "why": "CM-7, Least Functionality, disables the ports, services, and features you don't need.",
-   "t_question": 347.67,
-   "t_quiz": 368.0,
-   "t_reveal": 374.7,
-   "t_resume": 385.15,
    "opt_rects": [
     [
      0.17708,
@@ -93,7 +89,11 @@
      0.64583,
      0.08889
     ]
-   ]
+   ],
+   "t_question": 353.19,
+   "t_quiz": 373.52,
+   "t_reveal": 380.22,
+   "t_resume": 390.67
   }
  ]
 }

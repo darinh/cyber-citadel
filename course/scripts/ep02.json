@@ -172,7 +172,7 @@
    "say": [
     [
      "ARCHIVIST",
-     "Identify the types of events that the system is capable of logging in support of the audit function:"
+     "Identify the types of events that the system is capable of logging in support of the audit function: [event types];"
     ]
    ]
   },

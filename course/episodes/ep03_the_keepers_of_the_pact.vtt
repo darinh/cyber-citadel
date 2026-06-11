@@ -121,289 +121,301 @@ we opened with.
 VEGA:  And AT-3 trains people for their particular role.
 
 31
-00:01:25.192 --> 00:01:29.407
+00:01:25.192 --> 00:01:29.036
 ARCHIVIST:  Provide security and privacy literacy training to system
 
 32
-00:01:29.407 --> 00:01:34.148
-users (including managers, senior executives, and contractors):
+00:01:29.036 --> 00:01:33.565
+users (including managers, senior executives, and contractors): As
 
 33
-00:01:35.198 --> 00:01:37.780
-VEGA:  The cheapest firewall you own is an alert
+00:01:33.565 --> 00:01:36.448
+part of initial training for new users and
 
 34
-00:01:37.780 --> 00:01:38.158
-human.
+00:01:36.448 --> 00:01:39.468
+[organization-defined frequency] thereafter;
 
 35
-00:01:43.798 --> 00:01:46.824
-VEGA:  The Drillmaster's oath. The sharpest blade is an
+00:01:40.518 --> 00:01:43.100
+VEGA:  The cheapest firewall you own is an alert
 
 36
-00:01:46.824 --> 00:01:47.518
-alert mind.
+00:01:43.100 --> 00:01:43.478
+human.
 
 37
-00:01:48.568 --> 00:01:51.128
-VEGA:  The Oathkeeper, Personnel Security.
+00:01:49.118 --> 00:01:52.144
+VEGA:  The Drillmaster's oath. The sharpest blade is an
 
 38
-00:01:51.428 --> 00:01:54.506
-NULL:  Every guard you hire... could be mine.
+00:01:52.144 --> 00:01:52.838
+alert mind.
 
 39
-00:01:54.806 --> 00:01:58.192
-VEGA:  In reality, that's screening people, adjusting access when
+00:01:53.888 --> 00:01:56.448
+VEGA:  The Oathkeeper, Personnel Security.
 
 40
-00:01:58.192 --> 00:02:00.994
-they move or leave, and guarding against insider
+00:01:56.748 --> 00:01:59.826
+NULL:  Every guard you hire... could be mine.
 
 41
-00:02:00.994 --> 00:02:01.286
-risk.
+00:02:00.126 --> 00:02:03.512
+VEGA:  In reality, that's screening people, adjusting access when
 
 42
-00:02:02.336 --> 00:02:05.616
-VEGA:  PS-3 screens people before they're trusted with access.
+00:02:03.512 --> 00:02:06.314
+they move or leave, and guarding against insider
 
 43
-00:02:08.836 --> 00:02:10.818
-NOVA:  And when a guard leaves?
+00:02:06.314 --> 00:02:06.606
+risk.
 
 44
-00:02:11.118 --> 00:02:13.641
-VEGA:  PS-4 reclaims the keys, on the way out
+00:02:07.656 --> 00:02:10.936
+VEGA:  PS-3 screens people before they're trusted with access.
 
 45
-00:02:13.641 --> 00:02:14.238
-the door.
+00:02:14.156 --> 00:02:16.138
+NOVA:  And when a guard leaves?
 
 46
-00:02:15.336 --> 00:02:18.452
-ARCHIVIST:  Upon termination of individual employment:
+00:02:16.438 --> 00:02:18.961
+VEGA:  PS-4 reclaims the keys, on the way out
 
 47
-00:02:19.502 --> 00:02:21.963
-VEGA:  Access should follow the person, and leave when
+00:02:18.961 --> 00:02:19.558
+the door.
 
 48
-00:02:21.963 --> 00:02:22.382
-they do.
+00:02:20.656 --> 00:02:24.930
+ARCHIVIST:  Upon termination of individual employment: Disable system access
 
 49
-00:02:29.802 --> 00:02:32.313
-VEGA:  The Oathkeeper's oath. Trust is earned at the
+00:02:24.930 --> 00:02:26.332
+within [time period];
 
 50
-00:02:32.313 --> 00:02:34.042
-gate, and returned at the door.
+00:02:27.382 --> 00:02:29.843
+VEGA:  Access should follow the person, and leave when
 
 51
-00:02:35.092 --> 00:02:38.950
-VEGA:  The Privacy Herald, P-T, Processing and Transparency of
+00:02:29.843 --> 00:02:30.262
+they do.
 
 52
-00:02:38.950 --> 00:02:39.932
-personal data.
+00:02:37.682 --> 00:02:40.193
+VEGA:  The Oathkeeper's oath. Trust is earned at the
 
 53
-00:02:40.232 --> 00:02:43.249
-NOVA:  Privacy gets its own family now? That must
+00:02:40.193 --> 00:02:41.922
+gate, and returned at the door.
 
 54
-00:02:43.249 --> 00:02:44.254
-be pretty new?
+00:02:42.972 --> 00:02:46.830
+VEGA:  The Privacy Herald, P-T, Processing and Transparency of
 
 55
-00:02:44.554 --> 00:02:48.454
-VEGA:  In reality, that's processing people's personal data lawfully
+00:02:46.830 --> 00:02:47.812
+personal data.
 
 56
-00:02:48.454 --> 00:02:51.139
-and openly - with notice and consent where
+00:02:48.112 --> 00:02:51.129
+NOVA:  Privacy gets its own family now? That must
 
 57
-00:02:51.139 --> 00:02:51.714
-required.
+00:02:51.129 --> 00:02:52.134
+be pretty new?
 
 58
-00:02:52.764 --> 00:02:55.866
-NOVA:  P-I-I keeps coming up.
+00:02:52.434 --> 00:02:56.334
+VEGA:  In reality, that's processing people's personal data lawfully
 
 59
-00:02:56.166 --> 00:02:59.765
-VEGA:  Personally identifiable information - the data that points
+00:02:56.334 --> 00:02:59.019
+and openly - with notice and consent where
 
 60
-00:02:59.765 --> 00:03:02.185
-to a real human being. Privacy is about
+00:02:59.019 --> 00:02:59.594
+required.
 
 61
-00:03:02.185 --> 00:03:04.046
-protecting it, and the person.
+00:03:00.644 --> 00:03:03.746
+NOVA:  P-I-I keeps coming up.
 
 62
-00:03:05.096 --> 00:03:09.276
-VEGA:  PT-2 demands a documented authority to process personal
+00:03:04.046 --> 00:03:07.645
+VEGA:  Personally identifiable information - the data that points
 
 63
-00:03:09.276 --> 00:03:09.656
-data.
+00:03:07.645 --> 00:03:10.065
+to a real human being. Privacy is about
 
 64
-00:03:11.596 --> 00:03:14.653
-VEGA:  And PT-5 gives people honest notice of how
+00:03:10.065 --> 00:03:11.926
+protecting it, and the person.
 
 65
-00:03:14.653 --> 00:03:16.036
-their data is used.
+00:03:12.976 --> 00:03:17.156
+VEGA:  PT-2 demands a documented authority to process personal
 
 66
-00:03:18.096 --> 00:03:21.582
-VEGA:  Authority first, then purpose and notice, then consent
+00:03:17.156 --> 00:03:17.536
+data.
 
 67
-00:03:21.582 --> 00:03:24.616
-where required, and process only as authorized.
+00:03:19.476 --> 00:03:22.533
+VEGA:  And PT-5 gives people honest notice of how
 
 68
-00:03:24.916 --> 00:03:28.080
-NOVA:  So - get permission when it's needed, and
+00:03:22.533 --> 00:03:23.916
+their data is used.
 
 69
-00:03:28.080 --> 00:03:30.858
-be honest about how the data's used?
+00:03:25.976 --> 00:03:29.462
+VEGA:  Authority first, then purpose and notice, then consent
 
 70
-00:03:31.908 --> 00:03:35.730
-ARCHIVIST:  Determine and document the [authority] that permits the
+00:03:29.462 --> 00:03:32.496
+where required, and process only as authorized.
 
 71
-00:03:35.730 --> 00:03:39.344
-[processing] of personally identifiable information;
+00:03:32.796 --> 00:03:35.960
+NOVA:  So - get permission when it's needed, and
 
 72
-00:03:40.394 --> 00:03:44.034
-VEGA:  Security protects the data. Privacy honors the person.
+00:03:35.960 --> 00:03:38.738
+be honest about how the data's used?
 
 73
-00:03:50.694 --> 00:03:53.655
-VEGA:  The Privacy Herald's oath. By what right, for
+00:03:39.788 --> 00:03:43.610
+ARCHIVIST:  Determine and document the [authority] that permits the
 
 74
-00:03:53.655 --> 00:03:55.694
-what purpose, with whose leave?
+00:03:43.610 --> 00:03:47.224
+[processing] of personally identifiable information;
 
 75
-00:03:56.744 --> 00:03:59.455
-VEGA:  Not every control is a firewall. Some are
+00:03:48.274 --> 00:03:51.914
+VEGA:  Security protects the data. Privacy honors the person.
 
 76
-00:03:59.455 --> 00:04:01.504
-a habit, a contract, a promise.
+00:03:58.574 --> 00:04:01.535
+VEGA:  The Privacy Herald's oath. By what right, for
 
 77
-00:04:05.344 --> 00:04:09.310
-NOVA:  Scenario: a leaver kept their access. Which guardian
+00:04:01.535 --> 00:04:03.574
+what purpose, with whose leave?
 
 78
-00:04:09.310 --> 00:04:10.606
-dropped the ball?
+00:04:04.624 --> 00:04:07.335
+VEGA:  Not every control is a firewall. Some are
 
 79
-00:04:10.906 --> 00:04:14.622
-A departing administrator still has their access a
+00:04:07.335 --> 00:04:09.384
+a habit, a contract, a promise.
 
 80
-00:04:14.622 --> 00:04:17.074
-week later. Which control failed?
+00:04:13.224 --> 00:04:17.190
+NOVA:  Scenario: a leaver kept their access. Which guardian
 
 81
-00:04:17.374 --> 00:04:22.874
-Your options. A. PS-4 Personnel Termination. B. AT-2
+00:04:17.190 --> 00:04:18.486
+dropped the ball?
 
 82
-00:04:22.874 --> 00:04:27.422
-Awareness Training. C. PT-5 Privacy Notice.
+00:04:18.786 --> 00:04:22.502
+A departing administrator still has their access a
 
 83
-00:04:27.722 --> 00:04:30.624
-NOVA:  Pause here and lock in your answer.
+00:04:22.502 --> 00:04:24.954
+week later. Which control failed?
 
 84
-00:04:37.674 --> 00:04:41.551
-VEGA:  The answer is A. PS-4 Personnel Termination. PS-4,
+00:04:25.254 --> 00:04:30.754
+Your options. A. PS-4 Personnel Termination. B. AT-2
 
 85
-00:04:41.551 --> 00:04:46.514
-Personnel Termination, revokes access the moment someone leaves.
+00:04:30.754 --> 00:04:35.302
+Awareness Training. C. PT-5 Privacy Notice.
 
 86
-00:04:47.564 --> 00:04:49.940
-VEGA:  And which guardian is the newcomer to the
-
-87
-00:04:49.940 --> 00:04:50.404
-catalog?
-
-88
-00:04:50.704 --> 00:04:53.415
-Which family is new in Revision 5 and
-
-89
-00:04:53.415 --> 00:04:55.832
-governs personal-data processing?
-
-90
-00:04:56.132 --> 00:04:59.963
-Your options. A. AT - Training. B. PS
-
-91
-00:04:59.963 --> 00:05:03.794
-- Personnel. C. PT - PII Processing &
-
-92
-00:05:03.794 --> 00:05:05.140
-Transparency.
-
-93
-00:05:05.440 --> 00:05:08.342
+00:04:35.602 --> 00:04:38.504
 NOVA:  Pause here and lock in your answer.
 
+87
+00:04:45.554 --> 00:04:49.431
+VEGA:  The answer is A. PS-4 Personnel Termination. PS-4,
+
+88
+00:04:49.431 --> 00:04:54.394
+Personnel Termination, revokes access the moment someone leaves.
+
+89
+00:04:55.444 --> 00:04:57.820
+VEGA:  And which guardian is the newcomer to the
+
+90
+00:04:57.820 --> 00:04:58.284
+catalog?
+
+91
+00:04:58.584 --> 00:05:01.295
+Which family is new in Revision 5 and
+
+92
+00:05:01.295 --> 00:05:03.712
+governs personal-data processing?
+
+93
+00:05:04.012 --> 00:05:07.843
+Your options. A. AT - Training. B. PS
+
 94
-00:05:15.392 --> 00:05:18.430
-VEGA:  The answer is C. PT - PII Processing
+00:05:07.843 --> 00:05:11.674
+- Personnel. C. PT - PII Processing &
 
 95
-00:05:18.430 --> 00:05:23.070
-& Transparency. PT, PII Processing and Transparency, is
+00:05:11.674 --> 00:05:13.020
+Transparency.
 
 96
-00:05:23.070 --> 00:05:26.192
-the privacy family new in Revision 5.
+00:05:13.320 --> 00:05:16.222
+NOVA:  Pause here and lock in your answer.
 
 97
-00:05:27.242 --> 00:05:30.414
-NOVA:  Notebook: the strongest controls aren't always technical -
+00:05:23.272 --> 00:05:26.310
+VEGA:  The answer is C. PT - PII Processing
 
 98
-00:05:30.414 --> 00:05:32.984
-sometimes they're just people keeping promises.
+00:05:26.310 --> 00:05:30.950
+& Transparency. PT, PII Processing and Transparency, is
 
 99
-00:05:33.284 --> 00:05:35.924
-VEGA:  People kept, the pact honored.
+00:05:30.950 --> 00:05:34.072
+the privacy family new in Revision 5.
 
 100
-00:05:36.224 --> 00:05:39.676
-NULL:  Then I'll strike where no one is even
+00:05:35.122 --> 00:05:38.294
+NOVA:  Notebook: the strongest controls aren't always technical -
 
 101
-00:05:39.676 --> 00:05:41.542
-looking. Your plans.
+00:05:38.294 --> 00:05:40.864
+sometimes they're just people keeping promises.
 
 102
-00:05:41.842 --> 00:05:44.282
+00:05:41.164 --> 00:05:43.804
+VEGA:  People kept, the pact honored.
+
+103
+00:05:44.104 --> 00:05:47.556
+NULL:  Then I'll strike where no one is even
+
+104
+00:05:47.556 --> 00:05:49.422
+looking. Your plans.
+
+105
+00:05:49.722 --> 00:05:52.162
 VEGA:  Then it's time to meet the High Council.

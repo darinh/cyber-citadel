@@ -305,173 +305,177 @@ VEGA:  And PE-6 watches and logs who comes and
 goes.
 
 77
-00:03:56.220 --> 00:04:01.280
+00:03:56.220 --> 00:04:00.307
 ARCHIVIST:  Enforce physical access authorizations at [entry and exit
 
 78
-00:04:01.280 --> 00:04:02.256
-points] by:
+00:04:00.307 --> 00:04:05.327
+points] by: Verifying individual access authorizations before granting
 
 79
-00:04:03.306 --> 00:04:05.786
-VEGA:  Physical security is security.
+00:04:05.327 --> 00:04:06.976
+access to the facility;
 
 80
-00:04:11.906 --> 00:04:14.407
-VEGA:  And the Wall-Warden's oath. A door is a
+00:04:08.026 --> 00:04:10.506
+VEGA:  Physical security is security.
 
 81
-00:04:14.407 --> 00:04:15.946
-decision - and I decide.
+00:04:16.626 --> 00:04:19.127
+VEGA:  And the Wall-Warden's oath. A door is a
 
 82
-00:04:16.996 --> 00:04:19.314
-VEGA:  Remember the framework? The wall is where you
+00:04:19.127 --> 00:04:20.666
+decision - and I decide.
 
 83
-00:04:19.314 --> 00:04:20.756
-implement what you selected.
+00:04:21.716 --> 00:04:24.034
+VEGA:  Remember the framework? The wall is where you
 
 84
-00:04:21.056 --> 00:04:24.278
-NOVA:  Select from the baseline, implement here, assess later.
+00:04:24.034 --> 00:04:25.476
+implement what you selected.
 
 85
-00:04:25.596 --> 00:04:28.658
-NOVA:  Guardian check. Who proves your identity?
+00:04:25.776 --> 00:04:28.998
+NOVA:  Select from the baseline, implement here, assess later.
 
 86
-00:04:28.958 --> 00:04:32.279
-Which guardian proves you are who you claim,
+00:04:30.316 --> 00:04:33.378
+NOVA:  Guardian check. Who proves your identity?
 
 87
-00:04:32.279 --> 00:04:33.486
-before you pass?
+00:04:33.678 --> 00:04:36.999
+Which guardian proves you are who you claim,
 
 88
-00:04:33.786 --> 00:04:37.619
-Your options. A. AC - Access Control. B.
+00:04:36.999 --> 00:04:38.206
+before you pass?
 
 89
-00:04:37.619 --> 00:04:41.932
-IA - Identification & Authentication. C. PE -
+00:04:38.506 --> 00:04:42.339
+Your options. A. AC - Access Control. B.
 
 90
-00:04:41.932 --> 00:04:42.794
-Physical.
+00:04:42.339 --> 00:04:46.652
+IA - Identification & Authentication. C. PE -
 
 91
-00:04:43.094 --> 00:04:45.996
-NOVA:  Pause here and lock in your answer.
+00:04:46.652 --> 00:04:47.514
+Physical.
 
 92
-00:04:53.046 --> 00:04:55.823
-VEGA:  The answer is B. IA - Identification &
+00:04:47.814 --> 00:04:50.716
+NOVA:  Pause here and lock in your answer.
 
 93
-00:04:55.823 --> 00:05:00.792
-Authentication. Identification and Authentication proves who you are
+00:04:57.766 --> 00:05:00.543
+VEGA:  The answer is B. IA - Identification &
 
 94
-00:05:00.792 --> 00:05:02.326
-before you're let in.
+00:05:00.543 --> 00:05:05.512
+Authentication. Identification and Authentication proves who you are
 
 95
-00:05:03.376 --> 00:05:05.896
-VEGA:  And the rule that limits the blast radius?
+00:05:05.512 --> 00:05:07.046
+before you're let in.
 
 96
-00:05:06.196 --> 00:05:09.148
-'Only the access you truly need' is which
+00:05:08.096 --> 00:05:10.616
+VEGA:  And the rule that limits the blast radius?
 
 97
-00:05:09.148 --> 00:05:09.724
-control?
+00:05:10.916 --> 00:05:13.868
+'Only the access you truly need' is which
 
 98
-00:05:10.024 --> 00:05:15.096
-Your options. A. AC-2 Account Management. B. AC-6
+00:05:13.868 --> 00:05:14.444
+control?
 
 99
-00:05:15.096 --> 00:05:20.272
-Least Privilege. C. IA-5 Authenticator Management.
+00:05:14.744 --> 00:05:19.816
+Your options. A. AC-2 Account Management. B. AC-6
 
 100
-00:05:20.572 --> 00:05:23.474
-NOVA:  Pause here and lock in your answer.
+00:05:19.816 --> 00:05:24.992
+Least Privilege. C. IA-5 Authenticator Management.
 
 101
-00:05:30.524 --> 00:05:33.940
-VEGA:  The answer is B. AC-6 Least Privilege. AC-6,
-
-102
-00:05:33.940 --> 00:05:38.054
-Least Privilege, grants only the access someone truly
-
-103
-00:05:38.054 --> 00:05:39.684
-needs - nothing more.
-
-104
-00:05:40.734 --> 00:05:44.769
-NOVA:  Scenario: someone tailgates into the server room. Whose
-
-105
-00:05:44.769 --> 00:05:45.796
-watch is that?
-
-106
-00:05:46.096 --> 00:05:49.186
-An intruder tailgates through a propped door into
-
-107
-00:05:49.186 --> 00:05:52.024
-the server room. Which family should stop it?
-
-108
-00:05:52.324 --> 00:05:56.327
-Your options. A. PE - Physical. B. AU
-
-109
-00:05:56.327 --> 00:05:59.572
-- Audit. C. SR - Supply Chain.
-
-110
-00:05:59.872 --> 00:06:02.774
+00:05:25.292 --> 00:05:28.194
 NOVA:  Pause here and lock in your answer.
 
+102
+00:05:35.244 --> 00:05:38.660
+VEGA:  The answer is B. AC-6 Least Privilege. AC-6,
+
+103
+00:05:38.660 --> 00:05:42.774
+Least Privilege, grants only the access someone truly
+
+104
+00:05:42.774 --> 00:05:44.404
+needs - nothing more.
+
+105
+00:05:45.454 --> 00:05:49.489
+NOVA:  Scenario: someone tailgates into the server room. Whose
+
+106
+00:05:49.489 --> 00:05:50.516
+watch is that?
+
+107
+00:05:50.816 --> 00:05:53.906
+An intruder tailgates through a propped door into
+
+108
+00:05:53.906 --> 00:05:56.744
+the server room. Which family should stop it?
+
+109
+00:05:57.044 --> 00:06:01.047
+Your options. A. PE - Physical. B. AU
+
+110
+00:06:01.047 --> 00:06:04.292
+- Audit. C. SR - Supply Chain.
+
 111
-00:06:09.824 --> 00:06:12.390
-VEGA:  The answer is A. PE - Physical. Physical
+00:06:04.592 --> 00:06:07.494
+NOVA:  Pause here and lock in your answer.
 
 112
-00:06:12.390 --> 00:06:16.175
-and Environmental Protection stops tailgating into the room
+00:06:14.544 --> 00:06:17.110
+VEGA:  The answer is A. PE - Physical. Physical
 
 113
-00:06:16.175 --> 00:06:16.624
-itself.
+00:06:17.110 --> 00:06:20.895
+and Environmental Protection stops tailgating into the room
 
 114
-00:06:17.674 --> 00:06:21.967
-NOVA:  Notebook: the wall is access, identity, and physical
+00:06:20.895 --> 00:06:21.344
+itself.
 
 115
-00:06:21.967 --> 00:06:23.536
-- working together.
+00:06:22.394 --> 00:06:26.687
+NOVA:  Notebook: the wall is access, identity, and physical
 
 116
-00:06:23.836 --> 00:06:26.996
-VEGA:  Three guardians, one wall. The perimeter holds.
+00:06:26.687 --> 00:06:28.256
+- working together.
 
 117
-00:06:27.296 --> 00:06:29.665
-NULL:  Your gates hold - for now. So I'll
+00:06:28.556 --> 00:06:31.716
+VEGA:  Three guardians, one wall. The perimeter holds.
 
 118
-00:06:29.665 --> 00:06:31.894
-stop knocking, and start hiding.
+00:06:32.016 --> 00:06:34.385
+NULL:  Your gates hold - for now. So I'll
 
 119
-00:06:32.194 --> 00:06:34.994
+00:06:34.385 --> 00:06:36.614
+stop knocking, and start hiding.
+
+120
+00:06:36.914 --> 00:06:39.714
 VEGA:  Then we'll need the watchtowers. Next time.

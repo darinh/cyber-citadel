@@ -113,357 +113,361 @@ VEGA:  SA-22 says replace it, or arrange alternate support.
 Unsupported is risk you must manage.
 
 29
-00:01:21.540 --> 00:01:25.719
+00:01:21.540 --> 00:01:25.788
 ARCHIVIST:  Apply the following systems security and privacy engineering
 
 30
-00:01:25.719 --> 00:01:30.803
+00:01:25.788 --> 00:01:30.957
 principles in the specification, design, development, implementation, and
 
 31
-00:01:30.803 --> 00:01:34.216
-modification of the system and system components:
+00:01:30.957 --> 00:01:35.984
+modification of the system and system components: [organization-defined
 
 32
-00:01:35.266 --> 00:01:37.307
-VEGA:  Trust is built from the first sketch -
+00:01:35.984 --> 00:01:39.736
+systems security and privacy engineering principles].
 
 33
-00:01:37.307 --> 00:01:39.026
-you can't bolt it on at the end.
+00:01:40.786 --> 00:01:42.827
+VEGA:  Trust is built from the first sketch -
 
 34
-00:01:45.566 --> 00:01:49.486
-VEGA:  The Quartermaster's oath. Built in, never sprinkled on.
+00:01:42.827 --> 00:01:44.546
+you can't bolt it on at the end.
 
 35
-00:01:50.536 --> 00:01:53.696
-VEGA:  The Master of Blueprints, Configuration Management.
+00:01:51.086 --> 00:01:55.006
+VEGA:  The Quartermaster's oath. Built in, never sprinkled on.
 
 36
-00:01:53.996 --> 00:01:58.297
-NULL:  One quiet, undocumented change... and I have a
+00:01:56.056 --> 00:01:59.216
+VEGA:  The Master of Blueprints, Configuration Management.
 
 37
-00:01:58.297 --> 00:02:00.354
-door no one remembers.
+00:01:59.516 --> 00:02:03.817
+NULL:  One quiet, undocumented change... and I have a
 
 38
-00:02:00.654 --> 00:02:04.419
-VEGA:  In reality, that's keeping a known, approved configuration
+00:02:03.817 --> 00:02:05.874
+door no one remembers.
 
 39
-00:02:04.419 --> 00:02:07.535
-and controlling every change, so systems stay in
+00:02:06.174 --> 00:02:09.939
+VEGA:  In reality, that's keeping a known, approved configuration
 
 40
-00:02:07.535 --> 00:02:08.574
-a trusted state.
+00:02:09.939 --> 00:02:13.055
+and controlling every change, so systems stay in
 
 41
-00:02:09.624 --> 00:02:12.886
-NOVA:  We already met 'baseline' back in episode zero.
+00:02:13.055 --> 00:02:14.094
+a trusted state.
 
 42
-00:02:13.186 --> 00:02:16.510
-VEGA:  Different baseline. That was the control baseline. CM-2
+00:02:15.144 --> 00:02:18.406
+NOVA:  We already met 'baseline' back in episode zero.
 
 43
-00:02:16.510 --> 00:02:19.291
-is the configuration baseline - drift from it,
+00:02:18.706 --> 00:02:22.030
+VEGA:  Different baseline. That was the control baseline. CM-2
 
 44
-00:02:19.291 --> 00:02:21.346
-and you have a question to answer.
+00:02:22.030 --> 00:02:24.811
+is the configuration baseline - drift from it,
 
 45
-00:02:22.396 --> 00:02:25.357
-VEGA:  CM-2 holds the baseline, the master blueprint of
+00:02:24.811 --> 00:02:26.866
+and you have a question to answer.
 
 46
-00:02:25.357 --> 00:02:26.036
-the system.
+00:02:27.916 --> 00:02:30.877
+VEGA:  CM-2 holds the baseline, the master blueprint of
 
 47
-00:02:28.896 --> 00:02:32.766
-VEGA:  CM-7 is least functionality. Computers talk on numbered
+00:02:30.877 --> 00:02:31.556
+the system.
 
 48
-00:02:32.766 --> 00:02:36.002
-channels - ports - and run background programs
+00:02:34.416 --> 00:02:38.286
+VEGA:  CM-7 is least functionality. Computers talk on numbered
 
 49
-00:02:36.002 --> 00:02:36.776
-- services.
+00:02:38.286 --> 00:02:41.522
+channels - ports - and run background programs
 
 50
-00:02:37.076 --> 00:02:39.400
-NOVA:  And every one you don't need is another
+00:02:41.522 --> 00:02:42.296
+- services.
 
 51
-00:02:39.400 --> 00:02:39.698
-door.
+00:02:42.596 --> 00:02:44.920
+NOVA:  And every one you don't need is another
 
 52
-00:02:39.998 --> 00:02:43.461
-VEGA:  Exactly. CM-7 closes the ports and services you
+00:02:44.920 --> 00:02:45.218
+door.
 
 53
-00:02:43.461 --> 00:02:44.198
-never use.
+00:02:45.518 --> 00:02:48.981
+VEGA:  Exactly. CM-7 closes the ports and services you
 
 54
-00:02:45.248 --> 00:02:49.788
-ARCHIVIST:  Develop, document, and maintain under configuration control, a
+00:02:48.981 --> 00:02:49.718
+never use.
 
 55
-00:02:49.788 --> 00:02:53.084
-current baseline configuration of the system;
+00:02:50.768 --> 00:02:55.308
+ARCHIVIST:  Develop, document, and maintain under configuration control, a
 
 56
-00:02:54.134 --> 00:02:57.214
-VEGA:  A known system is a defensible system.
+00:02:55.308 --> 00:02:58.604
+current baseline configuration of the system;
 
 57
-00:03:04.434 --> 00:03:07.777
-VEGA:  The Blueprint-Master's oath is this. A known system
+00:02:59.654 --> 00:03:02.734
+VEGA:  A known system is a defensible system.
 
 58
-00:03:07.777 --> 00:03:09.154
-is a defended system.
+00:03:09.954 --> 00:03:13.297
+VEGA:  The Blueprint-Master's oath is this. A known system
 
 59
-00:03:10.204 --> 00:03:11.964
-VEGA:  The Smith, Maintenance.
+00:03:13.297 --> 00:03:14.674
+is a defended system.
 
 60
-00:03:12.264 --> 00:03:15.097
-NOVA:  It tends the machinery, and watches who holds
+00:03:15.724 --> 00:03:17.484
+VEGA:  The Smith, Maintenance.
 
 61
-00:03:15.097 --> 00:03:15.726
-the tools.
+00:03:17.784 --> 00:03:20.617
+NOVA:  It tends the machinery, and watches who holds
 
 62
-00:03:16.026 --> 00:03:19.335
-VEGA:  In reality, that's controlled system maintenance - including
+00:03:20.617 --> 00:03:21.246
+the tools.
 
 63
-00:03:19.335 --> 00:03:21.706
-safeguards for remote and third-party work.
+00:03:21.546 --> 00:03:24.855
+VEGA:  In reality, that's controlled system maintenance - including
 
 64
-00:03:22.756 --> 00:03:27.356
-VEGA:  MA-2 controls maintenance, scheduled, approved, and recorded.
+00:03:24.855 --> 00:03:27.226
+safeguards for remote and third-party work.
 
 65
-00:03:29.256 --> 00:03:32.649
-NULL:  Your remote support line… I had such plans
+00:03:28.276 --> 00:03:32.876
+VEGA:  MA-2 controls maintenance, scheduled, approved, and recorded.
 
 66
-00:03:32.649 --> 00:03:33.214
-for it.
+00:03:34.776 --> 00:03:38.169
+NULL:  Your remote support line… I had such plans
 
 67
-00:03:33.514 --> 00:03:37.474
-VEGA:  MA-4 saw to that. Remote maintenance, tightly controlled.
+00:03:38.169 --> 00:03:38.734
+for it.
 
 68
-00:03:38.524 --> 00:03:42.673
-ARCHIVIST:  Schedule, document, and review records of maintenance, repair,
+00:03:39.034 --> 00:03:42.994
+VEGA:  MA-4 saw to that. Remote maintenance, tightly controlled.
 
 69
-00:03:42.673 --> 00:03:46.354
-and replacement on system components in accordance with
+00:03:44.044 --> 00:03:48.193
+ARCHIVIST:  Schedule, document, and review records of maintenance, repair,
 
 70
-00:03:46.354 --> 00:03:51.240
-manufacturer or vendor specifications and/or organizational requirements;
+00:03:48.193 --> 00:03:51.874
+and replacement on system components in accordance with
 
 71
-00:03:52.290 --> 00:03:55.930
-VEGA:  Maintenance is access. Treat it like access.
+00:03:51.874 --> 00:03:56.760
+manufacturer or vendor specifications and/or organizational requirements;
 
 72
-00:04:00.890 --> 00:04:03.518
-VEGA:  The Smith's oath. Every tool is a key,
+00:03:57.810 --> 00:04:01.450
+VEGA:  Maintenance is access. Treat it like access.
 
 73
-00:04:03.518 --> 00:04:04.970
-and I guard the keys.
+00:04:06.410 --> 00:04:09.038
+VEGA:  The Smith's oath. Every tool is a key,
 
 74
-00:04:06.020 --> 00:04:09.731
-VEGA:  The Caravan-Master, Supply Chain Risk Management, new in
+00:04:09.038 --> 00:04:10.490
+and I guard the keys.
 
 75
-00:04:09.731 --> 00:04:10.460
-Revision 5.
+00:04:11.540 --> 00:04:15.251
+VEGA:  The Caravan-Master, Supply Chain Risk Management, new in
 
 76
-00:04:10.760 --> 00:04:12.909
-VEGA:  It guards the roads your supplies travel, all
+00:04:15.251 --> 00:04:15.980
+Revision 5.
 
 77
-00:04:12.909 --> 00:04:13.960
-the way to the source.
+00:04:16.280 --> 00:04:18.429
+VEGA:  It guards the roads your supplies travel, all
 
 78
-00:04:14.260 --> 00:04:17.438
-VEGA:  In reality, that's managing risk from suppliers and
+00:04:18.429 --> 00:04:19.480
+the way to the source.
 
 79
-00:04:17.438 --> 00:04:20.927
-components - the SolarWinds-style attack we opened with,
+00:04:19.780 --> 00:04:22.958
+VEGA:  In reality, that's managing risk from suppliers and
 
 80
-00:04:20.927 --> 00:04:23.980
-where a trusted update carried a hidden backdoor.
+00:04:22.958 --> 00:04:26.447
+components - the SolarWinds-style attack we opened with,
 
 81
-00:04:25.030 --> 00:04:27.372
-NOVA:  How do we trust the parts themselves?
+00:04:26.447 --> 00:04:29.500
+where a trusted update carried a hidden backdoor.
 
 82
-00:04:27.672 --> 00:04:32.472
-VEGA:  SR-11, component authenticity, hunts counterfeits and tampering.
+00:04:30.550 --> 00:04:32.892
+NOVA:  How do we trust the parts themselves?
 
 83
-00:04:33.522 --> 00:04:37.352
-ARCHIVIST:  Develop and implement anti-counterfeit policy and procedures that
+00:04:33.192 --> 00:04:37.992
+VEGA:  SR-11, component authenticity, hunts counterfeits and tampering.
 
 84
-00:04:37.352 --> 00:04:40.357
-include the means to detect and prevent counterfeit
+00:04:39.042 --> 00:04:42.872
+ARCHIVIST:  Develop and implement anti-counterfeit policy and procedures that
 
 85
-00:04:40.357 --> 00:04:42.478
-components from entering the system;
+00:04:42.872 --> 00:04:45.877
+include the means to detect and prevent counterfeit
 
 86
-00:04:43.528 --> 00:04:45.645
-VEGA:  Your security is only as strong as your
+00:04:45.877 --> 00:04:47.998
+components from entering the system;
 
 87
-00:04:45.645 --> 00:04:46.568
-weakest supplier.
+00:04:49.048 --> 00:04:51.165
+VEGA:  Your security is only as strong as your
 
 88
-00:04:53.828 --> 00:04:57.194
-VEGA:  The Caravan-Master's oath. I trust no part I
+00:04:51.165 --> 00:04:52.088
+weakest supplier.
 
 89
-00:04:57.194 --> 00:04:58.188
-cannot trace.
+00:04:59.348 --> 00:05:02.714
+VEGA:  The Caravan-Master's oath. I trust no part I
 
 90
-00:04:59.238 --> 00:05:01.373
-VEGA:  The best breach is the one designed out
+00:05:02.714 --> 00:05:03.708
+cannot trace.
 
 91
-00:05:01.373 --> 00:05:02.358
-before it's built.
+00:05:04.758 --> 00:05:06.893
+VEGA:  The best breach is the one designed out
 
 92
-00:05:07.838 --> 00:05:11.170
-NOVA:  Scenario: a tampered part in the box. Whose
+00:05:06.893 --> 00:05:07.878
+before it's built.
 
 93
-00:05:11.170 --> 00:05:12.100
-job is that?
+00:05:13.358 --> 00:05:16.690
+NOVA:  Scenario: a tampered part in the box. Whose
 
 94
-00:05:12.400 --> 00:05:16.540
-A counterfeit network card arrives pre-tampered. Which control
+00:05:16.690 --> 00:05:17.620
+job is that?
 
 95
-00:05:16.540 --> 00:05:17.608
-should catch it?
+00:05:17.920 --> 00:05:22.060
+A counterfeit network card arrives pre-tampered. Which control
 
 96
-00:05:17.908 --> 00:05:23.158
-Your options. A. CM-2 Baseline Configuration. B. SR-11
+00:05:22.060 --> 00:05:23.128
+should catch it?
 
 97
-00:05:23.158 --> 00:05:27.436
-Component Authenticity. C. MA-2 Maintenance.
+00:05:23.428 --> 00:05:28.678
+Your options. A. CM-2 Baseline Configuration. B. SR-11
 
 98
-00:05:27.736 --> 00:05:30.638
-NOVA:  Pause here and lock in your answer.
+00:05:28.678 --> 00:05:32.956
+Component Authenticity. C. MA-2 Maintenance.
 
 99
-00:05:37.688 --> 00:05:41.561
-VEGA:  The answer is B. SR-11 Component Authenticity. SR-11,
-
-100
-00:05:41.561 --> 00:05:45.872
-Component Authenticity, is aimed at catching counterfeit or
-
-101
-00:05:45.872 --> 00:05:46.968
-tampered parts.
-
-102
-00:05:48.018 --> 00:05:50.138
-VEGA:  And shutting the doors you never use?
-
-103
-00:05:50.438 --> 00:05:55.046
-Disabling unused ports and services is which control?
-
-104
-00:05:55.346 --> 00:06:00.527
-Your options. A. CM-7 Least Functionality. B. SA-22
-
-105
-00:06:00.527 --> 00:06:04.794
-Unsupported Components. C. CM-8 Inventory.
-
-106
-00:06:05.094 --> 00:06:07.996
+00:05:33.256 --> 00:05:36.158
 NOVA:  Pause here and lock in your answer.
 
+100
+00:05:43.208 --> 00:05:47.081
+VEGA:  The answer is B. SR-11 Component Authenticity. SR-11,
+
+101
+00:05:47.081 --> 00:05:51.392
+Component Authenticity, is aimed at catching counterfeit or
+
+102
+00:05:51.392 --> 00:05:52.488
+tampered parts.
+
+103
+00:05:53.538 --> 00:05:55.658
+VEGA:  And shutting the doors you never use?
+
+104
+00:05:55.958 --> 00:06:00.566
+Disabling unused ports and services is which control?
+
+105
+00:06:00.866 --> 00:06:06.047
+Your options. A. CM-7 Least Functionality. B. SA-22
+
+106
+00:06:06.047 --> 00:06:10.314
+Unsupported Components. C. CM-8 Inventory.
+
 107
-00:06:15.046 --> 00:06:18.627
-VEGA:  The answer is A. CM-7 Least Functionality. CM-7,
+00:06:10.614 --> 00:06:13.516
+NOVA:  Pause here and lock in your answer.
 
 108
-00:06:18.627 --> 00:06:23.327
-Least Functionality, disables the ports, services, and features
+00:06:20.566 --> 00:06:24.147
+VEGA:  The answer is A. CM-7 Least Functionality. CM-7,
 
 109
-00:06:23.327 --> 00:06:24.446
-you don't need.
+00:06:24.147 --> 00:06:28.847
+Least Functionality, disables the ports, services, and features
 
 110
-00:06:25.496 --> 00:06:29.191
-NOVA:  Notebook: secure how you build, configure, maintain, and
+00:06:28.847 --> 00:06:29.966
+you don't need.
 
 111
-00:06:29.191 --> 00:06:32.094
-source - the attacker counts on you skipping
+00:06:31.016 --> 00:06:34.711
+NOVA:  Notebook: secure how you build, configure, maintain, and
 
 112
-00:06:32.094 --> 00:06:32.358
-one.
+00:06:34.711 --> 00:06:37.614
+source - the attacker counts on you skipping
 
 113
-00:06:32.658 --> 00:06:35.778
-VEGA:  The forge is hardened, from source to system.
+00:06:37.614 --> 00:06:37.878
+one.
 
 114
-00:06:36.078 --> 00:06:39.284
-NULL:  Then I'll take your secrets in transit, or
+00:06:38.178 --> 00:06:41.298
+VEGA:  The forge is hardened, from source to system.
 
 115
-00:06:39.284 --> 00:06:40.276
-your backups.
+00:06:41.598 --> 00:06:44.804
+NULL:  Then I'll take your secrets in transit, or
 
 116
-00:06:40.576 --> 00:06:42.909
-VEGA:  Then we ride for the Vaults and the
+00:06:44.804 --> 00:06:45.796
+your backups.
 
 117
-00:06:42.909 --> 00:06:43.576
+00:06:46.096 --> 00:06:48.429
+VEGA:  Then we ride for the Vaults and the
+
+118
+00:06:48.429 --> 00:06:49.096
 Lifelines.

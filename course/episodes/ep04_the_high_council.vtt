@@ -181,321 +181,333 @@ the master map.
 VEGA:  And PL-8 plans the architecture, defense by design.
 
 46
-00:02:17.708 --> 00:02:20.826
+00:02:17.708 --> 00:02:20.846
 ARCHIVIST:  Develop security and privacy plans for the system
 
 47
-00:02:20.826 --> 00:02:21.144
-that:
+00:02:20.846 --> 00:02:25.264
+that: Are consistent with the organization’s enterprise architecture;
 
 48
-00:02:22.194 --> 00:02:24.674
+00:02:26.314 --> 00:02:28.794
 VEGA:  No plan, no defense, just luck.
 
 49
-00:02:30.794 --> 00:02:33.914
+00:02:34.914 --> 00:02:38.034
 VEGA:  The Cartographer's oath. No march without a map.
 
 50
-00:02:35.294 --> 00:02:37.654
+00:02:39.414 --> 00:02:41.774
 VEGA:  The High Steward, Program Management.
 
 51
-00:02:37.954 --> 00:02:40.974
+00:02:42.074 --> 00:02:45.094
 VEGA:  It governs the whole realm's defense, above any
 
 52
-00:02:40.974 --> 00:02:41.874
+00:02:45.094 --> 00:02:45.994
 single system.
 
 53
-00:02:42.174 --> 00:02:46.471
+00:02:46.294 --> 00:02:50.591
 VEGA:  In reality, that's organization-wide governance: the security and
 
 54
-00:02:46.471 --> 00:02:49.974
+00:02:50.591 --> 00:02:54.094
 privacy program, roles, risk strategy, and resources.
 
 55
-00:02:51.024 --> 00:02:53.566
+00:02:55.144 --> 00:02:57.686
 NOVA:  Who sets the strategy for everything?
 
 56
-00:02:53.866 --> 00:02:57.122
+00:02:57.986 --> 00:03:01.242
 VEGA:  PM-9, the risk management strategy for the entire
 
 57
-00:02:57.122 --> 00:02:57.986
+00:03:01.242 --> 00:03:02.106
 organization.
 
 58
-00:02:59.036 --> 00:03:01.870
+00:03:03.156 --> 00:03:05.990
 VEGA:  Remember - PM controls aren't selected per system
 
 59
-00:03:01.870 --> 00:03:02.796
+00:03:05.990 --> 00:03:06.916
 from a baseline.
 
 60
-00:03:03.096 --> 00:03:05.952
+00:03:07.216 --> 00:03:10.072
 VEGA:  They run across the whole organization, all the
 
 61
-00:03:05.952 --> 00:03:06.256
+00:03:10.072 --> 00:03:10.376
 time.
 
 62
-00:03:07.636 --> 00:03:10.592
-ARCHIVIST:  Develops a comprehensive strategy to manage:
+00:03:11.756 --> 00:03:15.898
+ARCHIVIST:  Develops a comprehensive strategy to manage: Security risk
 
 63
-00:03:11.642 --> 00:03:14.642
-VEGA:  Program management is the realm thinking as one.
+00:03:15.898 --> 00:03:21.182
+to organizational operations and assets, individuals, other organizations,
 
 64
-00:03:21.942 --> 00:03:26.085
-VEGA:  The High Steward's oath. One realm, one strategy
+00:03:21.182 --> 00:03:24.610
+and the Nation associated with the operation and
 
 65
-00:03:26.085 --> 00:03:26.862
-- always.
+00:03:24.610 --> 00:03:26.752
+use of organizational systems;
 
 66
-00:03:27.912 --> 00:03:31.432
-VEGA:  The Inspector, Assessment, Authorization, and Monitoring.
+00:03:27.802 --> 00:03:30.802
+VEGA:  Program management is the realm thinking as one.
 
 67
-00:03:31.732 --> 00:03:34.506
-NOVA:  It tests the defenses, and signs off before
+00:03:38.102 --> 00:03:42.245
+VEGA:  The High Steward's oath. One realm, one strategy
 
 68
-00:03:34.506 --> 00:03:35.474
-the gates open.
+00:03:42.245 --> 00:03:43.022
+- always.
 
 69
-00:03:35.774 --> 00:03:39.512
-VEGA:  In reality, that's assessing controls, formally authorizing a
+00:03:44.072 --> 00:03:47.592
+VEGA:  The Inspector, Assessment, Authorization, and Monitoring.
 
 70
-00:03:39.512 --> 00:03:42.454
-system to operate, and watching it continuously.
+00:03:47.892 --> 00:03:50.666
+NOVA:  It tests the defenses, and signs off before
 
 71
-00:03:43.504 --> 00:03:47.580
-VEGA:  CA-6, authorization, the authorizing official says 'I accept
+00:03:50.666 --> 00:03:51.634
+the gates open.
 
 72
-00:03:47.580 --> 00:03:50.366
-this risk.' The agency we opened with ran
+00:03:51.934 --> 00:03:55.672
+VEGA:  In reality, that's assessing controls, formally authorizing a
 
 73
-00:03:50.366 --> 00:03:52.744
-key systems without this signature.
+00:03:55.672 --> 00:03:58.614
+system to operate, and watching it continuously.
 
 74
-00:03:53.044 --> 00:03:55.162
-NULL:  A signature won't stop me.
+00:03:59.664 --> 00:04:03.740
+VEGA:  CA-6, authorization, the authorizing official says 'I accept
 
 75
-00:03:55.462 --> 00:03:57.254
-VEGA:  No. But it puts a name on the
+00:04:03.740 --> 00:04:06.526
+this risk.' The agency we opened with ran
 
 76
-00:03:57.254 --> 00:03:59.910
-wall the day something does. And CA-7 keeps
+00:04:06.526 --> 00:04:08.904
+key systems without this signature.
 
 77
-00:03:59.910 --> 00:04:01.702
-watching after the ink dries.
+00:04:09.204 --> 00:04:11.322
+NULL:  A signature won't stop me.
 
 78
-00:04:02.752 --> 00:04:05.414
-NOVA:  So a real person signs for the risk?
+00:04:11.622 --> 00:04:13.414
+VEGA:  No. But it puts a name on the
 
 79
-00:04:05.714 --> 00:04:09.014
-VEGA:  The authorizing official - a senior, accountable leader
+00:04:13.414 --> 00:04:16.070
+wall the day something does. And CA-7 keeps
 
 80
-00:04:09.014 --> 00:04:11.594
-- grants the A-T-O, and owns that decision.
+00:04:16.070 --> 00:04:17.862
+watching after the ink dries.
 
 81
-00:04:12.644 --> 00:04:16.883
-VEGA:  CA-2 plans and runs the assessment, using procedures
+00:04:18.912 --> 00:04:21.574
+NOVA:  So a real person signs for the risk?
 
 82
-00:04:16.883 --> 00:04:19.084
-from companion doc 800-53A.
+00:04:21.874 --> 00:04:25.174
+VEGA:  The authorizing official - a senior, accountable leader
 
 83
-00:04:20.134 --> 00:04:22.724
-NOVA:  And the gaps we find but can't close
+00:04:25.174 --> 00:04:27.754
+- grants the A-T-O, and owns that decision.
 
 84
-00:04:22.724 --> 00:04:23.156
-today?
+00:04:28.804 --> 00:04:33.043
+VEGA:  CA-2 plans and runs the assessment, using procedures
 
 85
-00:04:23.456 --> 00:04:26.195
-VEGA:  They go on the POA&M. CA-5 requires it,
+00:04:33.043 --> 00:04:35.244
+from companion doc 800-53A.
 
 86
-00:04:26.195 --> 00:04:29.285
-and the authorizing official keeps an eye on
+00:04:36.294 --> 00:04:38.884
+NOVA:  And the gaps we find but can't close
 
 87
-00:04:29.285 --> 00:04:29.496
-it.
+00:04:38.884 --> 00:04:39.316
+today?
 
 88
-00:04:30.546 --> 00:04:33.935
-ARCHIVIST:  Select the appropriate assessor or assessment team for
+00:04:39.616 --> 00:04:42.355
+VEGA:  They go on the POA&M. CA-5 requires it,
 
 89
-00:04:33.935 --> 00:04:36.382
-the type of assessment to be conducted;
+00:04:42.355 --> 00:04:45.445
+and the authorizing official keeps an eye on
 
 90
-00:04:37.432 --> 00:04:40.832
-VEGA:  Assess, authorize, and never stop monitoring.
+00:04:45.445 --> 00:04:45.656
+it.
 
 91
-00:04:47.732 --> 00:04:50.870
-VEGA:  The Inspector's oath. Test before you trust; watch
+00:04:46.706 --> 00:04:50.095
+ARCHIVIST:  Select the appropriate assessor or assessment team for
 
 92
-00:04:50.870 --> 00:04:51.812
-after you sign.
+00:04:50.095 --> 00:04:52.542
+the type of assessment to be conducted;
 
 93
-00:04:52.862 --> 00:04:55.572
-VEGA:  If a layer maps onto the framework, it's
+00:04:53.592 --> 00:04:56.992
+VEGA:  Assess, authorize, and never stop monitoring.
 
 94
-00:04:55.572 --> 00:04:56.182
-this one.
+00:05:03.892 --> 00:05:07.030
+VEGA:  The Inspector's oath. Test before you trust; watch
 
 95
-00:04:56.482 --> 00:04:59.579
-NOVA:  So this whole layer is the thinking behind
+00:05:07.030 --> 00:05:07.972
+after you sign.
 
 96
-00:04:59.579 --> 00:05:02.824
-the RMF - risk, plans, governance, checking?
+00:05:09.022 --> 00:05:11.732
+VEGA:  If a layer maps onto the framework, it's
 
 97
-00:05:03.874 --> 00:05:07.749
-NOVA:  Scenario: go-live day. Which control signs off the
+00:05:11.732 --> 00:05:12.342
+this one.
 
 98
-00:05:07.749 --> 00:05:08.136
-risk?
+00:05:12.642 --> 00:05:15.739
+NOVA:  So this whole layer is the thinking behind
 
 99
-00:05:08.436 --> 00:05:10.732
-A new system is ready to go live.
+00:05:15.739 --> 00:05:18.984
+the RMF - risk, plans, governance, checking?
 
 100
-00:05:10.732 --> 00:05:14.141
-Which control is where a senior official formally
+00:05:20.034 --> 00:05:23.909
+NOVA:  Scenario: go-live day. Which control signs off the
 
 101
-00:05:14.141 --> 00:05:15.324
-accepts the risk?
+00:05:23.909 --> 00:05:24.296
+risk?
 
 102
-00:05:15.624 --> 00:05:22.235
-Your options. A. CA-6 Authorization. B. RA-3 Risk
+00:05:24.596 --> 00:05:26.892
+A new system is ready to go live.
 
 103
-00:05:22.235 --> 00:05:26.552
-Assessment. C. PL-2 System Plan.
+00:05:26.892 --> 00:05:30.301
+Which control is where a senior official formally
 
 104
-00:05:26.852 --> 00:05:29.754
-NOVA:  Pause here and lock in your answer.
+00:05:30.301 --> 00:05:31.484
+accepts the risk?
 
 105
-00:05:36.804 --> 00:05:40.946
-VEGA:  The answer is A. CA-6 Authorization. CA-6, Authorization,
+00:05:31.784 --> 00:05:38.395
+Your options. A. CA-6 Authorization. B. RA-3 Risk
 
 106
-00:05:40.946 --> 00:05:44.361
-is where a senior official formally accepts the
+00:05:38.395 --> 00:05:42.712
+Assessment. C. PL-2 System Plan.
 
 107
-00:05:44.361 --> 00:05:45.524
-risk to operate.
-
-108
-00:05:46.574 --> 00:05:48.293
-VEGA:  And where do we record the gaps we
-
-109
-00:05:48.293 --> 00:05:49.254
-haven't closed yet?
-
-110
-00:05:49.554 --> 00:05:52.802
-Where are known weaknesses tracked until they're fixed?
-
-111
-00:05:53.102 --> 00:05:57.158
-Your options. A. In the system plan. B.
-
-112
-00:05:57.158 --> 00:06:00.694
-In a POA&M (CA-5). C. In the audit
-
-113
-00:06:00.694 --> 00:06:01.110
-log.
-
-114
-00:06:01.410 --> 00:06:04.312
+00:05:43.012 --> 00:05:45.914
 NOVA:  Pause here and lock in your answer.
 
+108
+00:05:52.964 --> 00:05:57.106
+VEGA:  The answer is A. CA-6 Authorization. CA-6, Authorization,
+
+109
+00:05:57.106 --> 00:06:00.521
+is where a senior official formally accepts the
+
+110
+00:06:00.521 --> 00:06:01.684
+risk to operate.
+
+111
+00:06:02.734 --> 00:06:04.453
+VEGA:  And where do we record the gaps we
+
+112
+00:06:04.453 --> 00:06:05.414
+haven't closed yet?
+
+113
+00:06:05.714 --> 00:06:08.962
+Where are known weaknesses tracked until they're fixed?
+
+114
+00:06:09.262 --> 00:06:13.318
+Your options. A. In the system plan. B.
+
 115
-00:06:11.362 --> 00:06:13.862
-VEGA:  The answer is B. In a POA&M (CA-5).
+00:06:13.318 --> 00:06:16.854
+In a POA&M (CA-5). C. In the audit
 
 116
-00:06:13.862 --> 00:06:16.791
-Known weaknesses are tracked in a Plan of
+00:06:16.854 --> 00:06:17.270
+log.
 
 117
-00:06:16.791 --> 00:06:19.933
-Action and Milestones - CA-5 - until they're
+00:06:17.570 --> 00:06:20.472
+NOVA:  Pause here and lock in your answer.
 
 118
-00:06:19.933 --> 00:06:20.362
-fixed.
+00:06:27.522 --> 00:06:30.022
+VEGA:  The answer is B. In a POA&M (CA-5).
 
 119
-00:06:21.412 --> 00:06:23.806
-NOVA:  Notebook: this layer is the brain - it
+00:06:30.022 --> 00:06:32.951
+Known weaknesses are tracked in a Plan of
 
 120
-00:06:23.806 --> 00:06:26.074
-decides what the walls are even for.
+00:06:32.951 --> 00:06:36.093
+Action and Milestones - CA-5 - until they're
 
 121
-00:06:26.374 --> 00:06:29.204
-VEGA:  The realm is governed. Now, to where it's
+00:06:36.093 --> 00:06:36.522
+fixed.
 
 122
-00:06:29.204 --> 00:06:29.894
-all built.
+00:06:37.572 --> 00:06:39.966
+NOVA:  Notebook: this layer is the brain - it
 
 123
-00:06:30.194 --> 00:06:32.951
-NULL:  Built, you say? I'll poison it at the
+00:06:39.966 --> 00:06:42.234
+decides what the walls are even for.
 
 124
-00:06:32.951 --> 00:06:33.472
-source.
+00:06:42.534 --> 00:06:45.364
+VEGA:  The realm is governed. Now, to where it's
 
 125
-00:06:33.772 --> 00:06:35.972
+00:06:45.364 --> 00:06:46.054
+all built.
+
+126
+00:06:46.354 --> 00:06:49.111
+NULL:  Built, you say? I'll poison it at the
+
+127
+00:06:49.111 --> 00:06:49.632
+source.
+
+128
+00:06:49.932 --> 00:06:52.132
 VEGA:  Then we descend to the Forge.

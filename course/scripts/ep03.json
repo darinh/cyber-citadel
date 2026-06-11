@@ -168,7 +168,7 @@
    "say": [
     [
      "ARCHIVIST",
-     "Provide security and privacy literacy training to system users (including managers, senior executives, and contractors):"
+     "Provide security and privacy literacy training to system users (including managers, senior executives, and contractors): As part of initial training for new users and [organization-defined frequency] thereafter;"
     ]
    ]
   },
@@ -261,7 +261,7 @@
    "say": [
     [
      "ARCHIVIST",
-     "Upon termination of individual employment:"
+     "Upon termination of individual employment: Disable system access within [time period];"
     ]
    ]
   },

@@ -176,16 +176,40 @@ def lint(ep):
                 if re.search(r"\bpause\b", tx, re.I):
                     p1.append((ep, "QUIZ_PAUSE", f'quiz scenario line says "pause" (assembler '
                                f'already appends the pause prompt -> heard twice): [{sp}] "{tx}"'))
-    # ---- incomplete Archivist quote (truncated mid-list: ends with ':' or a dangling
-    #      conjunction) — the class you flagged in EP01 PE-3 ("...by:") ----
+    # ---- incomplete / mismatched Archivist quote ----
+    #   (a) the on-screen `quote` is truncated mid-list (ends ':' or dangling conjunction);
+    #   (b) the SPOKEN `say` must read the SAME complete quote. This is the class behind the
+    #       EP04 "the archivist never finishes speaking" report: the *displayed* quote was
+    #       completed earlier but the *spoken* line was left truncated at the colon. Convention
+    #       (holds for every good quote scene): a quote scene's ARCHIVIST line == its `quote`.
+    def _normq(s):
+        return re.sub(r"\s+", " ", (s or "")).strip()
+
+    def _wordsq(s):
+        return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9 ]", " ", (s or "").lower())).strip()
+
+    _MIDCLAUSE = re.compile(r"[ ,]\b(by|and|or|the|following|to|that|manage)\b$", re.I)
     for b in beats:
-        if b.get("scene") == "quote":
-            raw = (b.get("quote") or "").strip()
-            q = raw.rstrip('\u201d"\u201c').strip()
-            if q.endswith(":") or re.search(r"[ ,]\b(by|and|or|the|following|to)\b$", q, re.I):
-                p1.append((ep, "QUOTE_INCOMPLETE", f'Archivist quote ends mid-clause: "...{q[-46:]}"'))
-            elif q and q[-1] not in ".;?!":
-                p2.append((ep, "QUOTE_OPEN", f'Archivist quote lacks terminal punctuation: "...{q[-46:]}"'))
+        if b.get("scene") != "quote":
+            continue
+        raw = _normq(b.get("quote"))
+        q = raw.rstrip('\u201d"\u201c').strip()
+        if q.endswith(":") or _MIDCLAUSE.search(q):
+            p1.append((ep, "QUOTE_INCOMPLETE", f'on-screen quote ends mid-clause: "...{q[-46:]}"'))
+        elif q and q[-1] not in ".;?!":
+            p2.append((ep, "QUOTE_OPEN", f'on-screen quote lacks terminal punctuation: "...{q[-46:]}"'))
+        # the Archivist must SPEAK the full quote (not stop at the lead-in / colon)
+        spoken = _normq(" ".join(t for s, t in [(x[0], x[1]) for x in b.get("say", [])] if s == "ARCHIVIST"))
+        if spoken:
+            sp = spoken.rstrip('\u201d"\u201c').strip()
+            if sp.endswith(":") or _MIDCLAUSE.search(sp):
+                p1.append((ep, "QUOTE_SPOKEN_INCOMPLETE",
+                           f'Archivist SPEAKS a truncated quote: "...{sp[-46:]}"'))
+            elif _wordsq(spoken) != _wordsq(raw):
+                p1.append((ep, "QUOTE_SAY_MISMATCH",
+                           f'Archivist spoken line != on-screen quote '
+                           f'(speaks {len(_wordsq(spoken).split())}/{len(_wordsq(raw).split())} words): '
+                           f'spoken "...{sp[-40:]}"'))
 
     return p1, p2
 

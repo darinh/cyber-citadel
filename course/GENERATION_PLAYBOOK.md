@@ -655,6 +655,25 @@ well below that, and color grading / HUD / audio mastering raise polish but NOT 
 ---
 
 ## 14. Changelog of learnings
+- **2026-06 — "the Archivist never finishes speaking" (EP04): spoken `say` was truncated while
+  the on-screen `quote` was complete + the gate only checked the display field.** Root cause: an
+  earlier "complete the incomplete quotes" pass updated each quote scene's on-screen `quote`
+  (lead-in + first sub-requirement) but left the Archivist's SPOKEN `say` as just the lead-in
+  ending at a colon (e.g. PL-2 *"Develop security and privacy plans for the system that:"*). The
+  audio matched the (truncated) text, so it shipped — the Archivist read the lead-in and stopped.
+  The lint gate's QUOTE_INCOMPLETE check inspected only `quote`, never `say`, so it reported 0
+  issues — a **gate hole**. A scan found the SAME defect in **all 7** quotes touched by that pass
+  (EP01 PE-3, EP02 AU-2, EP03 AT-2 + PS-4, EP04 PL-2 + PM-9, EP05 SA-8). FIX: the convention is
+  *a quote scene's ARCHIVIST `say` == its `quote`* (verified true for every non-broken quote scene,
+  incl. ones that already speak `[brackets]` fine — so `preprocess` was left untouched, no needless
+  re-render). Set the 7 `say` lines == their `quote`; extended `lint_script.py` to also check the
+  SPOKEN line (QUOTE_SPOKEN_INCOMPLETE if it ends mid-clause/colon; QUOTE_SAY_MISMATCH if spoken
+  content != on-screen quote). Re-rendered EP01-05 (only the 7 changed beats re-synth; no
+  RENDER_VER bump): the fixed clips went e.g. b130 3.4s→7.6s, b190 3.0s→15.0s, transcribe complete,
+  and all 5 pass `verify_episode` (recall ≥0.978, 0 confirmed-missing) + `verify_script` (facts).
+  Lessons: (1) **when a fact has a DISPLAY copy and a SPOKEN copy, fix BOTH and gate BOTH** — they
+  drift independently; (2) the deterministic gate must assert on the artifact the user experiences
+  (the spoken line), not just the on-screen text.
 - **2026-06 — quiz UX: transparent click-hotspots laid EXACTLY over the video's own option
   boxes (no blur over the burned-in subtitles).** The user wanted the interactive answers to be
   *just the buttons* — clickable regions sitting precisely on the boxes the video already renders,
