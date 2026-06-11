@@ -491,35 +491,28 @@ key terms. Prioritized in §13.
 
 ---
 
-## 12. AUDIO REGENERATION ARCHITECTURE (planned — the user's "fix one clip, reassemble" ask)
-**Problem:** per-line WAVs are synthesized into a `_tmp` build dir that is wiped each render
-(`build_episode2.py` build_beat_audio), so a single bad line can't be fixed without re-running
-the episode, and there's no record of which clips are "good."
-
-**Design — persistent per-line clip store + manifest:**
+## 12. INCREMENTAL RENDER ARCHITECTURE (IMPLEMENTED v3.2 — "fix one part, reassemble")
+**What shipped:** `build_episode2.py` now persists every beat's artifacts under
+`course/render/<epid>/` (gitignored) and rebuilds only what changed:
 ```
-course/audio/<EPID>/
-  manifest.json
-  beat000/ line00_NULL.wav  line01_VEGA.wav  ...
-  beat001/ line00_VEGA.wav  ...
+course/render/<epid>/
+  manifest.json                 # {version, beats:{idx:{key,dur,starts,ldurs,video,audio}}}
+  lines/  b000_l00_NULL.wav  b000_l01_VEGA.wav  ...   # PERSISTENT per-line narration clips
+  b000.wav  b000.png  b000.mp4   # per-beat stitched audio, scene still, silent video clip
+  b010.wav  b010.mp4 ...
 ```
-Manifest entry per line: `{line_id "EP00.b000.l00", beat_index, line_index, speaker, text,
-preprocessed_text, text_hash, engine, settings_hash, effects_hash, clip_path, duration,
-loudness_lufs, true_peak_db, stt_recall, approved, locked}`.
+- Each beat has a **content hash** (`RENDER_VER` + visual fields + lines + timing/motion params).
+  On re-render, if the hash matches and artifacts exist, the beat is **reused** (no TTS, no scene
+  render, no encode). Verified: a no-op re-render skips all TTS (2nd EP00 render 9.8 s vs 21.5 s).
+- **Editing one line/slide ⇒ only that beat's files rebuild**, then the cheap final mux re-runs.
+  Per-line WAVs persist under `lines/` for inspection. Bump `RENDER_VER` to force a full rebuild
+  when render *logic* changes.
+- Final mux (concat + music duck + SFX + avatars + burned captions + **cinematic grade** +
+  **audio master**) always runs; it's fast relative to synth/scene render.
 
-**Workflow:**
-- `--regen-line EP00.b000.l01` synthesizes a *candidate* (`…candidate.wav`), audits it (STT
-  recall + loudness + leading/trailing-silence + pronunciation-map diff), and promotes it
-  atomically only if it passes or `--force`. **Never overwrites a `locked` clip.**
-- **Reassembly recomputes** beat durations from manifest clip durations, so captions, avatar
-  cues, quiz cues, and chapters all move deterministically when one clip's length changes.
-- A full render with all clips `approved` does **no** TTS (fast, reproducible).
-
-**Minimal code changes:** `build_episode2.py` — `load/save_audio_manifest()`, make
-`build_beat_audio` manifest-aware + use persistent paths, add CLI `--regen-line/--regen-beat/
---no-tts/--require-approved`. `tts3.py` — expose `settings_hash/effects_hash/engine_id` and
-return per-clip metadata (duration, LUFS, peak); keep the hash cache as acceleration only, not
-as the approval source.
+**Future enhancement (not yet built):** promote the per-line clips to a richer manifest
+(`text_hash`, `stt_recall`, `loudness`, `approved`, `locked`) with a `--regen-line` candidate→
+promote workflow + an STT gate, so individual lines can be approved/locked and auto-audited.
 
 ---
 
@@ -536,26 +529,42 @@ second copy of trust" (teaching); EP05 MA-4 "was going to be my way in" (defeate
 "Good. Because…" (agreeable); EP00 anatomy Archivist line (non-verbatim); EP01–06 Nova names
 personas before intro; EP09 zero NULL lines.
 
-**Prioritized backlog (impact ÷ effort):**
-1. **Quiz read-aloud** — read full Q+options in think phase; read correct-answer text + one-line
-   "why" at reveal. *(High impact, low effort; script+`build_episode2.py` quiz beat.)*
-2. **NULL character-line fixes** (the violations above). *(High, low — script edits.)*
-3. **Pedagogy accuracy patches** — enhancement "optional" caveat, AO-approval for tailoring,
-   name enhancement IDs. *(High accuracy value, low effort.)*
-4. **Act II revival** — add cold opens, restore NULL presence (≥2 lines/ep), escalate the
-   catchphrase, give Nova on-screen decisions. *(High, medium — scripting.)*
-5. **Audio per-line clip + manifest + STT gate** (§12). *(High maintainability, medium — code.)*
-6. **Engagement: NULL reaction cutaways + Citadel integrity meter + guardian sigils.**
-   *(High engagement, medium — Pillow/ffmpeg scene types.)*
-7. **Audio polish** — word-level caption alignment, final loudness/limiter, microfade seams.
-   *(Medium, medium.)*
+**Prioritized backlog — status after the v3.2 implementation pass:**
+1. **Quiz read-aloud** — ✅ DONE. Think phase reads full Q + all options; reveal reads the
+   correct answer TEXT + a one-line `why` (added to all 30 quizzes).
+2. **NULL character-line fixes** — ✅ DONE. All flagged violations rewritten to drip contempt;
+   escalating per-episode catchphrase (EP02–04).
+3. **Pedagogy accuracy patches** — ✅ DONE. Enhancement "optional" bullet caveated (EP00),
+   AO-approval added to tailoring (EP10), MFA cited as IA-2(1)/(2) (EP01), Archivist
+   non-verbatim heading-list removed (EP00).
+4. **Act II revival** — ◐ PARTIAL. EP09 now has NULL presence (was zero); full Act II cold-open
+   beats + Nova on-screen decision moments still TODO.
+5. **Incremental render architecture** — ✅ DONE (§12): persistent per-beat/per-line artifacts
+   under `course/render/<ep>/` + content-hash rebuild. (STT gate + per-line approve/lock = future.)
+6. **Engagement: NULL cutaways + Citadel integrity meter + guardian sigils** — ☐ TODO (deferred:
+   `scene.py` work; higher risk; do as a focused next pass).
+7. **Cinematic + audio polish** — ◐ PARTIAL. ✅ cinematic color grade (contrast/saturation/
+   vignette/fine grain/light sharpen) + ✅ audio master (loudnorm −16 + true-peak limiter).
+   Still TODO: `xfade` crossfades (kept hard cuts for A/V-sync safety), per-seam microfades,
+   word-level caption alignment.
 
-> Re-rendering is expensive — batch these into ONE re-render pass after the script/code changes
-> land and pass the gates + a council spot-check, per §8.
+> Re-rendering is cheaper now (§12 incremental), but still batch big content changes into ONE
+> pass after the gates + a council spot-check, per §8.
 
 ---
 
 ## 14. Changelog of learnings
+- **2025 — v3.2 production upgrade (implementation).** Built the **incremental render
+  architecture** (§12): per-beat + per-line artifacts persist under `course/render/<ep>/`,
+  content-hash keyed, so editing one part rebuilds a few files (verified: no-op re-render does
+  zero TTS). Added a **cinematic color grade** + **audio master** (loudnorm −16 / true-peak
+  limiter) to the final mux, and **quiz read-aloud** (full Q+options, then correct-answer text +
+  a `why`). Script fixes: NULL character violations rewritten + escalating catchphrase; EP09
+  NULL presence; pedagogy patches (enhancement caveat, AO approval, IA-2(1)/(2), Archivist
+  verbatim). Deferred to a focused next pass: integrity-meter HUD, guardian sigils, NULL cutaway
+  scenes, full Act II cold opens, xfade crossfades, word-level caption alignment. Lesson:
+  **visual-QA a rendered frame before a full batch** — it caught the on-screen "optional
+  enhancements" bullet that a `say`-only check missed.
 - **2025 — full-series council review (5 LLMs).** Reviewed shipped v3.1 across audio, pedagogy,
   story, character, quizzes, and regeneration. Recorded §11 Production Rules, §12 audio
   regeneration architecture, and §13 findings/backlog. Headline mistakes captured: NULL breaks

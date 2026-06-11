@@ -281,7 +281,7 @@
     ],
     [
      "VEGA",
-     "Its enhancements are where multi-factor authentication lives."
+     "Its enhancements — like IA-2(1) and IA-2(2) — are where multi-factor authentication lives."
     ]
    ]
   },
@@ -493,7 +493,8 @@
      "Guardian check. Who proves your identity? Pause, and answer."
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "Identification and Authentication proves who you are before you're let in."
   },
   {
    "scene": "quiz",
@@ -511,7 +512,8 @@
      "And the rule that limits the blast radius?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "AC-6, Least Privilege, grants only the access someone truly needs — nothing more."
   },
   {
    "scene": "quiz",
@@ -529,7 +531,8 @@
      "Scenario: someone tailgates into the server room. Whose watch is that?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "Physical and Environmental Protection stops tailgating into the room itself."
   },
   {
    "scene": "notebook",

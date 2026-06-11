@@ -13,7 +13,7 @@
    "say": [
     [
      "NULL",
-     "Every gap, every shortcut, every forgotten door — I will find it."
+     "Every trust, every habit, every careless click — I will exploit it."
     ],
     [
      "VEGA",
@@ -501,7 +501,8 @@
      "Scenario: a leaver kept their access. Which guardian dropped the ball?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "PS-4, Personnel Termination, revokes access the moment someone leaves."
   },
   {
    "scene": "quiz",
@@ -519,7 +520,8 @@
      "And which guardian is the newcomer to the catalog?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "PT, PII Processing and Transparency, is the privacy family new in Revision 5."
   },
   {
    "scene": "notebook",

@@ -10,6 +10,10 @@
    "subtitle": "Security Categorization · FIPS 199",
    "say": [
     [
+     "NULL",
+     "Tell me a system doesn't matter — and I'll make it the one that ends you."
+    ],
+    [
      "VEGA",
      "Before you pick defenses, you must know what you're defending, and how much it matters."
     ],
@@ -153,6 +157,10 @@
    "why": "Categorization is itself a control, RA-2, the control behind the RMF Categorize step.",
    "say": [
     [
+     "NULL",
+     "Mislabel it low, and you'll guard it like nothing. That is where I will live."
+    ],
+    [
      "VEGA",
      "And the catalog has a control for exactly this: RA-2."
     ],
@@ -178,7 +186,8 @@
      "Scenario time. What's the overall category? Pause, and answer."
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "Categorization takes the high-water mark — the highest of the three objectives — so it is High."
   },
   {
    "scene": "quiz",
@@ -196,7 +205,8 @@
      "And which standard sets the impact levels themselves?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "FIPS 199 defines the Low, Moderate, and High impact levels."
   },
   {
    "scene": "points",

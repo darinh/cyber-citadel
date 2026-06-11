@@ -541,7 +541,8 @@
      "Scenario: ransomware hits. What brings you home? Pause, and answer."
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "A clean, tested backup — CP-9 — is what restores you fastest after ransomware."
   },
   {
    "scene": "quiz",
@@ -559,7 +560,8 @@
      "And the drive that left with its secrets intact?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "MP-6, Media Sanitization, ensures drives are wiped before disposal or reuse."
   },
   {
    "scene": "notebook",

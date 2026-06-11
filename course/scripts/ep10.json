@@ -45,7 +45,7 @@
    "scene": "define",
    "term": "Tailoring & overlays",
    "expand": null,
-   "plain": "Tailoring is adjusting the baseline to fit your system — removing what doesn't apply, adding what's missing, setting parameters, and justifying each change. An overlay is ready-made tailoring for a whole community.",
+   "plain": "Tailoring is adjusting the baseline to fit your system — removing what doesn't apply, adding what's missing, setting parameters, and justifying each change for the authorizing official to approve. An overlay is ready-made tailoring for a whole community.",
    "example": null,
    "cite": null,
    "kicker": "PLAIN ENGLISH",
@@ -170,7 +170,8 @@
      "Quick check. Which book holds the baselines? Pause, and answer."
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "The baselines live in 800-53B; 800-53 holds the controls themselves."
   },
   {
    "scene": "quiz",
@@ -188,7 +189,8 @@
      "And the act of adjusting the baseline to fit your system?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "Adjusting a baseline — scoping, swapping, adding — is tailoring, approved by the authorizing official."
   },
   {
    "scene": "points",

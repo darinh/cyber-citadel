@@ -13,7 +13,7 @@
    "say": [
     [
      "NULL",
-     "Every gap, every shortcut, every forgotten door — I will find it."
+     "Every log, every record, every trace — I will erase it."
     ],
     [
      "VEGA",
@@ -255,7 +255,7 @@
     ],
     [
      "NULL",
-     "Every move I make... another tower turns my way."
+     "Another tower turns? Tedious. Every chain of watchers has a blind link — and I will slip through it."
     ]
    ]
   },
@@ -538,7 +538,8 @@
      "Scenario: the Null deletes logs. What stops it? Pause, and answer."
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "AU-9, Protection of Audit Information, keeps an intruder from deleting or altering the logs."
   },
   {
    "scene": "quiz",
@@ -556,7 +557,8 @@
      "And who runs toward the fire?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "Incident Response is the family that detects, contains, and recovers from a breach."
   },
   {
    "scene": "notebook",

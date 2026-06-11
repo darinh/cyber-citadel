@@ -127,7 +127,7 @@
     ],
     [
      "NULL",
-     "One of these should have worked..."
+     "Repelled — this time. I just mapped every lock you have. Next time, I bring the right keys."
     ]
    ]
   },
@@ -345,7 +345,8 @@
      "One. Who checks your identity at the gate?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "Identification and Authentication proves identity before access is granted."
   },
   {
    "scene": "quiz",
@@ -363,7 +364,8 @@
      "Two. Where do the baselines live?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "The baselines live in companion volume 800-53B."
   },
   {
    "scene": "quiz",
@@ -381,7 +383,8 @@
      "Three. What saves you from ransomware?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "CP-9, System Backup, is what brings you back after encryption."
   },
   {
    "scene": "quiz",
@@ -399,7 +402,8 @@
      "Four. Which book holds the assessment procedures?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "SP 800-53A is the assessment companion — it tells you HOW to test controls."
   },
   {
    "scene": "quiz",
@@ -417,7 +421,8 @@
      "Five. Who signs to let the system go live?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "CA-6, Authorization, is the official's formal acceptance of risk."
   },
   {
    "scene": "points",

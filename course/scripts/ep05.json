@@ -346,7 +346,7 @@
    "say": [
     [
      "NULL",
-     "Your remote support line was going to be my way in."
+     "Your remote support line… I had such plans for it."
     ],
     [
      "VEGA",
@@ -509,7 +509,8 @@
      "Scenario: a tampered part in the box. Whose job is that? Pause, and answer."
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "SR-11, Component Authenticity, is aimed at catching counterfeit or tampered parts."
   },
   {
    "scene": "quiz",
@@ -527,7 +528,8 @@
      "And shutting the doors you never use?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "CM-7, Least Functionality, disables the ports, services, and features you don't need."
   },
   {
    "scene": "notebook",

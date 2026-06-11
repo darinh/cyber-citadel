@@ -38,7 +38,7 @@
     ],
     [
      "NULL",
-     "I don't want your walls. I want what they guard — the Crown Data. Lose it once, and there is no second copy of trust."
+     "I don't want your walls. I want what they guard — the Crown Data. And trust? Trust shatters so easily."
     ],
     [
      "NOVA",
@@ -278,7 +278,7 @@
     "Control, the requirement itself (the 'what')",
     "Discussion, context and rationale, informative, not prescriptive",
     "Related controls, links to other controls",
-    "Enhancements, optional add-ons that strengthen it, e.g., AC-6(1)",
+    "Enhancements, add-ons that strengthen it \u2014 required when your baseline selects them, e.g., AC-6(1)",
     "References, pointers to supporting sources"
    ],
    "kicker": "HOW TO READ A CONTROL",
@@ -307,10 +307,6 @@
     [
      "VEGA",
      "Related controls point to neighbors. Enhancements add strength — AC-6(1) is an enhancement of AC-6. References point outside the catalog."
-    ],
-    [
-     "ARCHIVIST",
-     "Identifier. Control. Discussion. Related controls. Enhancements. References."
     ]
    ]
   },
@@ -568,7 +564,8 @@
      "Let's make it stick. What's a control? Pause, and answer."
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "A control is a safeguard or countermeasure — it reduces risk to the system and its data."
   },
   {
    "scene": "quiz",
@@ -586,7 +583,8 @@
      "Quick check. Where do the baselines live now? Pause, and answer."
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "In Revision 5 the Low, Moderate, and High baselines moved out into companion volume 800-53B."
   },
   {
    "scene": "quiz",
@@ -604,7 +602,8 @@
      "And how many families guard our city?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "Revision 5 organizes its controls into twenty families."
   },
   {
    "scene": "notebook",

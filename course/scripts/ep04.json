@@ -13,7 +13,7 @@
    "say": [
     [
      "NULL",
-     "Every gap, every shortcut, every forgotten door — I will find it."
+     "Every plan, every signature, every assumption — I will undermine it."
     ],
     [
      "VEGA",
@@ -549,7 +549,8 @@
      "Scenario: go-live day. Whose signature is required? Pause, and answer."
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "CA-6, Authorization, is where a senior official formally accepts the risk to operate."
   },
   {
    "scene": "quiz",
@@ -567,7 +568,8 @@
      "And where do we record the gaps we haven't closed yet?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "Known weaknesses are tracked in a Plan of Action and Milestones — CA-5 — until they're fixed."
   },
   {
    "scene": "notebook",

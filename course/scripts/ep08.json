@@ -199,7 +199,7 @@
     ],
     [
      "NULL",
-     "Good. Because I never stop, either."
+     "Process. Paperwork. How quaint. I never sleep — and your forms won't save you."
     ]
    ]
   },
@@ -242,7 +242,8 @@
      "Quick check. How many steps in the framework? Pause, and answer."
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "The RMF has seven steps: Prepare, Categorize, Select, Implement, Assess, Authorize, Monitor."
   },
   {
    "scene": "quiz",
@@ -260,7 +261,8 @@
      "And which step did Revision 2 add at the front?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "Prepare is the step added in RMF Revision 2."
   },
   {
    "scene": "points",

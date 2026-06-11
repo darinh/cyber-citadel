@@ -174,7 +174,8 @@
      "Final stretch. Name the three assessment methods. Pause, and answer."
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "SP 800-53A uses three assessment methods: examine, interview, and test."
   },
   {
    "scene": "quiz",
@@ -192,7 +193,8 @@
      "And the decision that lets the system go live?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "The official's acceptance of residual risk is the Authorization to Operate."
   },
   {
    "scene": "quiz",
@@ -210,7 +212,8 @@
      "And where do we track the gaps we haven't closed?"
     ]
    ],
-   "min_seconds": 7
+   "min_seconds": 7,
+   "why": "Open weaknesses are tracked in a POA&M until they're remediated."
   },
   {
    "scene": "points",
