@@ -655,6 +655,24 @@ well below that, and color grading / HUD / audio mastering raise polish but NOT 
 ---
 
 ## 14. Changelog of learnings
+- **2026-06 — interactive quiz never showed for returning viewers (root cause) + a regression
+  gate + a WebKit test-harness nudge.** The user reported repeatedly that "the interactive test is
+  never displayed." Root cause in `watch.html`: the `timeupdate` open loop gated on
+  `if(!answered.has(q.n))`, and `answered` is hydrated from `localStorage.cc_ans`, so **anyone who
+  had ever answered a quiz (i.e. the returning user) had it permanently suppressed.** My Playwright
+  tests missed it because they used fresh browser contexts with empty storage. FIX: **decouple
+  DISPLAY from SCORE.** The quiz now always opens at `t_question` (regardless of past answers);
+  a per-view `responded` flag (reset in `openQuiz`/`closeQuiz`) gates the pause-at-lock-in and
+  the one-time scoring (`ansStore[ep][n]` still counts a question only once). Added a **regression
+  test** that presets `localStorage.cc_ans` via `page.addInitScript` before load and asserts the
+  overlay still opens with all options — it FAILS on the old code, PASSES now. Lesson:
+  **persistent-state features need a "returning user" (seeded-storage) test, not just fresh-context
+  tests.** Separately hardened `ready()` in the harness: WebKit defers `preload="metadata"` under
+  range-server contention (readyState stuck at 0 → 30 s timeouts), so `ready()` now waits for app
+  init (speed buttons) first, then **nudges a muted `v.load()`** before waiting on `readyState>=1`.
+  Suite is deterministic again: **45/45 across Chromium/Firefox/WebKit in ~17 s** (was flaky 36 s+).
+  watch.html is a static asset — no re-render needed; returning users may need a hard-refresh or the
+  "↺ reset" link to clear stale storage, but the new code shows quizzes regardless of prior answers.
 - **2026-06 — viewer-reported polish pass + deterministic craft gate + provenance.** Ran a 3-LLM
   screenplay-review council over all 13 transcripts and applied consensus fixes: NOVA kept in the
   learner role (she no longer recites control IDs/history before they're taught — the systemic

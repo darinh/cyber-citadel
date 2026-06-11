@@ -7,10 +7,20 @@ const fmt = s => { s = Math.max(0, Math.round(s)); return `${Math.floor(s / 60)}
 
 async function ready(page) {
   await page.goto('/watch.html', { waitUntil: 'domcontentloaded' });
-  await page.waitForFunction(() => {
+  // 1) app init (speed buttons built -> selectEp/cues ran). Does NOT depend on media.
+  await page.waitForFunction(
+    () => document.querySelectorAll('#spbtns .spbtn').length > 0,
+    null, { timeout: 30000 });
+  // 2) nudge WebKit to actually fetch metadata: it defers preload="metadata" under
+  //    range-server contention, leaving readyState=0. A muted load() forces the
+  //    resource-selection algorithm to run so readyState reaches >=1 deterministically.
+  await page.evaluate(() => {
     const v = document.querySelector('#vid');
-    return v && v.readyState >= 1 && document.querySelectorAll('#spbtns .spbtn').length > 0;
-  }, null, { timeout: 30000 });
+    if (v && v.readyState < 1) { try { v.muted = true; v.preload = 'auto'; v.load(); } catch (e) {} }
+  });
+  await page.waitForFunction(
+    () => { const v = document.querySelector('#vid'); return v && v.readyState >= 1; },
+    null, { timeout: 30000 });
 }
 const rate = page => page.evaluate(() => document.querySelector('#vid').playbackRate);
 
@@ -151,6 +161,15 @@ test.describe('interactive quiz (play-in-background)', () => {
     expect(st.soft).toBe(true);
     expect(st.opts).toBe(q.options.length);
     expect(st.paused).toBe(false);            // audio keeps playing behind the quiz
+  });
+
+  test('quiz STILL displays for a returning user who already answered (regression)', async ({ page }) => {
+    const q = q1();
+    // simulate prior sessions: every ep00 quiz already answered in localStorage
+    await page.addInitScript(() => { try { localStorage.setItem('cc_ans', JSON.stringify({ ep00: { '1': true, '2': true, '3': true } })); } catch (e) {} });
+    await reachQuestion(page, q);            // must still open the overlay
+    const opts = await page.evaluate(() => document.querySelectorAll('#ovopts .opt').length);
+    expect(opts).toBe(q.options.length);
   });
 
   test('answering skips ahead to the reveal and resumes', async ({ page }) => {

@@ -109,7 +109,7 @@ a{color:var(--cy);text-decoration:none}
 </div>
 <script>
 const $=s=>document.querySelector(s);
-let manifest=[], cur=null, cues=null, answered=new Set(), activeQuiz=null;
+let manifest=[], cur=null, cues=null, answered=new Set(), activeQuiz=null, responded=false;
 const ansStore=JSON.parse(localStorage.getItem('cc_ans')||'{}');
 const done=new Set(JSON.parse(localStorage.getItem('cc_done')||'[]'));
 function totalQuizzes(){return manifest.reduce((s,e)=>s+(e.quizzes||0),0);}
@@ -210,14 +210,15 @@ vid.addEventListener('timeupdate',()=>{
   const t=vid.currentTime;
   if(activeQuiz){
     const q=activeQuiz;
-    // reached the "lock in" point still unanswered -> pause and wait for an answer
-    if(!answered.has(q.n) && t>=q.t_quiz-0.05 && !vid.paused){ vid.pause(); setHint('\u23F8  Pick an answer to continue'); }
+    // reached the "lock in" point without answering THIS view -> pause and wait
+    if(!responded && t>=q.t_quiz-0.05 && !vid.paused){ vid.pause(); setHint('\u23F8  Pick an answer to continue'); }
     if(t>=q.t_resume-0.05) closeQuiz();
     return;
   }
-  // open the interactive quiz when the question starts; video KEEPS PLAYING behind it
+  // open the interactive quiz when the question starts; video KEEPS PLAYING behind it.
+  // (Always show it — even if answered in a past session — so the test is never hidden.)
   for(const q of cues.quizzes||[]){
-    if(t>=q.t_question-0.05 && t<q.t_resume-0.3){ if(!answered.has(q.n)) openQuiz(q); break; }
+    if(t>=q.t_question-0.05 && t<q.t_resume-0.3){ openQuiz(q); break; }
   }
 });
 vid.addEventListener('ended',()=>{
@@ -250,7 +251,7 @@ function showComplete(){
   $('#nx').classList.add('show');
 }
 function openQuiz(q){
-  activeQuiz=q;
+  activeQuiz=q; responded=false;
   $('#ovk').textContent='GUARDIAN CHECK \u00B7 PICK YOUR ANSWER';
   $('#ovq').textContent=q.q;
   const o=$('#ovopts'); o.innerHTML=''; $('#ovfb').innerHTML=''; setHint('');
@@ -262,11 +263,11 @@ function openQuiz(q){
   $('#ov').classList.add('show','soft');     // 'soft' = translucent so the video plays/visible behind
 }
 function pick(q,i,o){
-  if(answered.has(q.n)) return;
-  answered.add(q.n);
+  if(responded) return;
+  responded=true;
   const right=i===q.answer;
   if(!ansStore[cur.id]) ansStore[cur.id]={};
-  if(ansStore[cur.id][q.n]===undefined){ ansStore[cur.id][q.n]=right; saveScore(); }
+  if(ansStore[cur.id][q.n]===undefined){ ansStore[cur.id][q.n]=right; answered.add(q.n); saveScore(); }
   [...o.children].forEach((c,j)=>{c.disabled=true; if(j===q.answer)c.classList.add('ok'); else if(j===i)c.classList.add('no');});
   $('#ovfb').innerHTML=right?'<span class="good">\u2713 Correct!</span>':'<span class="bad">Not quite \u2014 the answer is '+String.fromCharCode(65+q.answer)+'.</span>';
   setHint('\u25B6  Resuming\u2026');
@@ -274,7 +275,7 @@ function pick(q,i,o){
   if(q.t_reveal!=null && vid.currentTime<q.t_reveal-0.1){ vid.currentTime=q.t_reveal; }
   vid.play().catch(()=>{});
 }
-function closeQuiz(){ activeQuiz=null; $('#ov').classList.remove('show','soft'); setHint(''); }
+function closeQuiz(){ activeQuiz=null; responded=false; $('#ov').classList.remove('show','soft'); setHint(''); }
 function setHint(s){ const h=$('#ovhint'); if(h) h.textContent=s||''; }
 function hideOverlay(){ $('#ov').classList.remove('show','soft'); setHint(''); }
 init();
