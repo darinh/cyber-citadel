@@ -11,6 +11,7 @@ Video is hard-cut concat (video duration == narration duration, perfect sync);
 transition SFX (whoosh/boom) cover the cuts so they read as "produced".
 """
 from __future__ import annotations
+import hashlib
 import json
 import shutil
 import subprocess
@@ -68,6 +69,39 @@ def run(cmd, cwd=None):
     return p.stdout
 
 
+# ---- persistent render artifacts (gitignored) + incremental rebuild ------
+# Each beat's narration line clips, stitched audio, scene still, and silent video
+# clip are kept under course/render/<epid>/ keyed by a content hash. Re-rendering
+# reuses unchanged beats and rebuilds only the few that changed, so editing one
+# line/slide costs a few files, not the whole episode.
+RENDER_ROOT = ROOT / "course" / "render"
+RENDER_VER = "v3.2"          # bump to force a full rebuild when render logic changes
+
+
+def _sha(*parts):
+    h = hashlib.sha1()
+    for p in parts:
+        h.update(repr(p).encode("utf-8"))
+    return h.hexdigest()[:16]
+
+
+def _load_manifest(rdir):
+    mf = rdir / "manifest.json"
+    if mf.exists():
+        try:
+            m = json.loads(mf.read_text(encoding="utf-8"))
+            if m.get("version") == RENDER_VER:
+                m.setdefault("beats", {})
+                return m
+        except Exception:
+            pass
+    return {"version": RENDER_VER, "beats": {}}
+
+
+def _save_manifest(rdir, m):
+    (rdir / "manifest.json").write_text(json.dumps(m, indent=1, ensure_ascii=False), encoding="utf-8")
+
+
 def dur_of(path):
     out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
                           "-of", "csv=p=0", str(path)], capture_output=True, text=True).stdout.strip()
@@ -90,16 +124,24 @@ def silence(dur, path, sr=ASR):
          "-t", f"{dur:.3f}", "-c:a", "pcm_s16le", str(path)])
 
 
-def build_beat_audio(lines, bdir, idx, min_seconds, extra_tail=0.0):
-    parts = []
-    s_lead = bdir / "sil_lead.wav"; silence(LEAD, s_lead)
-    s_gap = bdir / "sil_gap.wav"; silence(GAP, s_gap)
-    parts.append(s_lead)
-    line_durs = []
+def build_beat_audio(lines, rdir, idx, min_seconds, extra_tail=0.0, work=None):
+    """Stitch a beat's narration from PERSISTENT per-line clips.
+
+    Per-line WAVs live under rdir/lines/ (stable names) so a single line can be
+    re-synthesized and only this beat's audio + the final mux need rebuilding.
+    Silence/scratch files go under `work` (temp). Returns the persistent beat WAV.
+    """
+    work = work or rdir
+    ldir = rdir / "lines"; ldir.mkdir(parents=True, exist_ok=True)
+    s_lead = work / "sil_lead.wav"; silence(LEAD, s_lead)
+    s_gap = work / "sil_gap.wav"; silence(GAP, s_gap)
+    parts = [s_lead]
+    line_durs, line_clips = [], []
     for k, (sp, tx) in enumerate(lines):
-        w = bdir / f"l{idx}_{k}.wav"
-        line_durs.append(tts.synth_line(sp, tx, w))
-        parts.append(w)
+        lc = ldir / f"b{idx:03d}_l{k:02d}_{sp}.wav"
+        line_durs.append(tts.synth_line(sp, tx, lc))
+        line_clips.append(lc)
+        parts.append(lc)
         if k < len(lines) - 1:
             parts.append(s_gap)
     starts, acc = [], LEAD
@@ -108,16 +150,16 @@ def build_beat_audio(lines, bdir, idx, min_seconds, extra_tail=0.0):
     total = acc + TAIL + extra_tail
     if total < min_seconds:
         total = min_seconds
-    s_tail = bdir / f"tail{idx}.wav"; silence(total - acc, s_tail)
+    s_tail = work / f"tail{idx}.wav"; silence(total - acc, s_tail)
     parts.append(s_tail)
     inputs = []
     for p in parts:
         inputs += ["-i", str(p)]
     fc = "".join(f"[{i}:a]" for i in range(len(parts))) + f"concat=n={len(parts)}:v=0:a=1[a]"
-    out = bdir / f"beat{idx}.wav"
+    out = rdir / f"b{idx:03d}.wav"
     run(["ffmpeg", "-y", *inputs, "-filter_complex", fc, "-map", "[a]",
          "-c:a", "pcm_s16le", "-ar", str(ASR), "-ac", "1", str(out)])
-    return out, dur_of(out), starts, line_durs
+    return out, dur_of(out), starts, line_durs, line_clips
 
 
 MOTION = [("iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"),
@@ -238,10 +280,14 @@ def assemble(spec_path, limit=None):
     epid = spec["id"].lower(); tag = spec.get("tag", spec["id"])
     bgp = ROOT / "course" / "art" / "backgrounds" / f"{EP_BG.get(epid, 'citadel')}.png"
     scene.set_background(str(bgp) if bgp.exists() else None)
-    bdir = ROOT / "tools" / "_tmp" / "build2" / epid
+    bdir = ROOT / "tools" / "_tmp" / "build2" / epid       # scratch (concat lists, music, final mux)
     if bdir.exists():
         shutil.rmtree(bdir, ignore_errors=True)
     bdir.mkdir(parents=True, exist_ok=True)
+    rdir = RENDER_ROOT / epid                              # PERSISTENT per-beat artifacts (gitignored)
+    (rdir / "lines").mkdir(parents=True, exist_ok=True)
+    manifest = _load_manifest(rdir)
+    used_keys = set()
     beats = spec["beats"][:limit] if limit else spec["beats"]
 
     timeline = 0.0
@@ -250,18 +296,30 @@ def assemble(spec_path, limit=None):
 
     def add_clip(beat, idx, lines, min_s, static, countdown=None, extra_tail=0.0):
         nonlocal timeline
-        ba, bdur, starts, ldurs = build_beat_audio(lines, bdir, idx, min_s, extra_tail)
         beat = dict(beat); beat.setdefault("tag", tag)
-        clip = bdir / f"c{idx:03d}.mp4"
         sc = beat["scene"]
-        if sc in ANIM_SCENES:
-            build_clip_anim(beat, bdur, idx, clip, bdir)
+        fade_in = sc in ("title", "section")
+        vis = {k: v for k, v in beat.items() if k != "say"}     # visual-only fields
+        bkey = _sha(RENDER_VER, json.dumps(vis, sort_keys=True, ensure_ascii=False),
+                    [(s, t) for s, t in lines], round(min_s, 3), round(extra_tail, 3),
+                    idx, bool(static), countdown, fade_in)
+        used_keys.add(str(idx))
+        clip = rdir / f"b{idx:03d}.mp4"
+        aud = rdir / f"b{idx:03d}.wav"
+        ent = manifest["beats"].get(str(idx))
+        if ent and ent.get("key") == bkey and clip.exists() and aud.exists():
+            bdur, starts, ldurs = ent["dur"], ent["starts"], ent["ldurs"]   # cache hit: reuse
         else:
-            png = bdir / f"s{idx:03d}.jpg"
-            scene.render(beat, str(png))
-            build_clip(png, bdur, idx, clip, static=static, countdown=countdown,
-                       fade_in=(sc in ("title", "section")))
-        clips.append(clip); beat_audios.append(ba)
+            _ba, bdur, starts, ldurs, _lc = build_beat_audio(lines, rdir, idx, min_s, extra_tail, work=bdir)
+            if sc in ANIM_SCENES:
+                build_clip_anim(beat, bdur, idx, clip, bdir)
+            else:
+                png = rdir / f"b{idx:03d}.png"
+                scene.render(beat, str(png))
+                build_clip(png, bdur, idx, clip, static=static, countdown=countdown, fade_in=fade_in)
+            manifest["beats"][str(idx)] = {"key": bkey, "dur": bdur, "starts": starts,
+                                           "ldurs": ldurs, "video": clip.name, "audio": aud.name}
+        clips.append(clip); beat_audios.append(aud)
         sname, sgain = SFX.SCENE_SFX.get(sc, ("whoosh", -17))
         sfx_cues.append((timeline + 0.02, sname, sgain))
         if any(sp == "NULL" for sp, _ in lines):
@@ -280,19 +338,28 @@ def assemble(spec_path, limit=None):
         lines = [(s[0], s[1]) for s in beat.get("say", [])]
         if sc == "quiz":
             qn += 1
-            # phase 1: question + think countdown (answer hidden)
+            opts = beat.get("options", [])
+            ans = beat.get("answer", 0)
+            letter = chr(65 + ans)
+            letters = [chr(65 + j) for j in range(len(opts))]
+            read_opts = "   ".join(f"{letters[j]}.  {o}." for j, o in enumerate(opts))
+            why = beat.get("why", "")
+            # phase 1: read the QUESTION + ALL OPTIONS aloud, then a think countdown
             qbeat = dict(beat); qbeat["reveal"] = False
-            q_start, q_dur, q_narr = add_clip(qbeat, i * 10, lines, beat.get("min_seconds", 6),
+            q_lines = list(lines) + [("NARRATOR", beat.get("q", "")),
+                                     ("NARRATOR", f"Your options.   {read_opts}"),
+                                     ("NOVA", "Pause here and lock in your answer.")]
+            q_start, q_dur, q_narr = add_clip(qbeat, i * 10, q_lines, beat.get("min_seconds", 6),
                                               static=True, countdown=QUIZ_THINK, extra_tail=QUIZ_THINK)
-            # phase 2: reveal
-            letter = chr(65 + beat.get("answer", 0))
+            # phase 2: reveal — read the correct ANSWER TEXT (not just the letter) + a one-line why
+            correct = opts[ans] if ans < len(opts) else ""
+            reveal_text = f"The answer is {letter}.   {correct}." + (f"   {why}" if why else "")
             rbeat = dict(beat); rbeat["reveal"] = True
-            r_start, r_dur, _ = add_clip(rbeat, i * 10 + 1,
-                                         [["VEGA", f"The answer is {letter}."]],
-                                         REVEAL_HOLD, static=True)
+            r_start, r_dur, _ = add_clip(rbeat, i * 10 + 1, [["VEGA", reveal_text]],
+                                         max(REVEAL_HOLD, 4.5), static=True)
             sfx_cues.append((r_start + 0.02, "chime", -12))
-            quiz_cues.append({"n": qn, "q": beat.get("q", ""), "options": beat.get("options", []),
-                              "answer": beat.get("answer", 0),
+            quiz_cues.append({"n": qn, "q": beat.get("q", ""), "options": opts,
+                              "answer": ans, "why": why,
                               "t_question": round(q_start, 2),
                               "t_quiz": round(q_start + q_narr, 2),
                               "t_reveal": round(r_start, 2),
@@ -316,6 +383,10 @@ def assemble(spec_path, limit=None):
             if sc in ("title", "section", "map"):
                 chapters.append({"t": round(st, 2),
                                  "title": beat.get("title", sc).title()})
+
+    # persist the incremental-rebuild manifest (prune beats not used this render)
+    manifest["beats"] = {k: v for k, v in manifest["beats"].items() if k in used_keys}
+    _save_manifest(rdir, manifest)
 
     # concat video (hard cut)
     listf = bdir / "v.txt"
@@ -355,10 +426,15 @@ def assemble(spec_path, limit=None):
         f"[narr]asplit=2[narrA][narrSC];"
         f"[mus][narrSC]sidechaincompress=threshold=0.05:ratio=7:attack=5:release=320[mduck];"
         f"[narrA][mduck][sfx]amix=inputs=3:normalize=0:dropout_transition=0[mix];"
-        f"[mix]afade=t=in:st=0:d=0.6,afade=t=out:st={T-0.8:.2f}:d=0.8[a];"
+        f"[mix]afade=t=in:st=0:d=0.6,afade=t=out:st={T-0.8:.2f}:d=0.8,"
+        f"loudnorm=I=-16:TP=-1.5:LRA=11,alimiter=level_in=1:level_out=1:limit=0.95[a];"
     )
+    # cinematic grade applied to the picture BEFORE burning captions (so text stays crisp):
+    # gentle contrast/saturation lift, vignette, fine film grain, light sharpen.
+    grade = ("eq=contrast=1.06:saturation=1.12:gamma=0.99,vignette,"
+             "noise=alls=4:allf=t,unsharp=5:5:0.35:5:5:0.0")
     video_fc = (f"[0:v]fade=t=in:st=0:d=0.6,fade=t=out:st={T-0.8:.2f}:d=0.8[vb];"
-                + av_chain + f"{prev}subtitles=ep.ass[v]")
+                + av_chain + f"{prev}{grade}[grd];[grd]subtitles=ep.ass[v]")
     run(["ffmpeg", "-y", "-i", "video.mp4", "-i", "narr.wav", "-i", "music.wav", "-i", "sfx.wav",
          *av_inputs, "-filter_complex", audio_fc + video_fc, "-map", "[v]", "-map", "[a]",
          "-t", f"{T:.3f}",

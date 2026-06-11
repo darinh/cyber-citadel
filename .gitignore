@@ -10,6 +10,8 @@ __pycache__/
 tools/_ipa/
 # Scratch/demo art
 course/art/_demo/
+# Persistent per-beat render artifacts (re-buildable; kept locally for incremental re-render)
+course/render/
 # Temp audio chunks
 course/audio/_chunks/
 tools/_tmp/
