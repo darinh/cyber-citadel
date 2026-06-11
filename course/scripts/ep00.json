@@ -278,7 +278,7 @@
     "Control, the requirement itself (the 'what')",
     "Discussion, context and rationale, informative, not prescriptive",
     "Related controls, links to other controls",
-    "Enhancements, add-ons that strengthen it \u2014 required when your baseline selects them, e.g., AC-6(1)",
+    "Enhancements, add-ons that strengthen it — required when your baseline selects them, e.g., AC-6(1)",
     "References, pointers to supporting sources"
    ],
    "kicker": "HOW TO READ A CONTROL",
@@ -306,7 +306,7 @@
     ],
     [
      "VEGA",
-     "Related controls point to neighbors. Enhancements add strength — AC-6(1) is an enhancement of AC-6. References point outside the catalog."
+     "Related controls point to neighbors. Enhancements add strength — for example, AC-6 enhancement 1. References point outside the catalog."
     ]
    ]
   },
@@ -374,7 +374,7 @@
     ],
     [
      "VEGA",
-     "Sharp eye. In Revision 5 they moved out, into a companion book: 800-53B."
+     "Good eye. In Revision 5 they moved out, into a companion book: 800-53B."
     ],
     [
      "NARRATOR",

@@ -98,6 +98,14 @@ def preprocess(text: str) -> str:
     text = ID_RE.sub(_id_repl, text)            # AC-6 -> "ay see six"
     for ac, rep in ACRONYMS.items():
         text = re.sub(r"\b" + re.escape(ac) + r"\b", rep, text)
+    # Lowercase ALL-CAPS *emphasis* words (HIGH, WHAT, HOW, LOW, MODERATE...) so the model
+    # SAYS them instead of spelling them letter-by-letter. Real acronyms/codes are protected
+    # (already substituted above, or in KEEP) so they're unaffected.
+    _KEEP = set(ACRONYMS) | set(FAMILY_SAY) | {
+        "SP", "SAR", "ATO", "POA", "PII", "MFA", "VPN", "DNS", "TLS", "PKI", "APT",
+        "SDLC", "FIPS", "CISO", "NIST", "FISMA", "RMF", "OSCAL", "IOT", "USB", "ID"}
+    text = re.sub(r"\b[A-Z][A-Z]+\b",
+                  lambda m: m.group(0) if m.group(0) in _KEEP else m.group(0).capitalize(), text)
     # Rev N -> revision N
     text = re.sub(r"\bRev\.?\s*(\d)\b", lambda m: "revision " + n2w(m.group(1)), text)
     text = text.replace(" — ", ", ").replace("—", ", ").replace(" – ", ", ")

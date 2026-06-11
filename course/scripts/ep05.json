@@ -217,7 +217,7 @@
    "say": [
     [
      "NOVA",
-     "We already met 'baseline' back in Episode 00."
+     "We already met 'baseline' back in episode zero."
     ],
     [
      "VEGA",
@@ -297,7 +297,7 @@
    "say": [
     [
      "VEGA",
-     "The Blueprint-Master's oath. A known system is a defended system."
+     "The Blueprint-Master's oath is this. A known system is a defended system."
     ]
    ],
    "min_seconds": 4.5

@@ -29,333 +29,333 @@ VEGA:  One attacker, many weapons. One city, twenty guardians.
 This is defense in depth.
 
 8
-00:00:22.548 --> 00:00:26.203
-The Null strikes everywhere at once. Watch the
+00:00:22.548 --> 00:00:25.913
+He strikes everywhere at once. Watch the city
 
 9
-00:00:26.203 --> 00:00:27.156
-city answer.
+00:00:25.913 --> 00:00:26.436
+answer.
 
 10
-00:00:28.206 --> 00:00:31.812
+00:00:27.486 --> 00:00:31.092
 VEGA:  Each weapon meets a guardian. No single failure
 
 11
-00:00:31.812 --> 00:00:32.886
+00:00:31.092 --> 00:00:32.166
 ends the city.
 
 12
-00:00:33.186 --> 00:00:36.594
+00:00:32.466 --> 00:00:35.874
 NULL:  Repelled - this time. I just mapped every
 
 13
-00:00:36.594 --> 00:00:39.670
+00:00:35.874 --> 00:00:38.950
 lock you have. Next time, I bring the
 
 14
-00:00:39.670 --> 00:00:40.584
+00:00:38.950 --> 00:00:39.864
 right keys.
 
 15
-00:00:41.634 --> 00:00:45.033
+00:00:40.914 --> 00:00:44.313
 VEGA:  Layered defense means no single failure ends the
 
 16
-00:00:45.033 --> 00:00:48.433
+00:00:44.313 --> 00:00:47.713
 fight. If one layer fails, others still prevent,
 
 17
-00:00:48.433 --> 00:00:50.274
+00:00:47.713 --> 00:00:49.554
 detect, limit, or recover.
 
 18
-00:00:50.574 --> 00:00:52.476
+00:00:49.854 --> 00:00:51.756
 NOVA:  Twenty guardians, one shield.
 
 19
-00:00:53.634 --> 00:00:56.345
+00:00:52.914 --> 00:00:55.625
 VEGA:  Here is how it all comes together, the
 
 20
-00:00:56.345 --> 00:00:57.914
+00:00:55.625 --> 00:00:57.194
 lifecycle from 800-37.
 
 21
-00:00:58.214 --> 00:01:03.822
+00:00:57.494 --> 00:01:03.102
 VEGA:  Prepare, categorize, select, implement, assess, authorize, and monitor,
 
 22
-00:01:03.822 --> 00:01:04.454
+00:01:03.102 --> 00:01:03.734
 forever.
 
 23
-00:01:05.504 --> 00:01:08.049
+00:01:04.784 --> 00:01:07.329
 NOVA:  So in the real world, where do I
 
 24
-00:01:08.049 --> 00:01:08.526
+00:01:07.329 --> 00:01:07.806
 start?
 
 25
-00:01:08.826 --> 00:01:12.427
+00:01:08.106 --> 00:01:11.707
 VEGA:  Prepare, categorize the system, select and tailor a
 
 26
-00:01:12.427 --> 00:01:16.946
+00:01:11.707 --> 00:01:16.226
 baseline, implement, assess, authorize, and never stop watching.
 
 27
-00:01:17.996 --> 00:01:21.025
+00:01:17.276 --> 00:01:20.305
 VEGA:  These books travel together. Know which one answers
 
 28
-00:01:21.025 --> 00:01:21.916
+00:01:20.305 --> 00:01:21.196
 which question.
 
 29
-00:01:29.996 --> 00:01:32.469
+00:01:29.276 --> 00:01:31.748
 VEGA:  Hear the oaths together, and the whole defense
 
 30
-00:01:32.469 --> 00:01:33.436
+00:01:31.748 --> 00:01:32.716
 fits in your hand.
 
 31
-00:01:33.736 --> 00:01:35.638
+00:01:33.016 --> 00:01:34.918
 NOVA:  Twenty guardians, one shield.
 
 32
-00:01:41.996 --> 00:01:45.978
+00:01:41.276 --> 00:01:45.258
 NOVA:  Final test. Five questions, all twenty guardians. Ready?
 
 33
-00:01:47.028 --> 00:01:49.810
+00:01:46.308 --> 00:01:49.090
 NOVA:  One. Who checks your identity at the gate?
 
 34
-00:01:50.110 --> 00:01:53.211
+00:01:49.390 --> 00:01:52.491
 Which guardian proves you are who you claim,
 
 35
-00:01:53.211 --> 00:01:54.198
+00:01:52.491 --> 00:01:53.478
 before access?
 
 36
-00:01:54.498 --> 00:01:58.792
+00:01:53.778 --> 00:01:58.072
 Your options. A. AC - Access Control. B.
 
 37
-00:01:58.792 --> 00:02:03.622
+00:01:58.072 --> 00:02:02.902
 IA - Identification & Authentication. C. AU -
 
 38
-00:02:03.622 --> 00:02:04.266
+00:02:02.902 --> 00:02:03.546
 Audit.
 
 39
-00:02:04.566 --> 00:02:07.468
+00:02:03.846 --> 00:02:06.748
 NOVA:  Pause here and lock in your answer.
 
 40
-00:02:14.518 --> 00:02:17.166
+00:02:13.798 --> 00:02:16.446
 VEGA:  The answer is B. IA - Identification &
 
 41
-00:02:17.166 --> 00:02:22.671
+00:02:16.446 --> 00:02:21.951
 Authentication. Identification and Authentication proves identity before access
 
 42
-00:02:22.671 --> 00:02:23.438
+00:02:21.951 --> 00:02:22.718
 is granted.
 
 43
-00:02:24.488 --> 00:02:27.430
+00:02:23.768 --> 00:02:26.710
 NOVA:  Two. Where do the baselines live?
 
 44
-00:02:27.730 --> 00:02:30.928
+00:02:27.010 --> 00:02:30.208
 Where do the Low, Moderate, and High control
 
 45
-00:02:30.928 --> 00:02:32.018
+00:02:30.208 --> 00:02:31.298
 baselines live?
 
 46
-00:02:32.318 --> 00:02:39.284
+00:02:31.598 --> 00:02:38.564
 Your options. A. SP 800-53. B. SP 800-53B.
 
 47
-00:02:39.284 --> 00:02:41.606
+00:02:38.564 --> 00:02:40.886
 C. SP 800-53A.
 
 48
-00:02:41.906 --> 00:02:44.808
+00:02:41.186 --> 00:02:44.088
 NOVA:  Pause here and lock in your answer.
 
 49
-00:02:51.858 --> 00:02:55.599
+00:02:51.138 --> 00:02:54.879
 VEGA:  The answer is B. SP 800-53B. The baselines
 
 50
-00:02:55.599 --> 00:02:58.538
+00:02:54.879 --> 00:02:57.818
 live in companion volume 800-53B.
 
 51
-00:02:59.588 --> 00:03:02.810
+00:02:58.868 --> 00:03:02.090
 NOVA:  Three. What saves you from ransomware?
 
 52
-00:03:03.110 --> 00:03:07.304
+00:03:02.390 --> 00:03:06.584
 Ransomware hits and encrypts everything. What brings you
 
 53
-00:03:07.304 --> 00:03:07.678
+00:03:06.584 --> 00:03:06.958
 back?
 
 54
-00:03:07.978 --> 00:03:13.082
+00:03:07.258 --> 00:03:12.362
 Your options. A. CP-9 System Backup. B. AC-6
 
 55
-00:03:13.082 --> 00:03:17.026
+00:03:12.362 --> 00:03:16.306
 Least Privilege. C. AT-2 Training.
 
 56
-00:03:17.326 --> 00:03:20.228
+00:03:16.606 --> 00:03:19.508
 NOVA:  Pause here and lock in your answer.
 
 57
-00:03:27.278 --> 00:03:30.621
+00:03:26.558 --> 00:03:29.901
 VEGA:  The answer is A. CP-9 System Backup. CP-9,
 
 58
-00:03:30.621 --> 00:03:34.123
+00:03:29.901 --> 00:03:33.403
 System Backup, is what brings you back after
 
 59
-00:03:34.123 --> 00:03:34.998
+00:03:33.403 --> 00:03:34.278
 encryption.
 
 60
-00:03:36.048 --> 00:03:39.150
+00:03:35.328 --> 00:03:38.430
 NOVA:  Four. Which book holds the assessment procedures?
 
 61
-00:03:39.450 --> 00:03:43.136
+00:03:38.730 --> 00:03:42.416
 Which document tells you HOW to assess whether
 
 62
-00:03:43.136 --> 00:03:44.258
+00:03:42.416 --> 00:03:43.538
 controls work?
 
 63
-00:03:44.558 --> 00:03:50.318
+00:03:43.838 --> 00:03:49.598
 Your options. A. SP 800-53B. B. SP 800-53A.
 
 64
-00:03:50.318 --> 00:03:51.926
+00:03:49.598 --> 00:03:51.206
 C. FIPS 199.
 
 65
-00:03:52.226 --> 00:03:55.128
+00:03:51.506 --> 00:03:54.408
 NOVA:  Pause here and lock in your answer.
 
 66
-00:04:02.178 --> 00:04:05.589
+00:04:01.458 --> 00:04:04.869
 VEGA:  The answer is B. SP 800-53A. SP 800-53A
 
 67
-00:04:05.589 --> 00:04:09.262
+00:04:04.869 --> 00:04:08.542
 is the assessment companion - it tells you
 
 68
-00:04:09.262 --> 00:04:11.098
+00:04:08.542 --> 00:04:10.378
 HOW to test controls.
 
 69
-00:04:12.148 --> 00:04:15.082
+00:04:11.428 --> 00:04:14.362
 NOVA:  Five. Who signs to let the system go
 
 70
-00:04:15.082 --> 00:04:15.490
+00:04:14.362 --> 00:04:14.770
 live?
 
 71
-00:04:15.790 --> 00:04:18.832
+00:04:15.070 --> 00:04:18.112
 A senior official accepts the risk and lets
 
 72
-00:04:18.832 --> 00:04:21.238
+00:04:18.112 --> 00:04:20.518
 the system operate. Which control?
 
 73
-00:04:21.538 --> 00:04:27.159
+00:04:20.818 --> 00:04:26.439
 Your options. A. CA-6 Authorization. B. PL-2 System
 
 74
-00:04:27.159 --> 00:04:30.466
+00:04:26.439 --> 00:04:29.746
 Plan. C. RA-3 Risk Assessment.
 
 75
-00:04:30.766 --> 00:04:33.668
+00:04:30.046 --> 00:04:32.948
 NOVA:  Pause here and lock in your answer.
 
 76
-00:04:40.718 --> 00:04:45.301
+00:04:39.998 --> 00:04:44.581
 VEGA:  The answer is A. CA-6 Authorization. CA-6, Authorization,
 
 77
-00:04:45.301 --> 00:04:48.838
+00:04:44.581 --> 00:04:48.118
 is the official's formal acceptance of risk.
 
 78
-00:04:49.888 --> 00:04:53.127
+00:04:49.168 --> 00:04:52.407
 VEGA:  You walked every wall, every tower, every vault.
 
 79
-00:04:53.127 --> 00:04:55.488
+00:04:52.407 --> 00:04:54.768
 The siege broke on our walls, Nova.
 
 80
-00:04:55.788 --> 00:04:58.307
+00:04:55.068 --> 00:04:57.587
 NULL:  ...but I left with the blueprints. I'll be
 
 81
-00:04:58.307 --> 00:05:00.286
+00:04:57.587 --> 00:04:59.566
 back - and next time, it won't be
 
 82
-00:05:00.286 --> 00:05:00.826
+00:04:59.566 --> 00:05:00.106
 one city.
 
 83
-00:05:01.126 --> 00:05:03.328
+00:05:00.406 --> 00:05:02.608
 NOVA:  Then how do we prove a NEW citadel
 
 84
-00:05:03.328 --> 00:05:05.595
+00:05:02.608 --> 00:05:04.875
 is safe before we trust it with the
 
 85
-00:05:05.595 --> 00:05:06.308
+00:05:04.875 --> 00:05:05.588
 Crown Data?
 
 86
-00:05:06.608 --> 00:05:09.403
+00:05:05.888 --> 00:05:08.683
 VEGA:  That, apprentice, is a campaign. And in Act
 
 87
-00:05:09.403 --> 00:05:11.288
+00:05:08.683 --> 00:05:10.568
 Two, you're going to lead it.
 
 88
-00:05:12.338 --> 00:05:15.542
+00:05:11.618 --> 00:05:14.822
 The guardians are known. Now you learn to
 
 89
-00:05:15.542 --> 00:05:20.464
+00:05:14.822 --> 00:05:19.744
 deploy them - categorize, select, implement, assess, authorize,
 
 90
-00:05:20.464 --> 00:05:23.746
+00:05:19.744 --> 00:05:23.026
 and watch. The campaign begins in Act Two.

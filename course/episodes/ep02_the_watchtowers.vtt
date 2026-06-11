@@ -73,361 +73,361 @@ VEGA:  It records every footstep, so no deed goes
 unseen.
 
 19
-00:00:53.578 --> 00:00:56.990
+00:00:53.578 --> 00:00:56.944
 VEGA:  In reality, that's logging security-relevant events so you
 
 20
-00:00:56.990 --> 00:00:59.578
+00:00:56.944 --> 00:00:59.498
 can review them and hold people accountable.
 
 21
-00:01:00.628 --> 00:01:02.810
+00:01:00.548 --> 00:01:02.730
 NOVA:  What exactly is a 'log'?
 
 22
-00:01:03.110 --> 00:01:06.066
+00:01:03.030 --> 00:01:05.986
 VEGA:  A diary the system keeps. A Windows Event
 
 23
-00:01:06.066 --> 00:01:08.589
+00:01:05.986 --> 00:01:08.509
 Log, a syslog, a tool like Splunk -
 
 24
-00:01:08.589 --> 00:01:09.310
+00:01:08.509 --> 00:01:09.230
 same idea.
 
 25
-00:01:10.360 --> 00:01:12.920
+00:01:10.280 --> 00:01:12.840
 VEGA:  AU-2 chooses what's worth logging.
 
 26
-00:01:13.220 --> 00:01:16.002
+00:01:13.140 --> 00:01:15.922
 NULL:  So I'll just delete the logs when I'm
 
 27
-00:01:16.002 --> 00:01:16.378
+00:01:15.922 --> 00:01:16.298
 done.
 
 28
-00:01:17.428 --> 00:01:21.188
+00:01:17.348 --> 00:01:21.108
 VEGA:  Not so fast. AU-9 protects the logs themselves.
 
 29
-00:01:21.488 --> 00:01:24.350
+00:01:21.408 --> 00:01:24.270
 NOVA:  So the Null can't quietly rewrite history.
 
 30
-00:01:25.400 --> 00:01:28.128
+00:01:25.320 --> 00:01:28.048
 ARCHIVIST:  Identify the types of events that the system
 
 31
-00:01:28.128 --> 00:01:30.546
+00:01:28.048 --> 00:01:30.466
 is capable of logging in support of the
 
 32
-00:01:30.546 --> 00:01:31.476
+00:01:30.466 --> 00:01:31.396
 audit function:
 
 33
-00:01:32.526 --> 00:01:34.396
+00:01:32.446 --> 00:01:34.316
 VEGA:  A log no one reads, or one that
 
 34
-00:01:34.396 --> 00:01:36.326
+00:01:34.316 --> 00:01:36.246
 can be erased, is no log at all.
 
 35
-00:01:42.826 --> 00:01:46.119
+00:01:42.746 --> 00:01:46.039
 VEGA:  The Chronicler's oath. Every footstep written; no page
 
 36
-00:01:46.119 --> 00:01:46.546
+00:01:46.039 --> 00:01:46.466
 erased.
 
 37
-00:01:47.596 --> 00:01:50.556
+00:01:47.516 --> 00:01:50.476
 VEGA:  The Healer, System and Information Integrity.
 
 38
-00:01:50.856 --> 00:01:53.860
+00:01:50.776 --> 00:01:53.780
 NOVA:  It finds the rot, cures the sickness, and
 
 39
-00:01:53.860 --> 00:01:55.398
+00:01:53.780 --> 00:01:55.318
 keeps the truth true.
 
 40
-00:01:55.698 --> 00:01:59.153
+00:01:55.618 --> 00:01:59.073
 VEGA:  In reality, that's patching flaws, blocking malicious code,
 
 41
-00:01:59.153 --> 00:02:02.725
+00:01:59.073 --> 00:02:02.645
 monitoring for intrusions, and verifying nothing was tampered
 
 42
-00:02:02.725 --> 00:02:03.018
+00:02:02.645 --> 00:02:02.938
 with.
 
 43
-00:02:04.068 --> 00:02:08.268
+00:02:03.988 --> 00:02:08.188
 VEGA:  SI-2 is flaw remediation, the discipline of patching.
 
 44
-00:02:10.568 --> 00:02:13.245
+00:02:10.488 --> 00:02:13.165
 VEGA:  And SI-4 watches the system for signs of
 
 45
-00:02:13.245 --> 00:02:14.048
+00:02:13.165 --> 00:02:13.968
 an intruder.
 
 46
-00:02:14.348 --> 00:02:18.241
+00:02:14.268 --> 00:02:18.161
 NULL:  Another tower turns? Tedious. Every chain of watchers
 
 47
-00:02:18.241 --> 00:02:20.371
+00:02:18.161 --> 00:02:20.291
 has a blind link - and I will
 
 48
-00:02:20.371 --> 00:02:21.546
+00:02:20.291 --> 00:02:21.466
 slip through it.
 
 49
-00:02:22.596 --> 00:02:26.303
+00:02:22.516 --> 00:02:26.223
 NULL:  Six days I moved in your shadows before
 
 50
-00:02:26.303 --> 00:02:28.394
+00:02:26.223 --> 00:02:28.314
 a single tower turned.
 
 51
-00:02:28.694 --> 00:02:30.996
+00:02:28.614 --> 00:02:30.916
 NOVA:  Wait - six whole days?!
 
 52
-00:02:31.296 --> 00:02:33.836
+00:02:31.216 --> 00:02:33.756
 VEGA:  Six days - but SI-4 saw the anomaly,
 
 53
-00:02:33.836 --> 00:02:36.447
+00:02:33.756 --> 00:02:36.367
 and AU-9 kept the logs he tripped. He
 
 54
-00:02:36.447 --> 00:02:38.776
+00:02:36.367 --> 00:02:38.696
 got in. He did not get out clean.
 
 55
-00:02:39.076 --> 00:02:40.554
+00:02:38.996 --> 00:02:40.474
 NULL:  Clean enough... this time.
 
 56
-00:02:41.604 --> 00:02:45.960
+00:02:41.524 --> 00:02:45.880
 ARCHIVIST:  Identify, report, and correct system flaws;
 
 57
-00:02:47.010 --> 00:02:50.090
+00:02:46.930 --> 00:02:50.010
 VEGA:  Integrity is keeping the system clean and honest.
 
 58
-00:02:57.310 --> 00:02:59.695
+00:02:57.230 --> 00:02:59.615
 VEGA:  The Healer's oath. Find the rot, close the
 
 59
-00:02:59.695 --> 00:03:00.830
+00:02:59.615 --> 00:03:00.750
 wound, keep it true.
 
 60
-00:03:01.880 --> 00:03:04.000
+00:03:01.800 --> 00:03:03.920
 VEGA:  The Firewatch, Incident Response.
 
 61
-00:03:04.300 --> 00:03:06.972
+00:03:04.220 --> 00:03:06.892
 VEGA:  When something burns, it sounds the alarm and
 
 62
-00:03:06.972 --> 00:03:08.100
+00:03:06.892 --> 00:03:08.020
 contains the blaze.
 
 63
-00:03:08.400 --> 00:03:12.788
+00:03:08.320 --> 00:03:12.708
 VEGA:  In reality, that's detecting, reporting, analyzing, containing, and
 
 64
-00:03:12.788 --> 00:03:15.080
+00:03:12.708 --> 00:03:15.000
 recovering from security incidents.
 
 65
-00:03:16.130 --> 00:03:18.712
+00:03:16.050 --> 00:03:18.632
 NOVA:  When does a threat become an 'incident'?
 
 66
-00:03:19.012 --> 00:03:21.971
+00:03:18.932 --> 00:03:21.891
 VEGA:  The moment it stops being hypothetical - malware
 
 67
-00:03:21.971 --> 00:03:24.252
+00:03:21.891 --> 00:03:24.172
 runs, data leaks, a system goes down.
 
 68
-00:03:25.302 --> 00:03:27.884
+00:03:25.222 --> 00:03:27.804
 NOVA:  What happens the moment we spot the Null?
 
 69
-00:03:28.184 --> 00:03:31.821
+00:03:28.104 --> 00:03:31.741
 VEGA:  IR-4 takes over, handling the incident end to
 
 70
-00:03:31.821 --> 00:03:32.144
+00:03:31.741 --> 00:03:32.064
 end.
 
 71
-00:03:33.194 --> 00:03:38.256
+00:03:33.114 --> 00:03:38.176
 VEGA:  Every incident follows a rhythm: prepare, detect, contain,
 
 72
-00:03:38.256 --> 00:03:39.914
+00:03:38.176 --> 00:03:39.834
 eradicate, recover.
 
 73
-00:03:40.214 --> 00:03:43.603
+00:03:40.134 --> 00:03:43.523
 NOVA:  And IR-8 writes the plan that makes it
 
 74
-00:03:43.603 --> 00:03:44.316
+00:03:43.523 --> 00:03:44.236
 routine.
 
 75
-00:03:45.366 --> 00:03:49.394
+00:03:45.286 --> 00:03:49.314
 ARCHIVIST:  Implement an incident handling capability for incidents that
 
 76
-00:03:49.394 --> 00:03:52.683
+00:03:49.314 --> 00:03:52.603
 is consistent with the incident response plan and
 
 77
-00:03:52.683 --> 00:03:57.718
+00:03:52.603 --> 00:03:57.638
 includes preparation, detection and analysis, containment, eradication, and
 
 78
-00:03:57.718 --> 00:03:58.322
+00:03:57.638 --> 00:03:58.242
 recovery;
 
 79
-00:03:59.372 --> 00:04:02.332
+00:03:59.292 --> 00:04:02.252
 VEGA:  The best responders practiced before the fire.
 
 80
-00:04:09.672 --> 00:04:12.325
+00:04:09.592 --> 00:04:12.245
 VEGA:  The Firewatch's oath. When it burns, we are
 
 81
-00:04:12.325 --> 00:04:13.312
+00:04:12.245 --> 00:04:13.232
 already running.
 
 82
-00:04:14.362 --> 00:04:17.880
+00:04:14.282 --> 00:04:17.800
 VEGA:  Selecting and implementing was the wall. Watching is
 
 83
-00:04:17.880 --> 00:04:18.962
+00:04:17.800 --> 00:04:18.882
 how you keep it.
 
 84
-00:04:22.962 --> 00:04:27.027
+00:04:22.882 --> 00:04:26.947
 NOVA:  Scenario: the Null deletes logs. What stops it?
 
 85
-00:04:27.027 --> 00:04:28.584
+00:04:26.947 --> 00:04:28.504
 Pause, and answer.
 
 86
-00:04:28.884 --> 00:04:31.327
+00:04:28.804 --> 00:04:31.247
 An intruder tries to delete the logs to
 
 87
-00:04:31.327 --> 00:04:33.332
+00:04:31.247 --> 00:04:33.252
 hide. Which control blocks that?
 
 88
-00:04:33.632 --> 00:04:37.378
+00:04:33.552 --> 00:04:37.861
 Your options. A. AU-2 Event Logging. B. AU-9
 
 89
-00:04:37.378 --> 00:04:42.400
+00:04:37.861 --> 00:04:43.640
 Protection of Audit Information. C. SI-4 System Monitoring.
 
 90
-00:04:42.700 --> 00:04:45.602
+00:04:43.940 --> 00:04:46.842
 NOVA:  Pause here and lock in your answer.
 
 91
-00:04:52.652 --> 00:04:55.400
+00:04:53.892 --> 00:04:56.640
 VEGA:  The answer is B. AU-9 Protection of Audit
 
 92
-00:04:55.400 --> 00:04:59.422
+00:04:56.640 --> 00:05:00.662
 Information. AU-9, Protection of Audit Information, keeps an
 
 93
-00:04:59.422 --> 00:05:02.372
+00:05:00.662 --> 00:05:03.612
 intruder from deleting or altering the logs.
 
 94
-00:05:03.422 --> 00:05:05.462
+00:05:04.662 --> 00:05:06.702
 VEGA:  And who runs toward the fire?
 
 95
-00:05:05.762 --> 00:05:09.638
+00:05:07.002 --> 00:05:10.878
 Which family detects, contains, and recovers from a
 
 96
-00:05:09.638 --> 00:05:10.170
+00:05:10.878 --> 00:05:11.410
 breach?
 
 97
-00:05:10.470 --> 00:05:14.642
+00:05:11.710 --> 00:05:15.882
 Your options. A. IR - Incident Response. B.
 
 98
-00:05:14.642 --> 00:05:18.038
+00:05:15.882 --> 00:05:19.278
 AU - Audit. C. AC - Access Control.
 
 99
-00:05:18.338 --> 00:05:21.240
+00:05:19.578 --> 00:05:22.480
 NOVA:  Pause here and lock in your answer.
 
 100
-00:05:28.290 --> 00:05:31.070
+00:05:29.530 --> 00:05:32.310
 VEGA:  The answer is A. IR - Incident Response.
 
 101
-00:05:31.070 --> 00:05:34.893
+00:05:32.310 --> 00:05:36.133
 Incident Response is the family that detects, contains,
 
 102
-00:05:34.893 --> 00:05:36.770
+00:05:36.133 --> 00:05:38.010
 and recovers from a breach.
 
 103
-00:05:37.820 --> 00:05:40.804
+00:05:39.060 --> 00:05:42.044
 NOVA:  Notebook: assume they got in, then see them,
 
 104
-00:05:40.804 --> 00:05:43.042
+00:05:42.044 --> 00:05:44.282
 heal the system, and answer fast.
 
 105
-00:05:43.342 --> 00:05:46.622
+00:05:44.582 --> 00:05:47.862
 VEGA:  Seen, healed, and answered. The towers hold.
 
 106
-00:05:46.922 --> 00:05:49.840
+00:05:48.162 --> 00:05:51.080
 NULL:  Then I'll turn your own people against you.
 
 107
-00:05:50.140 --> 00:05:52.197
+00:05:51.380 --> 00:05:53.437
 VEGA:  Then we ride to the Keepers of the
 
 108
-00:05:52.197 --> 00:05:52.500
+00:05:53.437 --> 00:05:53.740
 Pact.

@@ -120,7 +120,7 @@
    "say": [
     [
      "VEGA",
-     "Low draws 149 items. Moderate, 287. High, 370."
+     "Low draws one hundred forty-nine controls. Moderate, two hundred eighty-seven. High, three hundred seventy."
     ],
     [
      "VEGA",
@@ -173,7 +173,7 @@
   },
   {
    "scene": "quiz",
-   "q": "Where do the Low / Moderate / High baselines live?",
+   "q": "Where do the Low, Moderate, and High baselines live?",
    "options": [
     "SP 800-53 (the catalog)",
     "SP 800-53B",

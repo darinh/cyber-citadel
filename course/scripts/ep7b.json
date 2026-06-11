@@ -59,7 +59,7 @@
    "say": [
     [
      "VEGA",
-     "Here's our system. Not 'a computer' — an app, a database, the staff who use it, and the data they protect."
+     "Here's our system. Not just a computer — an app, a database, the staff who use it, and the data they protect."
     ],
     [
      "NOVA",
@@ -113,7 +113,7 @@
     ],
     [
      "VEGA",
-     "So the whole system is categorized HIGH. One High pulls it all up."
+     "So the whole system is categorized High. One High pulls it all up."
     ]
    ]
   },
@@ -130,7 +130,7 @@
    "say": [
     [
      "VEGA",
-     "Maya opens 800-53B and draws the HIGH baseline — and the privacy baseline, because of those patient records."
+     "Maya opens 800-53B and draws the High baseline — and the privacy baseline, because of those patient records."
     ],
     [
      "NOVA",
@@ -153,7 +153,7 @@
     ],
     [
      "VEGA",
-     "No. The data center already provides physical security, PE-3, for every tenant. Maya inherits it — that's a common control."
+     "No. The data center already provides physical security — control PE-3 — for every tenant. Maya inherits it — that's a common control."
     ]
    ],
    "min_seconds": 6.5
@@ -198,7 +198,7 @@
    "say": [
     [
      "VEGA",
-     "Now Raj's team puts the controls to work. The catalog says WHAT; they choose HOW."
+     "Now Raj's team puts the controls to work. The catalog says what to do; they choose how to do it."
     ],
     [
      "NOVA",

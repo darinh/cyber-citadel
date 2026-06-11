@@ -52,23 +52,29 @@ def main():
         for idx, k, sp, tx in rows:
             print(f"b{idx:03d}_l{k:02d}_{sp:9s}  {tx[:84]}")
         return
-    target = sys.argv[2].replace(".wav", "")
-    match = [(idx, k, sp, tx) for idx, k, sp, tx in rows if f"b{idx:03d}_l{k:02d}_{sp}" == target]
-    if not match:
-        print("clip not found:", target, "(use --list)"); return
-    idx, k, sp, tx = match[0]
+    target_args = [a.replace(".wav", "") for a in sys.argv[2:]]
     rdir = B.RENDER_ROOT / ep
-    (rdir / "lines" / f"{target}.wav").unlink(missing_ok=True)
-    try:                                   # bust the voice cache so we get a NEW take
-        cached = B.tts.CACHE / f"{B.tts._key(sp, tx)}.wav"
-        cached.unlink(missing_ok=True)
-        print("busted voice cache:", cached.name)
-    except Exception as e:
-        print("cache bust skipped:", e)
-    mf = B._load_manifest(rdir)            # invalidate only this beat
-    mf["beats"].pop(str(idx), None)
+    mf = B._load_manifest(rdir)
+    done = []
+    for target in target_args:
+        match = [(idx, k, sp, tx) for idx, k, sp, tx in rows if f"b{idx:03d}_l{k:02d}_{sp}" == target]
+        if not match:
+            print("clip not found:", target, "(use --list)"); continue
+        idx, k, sp, tx = match[0]
+        (rdir / "lines" / f"{target}.wav").unlink(missing_ok=True)
+        try:                                   # bust the voice cache so we get a NEW take
+            cached = B.tts.CACHE / f"{B.tts._key(sp, tx)}.wav"
+            cached.unlink(missing_ok=True)
+        except Exception as e:
+            print("cache bust skipped:", e)
+        mf["beats"].pop(str(idx), None)        # invalidate this beat
+        done.append(f"{target} :: {tx}")
+    if not done:
+        return
     B._save_manifest(rdir, mf)
-    print(f"re-rolling {target}\n  TEXT: {tx}")
+    print(f"re-rolling {len(done)} clip(s):")
+    for d in done:
+        print("  ", d)
     B.assemble(str(spec))
     print(f"done — {ep} re-muxed")
 

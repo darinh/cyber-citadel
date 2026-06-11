@@ -55,201 +55,205 @@ NOVA:  So 'doing 800-53' is really a group of
 people, each with a named role and hat.
 
 15
-00:00:36,754 --> 00:00:39,231
-VEGA:  Here's our system. Not 'a computer' - an
+00:00:36,754 --> 00:00:39,356
+VEGA:  Here's our system. Not just a computer -
 
 16
-00:00:39,231 --> 00:00:41,584
-app, a database, the staff who use it,
+00:00:39,356 --> 00:00:41,763
+an app, a database, the staff who use
 
 17
-00:00:41,584 --> 00:00:43,194
-and the data they protect.
+00:00:41,763 --> 00:00:43,714
+it, and the data they protect.
 
 18
-00:00:43,494 --> 00:00:47,242
+00:00:44,014 --> 00:00:47,762
 NOVA:  And those records are PII - personal, and
 
 19
-00:00:47,242 --> 00:00:48,796
+00:00:47,762 --> 00:00:49,316
 protected by law.
 
 20
-00:00:49,846 --> 00:00:53,384
+00:00:50,366 --> 00:00:53,904
 VEGA:  First, prepare - set roles and context. Then
 
 21
-00:00:53,384 --> 00:00:56,681
+00:00:53,904 --> 00:00:57,201
 categorize: how bad is the worst case for
 
 22
-00:00:56,681 --> 00:00:57,646
+00:00:57,201 --> 00:00:58,166
 C, I, and A?
 
 23
-00:00:57,946 --> 00:01:01,690
+00:00:58,466 --> 00:01:02,210
 VEGA:  Confidentiality, Moderate. But Integrity is High - a
 
 24
-00:01:01,690 --> 00:01:04,930
+00:01:02,210 --> 00:01:05,450
 wrong dose could kill. Availability is High -
 
 25
-00:01:04,930 --> 00:01:06,586
+00:01:05,450 --> 00:01:07,106
 downtime closes the ER.
 
 26
-00:01:06,886 --> 00:01:09,299
+00:01:07,406 --> 00:01:09,819
 NOVA:  And the high-water mark takes the worst of
 
 27
-00:01:09,299 --> 00:01:09,988
+00:01:09,819 --> 00:01:10,508
 the three...
 
 28
-00:01:10,288 --> 00:01:13,618
-VEGA:  So the whole system is categorized HIGH. One
+00:01:10,808 --> 00:01:14,057
+VEGA:  So the whole system is categorized High. One
 
 29
-00:01:13,618 --> 00:01:15,208
+00:01:14,057 --> 00:01:15,608
 High pulls it all up.
 
 30
-00:01:16,258 --> 00:01:19,209
-VEGA:  Maya opens 800-53B and draws the HIGH baseline
+00:01:16,658 --> 00:01:19,869
+VEGA:  Maya opens 800-53B and draws the High baseline
 
 31
-00:01:19,209 --> 00:01:22,032
+00:01:19,869 --> 00:01:22,941
 - and the privacy baseline, because of those
 
 32
-00:01:22,032 --> 00:01:23,058
+00:01:22,941 --> 00:01:24,058
 patient records.
 
 33
-00:01:23,358 --> 00:01:26,260
+00:01:24,358 --> 00:01:27,260
 NOVA:  A starting kit, sized to the stakes.
 
 34
-00:01:27,310 --> 00:01:30,758
+00:01:28,310 --> 00:01:31,758
 NOVA:  Does Maya's team really configure every one of
 
 35
-00:01:30,758 --> 00:01:31,732
+00:01:31,758 --> 00:01:32,732
 370 controls?
 
 36
-00:01:32,032 --> 00:01:35,505
-VEGA:  No. The data center already provides physical security,
+00:01:33,032 --> 00:01:36,462
+VEGA:  No. The data center already provides physical security
 
 37
-00:01:35,505 --> 00:01:38,157
-PE-3, for every tenant. Maya inherits it -
+00:01:36,462 --> 00:01:38,939
+- control PE-3 - for every tenant. Maya
 
 38
-00:01:38,157 --> 00:01:39,672
-that's a common control.
+00:01:38,939 --> 00:01:41,352
+inherits it - that's a common control.
 
 39
-00:01:40,722 --> 00:01:43,116
+00:01:42,402 --> 00:01:44,796
 VEGA:  Tailoring is fitting the kit to the system
 
 40
-00:01:43,116 --> 00:01:45,282
+00:01:44,796 --> 00:01:46,962
 - not an excuse to delete protections.
 
 41
-00:01:45,582 --> 00:01:49,117
+00:01:47,262 --> 00:01:50,797
 NULL:  I look for the one control you wrongly
 
 42
-00:01:49,117 --> 00:01:50,420
+00:01:50,797 --> 00:01:52,100
 tailored away.
 
 43
-00:01:50,720 --> 00:01:53,264
+00:01:52,400 --> 00:01:54,944
 VEGA:  Which is why every change is justified and
 
 44
-00:01:53,264 --> 00:01:55,928
+00:01:54,944 --> 00:01:57,608
 written down - we drop wireless only because
 
 45
-00:01:55,928 --> 00:01:57,200
+00:01:57,608 --> 00:01:58,880
 this system has none.
 
 46
-00:01:58,250 --> 00:02:01,427
+00:01:59,930 --> 00:02:02,512
 VEGA:  Now Raj's team puts the controls to work.
 
 47
-00:02:01,427 --> 00:02:04,450
-The catalog says WHAT; they choose HOW.
+00:02:02,512 --> 00:02:05,031
+The catalog says what to do; they choose
 
 48
-00:02:04,750 --> 00:02:07,572
-NOVA:  Same requirement, many possible tools.
+00:02:05,031 --> 00:02:05,850
+how to do it.
 
 49
-00:02:08,622 --> 00:02:11,677
-VEGA:  An outside assessor checks the work three ways:
+00:02:06,150 --> 00:02:08,972
+NOVA:  Same requirement, many possible tools.
 
 50
-00:02:11,677 --> 00:02:13,302
-examine, interview, test.
+00:02:10,230 --> 00:02:13,285
+VEGA:  An outside assessor checks the work three ways:
 
 51
-00:02:13,602 --> 00:02:16,913
-NOVA:  Selecting a control isn't proof it works. Assessment
+00:02:13,285 --> 00:02:14,910
+examine, interview, test.
 
 52
-00:02:16,913 --> 00:02:17,104
-is.
+00:02:15,210 --> 00:02:18,521
+NOVA:  Selecting a control isn't proof it works. Assessment
 
 53
-00:02:18,922 --> 00:02:21,424
-NOVA:  What about the weaknesses the assessor found?
+00:02:18,521 --> 00:02:18,712
+is.
 
 54
-00:02:21,724 --> 00:02:24,559
-VEGA:  The risk that remains - residual risk. The
+00:02:20,530 --> 00:02:23,032
+NOVA:  What about the weaknesses the assessor found?
 
 55
-00:02:24,559 --> 00:02:27,124
-CIO weighs it before anyone goes live.
+00:02:23,332 --> 00:02:26,167
+VEGA:  The risk that remains - residual risk. The
 
 56
-00:02:28,174 --> 00:02:31,499
-VEGA:  The CIO signs the authorization to operate. Then
+00:02:26,167 --> 00:02:28,732
+CIO weighs it before anyone goes live.
 
 57
-00:02:31,499 --> 00:02:33,854
-the watch begins - and never ends.
+00:02:29,782 --> 00:02:33,107
+VEGA:  The CIO signs the authorization to operate. Then
 
 58
-00:02:34,154 --> 00:02:37,222
-NULL:  Cute - a checklist against me? I live
+00:02:33,107 --> 00:02:35,462
+the watch begins - and never ends.
 
 59
-00:02:37,222 --> 00:02:39,792
-in the gaps between your steps.
+00:02:35,762 --> 00:02:38,830
+NULL:  Cute - a checklist against me? I live
 
 60
-00:02:40,842 --> 00:02:43,407
-NOVA:  I just watched a whole system get secured,
+00:02:38,830 --> 00:02:41,400
+in the gaps between your steps.
 
 61
-00:02:43,407 --> 00:02:44,384
-start to finish.
+00:02:42,450 --> 00:02:45,015
+NOVA:  I just watched a whole system get secured,
 
 62
-00:02:44,684 --> 00:02:46,907
-VEGA:  You did. Now we'll slow down and learn
+00:02:45,015 --> 00:02:45,992
+start to finish.
 
 63
-00:02:46,907 --> 00:02:49,130
-each step in depth - starting with the
+00:02:46,292 --> 00:02:48,515
+VEGA:  You did. Now we'll slow down and learn
 
 64
-00:02:49,130 --> 00:02:50,124
+00:02:48,515 --> 00:02:50,738
+each step in depth - starting with the
+
+65
+00:02:50,738 --> 00:02:51,732
 framework itself.

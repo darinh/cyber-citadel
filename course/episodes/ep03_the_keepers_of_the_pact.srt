@@ -1,407 +1,407 @@
 1
-00:00:00,350 --> 00:00:06,458
+00:00:00,350 --> 00:00:04,887
 NULL:  Every trust, every habit, every careless click -
 
 2
-00:00:06,458 --> 00:00:08,748
+00:00:04,887 --> 00:00:06,588
 I will exploit it.
 
 3
-00:00:09,048 --> 00:00:11,195
+00:00:06,888 --> 00:00:09,035
 VEGA:  Not tonight. And the easiest door of all
 
 4
-00:00:11,195 --> 00:00:13,128
+00:00:09,035 --> 00:00:10,968
 is a person who hasn't been trained.
 
 5
-00:00:13,428 --> 00:00:15,610
+00:00:11,268 --> 00:00:13,450
 NOVA:  So the people are the perimeter too?
 
 6
-00:00:15,910 --> 00:00:18,390
+00:00:13,750 --> 00:00:16,230
 VEGA:  The most-attacked one. Let's defend them.
 
 7
-00:00:19,440 --> 00:00:23,369
+00:00:17,280 --> 00:00:21,209
 NULL:  Walls and towers? Tedious. People are so much
 
 8
-00:00:23,369 --> 00:00:24,678
+00:00:21,209 --> 00:00:22,518
 easier to fool.
 
 9
-00:00:24,978 --> 00:00:27,863
-VEGA:  Which is why the strongest controls guard the
+00:00:22,818 --> 00:00:25,346
+VEGA:  And that is why the strongest controls guard
 
 10
-00:00:27,863 --> 00:00:29,338
-people, and their data.
+00:00:25,346 --> 00:00:26,898
+the people, and their data.
 
 11
-00:00:30,388 --> 00:00:32,935
+00:00:27,948 --> 00:00:30,495
 VEGA:  Layer three is human. Train them, trust them
 
 12
-00:00:32,935 --> 00:00:34,788
+00:00:30,495 --> 00:00:32,348
 carefully, and honor their data.
 
 13
-00:00:35,088 --> 00:00:38,706
+00:00:32,648 --> 00:00:36,266
 Three families keep the pact: Awareness & Training,
 
 14
-00:00:38,706 --> 00:00:40,976
+00:00:36,266 --> 00:00:38,536
 Personnel Security, and Privacy.
 
 15
-00:00:42,026 --> 00:00:45,324
+00:00:39,586 --> 00:00:42,884
 NOVA:  AT, PS, and PT. The teacher, the oathkeeper,
 
 16
-00:00:45,324 --> 00:00:47,048
+00:00:42,884 --> 00:00:44,608
 and the privacy herald.
 
 17
-00:00:48,098 --> 00:00:50,698
+00:00:45,658 --> 00:00:48,258
 VEGA:  The Drillmaster, Awareness and Training.
 
 18
-00:00:50,998 --> 00:00:53,464
+00:00:48,558 --> 00:00:51,024
 VEGA:  A trained citizen spots the trick at the
 
 19
-00:00:53,464 --> 00:00:54,758
+00:00:51,024 --> 00:00:52,318
 gate before it opens.
 
 20
-00:00:55,058 --> 00:00:58,068
+00:00:52,618 --> 00:00:55,628
 VEGA:  In reality, that's security and privacy training so
 
 21
-00:00:58,068 --> 00:01:01,018
+00:00:55,628 --> 00:00:58,578
 people recognize and resist threats like phishing.
 
 22
-00:01:02,068 --> 00:01:04,530
+00:00:59,628 --> 00:01:02,090
 NOVA:  What is 'phishing,' exactly?
 
 23
-00:01:04,830 --> 00:01:07,481
+00:01:02,390 --> 00:01:05,041
 VEGA:  Bait for people. A message that looks legitimate
 
 24
-00:01:07,481 --> 00:01:09,028
+00:01:05,041 --> 00:01:06,588
 but is a trap - and it's how
 
 25
-00:01:09,028 --> 00:01:10,630
+00:01:06,588 --> 00:01:08,190
 most breaches actually begin.
 
 26
-00:01:11,680 --> 00:01:14,022
+00:01:09,240 --> 00:01:11,582
 NOVA:  How do you stop a perfect phishing email?
 
 27
-00:01:14,322 --> 00:01:16,846
+00:01:11,882 --> 00:01:14,406
 VEGA:  You train the human. AT-2 builds that instinct
 
 28
-00:01:16,846 --> 00:01:19,041
+00:01:14,406 --> 00:01:16,601
 in everyone - the instinct that hangs up
 
 29
-00:01:19,041 --> 00:01:20,962
+00:01:16,601 --> 00:01:18,522
 on the kind of call we opened with.
 
 30
-00:01:22,012 --> 00:01:25,012
+00:01:19,572 --> 00:01:22,572
 VEGA:  And AT-3 trains people for their particular role.
 
 31
-00:01:28,512 --> 00:01:32,727
+00:01:26,072 --> 00:01:30,287
 ARCHIVIST:  Provide security and privacy literacy training to system
 
 32
-00:01:32,727 --> 00:01:37,468
+00:01:30,287 --> 00:01:35,028
 users (including managers, senior executives, and contractors):
 
 33
-00:01:38,518 --> 00:01:41,100
+00:01:36,078 --> 00:01:38,660
 VEGA:  The cheapest firewall you own is an alert
 
 34
-00:01:41,100 --> 00:01:41,478
+00:01:38,660 --> 00:01:39,038
 human.
 
 35
-00:01:47,118 --> 00:01:50,144
+00:01:44,678 --> 00:01:47,704
 VEGA:  The Drillmaster's oath. The sharpest blade is an
 
 36
-00:01:50,144 --> 00:01:50,838
+00:01:47,704 --> 00:01:48,398
 alert mind.
 
 37
-00:01:51,888 --> 00:01:54,448
+00:01:49,448 --> 00:01:52,008
 VEGA:  The Oathkeeper, Personnel Security.
 
 38
-00:01:54,748 --> 00:01:59,146
+00:01:52,308 --> 00:01:55,386
 NULL:  Every guard you hire... could be mine.
 
 39
-00:01:59,446 --> 00:02:02,832
+00:01:55,686 --> 00:01:59,072
 VEGA:  In reality, that's screening people, adjusting access when
 
 40
-00:02:02,832 --> 00:02:05,634
+00:01:59,072 --> 00:02:01,874
 they move or leave, and guarding against insider
 
 41
-00:02:05,634 --> 00:02:05,926
+00:02:01,874 --> 00:02:02,166
 risk.
 
 42
-00:02:06,976 --> 00:02:10,256
+00:02:03,216 --> 00:02:06,496
 VEGA:  PS-3 screens people before they're trusted with access.
 
 43
-00:02:13,476 --> 00:02:15,458
+00:02:09,716 --> 00:02:11,698
 NOVA:  And when a guard leaves?
 
 44
-00:02:15,758 --> 00:02:18,281
+00:02:11,998 --> 00:02:14,521
 VEGA:  PS-4 reclaims the keys, on the way out
 
 45
-00:02:18,281 --> 00:02:18,878
+00:02:14,521 --> 00:02:15,118
 the door.
 
 46
-00:02:19,976 --> 00:02:23,092
+00:02:16,216 --> 00:02:19,332
 ARCHIVIST:  Upon termination of individual employment:
 
 47
-00:02:24,142 --> 00:02:26,603
+00:02:20,382 --> 00:02:22,843
 VEGA:  Access should follow the person, and leave when
 
 48
-00:02:26,603 --> 00:02:27,022
+00:02:22,843 --> 00:02:23,262
 they do.
 
 49
-00:02:34,442 --> 00:02:36,953
+00:02:30,682 --> 00:02:33,193
 VEGA:  The Oathkeeper's oath. Trust is earned at the
 
 50
-00:02:36,953 --> 00:02:38,682
+00:02:33,193 --> 00:02:34,922
 gate, and returned at the door.
 
 51
-00:02:39,732 --> 00:02:43,590
+00:02:35,972 --> 00:02:39,830
 VEGA:  The Privacy Herald, P-T, Processing and Transparency of
 
 52
-00:02:43,590 --> 00:02:44,572
+00:02:39,830 --> 00:02:40,812
 personal data.
 
 53
-00:02:44,872 --> 00:02:48,377
+00:02:41,112 --> 00:02:44,617
 NOVA:  New in Revision 5, privacy now stands beside
 
 54
-00:02:48,377 --> 00:02:49,094
+00:02:44,617 --> 00:02:45,334
 security.
 
 55
-00:02:49,394 --> 00:02:53,294
+00:02:45,634 --> 00:02:49,534
 VEGA:  In reality, that's processing people's personal data lawfully
 
 56
-00:02:53,294 --> 00:02:55,979
+00:02:49,534 --> 00:02:52,219
 and openly - with notice and consent where
 
 57
-00:02:55,979 --> 00:02:56,554
+00:02:52,219 --> 00:02:52,794
 required.
 
 58
-00:02:57,604 --> 00:03:00,706
+00:02:53,844 --> 00:02:56,946
 NOVA:  P-I-I keeps coming up.
 
 59
-00:03:01,006 --> 00:03:04,605
+00:02:57,246 --> 00:03:00,845
 VEGA:  Personally identifiable information - the data that points
 
 60
-00:03:04,605 --> 00:03:07,025
+00:03:00,845 --> 00:03:03,265
 to a real human being. Privacy is about
 
 61
-00:03:07,025 --> 00:03:08,886
+00:03:03,265 --> 00:03:05,126
 protecting it, and the person.
 
 62
-00:03:09,936 --> 00:03:14,116
+00:03:06,176 --> 00:03:10,356
 VEGA:  PT-2 demands a documented authority to process personal
 
 63
-00:03:14,116 --> 00:03:14,496
+00:03:10,356 --> 00:03:10,736
 data.
 
 64
-00:03:16,436 --> 00:03:19,493
+00:03:12,676 --> 00:03:15,733
 VEGA:  And PT-5 gives people honest notice of how
 
 65
-00:03:19,493 --> 00:03:20,876
+00:03:15,733 --> 00:03:17,116
 their data is used.
 
 66
-00:03:22,936 --> 00:03:26,422
+00:03:19,176 --> 00:03:22,662
 VEGA:  Authority first, then purpose and notice, then consent
 
 67
-00:03:26,422 --> 00:03:29,456
+00:03:22,662 --> 00:03:25,696
 where required, and process only as authorized.
 
 68
-00:03:29,756 --> 00:03:33,251
+00:03:25,996 --> 00:03:29,491
 NOVA:  Permission where needed, and honesty, before the data
 
 69
-00:03:33,251 --> 00:03:33,778
+00:03:29,491 --> 00:03:30,018
 is used.
 
 70
-00:03:34,828 --> 00:03:38,650
+00:03:31,068 --> 00:03:34,890
 ARCHIVIST:  Determine and document the [authority] that permits the
 
 71
-00:03:38,650 --> 00:03:42,264
+00:03:34,890 --> 00:03:38,504
 [processing] of personally identifiable information;
 
 72
-00:03:43,314 --> 00:03:47,994
+00:03:39,554 --> 00:03:43,194
 VEGA:  Security protects the data. Privacy honors the person.
 
 73
-00:03:53,614 --> 00:03:56,290
+00:03:49,854 --> 00:03:52,815
 VEGA:  The Privacy Herald's oath. By what right, for
 
 74
-00:03:56,290 --> 00:03:58,134
+00:03:52,815 --> 00:03:54,854
 what purpose, with whose leave?
 
 75
-00:03:59,184 --> 00:04:01,895
+00:03:55,904 --> 00:03:58,615
 VEGA:  Not every control is a firewall. Some are
 
 76
-00:04:01,895 --> 00:04:03,944
+00:03:58,615 --> 00:04:00,664
 a habit, a contract, a promise.
 
 77
-00:04:07,784 --> 00:04:11,750
+00:04:04,504 --> 00:04:08,470
 NOVA:  Scenario: a leaver kept their access. Which guardian
 
 78
-00:04:11,750 --> 00:04:13,046
+00:04:08,470 --> 00:04:09,766
 dropped the ball?
 
 79
-00:04:13,346 --> 00:04:17,062
+00:04:10,066 --> 00:04:13,782
 A departing administrator still has their access a
 
 80
-00:04:17,062 --> 00:04:19,514
+00:04:13,782 --> 00:04:16,234
 week later. Which control failed?
 
 81
-00:04:19,814 --> 00:04:25,314
+00:04:16,534 --> 00:04:22,034
 Your options. A. PS-4 Personnel Termination. B. AT-2
 
 82
-00:04:25,314 --> 00:04:29,862
+00:04:22,034 --> 00:04:26,582
 Awareness Training. C. PT-5 Privacy Notice.
 
 83
-00:04:30,162 --> 00:04:33,064
+00:04:26,882 --> 00:04:29,784
 NOVA:  Pause here and lock in your answer.
 
 84
-00:04:40,114 --> 00:04:43,991
+00:04:36,834 --> 00:04:40,711
 VEGA:  The answer is A. PS-4 Personnel Termination. PS-4,
 
 85
-00:04:43,991 --> 00:04:48,954
+00:04:40,711 --> 00:04:45,674
 Personnel Termination, revokes access the moment someone leaves.
 
 86
-00:04:50,004 --> 00:04:52,380
+00:04:46,724 --> 00:04:49,100
 VEGA:  And which guardian is the newcomer to the
 
 87
-00:04:52,380 --> 00:04:52,844
+00:04:49,100 --> 00:04:49,564
 catalog?
 
 88
-00:04:53,144 --> 00:04:55,855
+00:04:49,864 --> 00:04:52,575
 Which family is new in Revision 5 and
 
 89
-00:04:55,855 --> 00:04:58,272
+00:04:52,575 --> 00:04:54,992
 governs personal-data processing?
 
 90
-00:04:58,572 --> 00:05:02,403
+00:04:55,292 --> 00:04:59,123
 Your options. A. AT - Training. B. PS
 
 91
-00:05:02,403 --> 00:05:06,234
+00:04:59,123 --> 00:05:02,954
 - Personnel. C. PT - PII Processing &
 
 92
-00:05:06,234 --> 00:05:07,580
+00:05:02,954 --> 00:05:04,300
 Transparency.
 
 93
-00:05:07,880 --> 00:05:10,782
+00:05:04,600 --> 00:05:07,502
 NOVA:  Pause here and lock in your answer.
 
 94
-00:05:17,832 --> 00:05:20,869
+00:05:14,552 --> 00:05:17,589
 VEGA:  The answer is C. PT - PII Processing
 
 95
-00:05:20,869 --> 00:05:25,510
+00:05:17,589 --> 00:05:22,230
 & Transparency. PT, PII Processing and Transparency, is
 
 96
-00:05:25,510 --> 00:05:28,632
+00:05:22,230 --> 00:05:25,352
 the privacy family new in Revision 5.
 
 97
-00:05:29,682 --> 00:05:32,885
+00:05:26,402 --> 00:05:29,605
 NOVA:  Notebook: not every control is a firewall -
 
 98
-00:05:32,885 --> 00:05:35,864
+00:05:29,605 --> 00:05:32,584
 some are a habit, a contract, a promise.
 
 99
-00:05:36,164 --> 00:05:38,804
+00:05:32,884 --> 00:05:35,524
 VEGA:  People kept, the pact honored.
 
 100
-00:05:39,104 --> 00:05:42,556
+00:05:35,824 --> 00:05:39,276
 NULL:  Then I'll strike where no one is even
 
 101
-00:05:42,556 --> 00:05:44,422
+00:05:39,276 --> 00:05:41,142
 looking. Your plans.
 
 102
-00:05:44,722 --> 00:05:47,162
+00:05:41,442 --> 00:05:43,882
 VEGA:  Then it's time to meet the High Council.

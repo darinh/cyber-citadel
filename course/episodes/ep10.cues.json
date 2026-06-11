@@ -1,25 +1,25 @@
 {
  "id": "EP10",
  "title": "EP10",
- "duration": 164.41,
+ "duration": 164.85,
  "chapters": [
   {
    "t": 11.75,
    "title": "The Armory"
   },
   {
-   "t": 79.64,
+   "t": 80.6,
    "title": "Quiz 1"
   },
   {
-   "t": 120.26,
+   "t": 120.7,
    "title": "Quiz 2"
   }
  ],
  "quizzes": [
   {
    "n": 1,
-   "q": "Where do the Low / Moderate / High baselines live?",
+   "q": "Where do the Low, Moderate, and High baselines live?",
    "options": [
     "SP 800-53 (the catalog)",
     "SP 800-53B",
@@ -27,10 +27,10 @@
    ],
    "answer": 1,
    "why": "The baselines live in 800-53B; 800-53 holds the controls themselves.",
-   "t_question": 79.64,
-   "t_quiz": 101.67,
-   "t_reveal": 108.37,
-   "t_resume": 120.26
+   "t_question": 80.6,
+   "t_quiz": 102.11,
+   "t_reveal": 108.81,
+   "t_resume": 120.7
   },
   {
    "n": 2,
@@ -42,10 +42,10 @@
    ],
    "answer": 1,
    "why": "Adjusting a baseline — scoping, swapping, adding — is tailoring, approved by the authorizing official.",
-   "t_question": 120.26,
-   "t_quiz": 139.19,
-   "t_reveal": 145.89,
-   "t_resume": 155.66
+   "t_question": 120.7,
+   "t_quiz": 139.63,
+   "t_reveal": 146.33,
+   "t_resume": 156.1
   }
  ]
 }

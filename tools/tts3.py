@@ -96,6 +96,64 @@ def _key(speaker, text):
     return hashlib.md5(sig.encode("utf-8")).hexdigest()
 
 
+# --- synth-time verification gate -----------------------------------------
+# Chatterbox is autoregressive/stochastic: a take can drop/repeat/garble words. After
+# synthesis we transcribe the clip and re-roll bad takes automatically, so a defective clip is
+# never used. Tolerant of number/acronym STT readback (compares meaningful content words only).
+VERIFY = __import__("os").environ.get("CC_VERIFY", "1") != "0"
+VERIFY_TRIES = 4
+VERIFY_THRESH = 0.8
+_STOPW = set("a an the of to and or in on at is are be by we you i it that this its as for with "
+             "they them then so do does did not no your our my me he she will can but if "
+             "zero one two three four five six seven eight nine ten eleven twelve thirteen "
+             "fourteen fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty "
+             "sixty seventy eighty ninety hundred thousand".split())
+_STT = None
+_FAILLOG = ROOT / "tools" / "_tmp" / "synth_verify_fails.log"
+
+
+def _stt():
+    global _STT
+    if _STT is None:
+        import torch
+        from faster_whisper import WhisperModel
+        _STT = WhisperModel("small", device="cuda" if torch.cuda.is_available() else "cpu",
+                            compute_type="float16" if torch.cuda.is_available() else "int8")
+    return _STT
+
+
+def _content(s):
+    import re
+    return [w for w in re.sub(r"[^a-z' ]", " ", s.lower()).split() if w not in _STOPW and len(w) > 2]
+
+
+def _verify_score(text, wav):
+    """Return (ok, recall, heard). Skips lines with <3 content words (number/acronym-only)."""
+    from collections import Counter
+    ew = _content(text)
+    if len(ew) < 3:
+        return True, 1.0, ""              # too short/number-only to verify reliably
+    segs, _ = _stt().transcribe(str(wav), language="en", beam_size=5)
+    heard = " ".join(x.text for x in segs).strip()
+    hw = _content(heard)
+    hc = Counter(hw); hit = 0
+    for w in ew:
+        if hc.get(w, 0) > 0:
+            hit += 1; hc[w] -= 1
+    recall = hit / len(ew)
+    ec = Counter(ew)
+    repeat = any(Counter(hw)[w] - ec.get(w, 0) >= 2 for w in set(hw))
+    truncated = len(hw) < 0.4 * len(ew)
+    ok = (recall >= VERIFY_THRESH) and not repeat and not truncated
+    return ok, recall, heard
+
+
+def _master(raw, out_wav, speaker):
+    af = EFFECTS.get(speaker, EFFECTS["NARRATOR"])
+    subprocess.run(["ffmpeg", "-y", "-i", str(raw), "-ar", str(SR), "-ac", "1", "-af", af, str(out_wav)],
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+
+
 def synth_line(speaker, text, out_wav) -> float:
     out_wav = Path(out_wav)
     out_wav.parent.mkdir(parents=True, exist_ok=True)
@@ -104,11 +162,28 @@ def synth_line(speaker, text, out_wav) -> float:
         shutil.copyfile(cached, out_wav)
     else:
         raw = out_wav.with_suffix(".raw.wav")
-        _synth_raw(speaker, text, raw)
-        af = EFFECTS.get(speaker, EFFECTS["NARRATOR"])
-        subprocess.run(["ffmpeg", "-y", "-i", str(raw), "-ar", str(SR), "-ac", "1",
-                        "-af", af, str(out_wav)],
-                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+        best, best_recall, best_heard = None, -1.0, ""
+        tries = VERIFY_TRIES if VERIFY else 1
+        for attempt in range(tries):
+            _synth_raw(speaker, text, raw)
+            _master(raw, out_wav, speaker)
+            if not VERIFY:
+                break
+            ok, recall, heard = _verify_score(text, out_wav)
+            if recall > best_recall:
+                best_recall, best_heard = recall, heard
+                best = out_wav.read_bytes()
+            if ok:
+                best = None                # current out_wav is good
+                break
+        else:
+            pass
+        if VERIFY and best is not None:    # no attempt passed; restore best-scoring take
+            out_wav.write_bytes(best)
+        if VERIFY and best_recall < VERIFY_THRESH and best_recall >= 0:
+            _FAILLOG.parent.mkdir(parents=True, exist_ok=True)
+            with open(_FAILLOG, "a", encoding="utf-8") as fh:
+                fh.write(f"{speaker} recall={best_recall:.2f} WANT[{text}] HEARD[{best_heard}]\n")
         raw.unlink(missing_ok=True)
         shutil.copyfile(out_wav, cached)
     dur = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",

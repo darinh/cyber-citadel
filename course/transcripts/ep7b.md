@@ -18,7 +18,7 @@
 *[PLAIN ENGLISH: Information system (made concrete)]*
   meaning: Aegis Regional Hospital runs a Patient Records System: a web app plus a database, used by about 800 clinicians, hosted on-premises, holding patients' medical records.
   everyday example: Web app + database + 800 users + sensitive health records = one information system to authorize.
-**VEGA:** Here's our system. Not 'a computer' — an app, a database, the staff who use it, and the data they protect.
+**VEGA:** Here's our system. Not just a computer — an app, a database, the staff who use it, and the data they protect.
 **NOVA:** And those records are PII — personal, and protected by law.
 
 *[DIAGRAM: Step 1–2: Prepare, then Categorize the impact]*
@@ -26,20 +26,20 @@
 **VEGA:** First, prepare — set roles and context. Then categorize: how bad is the worst case for C, I, and A?
 **VEGA:** Confidentiality, Moderate. But Integrity is High — a wrong dose could kill. Availability is High — downtime closes the ER.
 **NOVA:** And the high-water mark takes the worst of the three...
-**VEGA:** So the whole system is categorized HIGH. One High pulls it all up.
+**VEGA:** So the whole system is categorized High. One High pulls it all up.
 
 *[SELECT · SP 800-53B: Step 3: Select the starting controls]*
   • The HIGH security baseline from SP 800-53B — 370 controls and enhancements
   • PLUS the Privacy baseline (96) — because the system processes PII
   • This is the starting kit, not the finished list
-**VEGA:** Maya opens 800-53B and draws the HIGH baseline — and the privacy baseline, because of those patient records.
+**VEGA:** Maya opens 800-53B and draws the High baseline — and the privacy baseline, because of those patient records.
 **NOVA:** A starting kit, sized to the stakes.
 
 *[PLAIN ENGLISH: Common control (inheritance)]*
   meaning: A control someone else provides for you, so you don't build it yourself. You 'inherit' it. Controls can be common (provided), system-specific (yours alone), or hybrid (shared).
   everyday example: PE-3 (physical access) is common (the data center). AC-6 (least privilege) is system-specific. CP-2 (contingency plan) is often hybrid.
 **NOVA:** Does Maya's team really configure every one of 370 controls?
-**VEGA:** No. The data center already provides physical security, PE-3, for every tenant. Maya inherits it — that's a common control.
+**VEGA:** No. The data center already provides physical security — control PE-3 — for every tenant. Maya inherits it — that's a common control.
 
 *[TAILOR · NOT DELETE: Step 4: Tailor the baseline to fit]*
   • Scope out only what truly doesn't apply: this app is wired-only, so AC-18 (Wireless Access) is out of its boundary
@@ -55,7 +55,7 @@
   • SC-28: encrypt the patient database at rest
   • SI-2: patch servers on a set schedule
   • CP-9: a nightly backup kept offline, where ransomware can't reach it
-**VEGA:** Now Raj's team puts the controls to work. The catalog says WHAT; they choose HOW.
+**VEGA:** Now Raj's team puts the controls to work. The catalog says what to do; they choose how to do it.
 **NOVA:** Same requirement, many possible tools.
 
 *[ASSESS · SP 800-53A: Step 6: Assess — do they actually work?]*
