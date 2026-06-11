@@ -1,30 +1,30 @@
 {
  "id": "EP02",
  "title": "EP02",
- "duration": 354.44,
+ "duration": 352.16,
  "chapters": [
   {
    "t": 16.33,
    "title": "Inside The Walls"
   },
   {
-   "t": 27.4,
+   "t": 27.16,
    "title": "The Watchtowers"
   },
   {
-   "t": 40.2,
-   "title": "The Watchtowers"
+   "t": 39.96,
+   "title": "The Citadel Map"
   },
   {
-   "t": 142.17,
+   "t": 140.73,
    "title": "The Watch Catches A Shadow"
   },
   {
-   "t": 262.53,
+   "t": 261.69,
    "title": "Quiz 1"
   },
   {
-   "t": 304.31,
+   "t": 302.03,
    "title": "Quiz 2"
   }
  ],
@@ -39,10 +39,10 @@
    ],
    "answer": 1,
    "why": "AU-9, Protection of Audit Information, keeps an intruder from deleting or altering the logs.",
-   "t_question": 262.53,
-   "t_quiz": 286.84,
-   "t_reveal": 293.54,
-   "t_resume": 304.31
+   "t_question": 261.69,
+   "t_quiz": 284.56,
+   "t_reveal": 291.26,
+   "t_resume": 302.03
   },
   {
    "n": 2,
@@ -54,10 +54,10 @@
    ],
    "answer": 0,
    "why": "Incident Response is the family that detects, contains, and recovers from a breach.",
-   "t_question": 304.31,
-   "t_quiz": 322.48,
-   "t_reveal": 329.18,
-   "t_resume": 338.71
+   "t_question": 302.03,
+   "t_quiz": 320.2,
+   "t_reveal": 326.9,
+   "t_resume": 336.43
   }
  ]
 }

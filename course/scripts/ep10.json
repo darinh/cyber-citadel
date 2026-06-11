@@ -146,7 +146,7 @@
     ],
     [
      "NULL",
-     "I look for the control you wrongly tailored away."
+     "Every tailoring decision... is an invitation."
     ]
    ]
   },
@@ -163,32 +163,32 @@
    "say": [
     [
      "VEGA",
-     "Overlays are shared tailoring, so you don't start from scratch."
+     "That's the point of overlays — a community's already done part of the fitting for you."
     ],
     [
      "NOVA",
-     "And remember, PM controls run across the whole organization, outside any baseline."
+     "Wait — PM controls don't even come from the baseline? They just run everywhere?"
     ]
    ]
   },
   {
    "scene": "quiz",
-   "q": "Where do the Low, Moderate, and High baselines live?",
+   "q": "You don't want to tailor every control from scratch. What do you reuse?",
    "options": [
-    "SP 800-53 (the catalog)",
-    "SP 800-53B",
-    "FIPS 199"
+    "An overlay",
+    "A baseline",
+    "A catalog"
    ],
-   "answer": 1,
+   "answer": 0,
    "reveal": true,
    "say": [
     [
      "NOVA",
-     "Quick check. Which book holds the baselines? Pause, and answer."
+     "Quick check. What do you reuse instead of tailoring from scratch?"
     ]
    ],
    "min_seconds": 7,
-   "why": "The baselines live in 800-53B; 800-53 holds the controls themselves."
+   "why": "An overlay is shared, reusable tailoring — a community has already fit the controls for a context like healthcare."
   },
   {
    "scene": "quiz",

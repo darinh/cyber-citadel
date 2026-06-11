@@ -384,6 +384,9 @@ python tools\make_avatars.py
 
 # Deterministic accuracy gate (must PASS before render): on-screen facts vs OSCAL truth
 python tools\verify_script.py course\scripts\ep00.json
+# Deterministic CRAFT gate (must PASS before render): word echoes, duplicate headings,
+# quiz double-pause, title/variable-text overflow (measured with real fonts), incomplete quotes
+.\.venv_tts\Scripts\python.exe tools\lint_script.py            # all eps; --warn shows P2
 # Local-LLM hostile-auditor over narrative claims (complements the deterministic gate)
 python tools\audit_narration.py course\scripts\ep00.json
 
@@ -652,6 +655,25 @@ well below that, and color grading / HUD / audio mastering raise polish but NOT 
 ---
 
 ## 14. Changelog of learnings
+- **2026-06 — viewer-reported polish pass + deterministic craft gate + provenance.** Ran a 3-LLM
+  screenplay-review council over all 13 transcripts and applied consensus fixes: NOVA kept in the
+  learner role (she no longer recites control IDs/history before they're taught — the systemic
+  "preview/summary line" slip), NULL kept menacing (no coaching/conceding), word echoes removed
+  (incl. the EP00 "exist/exist"). Built **`tools/lint_script.py`** — a deterministic CRAFT gate
+  (run before every render) for whole CLASSES of defect: duplicate section/map headings
+  (EP01-07 each repeated the layer title -> map beats renamed "THE CITADEL MAP"), the
+  double-spoken quiz "Pause and answer" (assembler appends one, so scenario lines must not),
+  title/variable-text **overflow measured with the real fonts** (IA-2's 56-char official name
+  overflowed), and **incomplete Archivist quotes** truncated mid-list at a colon (PE-3/AU-2/AT-2/
+  PS-4/PL-2/PM-9/SA-8 — replaced with complete verbatim lead-in + first sub-requirement, still
+  passing verify_script). Fixed `scene.py` to **auto-shrink/fit every variable single-line text**
+  (titles, guardian name/persona, quiz options, mnemonics, term, cites) via `fit_font`/`draw_fit`.
+  Added **source provenance**: control cards show "NIST SP 800-53r5 · §3.N" (family->section map).
+  Rebuilt the **interactive quiz** (watch.html) to play-in-background: the quiz shows while the
+  video keeps reading, pauses only at the lock-in point if unanswered, skips to the reveal once
+  answered. All web behavior verified by the Playwright harness (42/42 across Chromium/Firefox/
+  WebKit). Lesson (user, emphatic): **when you own a mistake, build a GATE for the whole class —
+  don't just fix the one example.** Bumped RENDER_VER v3.3 -> v3.4 (scene.py changed).
 - **2026-06 — reusable SKILLS library + work-item backlog + web-player upgrades.** Captured the
   pipeline as discoverable **skills** in `.copilot/skills/` (screenplay-review, accuracy-verification,
   base-avatar-creation, avatar-expression-variants, tts-narration, music-bed, video-assembly,

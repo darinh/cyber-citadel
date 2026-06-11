@@ -1,26 +1,26 @@
 {
  "id": "EP11",
  "title": "FINALE",
- "duration": 238.98,
+ "duration": 238.38,
  "chapters": [
   {
    "t": 11.99,
    "title": "The Reckoning"
   },
   {
-   "t": 86.22,
+   "t": 88.74,
    "title": "Quiz 1"
   },
   {
-   "t": 125.08,
+   "t": 126.32,
    "title": "Quiz 2"
   },
   {
-   "t": 161.87,
+   "t": 163.11,
    "title": "Quiz 3"
   },
   {
-   "t": 207.36,
+   "t": 208.6,
    "title": "Cyber Citadel"
   }
  ],
@@ -35,10 +35,10 @@
    ],
    "answer": 1,
    "why": "SP 800-53A uses three assessment methods: examine, interview, and test.",
-   "t_question": 86.22,
-   "t_quiz": 108.25,
-   "t_reveal": 114.95,
-   "t_resume": 125.08
+   "t_question": 88.74,
+   "t_quiz": 109.49,
+   "t_reveal": 116.19,
+   "t_resume": 126.32
   },
   {
    "n": 2,
@@ -50,10 +50,10 @@
    ],
    "answer": 1,
    "why": "The official's acceptance of residual risk is the Authorization to Operate.",
-   "t_question": 125.08,
-   "t_quiz": 145.96,
-   "t_reveal": 152.66,
-   "t_resume": 161.87
+   "t_question": 126.32,
+   "t_quiz": 147.2,
+   "t_reveal": 153.9,
+   "t_resume": 163.11
   },
   {
    "n": 3,
@@ -65,10 +65,10 @@
    ],
    "answer": 1,
    "why": "Open weaknesses are tracked in a POA&M until they're remediated.",
-   "t_question": 161.87,
-   "t_quiz": 179.36,
-   "t_reveal": 186.06,
-   "t_resume": 194.71
+   "t_question": 163.11,
+   "t_quiz": 180.6,
+   "t_reveal": 187.3,
+   "t_resume": 195.95
   }
  ]
 }

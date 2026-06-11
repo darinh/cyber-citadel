@@ -112,7 +112,7 @@
  {
   "ep": "04",
   "epTitle": "The High Council",
-  "q": "A new system is ready to go live. Who formally accepts the risk to operate it?",
+  "q": "A new system is ready to go live. Which control is where a senior official formally accepts the risk?",
   "options": [
    "CA-6 Authorization",
    "RA-3 Risk Assessment",
@@ -277,13 +277,13 @@
  {
   "ep": "10",
   "epTitle": "The Armory: Baselines",
-  "q": "Where do the Low, Moderate, and High baselines live?",
+  "q": "You don't want to tailor every control from scratch. What do you reuse?",
   "options": [
-   "SP 800-53 (the catalog)",
-   "SP 800-53B",
-   "FIPS 199"
+   "An overlay",
+   "A baseline",
+   "A catalog"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "ep": "10",

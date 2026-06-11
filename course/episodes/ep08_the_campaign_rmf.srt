@@ -47,169 +47,165 @@ VEGA:  The plan of campaign has a name: the
 Risk Management Framework, from 800-37.
 
 13
-00:00:35,878 --> 00:00:38,607
-NOVA:  The process that tells you what to do,
+00:00:35,878 --> 00:00:38,195
+NOVA:  So it's the process that tells you what
 
 14
-00:00:38,607 --> 00:00:39,900
-and in what order.
+00:00:38,195 --> 00:00:39,740
+to do - and in what order?
 
 15
-00:00:40,950 --> 00:00:44,109
+00:00:40,790 --> 00:00:43,949
 NOVA:  What makes the RMF a 'framework' and not
 
 16
-00:00:44,109 --> 00:00:45,452
+00:00:43,949 --> 00:00:45,292
 just a checklist?
 
 17
-00:00:45,752 --> 00:00:49,047
+00:00:45,592 --> 00:00:48,887
 VEGA:  It's the living process that ties the catalog,
 
 18
-00:00:49,047 --> 00:00:52,916
+00:00:48,887 --> 00:00:52,756
 the baselines, and the assessments into one repeatable
 
 19
-00:00:52,916 --> 00:00:53,632
+00:00:52,756 --> 00:00:53,472
 lifecycle.
 
 20
-00:00:54,682 --> 00:01:00,670
+00:00:54,522 --> 00:01:00,510
 VEGA:  Seven steps. Prepare, categorize, select, implement, assess, authorize,
 
 21
-00:01:00,670 --> 00:01:01,682
+00:01:00,510 --> 00:01:01,522
 and monitor.
 
 22
-00:01:01,982 --> 00:01:05,564
-NOVA:  And it's a cycle, monitoring never stops.
+00:01:01,822 --> 00:01:05,244
+NOVA:  So it's a cycle? Monitoring never really stops?
 
 23
-00:01:05,864 --> 00:01:08,460
+00:01:05,544 --> 00:01:08,140
 VEGA:  The Prepare step was added in Revision 2
 
 24
-00:01:08,460 --> 00:01:11,704
+00:01:08,140 --> 00:01:11,384
 - getting the organization and system ready first.
 
 25
-00:01:12,754 --> 00:01:14,870
+00:01:12,434 --> 00:01:14,550
 VEGA:  Each step has a job, and most are
 
 26
-00:01:14,870 --> 00:01:17,434
+00:01:14,550 --> 00:01:17,114
 guided by a supporting NIST publication.
 
 27
-00:01:24,754 --> 00:01:28,184
+00:01:24,434 --> 00:01:27,864
 VEGA:  Authorize, then monitor. A system is never simply
 
 28
-00:01:28,184 --> 00:01:28,674
+00:01:27,864 --> 00:01:28,354
 'done.'
 
 29
-00:01:28,974 --> 00:01:32,782
+00:01:28,654 --> 00:01:32,462
 NULL:  Process. Paperwork. How quaint. I never sleep -
 
 30
-00:01:32,782 --> 00:01:35,212
+00:01:32,462 --> 00:01:34,892
 and your forms won't save you.
 
 31
-00:01:36,262 --> 00:01:39,625
+00:01:35,942 --> 00:01:39,305
 VEGA:  These books travel together. Each answers one question
 
 32
-00:01:39,625 --> 00:01:40,622
+00:01:39,305 --> 00:01:40,302
 in the campaign.
 
 33
-00:01:40,922 --> 00:01:43,543
+00:01:40,602 --> 00:01:43,223
 NOVA:  So Act One taught the controls. Act Two
 
 34
-00:01:43,543 --> 00:01:45,424
+00:01:43,223 --> 00:01:45,104
 is how we actually use them.
 
 35
-00:01:48,262 --> 00:01:51,192
+00:01:47,942 --> 00:01:50,564
 NOVA:  Quick check. How many steps in the framework?
 
 36
-00:01:51,192 --> 00:01:52,364
-Pause, and answer.
-
-37
-00:01:52,664 --> 00:01:56,377
+00:01:50,864 --> 00:01:54,577
 How many steps are in the RMF (SP
 
-38
-00:01:56,377 --> 00:01:57,952
+37
+00:01:54,577 --> 00:01:56,152
 800-37 Rev 2)?
 
-39
-00:01:58,252 --> 00:02:01,780
+38
+00:01:56,452 --> 00:01:59,980
 Your options. A. Five. B. Six. C. Seven.
 
-40
-00:02:02,080 --> 00:02:04,982
+39
+00:02:00,280 --> 00:02:03,182
 NOVA:  Pause here and lock in your answer.
 
-41
-00:02:12,032 --> 00:02:14,844
+40
+00:02:10,232 --> 00:02:13,044
 VEGA:  The answer is C. Seven. The RMF has
 
-42
-00:02:14,844 --> 00:02:20,549
+41
+00:02:13,044 --> 00:02:18,749
 seven steps: Prepare, Categorize, Select, Implement, Assess, Authorize,
 
-43
-00:02:20,549 --> 00:02:21,192
+42
+00:02:18,749 --> 00:02:19,392
 Monitor.
 
-44
-00:02:22,242 --> 00:02:24,058
+43
+00:02:20,442 --> 00:02:22,258
 VEGA:  And which step did Revision 2 add at
 
-45
-00:02:24,058 --> 00:02:24,562
+44
+00:02:22,258 --> 00:02:22,762
 the front?
 
-46
-00:02:24,862 --> 00:02:28,459
+45
+00:02:23,062 --> 00:02:26,659
 Which RMF step was newly added in Revision
 
-47
-00:02:28,459 --> 00:02:28,630
+46
+00:02:26,659 --> 00:02:26,830
 2?
 
-48
-00:02:28,930 --> 00:02:33,418
+47
+00:02:27,130 --> 00:02:31,618
 Your options. A. Prepare. B. Authorize. C. Monitor.
 
-49
-00:02:33,718 --> 00:02:36,620
+48
+00:02:31,918 --> 00:02:34,820
 NOVA:  Pause here and lock in your answer.
 
-50
-00:02:43,670 --> 00:02:47,589
+49
+00:02:41,870 --> 00:02:45,789
 VEGA:  The answer is A. Prepare. Prepare is the
 
-51
-00:02:47,589 --> 00:02:50,430
+50
+00:02:45,789 --> 00:02:48,630
 step added in RMF Revision 2.
 
-52
-00:02:51,480 --> 00:02:53,838
+51
+00:02:49,680 --> 00:02:52,038
 VEGA:  The map is set. First stop, knowing what
 
-53
-00:02:53,838 --> 00:02:54,840
+52
+00:02:52,038 --> 00:02:53,040
 we're protecting.
 
-54
-00:02:55,140 --> 00:02:57,060
+53
+00:02:53,340 --> 00:02:55,260
 VEGA:  Next: categorization.

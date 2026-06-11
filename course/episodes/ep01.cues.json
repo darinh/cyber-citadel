@@ -1,7 +1,7 @@
 {
  "id": "EP01",
  "title": "EP01",
- "duration": 392.17,
+ "duration": 395.69,
  "chapters": [
   {
    "t": 17.01,
@@ -13,18 +13,18 @@
   },
   {
    "t": 43.72,
-   "title": "The Outer Walls"
+   "title": "The Citadel Map"
   },
   {
-   "t": 261.53,
+   "t": 265.25,
    "title": "Quiz 1"
   },
   {
-   "t": 300.75,
+   "t": 303.03,
    "title": "Quiz 2"
   },
   {
-   "t": 338.1,
+   "t": 340.38,
    "title": "Quiz 3"
   }
  ],
@@ -39,10 +39,10 @@
    ],
    "answer": 1,
    "why": "Identification and Authentication proves who you are before you're let in.",
-   "t_question": 261.53,
-   "t_quiz": 283.72,
-   "t_reveal": 290.42,
-   "t_resume": 300.75
+   "t_question": 265.25,
+   "t_quiz": 286.0,
+   "t_reveal": 292.7,
+   "t_resume": 303.03
   },
   {
    "n": 2,
@@ -54,10 +54,10 @@
    ],
    "answer": 1,
    "why": "AC-6, Least Privilege, grants only the access someone truly needs — nothing more.",
-   "t_question": 300.75,
-   "t_quiz": 321.19,
-   "t_reveal": 327.89,
-   "t_resume": 338.1
+   "t_question": 303.03,
+   "t_quiz": 323.47,
+   "t_reveal": 330.17,
+   "t_resume": 340.38
   },
   {
    "n": 3,
@@ -69,10 +69,10 @@
    ],
    "answer": 0,
    "why": "Physical and Environmental Protection stops tailgating into the room itself.",
-   "t_question": 338.1,
-   "t_quiz": 360.49,
-   "t_reveal": 367.19,
-   "t_resume": 375.04
+   "t_question": 340.38,
+   "t_quiz": 362.77,
+   "t_reveal": 369.47,
+   "t_resume": 377.32
   }
  ]
 }

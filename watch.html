@@ -63,6 +63,8 @@ a{color:var(--cy);text-decoration:none}
 .overlay .ghost{background:transparent;color:var(--ink);border:1px solid #2a3257;border-radius:10px;padding:11px 22px;font-size:15px;cursor:pointer}
 .overlay .ghost:hover{border-color:var(--cy)}
 .nxcount{color:var(--mut);font-size:14px;margin-top:16px;min-height:1.2em}
+.overlay.soft{background:rgba(6,9,24,.45);backdrop-filter:blur(1.5px)}
+.ovhint{margin-top:14px;color:var(--cy);font-size:15px;min-height:1.3em;letter-spacing:.04em}
 </style></head><body>
 <div class="top">
   <span class="logo">CYBER CITADEL</span><span class="sub">Interactive course · NIST SP 800-53r5 &amp; the RMF</span>
@@ -77,11 +79,11 @@ a{color:var(--cy);text-decoration:none}
     <div class="stage">
       <video id="vid" controls preload="metadata" crossorigin="anonymous"></video>
       <div class="overlay" id="ov">
-        <div class="qk">GUARDIAN CHECK · YOUR ANSWER</div>
+        <div class="qk" id="ovk">GUARDIAN CHECK · PICK YOUR ANSWER</div>
         <div class="q" id="ovq"></div>
         <div class="opts" id="ovopts"></div>
         <div class="fb" id="ovfb"></div>
-        <button class="cont" id="ovcont" onclick="resumeAfterQuiz()">Continue ▶</button>
+        <div class="ovhint" id="ovhint"></div>
       </div>
       <div class="overlay nx" id="nx">
         <div class="qk" id="nxk">UP NEXT</div>
@@ -138,6 +140,7 @@ function buildSpeed(){
 // re-apply whenever a new episode source loads (playbackRate would otherwise reset to 1)
 vid.addEventListener('loadedmetadata',applySpeed);
 vid.addEventListener('seeked',highlightChap);   // keep sidebar chapter highlight in sync when scrubbing
+vid.addEventListener('seeked',()=>{ if(activeQuiz && vid.currentTime>=activeQuiz.t_resume-0.05) closeQuiz(); });
 vid.addEventListener('ratechange',()=>{ // keep UI in sync if the browser's native menu changes it
   if(Math.abs(vid.playbackRate-speed)>0.001){ speed=vid.playbackRate; localStorage.setItem('cc_speed',speed);
     document.querySelectorAll('#spbtns .spbtn').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.s)===speed)); }
@@ -202,11 +205,19 @@ function renderChaps(){
   });
 }
 vid.addEventListener('timeupdate',()=>{
-  if(!cues||activeQuiz) return;
+  if(!cues) return;
   highlightChap();
+  const t=vid.currentTime;
+  if(activeQuiz){
+    const q=activeQuiz;
+    // reached the "lock in" point still unanswered -> pause and wait for an answer
+    if(!answered.has(q.n) && t>=q.t_quiz-0.05 && !vid.paused){ vid.pause(); setHint('\u23F8  Pick an answer to continue'); }
+    if(t>=q.t_resume-0.05) closeQuiz();
+    return;
+  }
+  // open the interactive quiz when the question starts; video KEEPS PLAYING behind it
   for(const q of cues.quizzes||[]){
-    const tq=(q.t_quiz!=null?q.t_quiz:q.t_question);
-    if(!answered.has(q.n) && vid.currentTime>=tq-0.05 && vid.currentTime<q.t_reveal-0.2){ openQuiz(q); break; }
+    if(t>=q.t_question-0.05 && t<q.t_resume-0.3){ if(!answered.has(q.n)) openQuiz(q); break; }
   }
 });
 vid.addEventListener('ended',()=>{
@@ -239,15 +250,16 @@ function showComplete(){
   $('#nx').classList.add('show');
 }
 function openQuiz(q){
-  activeQuiz=q; vid.pause();
+  activeQuiz=q;
+  $('#ovk').textContent='GUARDIAN CHECK \u00B7 PICK YOUR ANSWER';
   $('#ovq').textContent=q.q;
-  const o=$('#ovopts'); o.innerHTML=''; $('#ovfb').innerHTML=''; $('#ovcont').classList.remove('show');
+  const o=$('#ovopts'); o.innerHTML=''; $('#ovfb').innerHTML=''; setHint('');
   q.options.forEach((opt,i)=>{
     const b=document.createElement('button'); b.className='opt';
     b.innerHTML=`<span class="L">${String.fromCharCode(65+i)}</span><span>${opt}</span>`;
     b.onclick=()=>pick(q,i,o); o.appendChild(b);
   });
-  $('#ov').classList.add('show');
+  $('#ov').classList.add('show','soft');     // 'soft' = translucent so the video plays/visible behind
 }
 function pick(q,i,o){
   if(answered.has(q.n)) return;
@@ -256,15 +268,15 @@ function pick(q,i,o){
   if(!ansStore[cur.id]) ansStore[cur.id]={};
   if(ansStore[cur.id][q.n]===undefined){ ansStore[cur.id][q.n]=right; saveScore(); }
   [...o.children].forEach((c,j)=>{c.disabled=true; if(j===q.answer)c.classList.add('ok'); else if(j===i)c.classList.add('no');});
-  $('#ovfb').innerHTML=right?'<span class="good">✓ Correct!</span>':'<span class="bad">Not quite — the answer is '+String.fromCharCode(65+q.answer)+'.</span>';
-  $('#ovcont').classList.add('show');
+  $('#ovfb').innerHTML=right?'<span class="good">\u2713 Correct!</span>':'<span class="bad">Not quite \u2014 the answer is '+String.fromCharCode(65+q.answer)+'.</span>';
+  setHint('\u25B6  Resuming\u2026');
+  // answered: skip ahead to the reveal narration (if we hadn't reached it) and keep playing
+  if(q.t_reveal!=null && vid.currentTime<q.t_reveal-0.1){ vid.currentTime=q.t_reveal; }
+  vid.play().catch(()=>{});
 }
-function resumeAfterQuiz(){
-  const q=activeQuiz; hideOverlay(); activeQuiz=null;
-  if(q){ vid.currentTime=(q.t_resume!=null?q.t_resume:q.t_reveal); }
-  vid.play();
-}
-function hideOverlay(){ $('#ov').classList.remove('show'); }
+function closeQuiz(){ activeQuiz=null; $('#ov').classList.remove('show','soft'); setHint(''); }
+function setHint(s){ const h=$('#ovhint'); if(h) h.textContent=s||''; }
+function hideOverlay(){ $('#ov').classList.remove('show','soft'); setHint(''); }
 init();
 </script>
 </body></html>

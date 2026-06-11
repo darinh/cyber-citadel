@@ -65,7 +65,7 @@
   },
   {
    "scene": "map",
-   "title": "THE HIGH COUNCIL",
+   "title": "THE CITADEL MAP",
    "highlight": [
     "RA",
     "PL",
@@ -86,7 +86,7 @@
    "say": [
     [
      "NOVA",
-     "RA, PL, PM, and CA. The seer, the cartographer, the steward, and the inspector."
+     "RA, PL, PM, CA — is this whole layer about decisions instead of walls?"
     ]
    ]
   },
@@ -233,7 +233,7 @@
   },
   {
    "scene": "quote",
-   "quote": "Develop security and privacy plans for the system that:",
+   "quote": "Develop security and privacy plans for the system that: Are consistent with the organization’s enterprise architecture;",
    "cite": "NIST SP 800-53r5  ·  PL-2 System Security and Privacy Plans",
    "say": [
     [
@@ -334,7 +334,7 @@
   },
   {
    "scene": "quote",
-   "quote": "Develops a comprehensive strategy to manage:",
+   "quote": "Develops a comprehensive strategy to manage: Security risk to organizational operations and assets, individuals, other organizations, and the Nation associated with the operation and use of organizational systems;",
    "cite": "NIST SP 800-53r5  ·  PM-9 Risk Management Strategy",
    "say": [
     [
@@ -529,13 +529,13 @@
     ],
     [
      "NOVA",
-     "Risk, planning, governance, and assessment, the work behind the RMF lifecycle."
+     "So this whole layer is the thinking behind the RMF — risk, plans, governance, checking?"
     ]
    ]
   },
   {
    "scene": "quiz",
-   "q": "A new system is ready to go live. Who formally accepts the risk to operate it?",
+   "q": "A new system is ready to go live. Which control is where a senior official formally accepts the risk?",
    "options": [
     "CA-6 Authorization",
     "RA-3 Risk Assessment",
@@ -546,7 +546,7 @@
    "say": [
     [
      "NOVA",
-     "Scenario: go-live day. Whose signature is required? Pause, and answer."
+     "Scenario: go-live day. Which control signs off the risk?"
     ]
    ],
    "min_seconds": 7,

@@ -32,7 +32,7 @@
   },
   {
    "scene": "map",
-   "title": "THE FORGE",
+   "title": "THE CITADEL",
    "highlight": [],
    "deps": [],
    "subtitle": "",
@@ -43,7 +43,7 @@
     ],
     [
      "VEGA",
-     "Then we harden the forge itself, where systems are made and supplied."
+     "Then we secure where systems are made and supplied."
     ]
    ]
   },
@@ -65,7 +65,7 @@
   },
   {
    "scene": "map",
-   "title": "THE FORGE",
+   "title": "THE CITADEL MAP",
    "highlight": [
     "SA",
     "CM",
@@ -86,7 +86,7 @@
    "say": [
     [
      "NOVA",
-     "SA, CM, MA, and SR. The quartermaster, the blueprint-master, the smith, and the caravan-master."
+     "SA, CM, MA, SR — is this all about how you build and buy the thing?"
     ]
    ]
   },
@@ -144,7 +144,7 @@
   },
   {
    "scene": "quote",
-   "quote": "Apply the following systems security and privacy engineering principles in the specification, design, development, implementation, and modification of the system and system components:",
+   "quote": "Apply the following systems security and privacy engineering principles in the specification, design, development, implementation, and modification of the system and system components: [organization-defined systems security and privacy engineering principles].",
    "cite": "NIST SP 800-53r5  ·  SA-8 Security and Privacy Engineering Principles",
    "say": [
     [
@@ -167,7 +167,7 @@
    "say": [
     [
      "VEGA",
-     "Trust is forged in, never sprinkled on."
+     "Trust is built from the first sketch — you can't bolt it on at the end."
     ]
    ]
   },
@@ -506,7 +506,7 @@
    "say": [
     [
      "NOVA",
-     "Scenario: a tampered part in the box. Whose job is that? Pause, and answer."
+     "Scenario: a tampered part in the box. Whose job is that?"
     ]
    ],
    "min_seconds": 7,

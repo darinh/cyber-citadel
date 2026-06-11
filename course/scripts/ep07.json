@@ -24,7 +24,7 @@
   {
    "scene": "section",
    "num": "07",
-   "title": "SIEGE NIGHT",
+   "title": "ALL TWENTY GUARDIANS",
    "subtitle": "All twenty guardians · The Risk Management Framework",
    "say": [
     [
@@ -123,7 +123,7 @@
    "say": [
     [
      "VEGA",
-     "Each weapon meets a guardian. No single failure ends the city."
+     "Each weapon meets a guardian — and the city holds."
     ],
     [
      "NULL",
@@ -296,7 +296,7 @@
   },
   {
    "scene": "points",
-   "title": "Twenty guardians, one shield — their oaths",
+   "title": "Five oaths, one shield",
    "bullets": [
     "AC: None pass unknown; none hold more than they need.",
     "AU: Every footstep written; no page erased.",
@@ -313,7 +313,7 @@
     ],
     [
      "NOVA",
-     "Twenty guardians, one shield."
+     "Five oaths — and the whole city holds."
     ]
    ]
   },
@@ -325,7 +325,7 @@
    "say": [
     [
      "NOVA",
-     "Final test. Five questions, all twenty guardians. Ready?"
+     "Five questions, across all twenty guardians? Okay — let's see what I remember."
     ]
    ]
   },

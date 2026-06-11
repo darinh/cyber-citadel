@@ -75,7 +75,7 @@ def run(cmd, cwd=None):
 # reuses unchanged beats and rebuilds only the few that changed, so editing one
 # line/slide costs a few files, not the whole episode.
 RENDER_ROOT = ROOT / "course" / "render"
-RENDER_VER = "v3.3"          # bump to force a full rebuild when render logic changes
+RENDER_VER = "v3.4"          # bump to force a full rebuild when render logic changes
 
 
 def _sha(*parts):

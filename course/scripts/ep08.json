@@ -54,7 +54,7 @@
     ],
     [
      "NOVA",
-     "The process that tells you what to do, and in what order."
+     "So it's the process that tells you what to do — and in what order?"
     ]
    ]
   },
@@ -172,7 +172,7 @@
     ],
     [
      "NOVA",
-     "And it's a cycle, monitoring never stops."
+     "So it's a cycle? Monitoring never really stops?"
     ],
     [
      "VEGA",
@@ -256,7 +256,7 @@
    "say": [
     [
      "NOVA",
-     "Quick check. How many steps in the framework? Pause, and answer."
+     "Quick check. How many steps in the framework?"
     ]
    ],
    "min_seconds": 7,

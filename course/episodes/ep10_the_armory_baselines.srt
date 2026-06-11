@@ -87,109 +87,113 @@ VEGA:  A baseline is a starting point, never the
 finish line. You tailor it to fit.
 
 23
-00:01:04,658 --> 00:01:07,953
-NULL:  I look for the control you wrongly tailored
+00:01:04,658 --> 00:01:08,136
+NULL:  Every tailoring decision... is an invitation.
 
 24
-00:01:07,953 --> 00:01:08,336
-away.
+00:01:10,058 --> 00:01:12,356
+VEGA:  That's the point of overlays - a community's
 
 25
-00:01:10,058 --> 00:01:13,124
-VEGA:  Overlays are shared tailoring, so you don't start
+00:01:12,356 --> 00:01:14,498
+already done part of the fitting for you.
 
 26
-00:01:13,124 --> 00:01:13,938
-from scratch.
+00:01:14,798 --> 00:01:17,029
+NOVA:  Wait - PM controls don't even come from
 
 27
-00:01:14,238 --> 00:01:17,453
-NOVA:  And remember, PM controls run across the whole
+00:01:17,029 --> 00:01:19,260
+the baseline? They just run everywhere?
 
 28
-00:01:17,453 --> 00:01:19,900
-organization, outside any baseline.
+00:01:20,310 --> 00:01:23,168
+NOVA:  Quick check. What do you reuse instead of
 
 29
-00:01:20,950 --> 00:01:24,555
-NOVA:  Quick check. Which book holds the baselines? Pause,
+00:01:23,168 --> 00:01:24,772
+tailoring from scratch?
 
 30
-00:01:24,555 --> 00:01:25,332
-and answer.
+00:01:25,072 --> 00:01:28,025
+You don't want to tailor every control from
 
 31
-00:01:25,632 --> 00:01:28,562
-Where do the Low, Moderate, and High baselines
+00:01:28,025 --> 00:01:29,880
+scratch. What do you reuse?
 
 32
-00:01:28,562 --> 00:01:28,880
-live?
+00:01:30,180 --> 00:01:34,670
+Your options. A. An overlay. B. A baseline.
 
 33
-00:01:29,180 --> 00:01:35,475
-Your options. A. SP 800-53 (the catalog). B.
+00:01:34,670 --> 00:01:36,028
+C. A catalog.
 
 34
-00:01:35,475 --> 00:01:38,908
-SP 800-53B. C. FIPS 199.
+00:01:36,328 --> 00:01:39,230
+NOVA:  Pause here and lock in your answer.
 
 35
-00:01:39,208 --> 00:01:42,110
-NOVA:  Pause here and lock in your answer.
+00:01:46,280 --> 00:01:48,787
+VEGA:  The answer is A. An overlay. An overlay
 
 36
-00:01:49,160 --> 00:01:53,903
-VEGA:  The answer is B. SP 800-53B. The baselines
+00:01:48,787 --> 00:01:51,809
+is shared, reusable tailoring - a community has
 
 37
-00:01:53,903 --> 00:02:00,000
-live in 800-53B; 800-53 holds the controls themselves.
+00:01:51,809 --> 00:01:54,573
+already fit the controls for a context like
 
 38
-00:02:01,050 --> 00:02:03,279
-VEGA:  And the act of adjusting the baseline to
+00:01:54,573 --> 00:01:55,280
+healthcare.
 
 39
-00:02:03,279 --> 00:02:04,170
-fit your system?
+00:01:56,330 --> 00:01:58,559
+VEGA:  And the act of adjusting the baseline to
 
 40
-00:02:04,470 --> 00:02:08,351
-Adjusting a baseline - scoping out, swapping, adding
+00:01:58,559 --> 00:01:59,450
+fit your system?
 
 41
-00:02:08,351 --> 00:02:09,918
-controls - is called?
+00:01:59,750 --> 00:02:03,631
+Adjusting a baseline - scoping out, swapping, adding
 
 42
-00:02:10,218 --> 00:02:16,426
-Your options. A. Categorization. B. Tailoring. C. Authorization.
+00:02:03,631 --> 00:02:05,198
+controls - is called?
 
 43
-00:02:16,726 --> 00:02:19,628
-NOVA:  Pause here and lock in your answer.
+00:02:05,498 --> 00:02:11,706
+Your options. A. Categorization. B. Tailoring. C. Authorization.
 
 44
-00:02:26,678 --> 00:02:29,948
-VEGA:  The answer is B. Tailoring. Adjusting a baseline
+00:02:12,006 --> 00:02:14,908
+NOVA:  Pause here and lock in your answer.
 
 45
-00:02:29,948 --> 00:02:33,490
-- scoping, swapping, adding - is tailoring, approved
+00:02:21,958 --> 00:02:25,228
+VEGA:  The answer is B. Tailoring. Adjusting a baseline
 
 46
-00:02:33,490 --> 00:02:35,398
-by the authorizing official.
+00:02:25,228 --> 00:02:28,770
+- scoping, swapping, adding - is tailoring, approved
 
 47
-00:02:36,448 --> 00:02:40,404
-VEGA:  Defenses chosen and fitted. Now, do they actually
+00:02:28,770 --> 00:02:30,678
+by the authorizing official.
 
 48
-00:02:40,404 --> 00:02:40,808
-work?
+00:02:31,728 --> 00:02:35,684
+VEGA:  Defenses chosen and fitted. Now, do they actually
 
 49
-00:02:41,108 --> 00:02:44,148
+00:02:35,684 --> 00:02:36,088
+work?
+
+50
+00:02:36,388 --> 00:02:39,428
 VEGA:  Next: the reckoning, assessment and authorization.

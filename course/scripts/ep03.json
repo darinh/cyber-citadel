@@ -65,7 +65,7 @@
   },
   {
    "scene": "map",
-   "title": "THE KEEPERS OF THE PACT",
+   "title": "THE CITADEL MAP",
    "highlight": [
     "AT",
     "PS",
@@ -85,7 +85,7 @@
    "say": [
     [
      "NOVA",
-     "AT, PS, and PT. The teacher, the oathkeeper, and the privacy herald."
+     "AT, PS, PT — these sound very human. Who are we meeting?"
     ]
    ]
   },
@@ -144,7 +144,7 @@
     ],
     [
      "VEGA",
-     "You train the human. AT-2 builds that instinct in everyone — the instinct that hangs up on the kind of call we opened with."
+     "You train the human. AT-2 builds the reflex to hang up on the kind of call we opened with."
     ]
    ]
   },
@@ -163,7 +163,7 @@
   },
   {
    "scene": "quote",
-   "quote": "Provide security and privacy literacy training to system users (including managers, senior executives, and contractors):",
+   "quote": "Provide security and privacy literacy training to system users (including managers, senior executives, and contractors): As part of initial training for new users and [organization-defined frequency] thereafter;",
    "cite": "NIST SP 800-53r5  ·  AT-2 Literacy Training and Awareness",
    "say": [
     [
@@ -256,7 +256,7 @@
   },
   {
    "scene": "quote",
-   "quote": "Upon termination of individual employment:",
+   "quote": "Upon termination of individual employment: Disable system access within [time period];",
    "cite": "NIST SP 800-53r5  ·  PS-4 Personnel Termination",
    "say": [
     [
@@ -310,7 +310,7 @@
     ],
     [
      "NOVA",
-     "New in Revision 5, privacy now stands beside security."
+     "Privacy gets its own family now? That must be pretty new?"
     ],
     [
      "VEGA",
@@ -422,7 +422,7 @@
     ],
     [
      "NOVA",
-     "Permission where needed, and honesty, before the data is used."
+     "So — get permission when it's needed, and be honest about how the data's used?"
     ]
    ]
   },
@@ -535,7 +535,7 @@
    "say": [
     [
      "NOVA",
-     "Notebook: not every control is a firewall — some are a habit, a contract, a promise."
+     "Notebook: the strongest controls aren't always technical — sometimes they're just people keeping promises."
     ],
     [
      "VEGA",

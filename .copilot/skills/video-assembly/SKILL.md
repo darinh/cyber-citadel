@@ -48,11 +48,13 @@ and bloated episodes ~9× (ep00 25→226 MB), past **GitHub's 100 MB/file limit*
 
 ## Gates before deploy (in order)
 1. **accuracy-verification** skill: `verify_script.py` + `audit_narration.py` must pass.
-2. (For dialogue changes) **screenplay-review** skill first — cheaper in text.
-3. Render, then **`python tools/verify_episode.py`** — every episode must read `OK` (see
+2. **Deterministic craft gate:** `tools/lint_script.py` must be **0 P1** (duplicate headings,
+   quiz double-pause, title/variable-text overflow measured with real fonts, incomplete quotes).
+3. (For dialogue changes) **screenplay-review** skill first — cheaper in text.
+4. Render, then **`python tools/verify_episode.py`** — every episode must read `OK` (see
    tts-narration). QA the FINAL mp4, not upstream clips.
-4. `python tools\package.py` (link check must say all references resolve).
-5. Sizes < 95 MB each.
+5. `python tools\package.py` (link check must say all references resolve).
+6. Sizes < 95 MB each.
 
 ## Deploy (GitHub Pages from `main` root)
 The site is `index.html` + `watch.html` + `course/episodes/*.mp4|.jpg|.vtt` + `course/*.json`,

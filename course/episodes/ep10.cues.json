@@ -1,36 +1,36 @@
 {
  "id": "EP10",
  "title": "EP10",
- "duration": 164.85,
+ "duration": 160.13,
  "chapters": [
   {
    "t": 11.75,
    "title": "The Armory"
   },
   {
-   "t": 80.6,
+   "t": 79.96,
    "title": "Quiz 1"
   },
   {
-   "t": 120.7,
+   "t": 115.98,
    "title": "Quiz 2"
   }
  ],
  "quizzes": [
   {
    "n": 1,
-   "q": "Where do the Low, Moderate, and High baselines live?",
+   "q": "You don't want to tailor every control from scratch. What do you reuse?",
    "options": [
-    "SP 800-53 (the catalog)",
-    "SP 800-53B",
-    "FIPS 199"
+    "An overlay",
+    "A baseline",
+    "A catalog"
    ],
-   "answer": 1,
-   "why": "The baselines live in 800-53B; 800-53 holds the controls themselves.",
-   "t_question": 80.6,
-   "t_quiz": 102.11,
-   "t_reveal": 108.81,
-   "t_resume": 120.7
+   "answer": 0,
+   "why": "An overlay is shared, reusable tailoring — a community has already fit the controls for a context like healthcare.",
+   "t_question": 79.96,
+   "t_quiz": 99.23,
+   "t_reveal": 105.93,
+   "t_resume": 115.98
   },
   {
    "n": 2,
@@ -42,10 +42,10 @@
    ],
    "answer": 1,
    "why": "Adjusting a baseline — scoping, swapping, adding — is tailoring, approved by the authorizing official.",
-   "t_question": 120.7,
-   "t_quiz": 139.63,
-   "t_reveal": 146.33,
-   "t_resume": 156.1
+   "t_question": 115.98,
+   "t_quiz": 134.91,
+   "t_reveal": 141.61,
+   "t_resume": 151.38
   }
  ]
 }

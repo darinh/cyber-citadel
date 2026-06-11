@@ -63,7 +63,7 @@
     ],
     [
      "NOVA",
-     "And those records are PII — personal, and protected by law."
+     "So those records count as PII — that means extra rules, right?"
     ]
    ],
    "min_seconds": 6.5
@@ -202,7 +202,7 @@
     ],
     [
      "NOVA",
-     "Same requirement, many possible tools."
+     "So the catalog says what to do — but Raj's team picks how?"
     ]
    ]
   },
@@ -224,7 +224,7 @@
     ],
     [
      "NOVA",
-     "Selecting a control isn't proof it works. Assessment is."
+     "Wait — so just picking a control isn't proof? Someone has to check it works?"
     ]
    ]
   },

@@ -1,7 +1,7 @@
 {
  "id": "EP04",
  "title": "EP04",
- "duration": 396.95,
+ "duration": 396.67,
  "chapters": [
   {
    "t": 16.57,
@@ -13,21 +13,21 @@
   },
   {
    "t": 38.64,
-   "title": "The High Council"
+   "title": "The Citadel Map"
   },
   {
-   "t": 303.56,
+   "t": 303.52,
    "title": "Quiz 1"
   },
   {
-   "t": 346.5,
+   "t": 346.22,
    "title": "Quiz 2"
   }
  ],
  "quizzes": [
   {
    "n": 1,
-   "q": "A new system is ready to go live. Who formally accepts the risk to operate it?",
+   "q": "A new system is ready to go live. Which control is where a senior official formally accepts the risk?",
    "options": [
     "CA-6 Authorization",
     "RA-3 Risk Assessment",
@@ -35,10 +35,10 @@
    ],
    "answer": 0,
    "why": "CA-6, Authorization, is where a senior official formally accepts the risk to operate.",
-   "t_question": 303.56,
-   "t_quiz": 330.03,
-   "t_reveal": 336.73,
-   "t_resume": 346.5
+   "t_question": 303.52,
+   "t_quiz": 329.75,
+   "t_reveal": 336.45,
+   "t_resume": 346.22
   },
   {
    "n": 2,
@@ -50,10 +50,10 @@
    ],
    "answer": 1,
    "why": "Known weaknesses are tracked in a Plan of Action and Milestones — CA-5 — until they're fixed.",
-   "t_question": 346.5,
-   "t_quiz": 364.59,
-   "t_reveal": 371.29,
-   "t_resume": 381.34
+   "t_question": 346.22,
+   "t_quiz": 364.31,
+   "t_reveal": 371.01,
+   "t_resume": 381.06
   }
  ]
 }

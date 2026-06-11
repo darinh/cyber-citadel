@@ -45,6 +45,13 @@ FAMILY_LAYER = {
     "SC": "vaults", "MP": "vaults", "CP": "vaults",
 }
 FONTS = "C:/Windows/Fonts/"
+# Official SP 800-53r5 section per control family (controls live in §3.1–3.20, families A–Z).
+FAMILY_SECTION = {
+    "AC": "3.1", "AT": "3.2", "AU": "3.3", "CA": "3.4", "CM": "3.5", "CP": "3.6",
+    "IA": "3.7", "IR": "3.8", "MA": "3.9", "MP": "3.10", "PE": "3.11", "PL": "3.12",
+    "PM": "3.13", "PS": "3.14", "PT": "3.15", "RA": "3.16", "SA": "3.17", "SC": "3.18",
+    "SI": "3.19", "SR": "3.20",
+}
 _cache: dict = {}
 
 
@@ -138,6 +145,22 @@ def draw_wrapped(d, xy, text, fnt, fill, max_w, leading=1.3, center=False):
             d.text((x, y), ln, font=fnt, fill=fill)
         y += lh
     return y
+
+
+def fit_font(d, text, fontfn, size, max_w, min_size=22):
+    """Largest font (down to min_size) at which `text` fits in max_w on one line.
+    Prevents long official control/family titles from overflowing the slide container."""
+    s = size
+    while s > min_size and d.textlength(text or "", font=fontfn(s)) > max_w:
+        s -= 2
+    return fontfn(s)
+
+
+def draw_fit(d, xy, text, fontfn, size, fill, max_w, anchor=None, min_size=18):
+    """Draw a single line of VARIABLE-length text auto-shrunk to fit max_w. Use for any
+    content-driven text (titles, names, options, mnemonics, cites) so nothing overflows."""
+    d.text(xy, text or "", font=fit_font(d, text or "", fontfn, size, max_w, min_size),
+           fill=fill, anchor=anchor)
 
 
 def glow_layer(draw_fn, color, blur=18, passes=1):
@@ -287,14 +310,15 @@ def s_title(img, b):
         tracked_text(d, (W / 2, 264), badge, FSB(30), GOLD, tracking=6, anchor_center=True)
     title = b.get("title", "")
     d = ImageDraw.Draw(img)
+    tf = fit_font(d, title, FB, 120, W - 320)
     # glow title
-    g = glow_layer(lambda dd: dd.text((W / 2, 380), title, font=FB(120), fill=CYAN + (255,),
+    g = glow_layer(lambda dd: dd.text((W / 2, 380), title, font=tf, fill=CYAN + (255,),
                    anchor="ma"), CYAN, blur=22)
     img.alpha_composite(g)
     d = ImageDraw.Draw(img)
-    d.text((W / 2, 380), title, font=FB(120), fill=INK, anchor="ma")
+    d.text((W / 2, 380), title, font=tf, fill=INK, anchor="ma")
     if b.get("subtitle"):
-        d.text((W / 2, 560), b["subtitle"], font=FSL(46), fill=MUTED, anchor="ma")
+        d.text((W / 2, 560), b["subtitle"], font=fit_font(d, b["subtitle"], FSL, 46, W - 280), fill=MUTED, anchor="ma")
     if b.get("kicker"):
         tracked_text(d, (W / 2, 200), b["kicker"], FSB(28), MAGENTA, tracking=8, anchor_center=True)
     return img
@@ -309,9 +333,9 @@ def s_section(img, b):
         img.alpha_composite(g)
         d = ImageDraw.Draw(img)
         d.text((W / 2, 250), num, font=FB(260), fill=(46, 60, 130), anchor="ma")
-    d.text((W / 2, 600), b.get("title", ""), font=FB(96), fill=INK, anchor="ma")
+    d.text((W / 2, 600), b.get("title", ""), font=fit_font(d, b.get("title", ""), FB, 96, W - 320), fill=INK, anchor="ma")
     if b.get("subtitle"):
-        d.text((W / 2, 730), b["subtitle"], font=FSL(40), fill=CYAN, anchor="ma")
+        d.text((W / 2, 730), b["subtitle"], font=fit_font(d, b["subtitle"], FSL, 40, W - 260), fill=CYAN, anchor="ma")
     return img
 
 
@@ -322,7 +346,7 @@ CITADEL_ORDER = ["AC", "IA", "PE", "AU", "SI", "IR", "AT", "PS", "PT",
 def s_map(img, b):
     d = ImageDraw.Draw(img)
     if b.get("title"):
-        d.text((W / 2, 84), b["title"], font=FB(54), fill=INK, anchor="ma")
+        d.text((W / 2, 84), b["title"], font=fit_font(d, b["title"], FB, 54, W - 200), fill=INK, anchor="ma")
     cx, cy, R = W / 2, 565, 300
     highlight = set(b.get("highlight", []))
     deps = b.get("deps", [])  # list of [A,B] pairs to connect
@@ -387,9 +411,9 @@ def s_guardian(img, b):
     # right: name + persona
     rx = 760
     tracked_text(d, (rx, 250), "DISTRICT GUARDIAN", FSB(26), col, tracking=8)
-    d.text((rx, 290), b.get("family_name", ""), font=FB(64), fill=INK)
+    draw_fit(d, (rx, 290), b.get("family_name", ""), FB, 64, INK, 1020)
     if b.get("persona"):
-        d.text((rx, 380), b["persona"], font=FSL(44), fill=GOLD)
+        draw_fit(d, (rx, 380), b["persona"], FSL, 44, GOLD, 1020)
     y = 470
     if b.get("protects"):
         tracked_text(d, (rx, y), "GUARDS", FSB(22), MUTED, tracking=6); y += 36
@@ -409,8 +433,10 @@ def s_control(img, b):
     neon_rrect(img, [200, 300, 200 + 360, 300 + 110], 16, col, width=2, fill=(col[0]//6, col[1]//6, col[2]//6, 255))
     d = ImageDraw.Draw(img)
     d.text((380, 312), cid, font=MONO(78), fill=col, anchor="ma")
-    tracked_text(d, (620, 312), "NIST SP 800-53r5", FSB(22), MUTED, tracking=4)
-    d.text((620, 350), b.get("title", ""), font=FB(56), fill=INK)
+    _sec = FAMILY_SECTION.get(cid.split("-")[0], "")
+    _src = "NIST SP 800-53r5" + (f"   \u00b7   \u00a7{_sec}" if _sec else "")
+    tracked_text(d, (620, 312), _src, FSB(22), MUTED, tracking=4)
+    d.text((620, 350), b.get("title", ""), font=fit_font(d, b.get("title", ""), FB, 56, W - 644 - 150), fill=INK)
     y = 470
     if b.get("plain"):
         tracked_text(d, (200, y), "WHAT IT MEANS", FSB(24), GOLD, tracking=6); y += 44
@@ -433,7 +459,7 @@ def s_quote(img, b):
     y = max(y, 760)
     d.line([(250, 800), (W - 250, 800)], fill=(255, 255, 255, 40), width=1)
     cite = b.get("cite", "")
-    d.text((250, 818), cite, font=MONO(32), fill=GOLD)
+    draw_fit(d, (250, 818), cite, MONO, 32, GOLD, W - 560)
     return img
 
 
@@ -441,7 +467,7 @@ def s_diagram(img, b):
     """Boxes + arrows. spec: nodes=[{label,x,y,w?,color?}], arrows=[[i,j,label?]]"""
     d = ImageDraw.Draw(img)
     if b.get("title"):
-        d.text((W / 2, 150), b["title"], font=FB(58), fill=INK, anchor="ma")
+        d.text((W / 2, 150), b["title"], font=fit_font(d, b["title"], FB, 58, W - 300), fill=INK, anchor="ma")
     nodes = b.get("nodes", [])
     arrows = b.get("arrows", [])
     tt = b.get("_t", 1.0)
@@ -503,7 +529,7 @@ def s_quiz(img, b):
                    fill=(18, 40, 36, 240) if correct else (16, 22, 52, 235))
         dd = ImageDraw.Draw(img)
         dd.text((W / 2 - 560, y + 24), letter, font=FB(48), fill=col)
-        dd.text((W / 2 - 470, y + 30), opt, font=FSB(40), fill=INK)
+        draw_fit(dd, (W / 2 - 470, y + 30), opt, FSB, 40, INK, 980)
         if correct:
             cxp, cyp = W / 2 + 545, y + 48
             dd.line([(cxp, cyp), (cxp + 16, cyp + 20), (cxp + 48, cyp - 24)],
@@ -517,7 +543,7 @@ def s_points(img, b):
     neon_rrect(img, [150, 200, W - 150, 900], 26, col, width=2, fill=(14, 19, 46, 235))
     d = ImageDraw.Draw(img)
     tracked_text(d, (210, 234), b.get("kicker", "KEY POINTS"), FSB(26), col, tracking=8)
-    d.text((210, 282), b.get("title", ""), font=FB(62), fill=INK)
+    d.text((210, 282), b.get("title", ""), font=fit_font(d, b.get("title", ""), FB, 62, W - 210 - 180), fill=INK)
     y = 404
     bullets = b.get("bullets", [])
     for item in bullets:
@@ -537,7 +563,7 @@ def s_cheatcard(img, b):
     tracked_text(d, (210, 230), "CHEAT CARD", FSB(26), col, tracking=8)
     if fam:
         d.text((W - 230, 224), fam, font=FB(90), fill=col, anchor="ra")
-    d.text((210, 280), b.get("title", ""), font=FB(60), fill=INK)
+    d.text((210, 280), b.get("title", ""), font=fit_font(d, b.get("title", ""), FB, 60, W - 210 - 320), fill=INK)
     y = 400
     for item in b.get("bullets", []):
         d.ellipse([214, y + 14, 234, y + 34], fill=col)
@@ -545,7 +571,7 @@ def s_cheatcard(img, b):
     if b.get("mnemonic"):
         d.line([(210, 820), (W - 210, 820)], fill=(255, 255, 255, 40), width=1)
         tracked_text(d, (210, 832), "REMEMBER", FSB(24), GOLD, tracking=6)
-        d.text((420, 826), b["mnemonic"], font=FSB(40), fill=GOLD)
+        draw_fit(d, (420, 826), b["mnemonic"], FSB, 40, GOLD, W - 180 - 420)
     return img
 
 
@@ -555,7 +581,7 @@ def s_define(img, b):
     neon_rrect(img, [150, 224, W - 150, 884], 26, col, width=2, fill=(12, 24, 30, 235))
     d = ImageDraw.Draw(img)
     tracked_text(d, (210, 256), b.get("kicker", "PLAIN ENGLISH"), FSB(26), col, tracking=8)
-    d.text((210, 300), b.get("term", ""), font=FB(74), fill=INK)
+    draw_fit(d, (210, 300), b.get("term", ""), FB, 74, INK, W - 440)
     y = 408
     if b.get("expand"):
         tracked_text(d, (210, y), "STANDS FOR", FSB(22), GOLD, tracking=6); y += 38
@@ -567,7 +593,7 @@ def s_define(img, b):
         tracked_text(d, (210, y), "EVERYDAY EXAMPLE", FSB(22), CYAN, tracking=6); y += 38
         y = draw_wrapped(d, (210, y), b["example"], F(34), MUTED, W - 440, 1.3)
     if b.get("cite"):
-        d.text((W - 210, 838), b["cite"], font=MONO(26), fill=(120, 128, 170), anchor="ra")
+        draw_fit(d, (W - 210, 838), b["cite"], MONO, 26, (120, 128, 170), W - 420, anchor="ra")
     return img
 
 
@@ -592,11 +618,11 @@ def s_coldopen(img, b):
         neon_rrect(img, [150, cy, 150 + 820, cy + 92], 14, GOLD, width=2, fill=(30, 26, 12, 240))
         dd = ImageDraw.Draw(img)
         tracked_text(dd, (178, cy + 16), "MITRE ATT&CK", FSB(20), GOLD, tracking=4)
-        dd.text((178, cy + 44), b["mitre"], font=MONO(34), fill=INK)
+        draw_fit(dd, (178, cy + 44), b["mitre"], MONO, 34, INK, 560)
     if b.get("teaches"):
         dd = ImageDraw.Draw(img)
         dd.text((W - 150, 800), "GUARDIAN", font=FSB(20), fill=MINT, anchor="ra")
-        dd.text((W - 150, 836), b["teaches"], font=FSB(34), fill=MINT, anchor="ra")
+        draw_fit(dd, (W - 150, 836), b["teaches"], FSB, 34, MINT, 760, anchor="ra")
     return img
 
 
@@ -631,7 +657,7 @@ def s_notebook(img, b):
     RULE = (58, 54, 42)      # solid, very dim warm ink (alpha-on-RGB isn't blended, so use a real color)
     MARGIN = (120, 104, 64)
     tracked_text(d, (282, 236), "NOVA'S NOTEBOOK", FSB(26), col, tracking=8)
-    d.text((282, 282), b.get("title", ""), font=FB(50), fill=INK)
+    d.text((282, 282), b.get("title", ""), font=fit_font(d, b.get("title", ""), FB, 50, W - 282 - 280), fill=INK)
     d.line([(304, 372), (304, 862)], fill=MARGIN, width=2)   # margin rule
     fnt = FSL(38); lh = int(fnt.size * 1.44); x0 = 344; maxw = W - 720
     y = 384
@@ -647,7 +673,7 @@ def s_notebook(img, b):
         y += 12
     if b.get("mnemonic"):
         tracked_text(d, (344, 838), "REMEMBER", FSB(22), col, tracking=6)
-        d.text((566, 830), b["mnemonic"], font=FSB(34), fill=col)
+        draw_fit(d, (566, 830), b["mnemonic"], FSB, 34, col, W - 280 - 566)
     return img
 
 

@@ -43,7 +43,7 @@
     ],
     [
      "VEGA",
-     "Shadows don't last here. The watchtowers never sleep."
+     "Shadows don't last here. Every move leaves a mark."
     ]
    ]
   },
@@ -65,7 +65,7 @@
   },
   {
    "scene": "map",
-   "title": "THE WATCHTOWERS",
+   "title": "THE CITADEL MAP",
    "highlight": [
     "AU",
     "SI",
@@ -85,7 +85,7 @@
    "say": [
     [
      "NOVA",
-     "AU, SI, and IR. The eyes, the immune system, and the firefighters."
+     "AU, SI, IR — what do those three actually do up here?"
     ]
    ]
   },
@@ -167,7 +167,7 @@
   },
   {
    "scene": "quote",
-   "quote": "Identify the types of events that the system is capable of logging in support of the audit function:",
+   "quote": "Identify the types of events that the system is capable of logging in support of the audit function: [event types];",
    "cite": "NIST SP 800-53r5  ·  AU-2 Event Logging",
    "say": [
     [
@@ -272,7 +272,7 @@
    "say": [
     [
      "NULL",
-     "Six days I moved in your shadows before a single tower turned."
+     "Six days in your shadows... and you still don't know what I took."
     ],
     [
      "NOVA",
@@ -280,7 +280,7 @@
     ],
     [
      "VEGA",
-     "Six days — but SI-4 saw the anomaly, and AU-9 kept the logs he tripped. He got in. He did not get out clean."
+     "Six days — but SI-4 saw the anomaly, and AU-9 kept the logs of his every step. He got in. He did not get out clean."
     ],
     [
      "NULL",
@@ -459,7 +459,7 @@
     ],
     [
      "NOVA",
-     "And IR-8 writes the plan that makes it routine."
+     "Is there a plan that makes all that routine? IR-8?"
     ]
    ]
   },
@@ -535,7 +535,7 @@
    "say": [
     [
      "NOVA",
-     "Scenario: the Null deletes logs. What stops it? Pause, and answer."
+     "Scenario: the Null deletes logs. What stops it?"
     ]
    ],
    "min_seconds": 7,

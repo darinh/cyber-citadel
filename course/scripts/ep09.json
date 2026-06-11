@@ -93,7 +93,7 @@
     ],
     [
      "NOVA",
-     "Confidentiality, Integrity, and Availability. The C-I-A triad."
+     "Confidentiality, Integrity, Availability — the C-I-A triad! We covered that back in Orientation."
     ]
    ]
   },
@@ -196,7 +196,7 @@
    "say": [
     [
      "NOVA",
-     "Scenario time. What's the overall category? Pause, and answer."
+     "Scenario time. What's the overall category?"
     ]
    ],
    "min_seconds": 7,

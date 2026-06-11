@@ -73,7 +73,7 @@
     ],
     [
      "NOVA",
-     "Examine the evidence, interview the people, and test the system itself."
+     "Examine, interview, test — three ways to actually prove it works?"
     ]
    ]
   },
@@ -112,7 +112,7 @@
     ],
     [
      "NOVA",
-     "Assess, report, plan, package, authorize."
+     "So — assess, write up what you found, plan for the gaps, package it, then the AO signs?"
     ]
    ]
   },
@@ -154,7 +154,7 @@
     ],
     [
      "NULL",
-     "A signature... still won't stop me."
+     "The ink dries... and I'm already past the next wall."
     ]
    ]
   },
@@ -188,7 +188,7 @@
    "say": [
     [
      "NOVA",
-     "Final stretch. Name the three assessment methods. Pause, and answer."
+     "Final stretch. Name the three assessment methods."
     ]
    ],
    "min_seconds": 7,
@@ -262,11 +262,11 @@
    "say": [
     [
      "NOVA",
-     "In Episode zero, I didn't even know what eight-hundred fifty-three was. Tonight, I'm signing for it."
+     "In Episode zero, I didn't even know what eight-hundred fifty-three was. Tonight, I finally understand what that signature means."
     ],
     [
      "VEGA",
-     "Then sign, Castellan — and keep the watch."
+     "Then keep the watch, Castellan. That's what the signature begins."
     ],
     [
      "NULL",
@@ -274,7 +274,7 @@
     ],
     [
      "NOVA",
-     "There's always a next time. That's the job. CA-7 — the watch never ends."
+     "Then we never stop watching."
     ],
     [
      "NARRATOR",

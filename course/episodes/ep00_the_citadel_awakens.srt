@@ -151,441 +151,437 @@ data correct and untampered. Availability - keep it
 working when you need it.
 
 39
-00:01:49,724 --> 00:01:54,946
-NOVA:  Confidentiality, Integrity, Availability. The reason every guardian exists.
+00:01:49,724 --> 00:01:54,074
+NOVA:  Confidentiality, Integrity, Availability - so that's what every
 
 40
-00:01:55,996 --> 00:01:58,578
-NOVA:  But why does any of this even exist?
+00:01:54,074 --> 00:01:56,146
+guardian is really protecting?
 
 41
-00:01:58,878 --> 00:02:01,442
-VEGA:  A law says you must protect systems. A
+00:01:57,196 --> 00:01:59,338
+NOVA:  But why do we even need all this?
 
 42
-00:02:01,442 --> 00:02:04,344
-catalog lists what you can use. A framework
+00:01:59,638 --> 00:02:02,202
+VEGA:  A law says you must protect systems. A
 
 43
-00:02:04,344 --> 00:02:06,638
-is the process that connects them.
+00:02:02,202 --> 00:02:05,104
+catalog lists what you can use. A framework
 
 44
-00:02:06,938 --> 00:02:09,782
-VEGA:  The law is FISMA - the Federal Information
+00:02:05,104 --> 00:02:07,398
+is the process that connects them.
 
 45
-00:02:09,782 --> 00:02:13,438
-Security Modernization Act. 800-53 is the catalog. The
+00:02:07,698 --> 00:02:10,542
+VEGA:  The law is FISMA - the Federal Information
 
 46
-00:02:13,438 --> 00:02:16,350
-RMF is the process. Hold those three apart,
+00:02:10,542 --> 00:02:14,198
+Security Modernization Act. 800-53 is the catalog. The
 
 47
-00:02:16,350 --> 00:02:18,178
-and everything else clicks.
+00:02:14,198 --> 00:02:17,110
+RMF is the process. Hold those three apart,
 
 48
-00:02:19,228 --> 00:02:21,570
-NOVA:  Isn't privacy just part of security?
+00:02:17,110 --> 00:02:18,938
+and everything else clicks.
 
 49
-00:02:21,870 --> 00:02:24,777
-VEGA:  They overlap, but they aim at different things.
+00:02:19,988 --> 00:02:22,330
+NOVA:  Isn't privacy just part of security?
 
 50
-00:02:24,777 --> 00:02:27,808
-In Revision 5, security and privacy finally share
+00:02:22,630 --> 00:02:25,537
+VEGA:  They overlap, but they aim at different things.
 
 51
-00:02:27,808 --> 00:02:28,550
-one catalog.
+00:02:25,537 --> 00:02:28,568
+In Revision 5, security and privacy finally share
 
 52
-00:02:29,600 --> 00:02:33,142
-NOVA:  So this 'eight-hundred fifty-three' everyone keeps citing -
+00:02:28,568 --> 00:02:29,310
+one catalog.
 
 53
-00:02:33,142 --> 00:02:34,102
-what even is it?
+00:02:30,360 --> 00:02:33,299
+NOVA:  Eight-hundred fifty-three - that's the catalog, right? What's
 
 54
-00:02:34,402 --> 00:02:38,056
-VEGA:  A catalog. A giant, well-organized menu of controls
+00:02:33,299 --> 00:02:34,022
+actually in it?
 
 55
-00:02:38,056 --> 00:02:39,202
-you put to work.
+00:02:34,322 --> 00:02:37,122
+VEGA:  Hundreds of controls, organized into families - a
 
 56
-00:02:40,252 --> 00:02:43,195
-VEGA:  The catalog is organized into twenty families. We'll
+00:02:37,122 --> 00:02:38,322
+menu you put to work.
 
 57
-00:02:43,195 --> 00:02:45,572
-walk them as twenty districts of the city.
+00:02:39,372 --> 00:02:42,315
+VEGA:  The catalog is organized into twenty families. We'll
 
 58
-00:02:45,872 --> 00:02:48,334
-VEGA:  A district isn't really a place - it's
+00:02:42,315 --> 00:02:44,692
+walk them as twenty districts of the city.
 
 59
-00:02:48,334 --> 00:02:51,961
-a family of related safeguards: policies, processes, and
+00:02:44,992 --> 00:02:47,454
+VEGA:  A district isn't really a place - it's
 
 60
-00:02:51,961 --> 00:02:53,192
-technical controls.
+00:02:47,454 --> 00:02:51,081
+a family of related safeguards: policies, processes, and
 
 61
-00:02:53,492 --> 00:02:56,394
-NOVA:  Twenty? That's a lot of ground.
+00:02:51,081 --> 00:02:52,312
+technical controls.
 
 62
-00:02:56,694 --> 00:02:58,894
-VEGA:  So we'll group them into six layers of
+00:02:52,612 --> 00:02:55,514
+NOVA:  Twenty? That's a lot of ground.
 
 63
-00:02:58,894 --> 00:03:01,614
-defense. By the end, you'll remember every one.
+00:02:55,814 --> 00:02:58,014
+VEGA:  So we'll group them into six layers of
 
 64
-00:03:02,664 --> 00:03:05,686
-VEGA:  Every control shares the same anatomy. Learn it
+00:02:58,014 --> 00:03:00,734
+defense. By the end, you'll remember every one.
 
 65
-00:03:05,686 --> 00:03:07,744
-once, and you can read them all.
+00:03:01,784 --> 00:03:04,806
+VEGA:  Every control shares the same anatomy. Learn it
 
 66
-00:03:08,044 --> 00:03:10,977
-VEGA:  First the identifier, like AC-6 - the family
+00:03:04,806 --> 00:03:06,864
+once, and you can read them all.
 
 67
-00:03:10,977 --> 00:03:11,844
-and a number.
+00:03:07,164 --> 00:03:10,097
+VEGA:  First the identifier, like AC-6 - the family
 
 68
-00:03:12,144 --> 00:03:15,248
-VEGA:  Then the control itself: the requirement, what you
+00:03:10,097 --> 00:03:10,964
+and a number.
 
 69
-00:03:15,248 --> 00:03:16,304
-must actually do.
+00:03:11,264 --> 00:03:14,368
+VEGA:  Then the control itself: the requirement, what you
 
 70
-00:03:16,604 --> 00:03:18,666
-NOVA:  And the discussion explains it?
+00:03:14,368 --> 00:03:15,424
+must actually do.
 
 71
-00:03:18,966 --> 00:03:22,000
-VEGA:  It gives context and rationale - helpful, but
+00:03:15,724 --> 00:03:17,586
+NOVA:  And what's the 'discussion' part for?
 
 72
-00:03:22,000 --> 00:03:23,686
-not itself a requirement.
+00:03:17,886 --> 00:03:20,920
+VEGA:  It gives context and rationale - helpful, but
 
 73
-00:03:23,986 --> 00:03:27,697
-VEGA:  Related controls point to neighbors. Enhancements add strength
+00:03:20,920 --> 00:03:22,606
+not itself a requirement.
 
 74
-00:03:27,697 --> 00:03:30,749
-- for example, AC-6 enhancement 1. References point
+00:03:22,906 --> 00:03:26,617
+VEGA:  Related controls point to neighbors. Enhancements add strength
 
 75
-00:03:30,749 --> 00:03:31,946
-outside the catalog.
+00:03:26,617 --> 00:03:29,669
+- for example, AC-6 enhancement 1. References point
 
 76
-00:03:32,996 --> 00:03:36,716
-VEGA:  Here's a single control. AC-6, Least Privilege.
+00:03:29,669 --> 00:03:30,866
+outside the catalog.
 
 77
-00:03:37,016 --> 00:03:40,401
-NOVA:  Clean. An ID, a title, and what it
+00:03:31,916 --> 00:03:35,636
+VEGA:  Here's a single control. AC-6, Least Privilege.
 
 78
-00:03:40,401 --> 00:03:40,998
-means.
+00:03:35,936 --> 00:03:39,321
+NOVA:  Clean. An ID, a title, and what it
 
 79
-00:03:42,048 --> 00:03:44,457
-VEGA:  When you see a gold card, the Archivist
+00:03:39,321 --> 00:03:39,918
+means.
 
 80
-00:03:44,457 --> 00:03:47,052
-is reading the catalog's real words - word
+00:03:40,968 --> 00:03:43,377
+VEGA:  When you see a gold card, the Archivist
 
 81
-00:03:47,052 --> 00:03:47,608
-for word.
+00:03:43,377 --> 00:03:45,972
+is reading the catalog's real words - word
 
 82
-00:03:47,908 --> 00:03:51,623
-ARCHIVIST:  Employ the principle of least privilege, allowing only
+00:03:45,972 --> 00:03:46,528
+for word.
 
 83
-00:03:51,623 --> 00:03:55,269
-authorized accesses for users (or processes acting on
+00:03:46,828 --> 00:03:50,543
+ARCHIVIST:  Employ the principle of least privilege, allowing only
 
 84
-00:03:55,269 --> 00:03:58,640
-behalf of users) that are necessary to accomplish
+00:03:50,543 --> 00:03:54,189
+authorized accesses for users (or processes acting on
 
 85
-00:03:58,640 --> 00:04:00,704
-assigned organizational tasks.
+00:03:54,189 --> 00:03:57,560
+behalf of users) that are necessary to accomplish
 
 86
-00:04:01,754 --> 00:04:04,616
-NOVA:  People keep saying 'baseline' - what's that mean?
+00:03:57,560 --> 00:03:59,624
+assigned organizational tasks.
 
 87
-00:04:04,916 --> 00:04:07,615
-VEGA:  A starting kit of controls - Low, Moderate,
+00:04:00,674 --> 00:04:03,536
+NOVA:  People keep saying 'baseline' - what's that mean?
 
 88
-00:04:07,615 --> 00:04:09,436
-or High, sized to the stakes.
+00:04:03,836 --> 00:04:06,535
+VEGA:  A starting kit of controls - Low, Moderate,
 
 89
-00:04:10,486 --> 00:04:13,125
-NOVA:  Wait, hold on - where'd the Low, Moderate,
+00:04:06,535 --> 00:04:08,356
+or High, sized to the stakes.
 
 90
-00:04:13,125 --> 00:04:14,508
-and High baselines go?
+00:04:09,406 --> 00:04:11,983
+NOVA:  Wait - Low, Moderate, High... where do those
 
 91
-00:04:14,808 --> 00:04:18,240
-VEGA:  Good eye. In Revision 5 they moved out,
+00:04:11,983 --> 00:04:13,388
+baselines actually live?
 
 92
-00:04:18,240 --> 00:04:20,968
-into a companion book: 800-53B.
+00:04:13,688 --> 00:04:17,120
+VEGA:  Good eye. In Revision 5 they moved out,
 
 93
-00:04:21,268 --> 00:04:26,310
-800-53 is the catalog of controls. 800-53B holds
+00:04:17,120 --> 00:04:19,848
+into a companion book: 800-53B.
 
 94
-00:04:26,310 --> 00:04:30,196
-the baselines and tailoring guidance.
+00:04:20,148 --> 00:04:25,190
+800-53 is the catalog of controls. 800-53B holds
 
 95
-00:04:31,246 --> 00:04:34,236
-VEGA:  800-53 doesn't stand alone. It plugs into a
+00:04:25,190 --> 00:04:29,076
+the baselines and tailoring guidance.
 
 96
-00:04:34,236 --> 00:04:37,366
-process called the Risk Management Framework.
+00:04:30,126 --> 00:04:33,116
+VEGA:  800-53 doesn't stand alone. It plugs into a
 
 97
-00:04:37,666 --> 00:04:40,345
-VEGA:  In plain terms: prepare, decide how much the
+00:04:33,116 --> 00:04:36,246
+process called the Risk Management Framework.
 
 98
-00:04:40,345 --> 00:04:43,328
-system matters, pick controls, put them in place,
+00:04:36,546 --> 00:04:39,225
+VEGA:  In plain terms: prepare, decide how much the
 
 99
-00:04:43,328 --> 00:04:45,763
-check they work, get a leader to approve
+00:04:39,225 --> 00:04:42,208
+system matters, pick controls, put them in place,
 
 100
-00:04:45,763 --> 00:04:47,346
-it, then watch it forever.
+00:04:42,208 --> 00:04:44,643
+check they work, get a leader to approve
 
 101
-00:04:47,646 --> 00:04:50,872
-NOVA:  And the catalog is 800-53; the baselines in
+00:04:44,643 --> 00:04:46,226
+it, then watch it forever.
 
 102
-00:04:50,872 --> 00:04:54,548
-800-53B help choose which controls we start with.
+00:04:46,526 --> 00:04:50,811
+NOVA:  So the catalog's 800-53, and 800-53B's baselines help
 
 103
-00:04:54,848 --> 00:04:57,234
-VEGA:  We'll walk all seven steps in Act Two.
+00:04:50,811 --> 00:04:52,428
+pick where we start?
 
 104
-00:04:57,234 --> 00:04:59,494
-For now, just know the catalog has a
+00:04:52,728 --> 00:04:55,114
+VEGA:  We'll walk all seven steps in Act Two.
 
 105
-00:04:59,494 --> 00:04:59,808
-home.
+00:04:55,114 --> 00:04:57,374
+For now, just know the catalog has a
 
 106
-00:05:00,858 --> 00:05:02,706
-Three guides ride with you.
+00:04:57,374 --> 00:04:57,688
+home.
 
 107
-00:05:03,006 --> 00:05:05,124
-NULL:  ...and one rides against you.
+00:04:58,738 --> 00:05:00,586
+Three guides ride with you.
 
 108
-00:05:11,158 --> 00:05:13,837
-VEGA:  Six layers lie ahead. The Outer Walls. The
+00:05:00,886 --> 00:05:03,004
+NULL:  ...and one rides against you.
 
 109
-00:05:13,837 --> 00:05:16,198
-Watchtowers. The Keepers of the Pact.
+00:05:09,038 --> 00:05:11,717
+VEGA:  Six layers lie ahead. The Outer Walls. The
 
 110
-00:05:16,498 --> 00:05:19,378
-VEGA:  The High Council. The Forge. The Vaults and
+00:05:11,717 --> 00:05:14,078
+Watchtowers. The Keepers of the Pact.
 
 111
-00:05:19,378 --> 00:05:22,058
-Lifelines. Then the finale: Siege Night.
+00:05:14,378 --> 00:05:17,258
+VEGA:  The High Council. The Forge. The Vaults and
 
 112
-00:05:23,108 --> 00:05:25,516
-One honest note before we ride out.
+00:05:17,258 --> 00:05:19,938
+Lifelines. Then the finale: Siege Night.
 
 113
-00:05:25,816 --> 00:05:28,356
-VEGA:  The story is ours. The control text is
+00:05:20,988 --> 00:05:23,396
+One honest note before we ride out.
 
 114
-00:05:28,356 --> 00:05:30,696
-theirs - real, and shown on screen.
+00:05:23,696 --> 00:05:26,236
+VEGA:  The story is ours. The control text is
 
 115
-00:05:31,746 --> 00:05:34,864
-VEGA:  Let's make it stick. What's a control? Pause,
+00:05:26,236 --> 00:05:28,576
+theirs - real, and shown on screen.
 
 116
-00:05:34,864 --> 00:05:35,626
-and answer.
+00:05:29,626 --> 00:05:32,146
+VEGA:  Let's make it stick. What's a control?
 
 117
-00:05:35,926 --> 00:05:39,051
+00:05:32,446 --> 00:05:35,571
 In plain terms, a security 'control' is best
 
 118
-00:05:39,051 --> 00:05:39,974
+00:05:35,571 --> 00:05:36,494
 described as:
 
 119
-00:05:40,274 --> 00:05:43,753
+00:05:36,794 --> 00:05:40,273
 Your options. A. A type of computer. B.
 
 120
-00:05:43,753 --> 00:05:47,857
+00:05:40,273 --> 00:05:44,377
 A safeguard that reduces risk. C. A government
 
 121
-00:05:47,857 --> 00:05:48,482
+00:05:44,377 --> 00:05:45,002
 agency.
 
 122
-00:05:48,782 --> 00:05:51,684
+00:05:45,302 --> 00:05:48,204
 NOVA:  Pause here and lock in your answer.
 
 123
-00:05:58,734 --> 00:06:01,582
+00:05:55,254 --> 00:05:58,102
 VEGA:  The answer is B. A safeguard that reduces
 
 124
-00:06:01,582 --> 00:06:04,917
+00:05:58,102 --> 00:06:01,437
 risk. A control is a safeguard or countermeasure
 
 125
-00:06:04,917 --> 00:06:07,349
+00:06:01,437 --> 00:06:03,869
 - it reduces risk to the system and
 
 126
-00:06:07,349 --> 00:06:07,974
+00:06:03,869 --> 00:06:04,494
 its data.
 
 127
-00:06:09,024 --> 00:06:11,925
+00:06:05,544 --> 00:06:08,326
 NOVA:  Quick check. Where do the baselines live now?
 
 128
-00:06:11,925 --> 00:06:13,086
-Pause, and answer.
-
-129
-00:06:13,386 --> 00:06:16,493
+00:06:08,626 --> 00:06:11,733
 Where do the Low, Moderate, and High control
 
-130
-00:06:16,493 --> 00:06:17,834
+129
+00:06:11,733 --> 00:06:13,074
 baselines live now?
 
-131
-00:06:18,134 --> 00:06:23,615
+130
+00:06:13,374 --> 00:06:18,855
 Your options. A. In 800-53 itself. B. In
 
-132
-00:06:23,615 --> 00:06:27,862
+131
+00:06:18,855 --> 00:06:23,102
 NIST SP 800-53B. C. In the RMF.
 
-133
-00:06:28,162 --> 00:06:31,064
+132
+00:06:23,402 --> 00:06:26,304
 NOVA:  Pause here and lock in your answer.
 
-134
-00:06:38,114 --> 00:06:40,915
+133
+00:06:33,354 --> 00:06:36,155
 VEGA:  The answer is B. In NIST SP 800-53B.
 
-135
-00:06:40,915 --> 00:06:44,104
+134
+00:06:36,155 --> 00:06:39,344
 In Revision 5 the Low, Moderate, and High
 
-136
-00:06:44,104 --> 00:06:47,994
+135
+00:06:39,344 --> 00:06:43,234
 baselines moved out into companion volume 800-53B.
 
-137
-00:06:49,044 --> 00:06:51,164
+136
+00:06:44,284 --> 00:06:46,404
 VEGA:  And how many families guard our city?
 
-138
-00:06:51,464 --> 00:06:55,674
+137
+00:06:46,704 --> 00:06:50,914
 How many control families does 800-53 Revision 5
 
-139
-00:06:55,674 --> 00:06:56,112
+138
+00:06:50,914 --> 00:06:51,352
 have?
 
-140
-00:06:56,412 --> 00:07:00,660
+139
+00:06:51,652 --> 00:06:55,900
 Your options. A. Twelve. B. Seventeen. C. Twenty.
 
-141
-00:07:00,960 --> 00:07:03,862
+140
+00:06:56,200 --> 00:06:59,102
 NOVA:  Pause here and lock in your answer.
 
-142
-00:07:10,912 --> 00:07:14,284
+141
+00:07:06,152 --> 00:07:09,524
 VEGA:  The answer is C. Twenty. Revision 5 organizes
 
-143
-00:07:14,284 --> 00:07:16,832
+142
+00:07:09,524 --> 00:07:12,072
 its controls into twenty families.
 
-144
-00:07:17,882 --> 00:07:21,154
+143
+00:07:13,122 --> 00:07:16,394
 NOVA:  Notebook open. That's the whole map on one
 
-145
-00:07:21,154 --> 00:07:21,544
+144
+00:07:16,394 --> 00:07:16,784
 page.
 
-146
-00:07:21,844 --> 00:07:25,002
+145
+00:07:17,084 --> 00:07:20,242
 VEGA:  That's your foundation. Next, we ride for the
 
-147
-00:07:25,002 --> 00:07:25,844
+146
+00:07:20,242 --> 00:07:21,084
 Outer Walls.
 
-148
-00:07:26,144 --> 00:07:28,262
+147
+00:07:21,384 --> 00:07:23,502
 NULL:  I'll be waiting at the gate.

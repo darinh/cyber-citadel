@@ -69,7 +69,7 @@
   },
   {
    "scene": "map",
-   "title": "THE OUTER WALLS",
+   "title": "THE CITADEL MAP",
    "highlight": [
     "AC",
     "IA",
@@ -149,7 +149,7 @@
     ],
     [
      "NULL",
-     "Less for them to give me when I take an account..."
+     "Lock them all down. I only need the one account you forgot to trim."
     ]
    ]
   },
@@ -216,7 +216,7 @@
     ],
     [
      "NOVA",
-     "Decide, then enforce. AC-3 is the enforcement."
+     "So the policy decides... and something makes the gate obey — is that AC-3?"
     ]
    ]
   },
@@ -264,7 +264,7 @@
     ],
     [
      "NOVA",
-     "Access Control trusts a name. This guardian proves the name is real."
+     "So Access Control checks the rules — but this one makes you prove who you are?"
     ]
    ]
   },
@@ -398,7 +398,7 @@
     ],
     [
      "NOVA",
-     "Tailgating, propped doors, lost badges, this is where you stop them."
+     "Tailgating, propped doors, lost badges — so this one's literally about the building?"
     ]
    ]
   },
@@ -417,7 +417,7 @@
   },
   {
    "scene": "quote",
-   "quote": "Enforce physical access authorizations at [entry and exit points] by:",
+   "quote": "Enforce physical access authorizations at [entry and exit points] by: Verifying individual access authorizations before granting access to the facility;",
    "cite": "NIST SP 800-53r5  ·  PE-3 Physical Access Control",
    "say": [
     [
@@ -490,7 +490,7 @@
    "say": [
     [
      "NOVA",
-     "Guardian check. Who proves your identity? Pause, and answer."
+     "Guardian check. Who proves your identity?"
     ]
    ],
    "min_seconds": 7,
@@ -554,7 +554,7 @@
     ],
     [
      "NULL",
-     "Fine. I'll stop knocking... and start hiding."
+     "Your gates hold — for now. So I'll stop knocking, and start hiding."
     ],
     [
      "VEGA",

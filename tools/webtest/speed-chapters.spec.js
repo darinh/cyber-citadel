@@ -128,6 +128,59 @@ test.describe('poster thumbnails', () => {
   });
 });
 
+test.describe('interactive quiz (play-in-background)', () => {
+  function q1() {
+    const cues = JSON.parse(fs.readFileSync(path.join(ROOT, 'course', 'episodes', 'ep00.cues.json'), 'utf8'));
+    return cues.quizzes[0];
+  }
+  async function reachQuestion(page, q) {
+    await ready(page);
+    await page.evaluate(() => { document.querySelector('#vid').muted = true; });
+    await page.evaluate((t) => { const v = document.querySelector('#vid'); v.currentTime = t; v.play(); }, q.t_question + 0.4);
+    await page.waitForSelector('#ov.show', { timeout: 12000 });
+  }
+
+  test('quiz appears WHILE the video keeps playing (not paused)', async ({ page }) => {
+    const q = q1();
+    await reachQuestion(page, q);
+    const st = await page.evaluate(() => ({
+      soft: document.querySelector('#ov').classList.contains('soft'),
+      opts: document.querySelectorAll('#ovopts .opt').length,
+      paused: document.querySelector('#vid').paused,
+    }));
+    expect(st.soft).toBe(true);
+    expect(st.opts).toBe(q.options.length);
+    expect(st.paused).toBe(false);            // audio keeps playing behind the quiz
+  });
+
+  test('answering skips ahead to the reveal and resumes', async ({ page }) => {
+    const q = q1();
+    await reachQuestion(page, q);
+    await page.evaluate((a) => document.querySelectorAll('#ovopts .opt')[a].click(), q.answer);
+    await page.waitForFunction((tr) => document.querySelector('#vid').currentTime >= tr - 0.6, q.t_reveal, { timeout: 8000 });
+    const fb = await page.textContent('#ovfb');
+    expect(fb).toContain('Correct');
+    expect(await page.evaluate(() => document.querySelector('#vid').paused)).toBe(false);
+  });
+
+  test('pauses at the lock-in point if still unanswered', async ({ page }) => {
+    const q = q1();
+    await reachQuestion(page, q);
+    await page.evaluate((t) => { document.querySelector('#vid').currentTime = t; }, q.t_quiz + 0.3);
+    await page.waitForFunction(() => document.querySelector('#vid').paused === true, null, { timeout: 8000 });
+    expect((await page.textContent('#ovhint')).toLowerCase()).toContain('pick an answer');
+  });
+
+  test('overlay closes after the resume point', async ({ page }) => {
+    const q = q1();
+    await reachQuestion(page, q);
+    await page.evaluate((a) => document.querySelectorAll('#ovopts .opt')[a].click(), q.answer);
+    await page.evaluate((t) => { document.querySelector('#vid').currentTime = t; }, q.t_resume + 0.3);
+    await page.waitForFunction(() => !document.querySelector('#ov').classList.contains('show'), null, { timeout: 8000 });
+    expect(await page.evaluate(() => document.querySelector('#ov').classList.contains('show'))).toBe(false);
+  });
+});
+
 test('no console/page errors on load', async ({ page }) => {
   const errs = [];
   page.on('pageerror', e => errs.push(String(e)));

@@ -117,8 +117,17 @@ and video assembly.
    beats to confirm the echo/slip is gone and nothing new was introduced.
 
 **6. Gate before render.** Edits that touch on-screen facts must pass **accuracy-verification**
-   (`verify_script.py` + `audit_narration.py`). Only then render (see **video-assembly**) and
-   finally confirm the delivered mp4 with `verify_episode.py`.
+   (`verify_script.py` + `audit_narration.py`). Also run the **deterministic craft gate**
+   `tools/lint_script.py` (must be 0 P1): it catches the mechanical classes a human/LLM read can
+   miss — duplicate section/map headings, the double-spoken quiz "Pause and answer", title/
+   variable-text **overflow measured with the real fonts**, and **incomplete Archivist quotes**
+   (truncated mid-list at a colon). The council finds taste/voice/echoes; the lint gate enforces
+   the rules. Only when BOTH are green do you render (see **video-assembly**) and finally confirm
+   the delivered mp4 with `verify_episode.py`.
+
+> **Owning a mistake = building a gate.** When a new class of defect is found, add a deterministic
+> check to `tools/lint_script.py` (or the relevant gate) so it can never ship again — don't just
+> fix the one instance.
 
 ## Definition of done
 - Every episode read end-to-end by ≥2 diverse models; findings merged to consensus.

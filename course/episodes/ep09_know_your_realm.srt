@@ -55,76 +55,76 @@ zero.
 VEGA:  FIPS 199 judges a system on three objectives.
 
 15
-00:00:38,608 --> 00:00:43,430
-NOVA:  Confidentiality, Integrity, and Availability. The C-I-A triad.
+00:00:38,608 --> 00:00:43,086
+NOVA:  Confidentiality, Integrity, Availability - the C-I-A triad! We
 
 16
-00:00:44,480 --> 00:00:47,299
-VEGA:  For each objective, ask: how bad is the
+00:00:43,086 --> 00:00:45,470
+covered that back in Orientation.
 
 17
-00:00:47,299 --> 00:00:48,600
-worst-case impact?
+00:00:46,520 --> 00:00:49,339
+VEGA:  For each objective, ask: how bad is the
 
 18
-00:00:48,900 --> 00:00:50,820
-VEGA:  Low, Moderate, or High.
+00:00:49,339 --> 00:00:50,640
+worst-case impact?
 
 19
-00:00:54,780 --> 00:00:57,522
-NOVA:  So one High pulls the whole system up?
+00:00:50,940 --> 00:00:52,860
+VEGA:  Low, Moderate, or High.
 
 20
-00:00:57,822 --> 00:01:00,931
-VEGA:  Exactly. We call it the high-water mark. The
+00:00:56,820 --> 00:00:59,562
+NOVA:  So one High pulls the whole system up?
 
 21
-00:01:00,931 --> 00:01:02,062
-worst case wins.
+00:00:59,862 --> 00:01:02,971
+VEGA:  Exactly. We call it the high-water mark. The
 
 22
-00:01:05,080 --> 00:01:08,320
-VEGA:  800-60 helps you rate each information type.
+00:01:02,971 --> 00:01:04,102
+worst case wins.
 
 23
-00:01:08,620 --> 00:01:11,681
-VEGA:  And FIPS 200 sets the floor, and points
+00:01:07,120 --> 00:01:10,360
+VEGA:  800-60 helps you rate each information type.
 
 24
-00:01:11,681 --> 00:01:12,780
-you to 800-53.
+00:01:10,660 --> 00:01:13,721
+VEGA:  And FIPS 200 sets the floor, and points
 
 25
-00:01:13,830 --> 00:01:17,260
-NULL:  Mislabel it low, and you'll guard it like
+00:01:13,721 --> 00:01:14,820
+you to 800-53.
 
 26
-00:01:17,260 --> 00:01:20,188
-nothing. That is where I will live.
+00:01:15,870 --> 00:01:19,300
+NULL:  Mislabel it low, and you'll guard it like
 
 27
-00:01:20,488 --> 00:01:23,705
-VEGA:  And the catalog has a control for exactly
+00:01:19,300 --> 00:01:22,228
+nothing. That is where I will live.
 
 28
-00:01:23,705 --> 00:01:24,568
-this: RA-2.
+00:01:22,528 --> 00:01:25,745
+VEGA:  And the catalog has a control for exactly
 
 29
-00:01:24,868 --> 00:01:29,294
-ARCHIVIST:  Categorize the system and information it processes, stores,
+00:01:25,745 --> 00:01:26,608
+this: RA-2.
 
 30
-00:01:29,294 --> 00:01:30,344
-and transmits;
+00:01:26,908 --> 00:01:31,334
+ARCHIVIST:  Categorize the system and information it processes, stores,
 
 31
-00:01:31,394 --> 00:01:35,804
-NOVA:  Scenario time. What's the overall category? Pause, and
+00:01:31,334 --> 00:01:32,384
+and transmits;
 
 32
-00:01:35,804 --> 00:01:36,376
-answer.
+00:01:33,434 --> 00:01:36,376
+NOVA:  Scenario time. What's the overall category?
 
 33
 00:01:36,676 --> 00:01:44,871

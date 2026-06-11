@@ -19,7 +19,7 @@
   meaning: Aegis Regional Hospital runs a Patient Records System: a web app plus a database, used by about 800 clinicians, hosted on-premises, holding patients' medical records.
   everyday example: Web app + database + 800 users + sensitive health records = one information system to authorize.
 **VEGA:** Here's our system. Not just a computer — an app, a database, the staff who use it, and the data they protect.
-**NOVA:** And those records are PII — personal, and protected by law.
+**NOVA:** So those records count as PII — that means extra rules, right?
 
 *[DIAGRAM: Step 1–2: Prepare, then Categorize the impact]*
   Confidentiality MODERATE → Integrity HIGH → Availability HIGH
@@ -56,7 +56,7 @@
   • SI-2: patch servers on a set schedule
   • CP-9: a nightly backup kept offline, where ransomware can't reach it
 **VEGA:** Now Raj's team puts the controls to work. The catalog says what to do; they choose how to do it.
-**NOVA:** Same requirement, many possible tools.
+**NOVA:** So the catalog says what to do — but Raj's team picks how?
 
 *[ASSESS · SP 800-53A: Step 6: Assess — do they actually work?]*
   • Stellaris (independent) EXAMINES the security plan
@@ -64,7 +64,7 @@
   • TESTS the system: a vulnerability scan and a phishing simulation
   • The findings become a Security Assessment Report — the SAR
 **VEGA:** An outside assessor checks the work three ways: examine, interview, test.
-**NOVA:** Selecting a control isn't proof it works. Assessment is.
+**NOVA:** Wait — so just picking a control isn't proof? Someone has to check it works?
 
 *[PLAIN ENGLISH: Residual risk]*
   meaning: The risk that's left after your controls are in place. It never reaches zero — so a senior leader has to look at what remains and decide if it's acceptable.

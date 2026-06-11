@@ -43,7 +43,7 @@
     ],
     [
      "VEGA",
-     "Then we seal the roads, guard the vaults, and prepare for the dark."
+     "Then we protect the paths, the vaults, and the way back."
     ]
    ]
   },
@@ -65,7 +65,7 @@
   },
   {
    "scene": "map",
-   "title": "THE VAULTS & LIFELINES",
+   "title": "THE CITADEL MAP",
    "highlight": [
     "SC",
     "MP",
@@ -85,7 +85,7 @@
    "say": [
     [
      "NOVA",
-     "SC, MP, and CP. The warden of the roads, the steward of scrolls, and the keeper of lifelines."
+     "SC, MP, CP — protecting the data and keeping the city alive?"
     ]
    ]
   },
@@ -194,7 +194,7 @@
     ],
     [
      "VEGA",
-     "SC-28 protects it at rest, often with cryptography from SC-12 and SC-13."
+     "SC-28 protects it at rest; SC-12 and SC-13 handle the crypto keys and methods."
     ]
    ]
   },
@@ -246,7 +246,7 @@
     ],
     [
      "NOVA",
-     "Filter at the edge, encrypt across the wire."
+     "So you filter everything at the edge — and encrypt whatever crosses it?"
     ]
    ]
   },
@@ -538,7 +538,7 @@
    "say": [
     [
      "NOVA",
-     "Scenario: ransomware hits. What brings you home? Pause, and answer."
+     "Scenario: ransomware hits. What brings you home?"
     ]
    ],
    "min_seconds": 7,
