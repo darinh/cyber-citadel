@@ -1,0 +1,95 @@
+{
+  "id": "ep01",
+  "tag": "L01",
+  "slug": "knife_skills",
+  "beats": [
+    {
+      "scene": "title",
+      "kicker": "AN INTERACTIVE COOKING SERIES",
+      "badge": "LESSON 01",
+      "title": "KNIFE SKILLS",
+      "subtitle": "Cut with confidence and keep your fingers",
+      "say": [
+        ["NARRATOR", "Welcome to Kitchen Academy. Today, the single skill that makes every recipe faster and safer: how to hold and move a knife."]
+      ],
+      "min_seconds": 5.0
+    },
+    {
+      "scene": "define",
+      "kicker": "PLAIN LANGUAGE",
+      "term": "Mise en place",
+      "plain": "Everything in its place. Before you cut, set up a stable board, a sharp knife, and a bowl for scraps.",
+      "example": "Lay a damp towel under the board so it cannot slide while you work.",
+      "say": [
+        ["CHEF", "Before the blade ever touches food, we set the stage. A damp towel under the board, a sharp knife, a bowl for the scraps."],
+        ["APPRENTICE", "So the setup is part of the skill, not just the cutting?"],
+        ["CHEF", "Exactly. A slipping board is how people get hurt."]
+      ],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "concept",
+      "id": "KN-1",
+      "title": "Pinch Grip",
+      "plain": "Pinch the blade just ahead of the handle between thumb and forefinger for control.",
+      "why": "The pinch turns your wrist into a precise hinge, so the tip stops wandering.",
+      "source": "Kitchen Academy Handbook",
+      "section": "2.1",
+      "say": [
+        ["APPRENTICE", "Where exactly should my hand be on the knife?"],
+        ["CHEF", "Pinch the blade just ahead of the handle, thumb on one side, finger on the other. Now the knife is part of your hand."]
+      ],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "quote",
+      "quote": "Curl the fingertips of your guiding hand under so the flat of the blade rides against your knuckles, never your tips.",
+      "cite": "Kitchen Academy Handbook  \u00B7  KN-2 The Claw",
+      "say": [
+        ["NARRATOR", "Curl the fingertips of your guiding hand under so the flat of the blade rides against your knuckles, never your tips."]
+      ],
+      "min_seconds": 5.0
+    },
+    {
+      "scene": "points",
+      "kicker": "REMEMBER",
+      "title": "Three checks before you cut",
+      "bullets": [
+        "Board steady on a damp towel",
+        "Blade sharp \u2014 a dull edge slips",
+        "Guiding hand in the claw, tips tucked"
+      ],
+      "note": "Set up once, cut safely all session.",
+      "say": [
+        ["CHEF", "Three checks every time. Steady board, sharp blade, hand in the claw."]
+      ],
+      "min_seconds": 5.5
+    },
+    {
+      "scene": "quiz",
+      "q": "Where should your guiding fingertips be while slicing?",
+      "options": ["Flat against the food", "Curled under in a claw", "Wrapped over the blade"],
+      "answer": 1,
+      "why": "The claw keeps your fingertips behind your knuckles, which guide the blade safely.",
+      "say": [
+        ["CHEF", "Quick taste test before you go."]
+      ],
+      "min_seconds": 3.0
+    },
+    {
+      "scene": "cheatcard",
+      "group": "KN",
+      "title": "Knife Skills",
+      "bullets": [
+        "Pinch grip \u2014 control from the wrist",
+        "The claw \u2014 protect your fingertips",
+        "Rock, don't saw \u2014 tip stays on the board"
+      ],
+      "mnemonic": "\u201CSharp blade, safe claw, steady board.\u201D",
+      "say": [
+        ["NARRATOR", "Master these three, and every recipe gets faster. Next lesson, we put them to work."]
+      ],
+      "min_seconds": 5.0
+    }
+  ]
+}

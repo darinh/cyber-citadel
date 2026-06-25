@@ -1,0 +1,20 @@
+{
+  "source": "Kitchen Academy Handbook",
+  "facts": {
+    "KN-1": {
+      "title": "Pinch Grip",
+      "statement": "Pinch the blade just ahead of the handle between thumb and forefinger so the knife becomes an extension of your hand.",
+      "section": "2.1"
+    },
+    "KN-2": {
+      "title": "The Claw",
+      "statement": "Curl the fingertips of your guiding hand under so the flat of the blade rides against your knuckles, never your tips.",
+      "section": "2.2"
+    },
+    "KN-3": {
+      "title": "Rock, Don't Saw",
+      "statement": "Keep the tip of the knife on the board and rock the blade through the food rather than sawing back and forth.",
+      "section": "2.3"
+    }
+  }
+}

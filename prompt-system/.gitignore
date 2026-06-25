@@ -12,3 +12,8 @@ engine/webtest/test-results/
 /world/
 /assets/
 /capabilities.json
+
+# generated outputs inside bundled examples (keep example source only)
+examples/*/course/episodes/
+examples/*/course/render/
+examples/*/.cache/

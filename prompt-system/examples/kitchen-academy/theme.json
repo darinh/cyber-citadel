@@ -1,0 +1,45 @@
+{
+  "brand": "KITCHEN ACADEMY",
+  "series_kicker": "AN INTERACTIVE COOKING SERIES",
+  "fonts": {
+    "regular": "NotoSans-Regular.ttf",
+    "semibold": "NotoSans-SemiBold.ttf",
+    "bold": "NotoSans-Bold.ttf",
+    "light": "NotoSans-Regular.ttf",
+    "mono": "NotoSans-Bold.ttf"
+  },
+  "palette": {
+    "bg_top": [20, 16, 14],
+    "bg_bot": [38, 28, 22],
+    "panel": [44, 33, 26],
+    "panel_hi": [66, 50, 38],
+    "ink": [245, 240, 232],
+    "muted": [186, 168, 150],
+    "accent": [235, 170, 90],
+    "accent2": [150, 196, 130],
+    "gold": [240, 198, 110],
+    "mint": [150, 196, 130],
+    "danger": [225, 120, 96],
+    "violet": [196, 158, 210]
+  },
+  "world": {
+    "stakes_label": "MASTERY",
+    "center_label": "THE DISH",
+    "group_role_label": "STATION",
+    "covers_label": "COVERS",
+    "meaning_label": "IN THE KITCHEN",
+    "quiz_kicker": "TASTE TEST \u00B7 PICK YOUR ANSWER",
+    "oath_label": "THE KITCHEN CODE",
+    "source_label": "Kitchen Academy Handbook"
+  },
+  "cast": [
+    {"name": "NARRATOR", "role": "narrator",
+     "voice": {"ref": "narrator.wav", "exaggeration": 0.5, "cfg_weight": 0.5, "temperature": 0.78}},
+    {"name": "CHEF", "role": "mentor", "caption_color": "gold",
+     "voice": {"ref": "chef.wav", "exaggeration": 0.62, "cfg_weight": 0.46, "temperature": 0.8}},
+    {"name": "APPRENTICE", "role": "learner", "caption_color": "mint",
+     "voice": {"ref": "apprentice.wav", "exaggeration": 0.68, "cfg_weight": 0.42, "temperature": 0.85}}
+  ],
+  "pronunciations": {},
+  "spell_acronyms": []
+}
