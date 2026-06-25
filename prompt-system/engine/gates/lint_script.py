@@ -1,5 +1,5 @@
 """Deterministic CRAFT gate for episode scripts (complements verify_facts.py = facts,
-audit_narration.py = narrative claims, and a multi-model screenplay table-read).
+audit_narration.py = optional LLM narrative-claim review, and a multi-model screenplay table-read).
 
 Fails the build on whole CLASSES of distraction, so they never ship:
   1. WORD ECHO   - a distinctive word repeated across adjacent spoken lines / slide

@@ -31,7 +31,7 @@ Always read `plan.md` (if present) and `capabilities.json` (run `python engine/p
 06 voices        -> assets/voices/*       (one voice per character; chatterbox GPU or piper CPU)
 07 music + sfx   -> assets/music/*        (SOURCED public-domain/CC beds; attributed. SFX are bundled)
 08 script        -> course/scripts/epNN.json   (declarative beats: scenes + dialogue)
-09 gates         -> (verify_facts, lint_prompts, lint_script, audit) must pass before render
+09 gates         -> (verify_facts, lint_prompts, lint_script) must pass before render
 10 assemble      -> course/episodes/epNN_*.mp4 + .srt + .cues.json   (incremental render, two-pass mux)
 11 player+verify -> verify_episode + package -> watch.html/index.html + serve.py (LOCAL play)
 12 reference     -> OPTIONAL quizzes / study guide / quick reference

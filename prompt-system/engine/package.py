@@ -151,7 +151,9 @@ def package(project: Path, quizzes=True, transcripts=True):
     if not epdir.exists():
         print(f"no episodes at {epdir}; render first.")
         return
-    t = _theme.load()
+    # load THIS project's theme (not the cwd's) so brand/palette in the manifest are correct
+    tp = project / "theme.json"
+    t = _theme.load(tp) if tp.exists() else _theme.load()
     episodes, quiz_bank = [], []
     cue_files = sorted(epdir.glob("*.cues.json"))
     for cf in cue_files:

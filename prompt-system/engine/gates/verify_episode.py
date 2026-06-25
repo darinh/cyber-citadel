@@ -93,7 +93,7 @@ def _render_lines(spec):
 def line_start_times(ep, spec):
     """Absolute audio (start, dur) per render line, from course/render/<ep>/manifest.json.
     Returns {(render_idx, line_k): (start_s, dur_s)} or {} if no manifest (confirm skipped)."""
-    mf_path = ROOT / "course" / "render" / ep / "manifest.json"
+    mf_path = PROJECT / "course" / "render" / ep / "manifest.json"
     if not mf_path.exists():
         return {}
     beats_mf = json.loads(mf_path.read_text(encoding="utf-8")).get("beats", {})
@@ -130,7 +130,7 @@ def stt():
 
 
 def transcribe(mp4):
-    wav = ROOT / "tools" / "_tmp" / f"_verify_{mp4.stem}.wav"
+    wav = PROJECT / ".cache" / "verify" / f"_verify_{mp4.stem}.wav"
     wav.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(["ffmpeg", "-y", "-i", str(mp4), "-ar", "16000", "-ac", "1", str(wav)],
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
@@ -145,7 +145,7 @@ def heard_in_region(mp4, t0, t1):
     """Re-transcribe ONLY [t0,t1] of the mp4 — used to CONFIRM a flagged miss.
     faster-whisper long-form omits short isolated lines that ARE present; a local
     re-transcription of just that region recovers them, killing false 'missing' flags."""
-    reg = ROOT / "tools" / "_tmp" / f"_vconf_{mp4.stem}.wav"
+    reg = PROJECT / ".cache" / "verify" / f"_vconf_{mp4.stem}.wav"
     reg.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(["ffmpeg", "-y", "-ss", f"{max(0, t0):.2f}", "-i", str(mp4),
                     "-t", f"{t1 - t0:.2f}", "-ar", "16000", "-ac", "1", str(reg)],

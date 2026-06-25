@@ -99,7 +99,7 @@ Before any render, run an **adversarial multi-model council** on the script text
 ## Self-review
 - Does the JSON parse, with every `scene` a valid scene type?
 - Does every on-screen `id`/`title`/`quote` trace to `truth.json`, and does each `quote` `say` equal the on-screen quote?
-- Are there 2–3 concepts, a hook, a recap, and ≥1 quiz with a single clearly-correct answer?
+- Are there 2–3 concepts, a hook, a recap, and — if quizzes are enabled — at least one quiz with a single clearly-correct answer?
 - Are character voices distinct, with no duplicated explanations?
 - Did the council reach consensus and were edits applied?
 

@@ -55,16 +55,15 @@ python engine/gates/lint_prompts.py
 
 ---
 
-## GPU tier: `sdxl_ipa`
-Use SDXL for fixed-seed base portraits. Create expression variants with IP-Adapter image conditioning so identity stays anchored to the base portrait.
+## GPU tier: `sdxl_ipa` / `sd_turbo`
+`engine/gen_avatars.py` reads your theme cast and produces one **fixed-seed base portrait** per
+character from original primitives + a strong negative prompt (`sd_turbo` = few-step, lower VRAM).
 
 Process:
 
-1. Write one base prompt per character from original primitives.
-2. Choose and record a fixed seed for each base portrait.
-3. Generate the base bust portrait.
-4. Generate expression variants from the base image via IP-Adapter, not text-only re-roll.
-5. Frame/export the default portrait as `assets/avatars/<NAME>.png`.
+1. Add an `art` block per character in `theme.json`: `{ "seed": <int>, "description": "<original primitives: silhouette, palette, 2-3 motifs>" }`, plus an optional theme-level `"art_style"`.
+2. Run `python engine/gen_avatars.py` — it writes `assets/avatars/<NAME>.png` for each character. Record the seeds you keep.
+3. (Optional, advanced) For per-dialogue expression variants, image-condition on the fixed base portrait with IP-Adapter so identity stays anchored — a manual enhancement, not produced automatically by `gen_avatars.py`.
 
 If `engine/gen_avatars.py` or related avatar tools are present, prefer them over hand scripts.
 

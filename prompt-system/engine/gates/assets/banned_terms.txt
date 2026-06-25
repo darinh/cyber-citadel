@@ -1,0 +1,4 @@
+# Extra banned terms for the original-IP guardrail (one per line, case-insensitive).
+# lint_prompts.py blocks these (plus its built-in list) anywhere in theme + scripts + image
+# prompts, so a course can never drift into a named franchise/character/place/studio.
+# Add your own (e.g. a competitor brand, a specific artist name) below. Lines starting with # are ignored.
