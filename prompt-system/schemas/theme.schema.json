@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "theme.json — creative tokens (the ONLY thing a course author changes about how it LOOKS)",
+  "type": "object",
+  "required": ["brand", "palette", "cast"],
+  "properties": {
+    "brand": {"type": "string", "description": "Series name shown top-left and as the page title."},
+    "series_kicker": {"type": "string", "description": "Small tagline on the title card."},
+    "fonts": {
+      "type": "object",
+      "description": "Font filenames in engine/assets/fonts (default Noto Sans) or absolute paths.",
+      "properties": {
+        "regular": {"type": "string"}, "semibold": {"type": "string"},
+        "bold": {"type": "string"}, "light": {"type": "string"}, "mono": {"type": "string"}
+      }
+    },
+    "palette": {
+      "type": "object",
+      "description": "Each token is an [r,g,b] (0-255). Keep high contrast (ink vs panel/bg). The theme-validation in theme.py checks this.",
+      "required": ["bg_top", "bg_bot", "panel", "ink", "accent"],
+      "additionalProperties": {"type": "array", "items": {"type": "integer"}, "minItems": 3, "maxItems": 3},
+      "properties": {
+        "bg_top": {}, "bg_bot": {}, "panel": {}, "panel_hi": {}, "ink": {}, "muted": {},
+        "accent": {}, "accent2": {}, "gold": {}, "mint": {}, "danger": {}, "violet": {}
+      }
+    },
+    "world": {
+      "type": "object",
+      "description": "On-screen vocabulary (words only — never geometry).",
+      "properties": {
+        "stakes_label": {"type": "string", "description": "Optional top progress/stakes meter label."},
+        "center_label": {"type": "string", "description": "The protected center on a map scene."},
+        "group_role_label": {"type": "string", "description": "What a group's persona is called."},
+        "covers_label": {"type": "string"}, "meaning_label": {"type": "string"},
+        "quiz_kicker": {"type": "string"}, "oath_label": {"type": "string"},
+        "source_label": {"type": "string", "description": "Default citation prefix for concept cards."}
+      }
+    },
+    "groups": {
+      "type": "object",
+      "description": "Optional method-of-loci grouping for multi-topic COURSES (single videos omit it).",
+      "properties": {
+        "order": {"type": "array", "items": {"type": "string"}},
+        "clusters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "color": {"type": "string", "description": "A palette token name."},
+              "members": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        }
+      }
+    },
+    "cast": {
+      "type": "array",
+      "description": "Original characters. Names are UPPERCASE speaker ids used in beat `say`.",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {"type": "string"},
+          "role": {"type": "string", "enum": ["narrator", "mentor", "expert", "learner", "source", "antagonist", "villain", "threat", ""], "description": "antagonist/villain/threat get a low rumble + stakes dip + italic captions."},
+          "caption_color": {"type": "string", "description": "A palette token or #rrggbb."},
+          "voice": {
+            "type": "object",
+            "properties": {
+              "ref": {"type": "string", "description": "chatterbox reference clip in assets/voices/."},
+              "exaggeration": {"type": "number"}, "cfg_weight": {"type": "number"}, "temperature": {"type": "number"},
+              "piper": {"type": "string", "description": "piper .onnx voice name in assets/voices/ (CPU fallback)."},
+              "effects": {"type": "string", "description": "optional ffmpeg -af chain."},
+              "length": {"type": "number", "description": "piper length-scale (>1 = slower)."}
+            }
+          }
+        }
+      }
+    },
+    "pronunciations": {"type": "object", "description": "{WORD: spoken-spelling} applied to narration only."},
+    "spell_acronyms": {"type": "array", "items": {"type": "string"}, "description": "acronyms to spell out letter-by-letter when spoken."},
+    "music": {
+      "type": "object",
+      "description": "Map episodes to SOURCED tracks in assets/music/ (public-domain/CC only).",
+      "properties": {
+        "tracks": {"type": "object", "additionalProperties": {"type": "string"}},
+        "default": {"type": "string"}
+      }
+    }
+  }
+}

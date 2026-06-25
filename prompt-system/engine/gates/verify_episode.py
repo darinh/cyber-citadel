@@ -41,9 +41,8 @@ _W = re.compile(r"[a-z0-9']+")
 _NUMW = set("zero one two three four five six seven eight nine ten eleven twelve thirteen "
             "fourteen fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty "
             "sixty seventy eighty ninety hundred thousand million billion oh".split())
-_ACR = set("nist sp rmf fisma fips oscal cia mfa ato poa pii pt sr isso ao ac au ca cm cp ia "
-           "ir ma mp pe pl pm ps ra sa sc si pl csf omb cui siem dns tls ssh vpn pki s(p) "
-           "id ids ips waf".split())
+_ACR = set("a b c d e f g h i j k l m n o p q r s t u v w x y z id ids ok ai api url "
+           "html http https usb dns tls ssh vpn pki cpu gpu pdf faq".split())
 _CONSONANT = re.compile(r"[bcdfghjklmnpqrstvwxz]{2,5}$")   # letter-spelled acronyms: rmf, sp, tls
 
 
@@ -79,11 +78,11 @@ def _render_lines(spec):
             why = beat.get("why", "")
             qlines = say + [("NARRATOR", beat.get("q", "")),
                             ("NARRATOR", f"Your options.   {read_opts}"),
-                            ("NOVA", "Pause here and lock in your answer.")]
+                            ("NARRATOR", "Pause here and lock in your answer.")]
             for k, (sp, tx) in enumerate(qlines):
                 out.append((sp, tx, i * 10, k))
             correct = opts[ans] if ans < len(opts) else ""
-            out.append(("VEGA", f"The answer is {letter}.   {correct}."
+            out.append(("NARRATOR", f"The answer is {letter}.   {correct}."
                         + (f"   {why}" if why else ""), i * 10 + 1, 0))
         else:
             for k, (sp, tx) in enumerate(say):

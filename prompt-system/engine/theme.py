@@ -55,6 +55,8 @@ _DEFAULT = {
         "meaning_label":    "IN PRACTICE",              # persona card: real-world meaning
         "quiz_kicker":      "KNOWLEDGE CHECK \u00B7 PICK YOUR ANSWER",
         "oath_label":       "THE PLEDGE",
+        "quote_label":      "VERBATIM \u00B7 FROM THE SOURCE",
+        "notebook_label":   "FIELD NOTES",
         "source_label":     "",                         # default citation prefix (usually per-beat)
     },
     # Optional method-of-loci grouping for multi-topic COURSES (single videos omit it).

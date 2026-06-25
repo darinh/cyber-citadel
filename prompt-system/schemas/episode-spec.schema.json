@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "episode spec — course/scripts/epNN.json (declarative beats rendered by the engine)",
+  "type": "object",
+  "required": ["id", "beats"],
+  "properties": {
+    "id": {"type": "string", "description": "Episode id, e.g. ep01 (used for output filenames + cache)."},
+    "tag": {"type": "string", "description": "Short corner tag, e.g. L01."},
+    "slug": {"type": "string", "description": "Filename slug for the mp4."},
+    "num": {"type": "string", "description": "Display number (else derived from id)."},
+    "title": {"type": "string"},
+    "subtitle": {"type": "string"},
+    "families": {"type": "string", "description": "Sidebar subtitle (groups covered)."},
+    "synopsis": {"type": "string"},
+    "background": {"type": "string", "description": "Optional backdrop name in assets/backgrounds/ (or absolute path)."},
+    "music": {"type": "string", "description": "Optional SOURCED track filename in assets/music/ for this episode."},
+    "beats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["scene"],
+        "properties": {
+          "scene": {
+            "type": "string",
+            "enum": ["title", "section", "map", "persona", "guardian", "concept", "control",
+                     "quote", "diagram", "points", "cheatcard", "define", "coldopen", "quiz",
+                     "pledge", "oath", "notebook"],
+            "description": "See reference/SCENE_CONTRACT.md for each type's fields."
+          },
+          "say": {
+            "type": "array",
+            "description": "Spoken dialogue for this beat.",
+            "items": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 2}
+          },
+          "min_seconds": {"type": "number", "description": "Minimum on-screen time (engine extends for narration)."},
+          "id": {"type": "string", "description": "concept/control: must match a truth.json fact id."},
+          "title": {"type": "string"},
+          "plain": {"type": "string"},
+          "why": {"type": "string"},
+          "source": {"type": "string"},
+          "section": {"type": "string"},
+          "quote": {"type": "string", "description": "quote: VERBATIM substring of the fact's statement."},
+          "cite": {"type": "string", "description": "quote/define: citation naming the fact id."},
+          "q": {"type": "string"},
+          "options": {"type": "array", "items": {"type": "string"}},
+          "answer": {"type": "integer", "description": "0-based index of the correct option."},
+          "bullets": {"type": "array", "items": {"type": "string"}},
+          "mnemonic": {"type": "string"},
+          "term": {"type": "string"}, "expand": {"type": "string"}, "example": {"type": "string"},
+          "kicker": {"type": "string"}, "note": {"type": "string"}, "subtitle": {"type": "string"},
+          "group": {"type": "string"}, "group_name": {"type": "string"}, "persona": {"type": "string"},
+          "summary": {"type": "string"}, "meaning": {"type": "string"},
+          "headline": {"type": "string"}, "body": {"type": "string"}, "year": {"type": "string"},
+          "label": {"type": "string"}, "mitre": {"type": "string"}, "teaches": {"type": "string"},
+          "oath": {"type": "string"}, "controls": {"type": "string"},
+          "order": {"type": "array", "items": {"type": "string"}},
+          "deps": {"type": "array"}, "nodes": {"type": "array"}, "arrows": {"type": "array"}, "lines": {"type": "array"}
+        }
+      }
+    }
+  },
+  "_reserved": "Do NOT hand-set _integrity, _t, tag (auto), or reveal — the engine injects them."
+}

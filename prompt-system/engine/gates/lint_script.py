@@ -1,20 +1,19 @@
-"""Deterministic CRAFT gate for episode scripts (complements verify_script.py = facts,
-audit_narration.py = claims, screenplay-review skill = LLM table-read).
+"""Deterministic CRAFT gate for episode scripts (complements verify_facts.py = facts,
+audit_narration.py = narrative claims, and a multi-model screenplay table-read).
 
-Fails the build on whole CLASSES of distraction the team has been burned by, so we never
-ship them again:
+Fails the build on whole CLASSES of distraction, so they never ship:
   1. WORD ECHO   - a distinctive word repeated across adjacent spoken lines / slide
-                   boundaries (e.g. EP00 "...every guardian exists." -> "why does any of
-                   this even exist?").
-  2. DUP HEADING - the same section/map/title heading used twice in one episode
-                   (e.g. EP01 had two subsections titled "The Outer Walls").
-  3. LONG TITLE  - a title/subtitle so long it overflows the slide container.
-  4. QUIZ PAUSE  - a quiz scenario line that itself says "pause", which duplicates the
-                   pause prompt the assembler always appends ("...twice per question").
+                   boundaries (e.g. "...every guide exists." -> "why does any of this exist?").
+  2. DUP HEADING - the same section/map/title heading used twice in one episode.
+  3. LONG TITLE  - a title/subtitle so long it overflows the slide container (measured with
+                   the themed fonts, not a char heuristic).
+  4. QUIZ PAUSE  - a quiz scenario line that itself says "pause", duplicating the pause prompt
+                   the assembler always appends.
+  5. QUOTE       - an on-screen/spoken quote that is truncated or doesn't match (see verify_facts).
 
-Usage:  python tools/lint_script.py            # all episodes (exit 1 on any P1)
-        python tools/lint_script.py ep01        # one episode
-        python tools/lint_script.py --warn       # also print P2 warnings (long titles)
+Usage:  python engine/gates/lint_script.py            # all episodes (exit 1 on any P1)
+        python engine/gates/lint_script.py ep01        # one episode
+        python engine/gates/lint_script.py --warn       # also print P2 advisories
 """
 import json
 import os
@@ -94,7 +93,7 @@ def spoken_lines(beat):
         if beat.get("q"):
             lines.append(("NARRATOR", beat["q"]))
         if beat.get("why"):
-            lines.append(("VEGA", beat["why"]))
+            lines.append(("NARRATOR", beat["why"]))
     return lines
 
 
@@ -129,11 +128,11 @@ def lint(ep):
                 freq[w] = freq.get(w, 0) + 1
 
     # ---- WORD ECHO (conservative / advisory): same DISTINCTIVE word in two adjacent
-    #      dialogue lines. Skip quiz Q/why and ARCHIVIST verbatim; skip topic words
+    #      dialogue lines. Skip quiz Q/why and verbatim quote scenes; skip topic words
     #      (occur >2x in the episode or appear in on-screen text). Catches the "exist"
     #      class without flagging legitimate teaching repetition. ----
     for (i0, s0, sp0, t0), (i1, s1, sp1, t1) in zip(seq, seq[1:]):
-        if sp0 == "ARCHIVIST" or sp1 == "ARCHIVIST":
+        if s0 == "quote" or s1 == "quote":
             continue
         if s0 == "quiz" or s1 == "quiz":
             continue
@@ -205,16 +204,17 @@ def lint(ep):
             p1.append((ep, "QUOTE_INCOMPLETE", f'on-screen quote ends mid-clause: "...{q[-46:]}"'))
         elif q and q[-1] not in ".;?!":
             p2.append((ep, "QUOTE_OPEN", f'on-screen quote lacks terminal punctuation: "...{q[-46:]}"'))
-        # the Archivist must SPEAK the full quote (not stop at the lead-in / colon)
-        spoken = _normq(" ".join(t for s, t in [(x[0], x[1]) for x in b.get("say", [])] if s == "ARCHIVIST"))
+        # the narrator/reader must SPEAK the full quote (not stop at the lead-in / colon),
+        # whatever character voices it — so check ALL spoken lines on the quote beat.
+        spoken = _normq(" ".join(t for _s, t in [(x[0], x[1]) for x in b.get("say", [])]))
         if spoken:
             sp = spoken.rstrip('\u201d"\u201c').strip()
             if sp.endswith(":") or _MIDCLAUSE.search(sp):
                 p1.append((ep, "QUOTE_SPOKEN_INCOMPLETE",
-                           f'Archivist SPEAKS a truncated quote: "...{sp[-46:]}"'))
+                           f'spoken quote is truncated: "...{sp[-46:]}"'))
             elif _wordsq(spoken) != _wordsq(raw):
                 p1.append((ep, "QUOTE_SAY_MISMATCH",
-                           f'Archivist spoken line != on-screen quote '
+                           f'spoken quote != on-screen quote '
                            f'(speaks {len(_wordsq(spoken).split())}/{len(_wordsq(raw).split())} words): '
                            f'spoken "...{sp[-40:]}"'))
 

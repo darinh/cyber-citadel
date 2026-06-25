@@ -455,11 +455,11 @@ def s_control(img, b):
 
 
 def s_quote(img, b):
-    # Archivist verbatim — parchment/teletype authoritative styling
+    # Verbatim source — parchment/teletype authoritative styling
     neon_rrect(img, [170, 250, W - 170, 880], 22, GOLD, width=2, fill=(22, 20, 34, 240))
     d = ImageDraw.Draw(img)
     d.text((230, 250), "\u201C", font=FB(220), fill=(GOLD[0], GOLD[1], GOLD[2]))
-    tracked_text(d, (250, 300), "VERBATIM \u00B7 THE ARCHIVIST READS", FSB(24), GOLD, tracking=6)
+    tracked_text(d, (250, 300), _theme.world("quote_label", _T) or "VERBATIM \u00B7 FROM THE SOURCE", FSB(24), GOLD, tracking=6)
     y = 370
     quote = b.get("quote", "")
     y = draw_wrapped(d, (250, y), quote, FSL(46), INK, W - 560, 1.4)
@@ -622,7 +622,7 @@ def s_define(img, b):
 
 
 def s_coldopen(img, b):
-    """'Breach of the week' — a real-world incident hook with a MITRE ATT&CK tag."""
+    """An incident/scenario hook card (optional real-world example) with an optional tag."""
     col = RED
     d = ImageDraw.Draw(img)
     d.polygon([(150, 250), (172, 250), (161, 230)], fill=col)
@@ -641,7 +641,7 @@ def s_coldopen(img, b):
         cy = 792
         neon_rrect(img, [150, cy, 150 + 820, cy + 92], 14, GOLD, width=2, fill=(30, 26, 12, 240))
         dd = ImageDraw.Draw(img)
-        tracked_text(dd, (178, cy + 16), "MITRE ATT&CK", FSB(20), GOLD, tracking=4)
+        tracked_text(dd, (178, cy + 16), b.get("mitre_label", "MITRE ATT&CK"), FSB(20), GOLD, tracking=4)
         draw_fit(dd, (178, cy + 44), b["mitre"], MONO, 34, INK, 560)
     if b.get("teaches"):
         dd = ImageDraw.Draw(img)
@@ -673,14 +673,14 @@ def s_oath(img, b):
 
 
 def s_notebook(img, b):
-    """'Nova's notebook' recap page. Ruled lines sit UNDER each written line
+    """A learner's recap / notebook page. Ruled lines sit UNDER each written line
     (never crossing the text) and use a solid dim ink so they never distract."""
     col = GOLD
     neon_rrect(img, [210, 198, W - 210, 902], 18, col, width=2, fill=(24, 22, 15, 238))
     d = ImageDraw.Draw(img)
     RULE = (58, 54, 42)      # solid, very dim warm ink (alpha-on-RGB isn't blended, so use a real color)
     MARGIN = (120, 104, 64)
-    tracked_text(d, (282, 236), "NOVA'S NOTEBOOK", FSB(26), col, tracking=8)
+    tracked_text(d, (282, 236), _theme.world("notebook_label", _T) or "FIELD NOTES", FSB(26), col, tracking=8)
     d.text((282, 282), b.get("title", ""), font=fit_font(d, b.get("title", ""), FB, 50, W - 282 - 280), fill=INK)
     d.line([(304, 372), (304, 862)], fill=MARGIN, width=2)   # margin rule
     fnt = FSL(38); lh = int(fnt.size * 1.44); x0 = 344; maxw = W - 720

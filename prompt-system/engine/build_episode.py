@@ -65,6 +65,19 @@ for _i, _cm in enumerate(_T.get("cast", []) or []):
 ANTAGONISTS = {(_cm.get("name") or "").upper() for _cm in (_T.get("cast", []) or [])
                if (_cm.get("role") or "").lower() in ("antagonist", "villain", "threat")}
 
+
+def _role_speaker(roles, default="NARRATOR"):
+    for _cm in (_T.get("cast", []) or []):
+        if (_cm.get("role") or "").lower() in roles:
+            return (_cm.get("name") or default).upper()
+    return default
+
+
+# quiz voices come from cast ROLES (learner asks to pause; mentor/expert reads the reveal),
+# never hardcoded character names.
+QUIZ_PROMPT_SPEAKER = _role_speaker(("learner", "apprentice", "student"))
+QUIZ_REVEAL_SPEAKER = _role_speaker(("mentor", "expert", "teacher", "guide"))
+
 AVATAR_DIR = PROJECT / "assets" / "avatars"
 AV_X, AV_Y = 48, 900     # avatar position (bottom-left, beside the subtitle)
 
@@ -381,14 +394,14 @@ def assemble(spec_path, limit=None):
             qbeat = dict(beat); qbeat["reveal"] = False
             q_lines = list(lines) + [("NARRATOR", beat.get("q", "")),
                                      ("NARRATOR", f"Your options.   {read_opts}"),
-                                     ("NOVA", "Pause here and lock in your answer.")]
+                                     (QUIZ_PROMPT_SPEAKER, "Pause here and lock in your answer.")]
             q_start, q_dur, q_narr = add_clip(qbeat, i * 10, q_lines, beat.get("min_seconds", 6),
                                               static=True, countdown=QUIZ_THINK, extra_tail=QUIZ_THINK)
             # phase 2: reveal — read the correct ANSWER TEXT (not just the letter) + a one-line why
             correct = opts[ans] if ans < len(opts) else ""
             reveal_text = f"The answer is {letter}.   {correct}." + (f"   {why}" if why else "")
             rbeat = dict(beat); rbeat["reveal"] = True
-            r_start, r_dur, _ = add_clip(rbeat, i * 10 + 1, [["VEGA", reveal_text]],
+            r_start, r_dur, _ = add_clip(rbeat, i * 10 + 1, [[QUIZ_REVEAL_SPEAKER, reveal_text]],
                                          max(REVEAL_HOLD, 4.5), static=True)
             sfx_cues.append((r_start + 0.02, "chime", -12))
             # normalized (fraction-of-frame) geometry of each on-screen option box, so the

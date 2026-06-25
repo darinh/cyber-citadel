@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "truth.json — course/data/truth.json (the authoritative fact layer; on-screen text comes from here)",
+  "type": "object",
+  "required": ["facts"],
+  "properties": {
+    "source": {"type": "string", "description": "The authoritative source name (book, standard, course, expert)."},
+    "facts": {
+      "type": "object",
+      "description": "id -> fact. ids are short codes (KN-1, STEP-3, RULE-2). Used by concept/quote beats and verified by verify_facts.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["title", "statement"],
+        "properties": {
+          "title": {"type": "string", "description": "Exact title shown on the concept card."},
+          "statement": {"type": "string", "description": "A REAL, verbatim, quotable sentence. quote beats must be a substring of this."},
+          "section": {"type": "string", "description": "Page/section/chapter where it appears (shown as the citation)."},
+          "discussion": {"type": "string", "description": "Optional extra context (not shown verbatim)."}
+        }
+      }
+    }
+  }
+}
