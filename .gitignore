@@ -34,3 +34,6 @@ playwright-report/
 all_scripts*.txt
 course/all_scripts*.txt
 course/extract*.py
+
+# Node/V8 fatal-error crash dumps (e.g. from a CLI crash)
+report.*.json
