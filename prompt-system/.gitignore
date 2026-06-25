@@ -17,3 +17,14 @@ engine/webtest/test-results/
 examples/*/course/episodes/
 examples/*/course/render/
 examples/*/.cache/
+
+# generated/copied artifacts inside bundled examples (keep example SOURCE only)
+examples/*/assets/avatars/
+examples/*/course/quizzes.json
+examples/*/course/transcripts/
+examples/*/index.html
+examples/*/watch.html
+examples/*/serve.py
+examples/*/play.cmd
+examples/*/play.sh
+examples/*/capabilities.json

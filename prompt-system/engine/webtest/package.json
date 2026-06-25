@@ -1,0 +1,11 @@
+{
+  "name": "course-render-contract",
+  "private": true,
+  "description": "Render-contract test: proves the interactive quiz hotspots align over the video on any theme.",
+  "scripts": {
+    "test": "node contract-check.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}
