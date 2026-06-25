@@ -1,0 +1,9 @@
+Vendored fonts (default UI typeface for the renderer)
+=====================================================
+Noto Sans (Regular / SemiBold / Bold) — (C) The Noto Project Authors.
+Licensed under the SIL Open Font License, Version 1.1.
+Source: https://github.com/googlefonts/noto-fonts
+Full license: https://openfontlicense.org/
+
+These fonts are bundled so the renderer works cross-platform (Windows/macOS/Linux)
+without depending on system fonts. A theme.json may point at a different font file.

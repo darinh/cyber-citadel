@@ -1,0 +1,14 @@
+# Generated/cache artifacts (do not commit)
+__pycache__/
+*.pyc
+engine/_demo_out/
+engine/webtest/node_modules/
+engine/webtest/test-results/
+.cache/
+
+# A generated course lives in sibling folders when this engine is used; never commit
+# someone's generated course back into the prompt-system template:
+/course/
+/world/
+/assets/
+/capabilities.json
