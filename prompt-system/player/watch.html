@@ -1,0 +1,306 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interactive Course</title>
+<style>
+:root{--bg:#080b1e;--bg2:#101636;--pan:#0e142f;--ink:#e8ecff;--mut:#8a93c2;--cy:#38e1ff;--go:#ffc857;--mg:#ff3cac;--mint:#5eead4;--line:#ffffff14}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:linear-gradient(180deg,#080b1e,#101636);color:var(--ink);line-height:1.5}
+a{color:var(--cy);text-decoration:none}
+.top{display:flex;align-items:center;gap:14px;padding:14px 22px;border-bottom:1px solid var(--line)}
+.top .logo{font-weight:700;letter-spacing:.18em;color:var(--cy)}
+.top .sub{color:var(--mut);font-size:13px}
+.top .score{margin-left:auto;background:#121937;border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:14px}
+.top .score b{color:var(--mint)}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:0;min-height:calc(100vh - 58px)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+.side{border-right:1px solid var(--line);padding:14px;overflow:auto;max-height:calc(100vh - 58px)}
+.side h3{font-size:12px;letter-spacing:.2em;color:var(--mut);margin:6px 6px 12px}
+.ep{display:flex;gap:10px;padding:11px 12px;border-radius:12px;cursor:pointer;border:1px solid transparent}
+.ep:hover{background:#121937}.ep.active{background:#13224a;border-color:var(--cy)}
+.ep .n{font-family:Consolas,monospace;color:var(--cy);font-weight:700;min-width:34px}
+.ep .t{font-size:15px}.ep .f{font-size:12px;color:var(--go);font-family:Consolas,monospace}
+.ep .chk{margin-left:auto;color:var(--mint)}
+.epchaps{margin:2px 6px 10px 38px;display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--line);padding-left:8px}
+.epchap{display:flex;gap:9px;align-items:baseline;padding:5px 8px;border-radius:8px;cursor:pointer;color:var(--mut);font-size:13px;border:1px solid transparent}
+.epchap:hover{background:#121937;border-color:var(--line);color:var(--ink)}
+.epchap.cur{color:var(--ink)}.epchap.cur .ct{color:var(--go)}
+.epchap .ct{font-family:Consolas,monospace;color:var(--cy);font-size:12px;min-width:36px;text-align:right}
+.epchap .cl{flex:1}
+.main{padding:18px 22px;max-width:1180px}
+.stage{position:relative;background:#05071a;border:1px solid var(--line);border-radius:14px;overflow:hidden;aspect-ratio:16/9}
+.stage video{width:100%;height:100%;display:block;background:#05071a}
+.overlay{position:absolute;inset:0;background:rgba(6,9,24,.82);backdrop-filter:blur(3px);display:none;flex-direction:column;justify-content:center;align-items:center;padding:4% 6%}
+.overlay.show{display:flex}
+.overlay .qk{letter-spacing:.25em;color:var(--go);font-weight:700;font-size:clamp(11px,1.4vw,16px)}
+.overlay .q{font-size:clamp(18px,2.6vw,34px);font-weight:700;text-align:center;margin:.4em 0 .7em;max-width:1000px}
+/* interactive quiz: transparent click-hotspots laid exactly over the video's option boxes */
+.qhot{position:absolute;inset:0;display:none;z-index:3}
+.qhot.show{display:block}
+.qhot .hot{position:absolute;border:2px solid transparent;border-radius:var(--qhotr,12px);background:transparent;cursor:pointer;padding:0;margin:0;-webkit-appearance:none;appearance:none;outline:none;transition:border-color .12s,box-shadow .12s,background-color .12s}
+.qhot .hot:hover,.qhot .hot:focus-visible{border-color:var(--cy);box-shadow:0 0 16px rgba(56,225,255,.55),inset 0 0 22px rgba(56,225,255,.12)}
+.qhot .hot.ok{border-color:var(--mint);box-shadow:0 0 18px rgba(94,234,212,.6),inset 0 0 26px rgba(94,234,212,.18)}
+.qhot .hot.no{border-color:var(--mg);box-shadow:0 0 18px rgba(255,60,172,.5),inset 0 0 26px rgba(255,60,172,.15)}
+.qhot.locked .hot{cursor:default}
+.qhot.waiting .hot{animation:hotpulse 1.15s ease-in-out infinite}
+@keyframes hotpulse{0%,100%{border-color:rgba(56,225,255,.35);box-shadow:0 0 0 rgba(56,225,255,0)}50%{border-color:var(--cy);box-shadow:0 0 16px rgba(56,225,255,.5),inset 0 0 18px rgba(56,225,255,.10)}}
+.cont{margin-top:12px;background:var(--cy);color:#04121a;font-weight:700;border:0;border-radius:10px;padding:11px 26px;font-size:16px;cursor:pointer;display:none}
+.cont.show{display:inline-block}
+.meta{display:flex;align-items:baseline;gap:12px;margin:14px 2px 2px}
+.meta h2{margin:0;font-size:24px}.meta .fam{color:var(--go);font-family:Consolas,monospace}
+.syn{color:var(--mut);margin:.3em 2px 0}
+.chaps{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.speedbar{display:flex;align-items:center;gap:8px;margin:14px 2px 0;flex-wrap:wrap}
+.speedbar .splbl{font-size:12px;letter-spacing:.18em;color:var(--mut)}
+.spbtn{font-size:13px;background:#121937;border:1px solid var(--line);border-radius:20px;padding:5px 12px;cursor:pointer;color:var(--mut);font-family:Consolas,monospace}
+.spbtn:hover{border-color:var(--cy);color:var(--ink)}
+.spbtn.on{border-color:var(--cy);background:#13224a;color:var(--cy);font-weight:700}
+.speedbar .sphint{font-size:12px;color:var(--mut);margin-left:auto}
+.chip{font-size:12px;background:#121937;border:1px solid var(--line);border-radius:20px;padding:5px 12px;cursor:pointer;color:var(--mut)}
+.chip:hover{border-color:var(--cy);color:var(--ink)}
+.links{margin:18px 2px;color:var(--mut);font-size:14px}
+.note{color:var(--mut);font-size:13px;margin-top:8px}
+.overlay .nxfam{color:var(--go);font-family:Consolas,monospace;font-size:clamp(12px,1.6vw,18px);margin-bottom:12px}
+.nxrow{display:flex;gap:12px;align-items:center;margin-top:4px;flex-wrap:wrap;justify-content:center}
+.overlay .ghost{background:transparent;color:var(--ink);border:1px solid #2a3257;border-radius:10px;padding:11px 22px;font-size:15px;cursor:pointer}
+.overlay .ghost:hover{border-color:var(--cy)}
+.nxcount{color:var(--mut);font-size:14px;margin-top:16px;min-height:1.2em}
+/* quiz status sits BELOW the video so it never covers the burned-in subtitles */
+.qstatus{min-height:0;margin:0 2px;color:var(--cy);font-size:14px;letter-spacing:.03em}
+.qstatus.show{min-height:1.5em;margin:10px 2px 0}
+.qstatus .good{color:var(--mint);font-weight:600}.qstatus .bad{color:var(--mg);font-weight:600}
+</style></head><body>
+<div class="top">
+  <span class="logo" id="brand">COURSE</span><span class="sub" id="brandsub">Interactive course</span>
+  <span class="score">Score <b id="score">0/0</b></span>
+  <a href="#" onclick="resetProgress();return false" style="margin-left:10px;color:var(--mut);font-size:12px">&#8634; reset</a>
+</div>
+<div class="layout">
+  <aside class="side"><h3>EPISODES</h3><div id="eplist"></div>
+    <div class="links"><a href="index.html">↪ Course home</a></div>
+  </aside>
+  <main class="main">
+    <div class="stage">
+      <video id="vid" controls preload="metadata" crossorigin="anonymous"></video>
+      <!-- interactive quiz: transparent click-hotspots laid EXACTLY over the video's own
+           rendered option boxes (no blur), so the burned-in subtitles stay readable. -->
+      <div class="qhot" id="qhot" aria-hidden="true"></div>
+      <div class="overlay nx" id="nx">
+        <div class="qk" id="nxk">UP NEXT</div>
+        <div class="q" id="nxtitle"></div>
+        <div class="nxfam" id="nxfam"></div>
+        <div class="nxrow">
+          <button class="cont show" id="nxgo">Play next ▶</button>
+          <button class="ghost" id="nxstay" onclick="cancelNext()">Stay here</button>
+        </div>
+        <div class="nxcount" id="nxcount"></div>
+      </div>
+    </div>
+    <div class="qstatus" id="qstatus" role="status" aria-live="polite"></div>
+    <div class="meta"><h2 id="eptitle">—</h2><span class="fam" id="epfam"></span></div>
+    <p class="syn" id="epsyn"></p>
+    <div class="speedbar">
+      <span class="splbl">SPEED</span>
+      <div class="spbtns" id="spbtns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      <span class="sphint">keys: <b>&lt;</b> slower · <b>&gt;</b> faster · <b>0</b> reset</span>
+    </div>
+    <div class="chaps" id="chaps"></div>
+    <p class="note">The video pauses at each quiz so you can answer — take your time. Your score is tracked across the course and saved in this browser.</p>
+  </main>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+let manifest=[], cur=null, cues=null, answered=new Set(), activeQuiz=null, responded=false;
+const ansStore=JSON.parse(localStorage.getItem('cc_ans')||'{}');
+const done=new Set(JSON.parse(localStorage.getItem('cc_done')||'[]'));
+function totalQuizzes(){return manifest.reduce((s,e)=>s+(e.quizzes||0),0);}
+function scoreParts(){let c=0,n=0;for(const ep in ansStore)for(const k in ansStore[ep]){n++;if(ansStore[ep][k])c++;}return[c,n];}
+function saveScore(){localStorage.setItem('cc_ans',JSON.stringify(ansStore));const[c,n]=scoreParts();const t=totalQuizzes();$('#score').textContent=c+'/'+n+(t?(' \u00b7 '+t+' total'):'');}
+function resetProgress(){if(!confirm('Reset your score and progress?'))return;for(const k in ansStore)delete ansStore[k];done.clear();localStorage.removeItem('cc_done');saveScore();renderList();}
+const vid=$('#vid');
+// Match the hotspot corner radius to the video's rendered box radius (16px in a 1920px
+// frame => stageWidth/120) so the corners track the video when the window/video resizes.
+const stageEl=document.querySelector('.stage');
+function updateHotR(){ if(stageEl) stageEl.style.setProperty('--qhotr',(stageEl.clientWidth/120).toFixed(2)+'px'); }
+if(stageEl){ if(window.ResizeObserver) new ResizeObserver(updateHotR).observe(stageEl); else window.addEventListener('resize',updateHotR); updateHotR(); }
+// Captions are baked into the videos; keep any soft text track OFF.
+function killTracks(){try{const t=vid.textTracks||[];for(let i=0;i<t.length;i++)t[i].mode='disabled';}catch(e){}}
+vid.addEventListener('loadedmetadata',killTracks);
+vid.addEventListener('play',killTracks);
+
+// --- playback speed (persists across episodes; playbackRate resets on src load) ---
+const SPEEDS=[0.75,1,1.25,1.5,1.75,2];
+let speed=parseFloat(localStorage.getItem('cc_speed')||'1')||1;
+function applySpeed(){
+  try{vid.preservesPitch=vid.mozPreservesPitch=vid.webkitPreservesPitch=true;}catch(e){}
+  vid.playbackRate=speed;
+  document.querySelectorAll('#spbtns .spbtn').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.s)===speed));
+}
+function setSpeed(s){ speed=Math.min(2,Math.max(0.5,Math.round(s*100)/100)); localStorage.setItem('cc_speed',speed); applySpeed(); }
+function buildSpeed(){
+  const w=$('#spbtns'); w.innerHTML='';
+  SPEEDS.forEach(s=>{ const b=document.createElement('button'); b.className='spbtn'; b.dataset.s=s;
+    b.textContent=(s===1?'1×':s+'×'); b.onclick=()=>setSpeed(s); w.appendChild(b); });
+  applySpeed();
+}
+// re-apply whenever a new episode source loads (playbackRate would otherwise reset to 1)
+vid.addEventListener('loadedmetadata',applySpeed);
+vid.addEventListener('seeked',highlightChap);   // keep sidebar chapter highlight in sync when scrubbing
+vid.addEventListener('seeked',()=>{ if(activeQuiz && vid.currentTime>=activeQuiz.t_resume-0.05) closeQuiz(); });
+vid.addEventListener('ratechange',()=>{ // keep UI in sync if the browser's native menu changes it
+  if(Math.abs(vid.playbackRate-speed)>0.001){ speed=vid.playbackRate; localStorage.setItem('cc_speed',speed);
+    document.querySelectorAll('#spbtns .spbtn').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.s)===speed)); }
+});
+document.addEventListener('keydown',e=>{
+  if(/input|textarea|select/i.test((e.target.tagName||'')))return;
+  const i=SPEEDS.indexOf(SPEEDS.reduce((p,c)=>Math.abs(c-speed)<Math.abs(p-speed)?c:p,1));
+  if(e.key==='>'||e.key==='.'){ setSpeed(SPEEDS[Math.min(SPEEDS.length-1,i+1)]); e.preventDefault(); }
+  else if(e.key==='<'||e.key===','){ setSpeed(SPEEDS[Math.max(0,i-1)]); e.preventDefault(); }
+  else if(e.key==='0'){ setSpeed(1); e.preventDefault(); }
+});
+
+async function init(){
+  let data;
+  try{ data=await (await fetch('course/episodes/manifest.json',{cache:'no-store'})).json(); }
+  catch(e){ $('#eplist').innerHTML='<p style="color:var(--mut)">No manifest found. Render + package a course first.</p>'; return; }
+  // manifest is {brand, theme, episodes} (current) or a bare episodes array (back-compat)
+  const eps = Array.isArray(data) ? data : (data.episodes||[]);
+  if(!Array.isArray(data)){ applyTheme(data.theme); setBrand(data.brand); }
+  manifest = eps;
+  saveScore(); renderList(); buildSpeed(); if(manifest[0]) selectEp(manifest[0]);
+}
+function setBrand(b){ if(b){ const l=$('#brand'); if(l) l.textContent=b; document.title=b+' \u2014 Interactive Course'; } }
+function applyTheme(t){
+  if(!t||!t.palette) return;
+  const p=t.palette, rs=document.documentElement.style;
+  const rgb=a=>Array.isArray(a)?`rgb(${a[0]|0},${a[1]|0},${a[2]|0})`:a;
+  const map={accent:'--cy',accent2:'--mg',mint:'--mint',gold:'--go',ink:'--ink',muted:'--mut',bg_top:'--bg',bg_bot:'--bg2',panel:'--pan'};
+  for(const k in map){ if(p[k]) rs.setProperty(map[k], rgb(p[k])); }
+  if(p.bg_top&&p.bg_bot) document.body.style.background=`linear-gradient(180deg, ${rgb(p.bg_top)}, ${rgb(p.bg_bot)})`;
+}
+function renderList(){
+  $('#eplist').innerHTML='';
+  manifest.forEach(ep=>{
+    const d=document.createElement('div'); d.className='ep'+(cur&&cur.id===ep.id?' active':'');
+    d.dataset.id=ep.id;
+    d.innerHTML=`<span class="n">${ep.num}</span><div><div class="t">${ep.title}</div><div class="f">${ep.families||''}</div></div><span class="chk">${done.has(ep.id)?'✓':''}</span>`;
+    d.onclick=()=>selectEp(ep); $('#eplist').appendChild(d);
+    // under the ACTIVE episode, list its chapters with time-markers (e.g. 1:04)
+    if(cur&&cur.id===ep.id&&cues&&(cues.chapters||[]).length){
+      const wrap=document.createElement('div'); wrap.className='epchaps'; wrap.id='navchaps';
+      cues.chapters.forEach((ch,ci)=>{
+        const r=document.createElement('div'); r.className='epchap'; r.dataset.t=ch.t;
+        r.innerHTML=`<span class="ct">${fmtTime(ch.t)}</span><span class="cl">${ch.title}</span>`;
+        r.onclick=()=>{ activeQuiz=null; hideOverlay(); vid.currentTime=ch.t; vid.play().catch(()=>{}); };
+        wrap.appendChild(r);
+      });
+      $('#eplist').appendChild(wrap);
+    }
+  });
+  highlightChap();
+}
+function fmtTime(s){ s=Math.max(0,Math.round(s)); const m=Math.floor(s/60); return m+':'+String(s%60).padStart(2,'0'); }
+function highlightChap(){
+  const rows=document.querySelectorAll('#navchaps .epchap'); if(!rows.length||!cues) return;
+  const t=vid.currentTime; let idx=-1;
+  (cues.chapters||[]).forEach((ch,i)=>{ if(t>=ch.t-0.25) idx=i; });
+  rows.forEach((r,i)=>r.classList.toggle('cur',i===idx));
+}
+async function selectEp(ep){
+  cur=ep; cues=null; activeQuiz=null; hideOverlay(); clearNext();
+  answered=new Set(Object.keys(ansStore[ep.id]||{}).map(Number));
+  document.querySelectorAll('.ep').forEach(e=>e.classList.toggle('active',e.dataset.id===ep.id));
+  vid.poster=ep.poster||(ep.video?ep.video.replace(/\.mp4$/,'.jpg'):'');
+  vid.src=ep.video; vid.load();
+  $('#eptitle').textContent=ep.title; $('#epfam').textContent=ep.families||'';
+  $('#epsyn').textContent=ep.synopsis||'';
+  try{ cues=await (await fetch(ep.cues,{cache:'no-store'})).json(); }catch(e){ cues={quizzes:[],chapters:[]}; }
+  renderChaps(); renderList();
+}
+function renderChaps(){
+  const c=$('#chaps'); c.innerHTML='';
+  (cues.chapters||[]).forEach(ch=>{
+    const b=document.createElement('span'); b.className='chip'; b.textContent='▸ '+ch.title;
+    b.onclick=()=>{ activeQuiz=null; hideOverlay(); vid.currentTime=ch.t; vid.play(); }; c.appendChild(b);
+  });
+}
+vid.addEventListener('timeupdate',()=>{
+  if(!cues) return;
+  highlightChap();
+  const t=vid.currentTime;
+  if(activeQuiz){
+    const q=activeQuiz;
+    // reached the "lock in" point without answering THIS view -> pause and wait
+    if(!responded && t>=q.t_quiz-0.05 && !vid.paused){ vid.pause(); setWaiting(); }
+    if(t>=q.t_resume-0.05) closeQuiz();
+    return;
+  }
+  // open the interactive quiz when the question starts; video KEEPS PLAYING behind it.
+  // (Always show it — even if answered in a past session — so the test is never hidden.)
+  for(const q of cues.quizzes||[]){
+    if(t>=q.t_question-0.05 && t<q.t_resume-0.3){ openQuiz(q); break; }
+  }
+});
+vid.addEventListener('ended',()=>{
+  if(cur){done.add(cur.id);localStorage.setItem('cc_done',JSON.stringify([...done]));renderList();}
+  const nx=nextEpOf(cur);
+  if(nx) showUpNext(nx); else showComplete();
+});
+function nextEpOf(ep){ if(!ep)return null; const i=manifest.findIndex(e=>e.id===ep.id); return (i>=0&&i<manifest.length-1)?manifest[i+1]:null; }
+let pendingNext=null, nextTimer=null;
+function clearNext(){ if(nextTimer){clearInterval(nextTimer);nextTimer=null;} pendingNext=null; $('#nx').classList.remove('show'); }
+function showUpNext(nx){
+  pendingNext=nx; hideOverlay();
+  $('#nxk').textContent='UP NEXT';
+  $('#nxtitle').textContent='EP '+nx.num+' \u00b7 '+nx.title;
+  $('#nxfam').textContent=nx.families||'';
+  $('#nxgo').textContent='Play next \u25b6'; $('#nxgo').onclick=goNext; $('#nxstay').style.display='';
+  let n=10; $('#nxcount').textContent='Starting in '+n+'\u2026';
+  nextTimer=setInterval(()=>{ n--; if(n<=0){ goNext(); } else { $('#nxcount').textContent='Starting in '+n+'\u2026'; } },1000);
+  $('#nx').classList.add('show');
+}
+function goNext(){ const nx=pendingNext; clearNext(); if(nx){ selectEp(nx).then(()=>{ vid.play().catch(()=>{}); }); } }
+function cancelNext(){ clearNext(); }
+function showComplete(){
+  pendingNext=null; hideOverlay();
+  $('#nxk').textContent='COURSE COMPLETE';
+  $('#nxtitle').textContent='\ud83c\udf89 You finished the course!';
+  const[c,n]=scoreParts(); $('#nxfam').textContent='Final score '+c+'/'+n+' across the course';
+  $('#nxgo').textContent='Back to the start \u25b6'; $('#nxgo').onclick=()=>{ clearNext(); selectEp(manifest[0]).then(()=>vid.play().catch(()=>{})); };
+  $('#nxstay').style.display='none'; $('#nxcount').textContent='';
+  $('#nx').classList.add('show');
+}
+function openQuiz(q){
+  activeQuiz=q; responded=false;
+  const host=$('#qhot'); host.innerHTML=''; host.classList.remove('locked','waiting');
+  // a transparent, clickable button placed EXACTLY over each rendered option box.
+  // Live from the moment the boxes appear; hover/focus draws an outline + pointer cursor.
+  (q.opt_rects||[]).forEach((r,i)=>{
+    const b=document.createElement('button'); b.type='button'; b.className='hot';
+    b.style.left=(r[0]*100)+'%'; b.style.top=(r[1]*100)+'%';
+    b.style.width=(r[2]*100)+'%'; b.style.height=(r[3]*100)+'%';
+    b.setAttribute('aria-label','Answer '+String.fromCharCode(65+i)+(q.options&&q.options[i]?': '+q.options[i]:''));
+    b.onclick=()=>pick(q,i);
+    host.appendChild(b);
+  });
+  host.classList.add('show'); setStatus('');
+}
+function pick(q,i){
+  if(responded) return;
+  responded=true;
+  const right=i===q.answer;
+  if(!ansStore[cur.id]) ansStore[cur.id]={};
+  if(ansStore[cur.id][q.n]===undefined){ ansStore[cur.id][q.n]=right; answered.add(q.n); saveScore(); }
+  const host=$('#qhot'); host.classList.remove('waiting'); host.classList.add('locked');
+  [...host.children].forEach((c,j)=>{ if(j===q.answer)c.classList.add('ok'); else if(j===i)c.classList.add('no'); });
+  setStatus(right?'<span class="good">\u2713 Correct!</span>':'<span class="bad">Not quite \u2014 the answer is '+String.fromCharCode(65+q.answer)+'.</span>');
+  // answered: skip ahead to the reveal narration (if we hadn't reached it) and keep playing
+  if(q.t_reveal!=null && vid.currentTime<q.t_reveal-0.1){ vid.currentTime=q.t_reveal; }
+  vid.play().catch(()=>{});
+}
+function closeQuiz(){ activeQuiz=null; responded=false; const h=$('#qhot'); h.classList.remove('show','waiting','locked'); h.innerHTML=''; setStatus(''); }
+function setWaiting(){ if(activeQuiz&&!responded){ $('#qhot').classList.add('waiting'); setStatus('\u23F8  Pick an answer above to continue \u2014 the video is paused.'); } }
+function setStatus(s){ const el=$('#qstatus'); if(!el)return; el.innerHTML=s||''; el.classList.toggle('show',!!s); }
+function hideOverlay(){ closeQuiz(); }
+init();
+</script>
+</body></html>

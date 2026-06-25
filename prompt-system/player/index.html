@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interactive Course</title>
+<style>
+:root{--bg:#0a0d16;--bg2:#141a2e;--pan:#141a2e;--ink:#e8ecff;--mut:#8a93c2;--cy:#7aa9ff;--go:#f0c46e;--mint:#80deb2;--line:#ffffff18}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--ink);line-height:1.5;min-height:100vh}
+a{color:var(--cy);text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:32px 22px}
+header{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:8px;flex-wrap:wrap}
+header .logo{font-weight:800;letter-spacing:.16em;color:var(--cy);font-size:22px}
+header .sub{color:var(--mut);font-size:14px}
+.lead{color:var(--mut);margin:14px 2px 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--pan);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.15s}
+.card:hover{border-color:var(--cy);transform:translateY(-2px)}
+.card img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#05071a;display:block}
+.card .b{padding:14px 16px}
+.card .n{font-family:Consolas,monospace;color:var(--go);font-size:13px}
+.card h3{margin:.2em 0;font-size:18px}
+.card .fam{color:var(--go);font-family:Consolas,monospace;font-size:12px}
+.card .syn{color:var(--mut);font-size:13px;margin-top:6px}
+.card .meta{color:var(--mut);font-size:12px;margin-top:8px}
+.foot{color:var(--mut);font-size:13px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
+</style></head><body>
+<div class="wrap">
+  <header><span class="logo" id="brand">COURSE</span><span class="sub" id="brandsub">Interactive training</span></header>
+  <p class="lead">Pick an episode to start. Each video pauses at a quiz so you can answer right on the video.</p>
+  <div class="grid" id="grid"></div>
+  <div class="foot" id="foot"></div>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+function rgb(a){return Array.isArray(a)?`rgb(${a[0]|0},${a[1]|0},${a[2]|0})`:a;}
+function applyTheme(t){
+  if(!t||!t.palette)return; const p=t.palette, rs=document.documentElement.style;
+  const map={accent:'--cy',accent2:'--mg',mint:'--mint',gold:'--go',ink:'--ink',muted:'--mut',bg_top:'--bg',bg_bot:'--bg2',panel:'--pan'};
+  for(const k in map){ if(p[k]) rs.setProperty(map[k], rgb(p[k])); }
+  if(p.bg_top&&p.bg_bot) document.body.style.background=`linear-gradient(180deg, ${rgb(p.bg_top)}, ${rgb(p.bg_bot)})`;
+}
+function fmt(s){s=Math.max(0,Math.round(s||0));const m=Math.floor(s/60);return m+':'+String(s%60).padStart(2,'0');}
+(async function(){
+  let data; try{ data=await (await fetch('course/episodes/manifest.json',{cache:'no-store'})).json(); }
+  catch(e){ $('#grid').innerHTML='<p style="color:var(--mut)">No course found yet. Render + package a course first.</p>'; return; }
+  const eps=Array.isArray(data)?data:(data.episodes||[]);
+  if(!Array.isArray(data)){ applyTheme(data.theme); if(data.brand){ $('#brand').textContent=data.brand; document.title=data.brand+' — Interactive Course'; } }
+  const g=$('#grid'); let q=0;
+  eps.forEach(ep=>{
+    q+=ep.quizzes||0;
+    const a=document.createElement('a'); a.className='card'; a.href='watch.html#'+ep.id;
+    a.innerHTML=`<img src="${ep.poster||''}" alt="" onerror="this.style.visibility='hidden'">`+
+      `<div class="b"><div class="n">${ep.num||''}</div><h3>${ep.title||ep.id}</h3>`+
+      `<div class="fam">${ep.families||''}</div>`+
+      (ep.synopsis?`<div class="syn">${ep.synopsis}</div>`:'')+
+      `<div class="meta">${fmt(ep.duration)}${ep.quizzes?(' · '+ep.quizzes+' quiz'+(ep.quizzes>1?'zes':'')):''}</div></div>`;
+    g.appendChild(a);
+  });
+  $('#foot').textContent=`${eps.length} episode${eps.length!==1?'s':''}`+(q?` · ${q} quiz question${q!==1?'s':''}`:'')+' · runs locally in your browser';
+})();
+</script>
+</body></html>
