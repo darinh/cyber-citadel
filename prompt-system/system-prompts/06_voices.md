@@ -119,7 +119,7 @@ Expected output includes selected engine, cast voice names, and `.cache\tts_smok
 - Did `python engine/tts.py` synthesize smoke-test wavs?
 - Are domain terms handled in `pronunciations` or `spell_acronyms`?
 
-Then route to `system-prompts/07_music_sfx.md`.
+Then route to `system-prompts/07_music_and_sfx.md`.
 
 
 

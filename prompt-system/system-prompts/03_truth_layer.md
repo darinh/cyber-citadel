@@ -66,7 +66,7 @@ For each key concept, capture:
 3. Exactly one quotable statement.
 4. A page, section, heading, URL anchor, or note label.
 
-Prefer facts that will appear on-screen as concept cards or Archivist quote cards. Keep statements short enough to read aloud and display cleanly.
+Prefer facts that will appear on-screen as concept cards or verbatim quote cards. Keep statements short enough to read aloud and display cleanly.
 
 ---
 

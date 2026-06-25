@@ -8,14 +8,14 @@ boundaries. So audio QA MUST run on the DELIVERED mp4, never just on upstream ar
 This transcribes the mp4 with faster-whisper (large-v3) and sequence-aligns the transcript
 to the script, flagging any contiguous MISSING RUN of scripted words (the drop signature).
 It is deliberately tolerant of STT artifacts that are NOT real defects:
-  * number/acronym readback ("800-53" -> "853", "eight hundred fifty three")
+  * number/acronym readback ("STEP-3" -> "step three", "CPU" -> "see pee you")
   * repetition hallucinations ("a threat is a threat is a threat") — these are EXTRA words,
     never missing words, so they cannot create a missing-run.
 Only contiguous DROPS of scripted words fail the gate. Run inside .venv_tts.
 
 Usage:
-  python tools/verify_episode.py                 # verify every ep*.json
-  python tools/verify_episode.py ep00 ep01       # verify specific episodes
+  python engine/gates/verify_episode.py                 # verify all rendered episodes
+  python engine/gates/verify_episode.py ep00 ep01       # verify specific episodes
 Env: VERIFY_MISS_RUN (default 5), VERIFY_MIN_RECALL (default 0.85).
 """
 import json

@@ -182,12 +182,11 @@ def lint(ep):
                 if re.search(r"\bpause\b", tx, re.I):
                     p1.append((ep, "QUIZ_PAUSE", f'quiz scenario line says "pause" (assembler '
                                f'already appends the pause prompt -> heard twice): [{sp}] "{tx}"'))
-    # ---- incomplete / mismatched Archivist quote ----
+    # ---- incomplete / mismatched verbatim quote ----
     #   (a) the on-screen `quote` is truncated mid-list (ends ':' or dangling conjunction);
-    #   (b) the SPOKEN `say` must read the SAME complete quote. This is the class behind the
-    #       EP04 "the archivist never finishes speaking" report: the *displayed* quote was
-    #       completed earlier but the *spoken* line was left truncated at the colon. Convention
-    #       (holds for every good quote scene): a quote scene's ARCHIVIST line == its `quote`.
+    #   (b) the SPOKEN `say` must read the SAME complete quote. Guards the "narrator never
+    #       finishes the quote" class: the displayed quote may be complete while the spoken line
+    #       was left truncated at a colon. Convention: a quote scene's spoken line == its `quote`.
     def _normq(s):
         return re.sub(r"\s+", " ", (s or "")).strip()
 
