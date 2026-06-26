@@ -79,7 +79,7 @@ QUIZ_PROMPT_SPEAKER = _role_speaker(("learner", "apprentice", "student"))
 QUIZ_REVEAL_SPEAKER = _role_speaker(("mentor", "expert", "teacher", "guide"))
 
 AVATAR_DIR = PROJECT / "assets" / "avatars"
-AV_X, AV_Y = 48, 900     # avatar position (bottom-left, beside the subtitle)
+AV_X, AV_Y, AV_H = 48, 892, 178   # avatar position (bottom-left) + display height; scaled to fit the frame
 
 # preload bundled SFX cue assets (48k stereo); optional — missing cues are simply skipped
 _SFX = {}
@@ -471,7 +471,9 @@ def assemble(spec_path, limit=None):
     for k, (sp, wins) in enumerate(speakers.items()):
         av_inputs += ["-loop", "1", "-i", str(AVATAR_DIR / f"{sp}.png")]
         en = "+".join(f"between(t,{s:.2f},{e:.2f})" for s, e in wins)
-        av_chain += f"{prev}[{2 + k}:v]overlay={AV_X}:{AV_Y}:enable='{en}'[av{k}];"
+        # scale each avatar to a fixed display HEIGHT so any source size (illustrated 480px,
+        # SDXL 768px, or bring-your-own) fits the frame at the bottom-left (was overflowing off-screen)
+        av_chain += f"[{2 + k}:v]scale=-1:{AV_H}[avs{k}];{prev}[avs{k}]overlay={AV_X}:{AV_Y}:enable='{en}'[av{k}];"
         prev = f"[av{k}]"
 
     # PASS A — mix the final audio in an AUDIO-ONLY filtergraph, then map it RAW into the video
