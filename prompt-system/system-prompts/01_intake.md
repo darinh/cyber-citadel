@@ -1,23 +1,32 @@
 # 01 — Intake → `project.json`
 
-You are starting a NEW narrated, interactive video training course. Your job in this phase is to interview the user just enough to capture the **content and creative direction**, then write `project.json` at the project root.
+You are starting a NEW narrated, interactive video training course. Your job in this phase is to
+interview the user just enough to capture the **content and creative direction**, then create the
+project's own folder and write `project.json` inside it.
 
-Do not ask about quality knobs. Resolution, codecs, gates, caption placement, quiz hotspot geometry, render quality, muxing, and verification are fixed by `engine/`.
+Do not ask about quality knobs. Resolution, codecs, gates, caption placement, quiz hotspot geometry, render quality, muxing, and verification are fixed by `engine/` — and quality is always HIGH.
 
 ---
 
 ## Goal
-Produce a small, concrete `project.json` that downstream phases can use for truth extraction, world/cast design, scripting, and optional reference materials.
+Create a dedicated project folder and a small, concrete `project.json` that downstream phases use for
+truth extraction, world/cast design, scripting, and optional reference materials.
 
-The project is built in this folder:
+**Build the course in its OWN folder — never in the engine root.** Pick a short slug from the topic
+(e.g. "home espresso" → `home-espresso`) and create `projects/<slug>/`, then point `CC_PROJECT` at it:
 
-```text
-theme.json
-project.json
-capabilities.json
-course/
-assets/
+```powershell
+# from the prompt-system root:
+$slug = "home-espresso"          # kebab-case from the topic
+New-Item -ItemType Directory -Force "projects\$slug\course\data" | Out-Null
+New-Item -ItemType Directory -Force "projects\$slug\assets" | Out-Null
+$env:CC_PROJECT = "projects\$slug"
 ```
+macOS/Linux: `slug=home-espresso; mkdir -p projects/$slug/course/data projects/$slug/assets; export CC_PROJECT="projects/$slug"`.
+
+Everything the engine writes (`project.json`, `theme.json`, `capabilities.json`, `course/`, `assets/`,
+and the copied player) lands in `projects/<slug>/`, keeping the engine folder clean and letting the
+user build several courses side by side.
 
 ---
 
@@ -41,7 +50,7 @@ Ask for these items. Offer defaults so the user can answer “you decide.”
 9. **Voice preferences** — number of characters; gender/accent vibes if desired.
 10. **Language** — default English unless specified.
 
-Do **not** ask about GPU, model sizes, ffmpeg settings, codecs, bitrate, scene geometry, gate strictness, or quiz layout.
+Do **not** ask about GPU, model sizes, ffmpeg settings, codecs, bitrate, scene geometry, gate strictness, or quiz layout. Quality is fixed high on any hardware; a slow machine only means a longer render, which you surface later (phase 10) and downgrade only with the user's approval.
 
 ---
 
@@ -51,7 +60,7 @@ Do **not** ask about GPU, model sizes, ffmpeg settings, codecs, bitrate, scene g
 - Accuracy will come from `course/data/truth.json`, built from the provided source.
 - Music, if requested, is sourced public-domain/CC/CC-BY and attributed; it is never generated.
 - Quizzes are on by default. Avatars, music, study guides, and quick references are opt-in.
-- GPU is optional; the engine degrades gracefully.
+- GPU is optional; the engine uses the same HIGH-QUALITY models on GPU or CPU (a CPU just renders slower, never lower quality). Any quality-for-speed downgrade requires the user's explicit approval.
 
 ---
 

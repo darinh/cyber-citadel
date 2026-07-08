@@ -28,3 +28,6 @@ examples/*/serve.py
 examples/*/play.cmd
 examples/*/play.sh
 examples/*/capabilities.json
+
+# each generated course lives in its own project folder (never commit generated courses)
+projects/

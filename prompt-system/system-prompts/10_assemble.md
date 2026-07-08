@@ -17,13 +17,17 @@ Produce `course/episodes/epNN_<slug>.mp4`, `course/episodes/epNN_<slug>.srt`, an
 
 ```powershell
 $env:PYTHONUTF8 = "1"
-$env:CC_TTS = "chatterbox"   # GPU, expressive zero-shot voices  — OR  "piper" (CPU, always-works)
+$env:CC_PROJECT = "projects\<slug>"   # your course folder
 $env:CC_VERIFY = "1"         # self-correcting audio gate: re-synthesizes a line until STT matches
+# Do NOT set CC_TTS — the engine uses high-quality chatterbox by default (GPU or CPU).
+# Set CC_TTS=piper ONLY if the user explicitly approved faster, lower-quality robotic voices.
 ```
 
-`CC_TTS` selects the voice engine (auto-detects chatterbox+CUDA, else falls back to piper). `CC_VERIFY=1`
-(the default) makes each narration line verify against STT and retry up to 4× — keep it on. `CC_THEME`
-auto-discovers `theme.json`; `CC_PROJECT` overrides the project dir (defaults to the cwd).
+The voice engine defaults to **chatterbox** (high quality) on GPU **and** CPU — a missing GPU makes
+rendering slower, not lower quality. `CC_VERIFY=1` (the default) makes each narration line verify
+against STT and retry up to 4× — keep it on. `CC_THEME` auto-discovers the project's `theme.json`;
+`CC_PROJECT` is the project dir. **If CPU rendering is too slow, warn the user and get their explicit
+approval before setting `CC_TTS=piper`.**
 
 ---
 
@@ -66,8 +70,12 @@ ffmpeg -y -ss 12 -i course/episodes/ep01_knife_skills.mp4 -frames:v 1 course/epi
 python engine/build_episode.py course/scripts/ep02.json
 ```
 
-Re-rendering an edited episode is fast (incremental). Full renders are **slow on CPU** (piper + ffmpeg);
-on a no-GPU laptop expect long times, so validate ONE episode first and lean on the cache for edits.
+Re-rendering an edited episode is fast (incremental). Full renders are **much slower on CPU** — the
+same high-quality chatterbox voice runs on CPU, just slowly (a several-minute episode can take many
+minutes of audio synthesis, ×the verify retries). This is expected and keeps quality high. Validate
+ONE episode first and lean on the cache for edits. **If the wait is unacceptable, tell the user and
+get their explicit approval before downgrading** (`CC_TTS=piper` for fast robotic voices,
+`CC_STT_MODEL=small` for a faster gate) — never downgrade silently.
 
 ---
 

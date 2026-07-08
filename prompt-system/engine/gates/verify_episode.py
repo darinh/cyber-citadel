@@ -123,7 +123,9 @@ def stt():
         import torch
         from faster_whisper import WhisperModel
         cuda = torch.cuda.is_available()
-        model = os.environ.get("CC_STT_MODEL") or ("large-v3" if cuda else "small")
+        # QUALITY-FIRST: large-v3 by default on GPU AND CPU (slower on CPU, not weaker). A weaker
+        # gate model is a user-approved speed downgrade only (CC_STT_MODEL=small|base).
+        model = os.environ.get("CC_STT_MODEL") or "large-v3"
         _STT = WhisperModel(model, device="cuda" if cuda else "cpu",
                             compute_type="float16" if cuda else "int8")
     return _STT

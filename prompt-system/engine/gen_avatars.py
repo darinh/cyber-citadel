@@ -1,13 +1,15 @@
-"""Cast avatar generator — tier-aware, with an ALWAYS-WORKS illustrated fallback.
+"""Cast avatar generator — QUALITY-FIRST, high-quality by default on GPU or CPU.
 
 Produces one portrait per cast member at assets/avatars/<NAME>.png (the assembler overlays
 it beside that speaker's subtitle). Avatars are OPTIONAL — if a PNG is missing the renderer
 simply omits the corner portrait.
 
-Tiers (auto from engine/probe.py, override with CC_AVATARS=sdxl|turbo|illustrated):
-  - sdxl       : Stable Diffusion XL fixed-seed ORIGINAL portraits (GPU, diffusers). Best.
-  - turbo      : SD-Turbo few-step portraits (low VRAM / no IP-Adapter).
-  - illustrated: deterministic Pillow emblem portraits — no model, runs anywhere (default fallback).
+Quality (DEFAULT = sdxl; downgrades are OPT-IN only via CC_AVATARS — never auto-picked by hardware):
+  - sdxl       : Stable Diffusion XL fixed-seed ORIGINAL portraits (GPU or CPU). Highest quality. DEFAULT.
+  - turbo      : SD-Turbo few-step portraits (a speed/quality downgrade). CC_AVATARS=turbo.
+  - illustrated: deterministic Pillow emblem portraits — instant, no model. CC_AVATARS=illustrated.
+If SDXL deps are missing the tool FAILS LOUD with guidance (install them — SDXL runs on CPU too —
+or explicitly approve CC_AVATARS=illustrated); it never silently ships lower-quality art.
 
 ORIGINAL-IP RULE: character art is built from ORIGINAL primitives (silhouette/palette/motifs) +
 a strong negative prompt; never a named franchise/character/likeness. The lint_prompts gate scans
@@ -36,16 +38,14 @@ NEG = ("trademark, logo, copyrighted character, mascot, franchise, recognizable 
        "watermark, signature, text, words, letters, multiple people, extra limbs, deformed, blurry, lowres")
 
 
-def _tier(caps_tier=None):
+def _tier():
+    """Avatar quality. QUALITY-FIRST: default = SDXL (high quality) on GPU OR CPU. 'illustrated'
+    (instant geometric portraits) and 'turbo' are DOWNGRADES applied ONLY when the user explicitly
+    sets CC_AVATARS — we never auto-pick a lower-quality avatar path based on hardware."""
     env = os.environ.get("CC_AVATARS", "").lower()
     if env in ("sdxl", "sdxl_ipa", "turbo", "sd_turbo", "illustrated"):
         return {"sdxl_ipa": "sdxl", "sd_turbo": "turbo"}.get(env, env)
-    cf = PROJECT / "capabilities.json"
-    if cf.exists():
-        import json
-        tier = json.loads(cf.read_text(encoding="utf-8")).get("tiers", {}).get("avatars", "illustrated")
-        return {"sdxl_ipa": "sdxl", "sd_turbo": "turbo"}.get(tier, tier)
-    return "illustrated"
+    return "sdxl"
 
 
 # ---- illustrated fallback (always works) ---------------------------------
@@ -132,17 +132,28 @@ def main():
         print("no cast in theme.json; nothing to do")
         return
     tier = _tier()
-    print(f"avatar tier: {tier}  ({len(cast)} character(s))")
+    explicit_illustrated = os.environ.get("CC_AVATARS", "").lower() == "illustrated"
+    print(f"avatar quality: {tier}  ({len(cast)} character(s))")
     if tier in ("sdxl", "turbo"):
         try:
             _diffusion(cast, t, turbo=(tier == "turbo"))
             return
         except Exception as e:                              # noqa: BLE001
-            print(f"  diffusion unavailable ({e}); falling back to illustrated portraits")
+            # QUALITY-FIRST: do NOT silently drop to low-quality portraits. Fail loud with guidance
+            # so the user can install the deps (SDXL runs on CPU too) OR explicitly approve the
+            # illustrated downgrade with CC_AVATARS=illustrated.
+            raise SystemExit(
+                f"\nHigh-quality SDXL avatars are unavailable ({e}).\n"
+                "SDXL runs on CPU too (slow, one-time). Install: pip install diffusers transformers "
+                "accelerate safetensors torch\n"
+                "OR, to explicitly accept instant lower-quality geometric portraits, re-run with "
+                "CC_AVATARS=illustrated.\n"
+                "(Avatars are optional — you can also skip them entirely.)")
+    # explicit, user-approved illustrated downgrade
     for i, c in enumerate(cast):
         col = _theme.color(c.get("caption_color", ["accent", "gold", "mint", "accent2", "violet"][i % 5]), t)
         p = illustrated(c["name"], col, seed=(c.get("art", {}) or {}).get("seed", 0), role=c.get("role", ""))
-        print("avatar (illustrated):", c["name"], "->", p.name)
+        print("avatar (illustrated, user-approved):", c["name"], "->", p.name)
 
 
 if __name__ == "__main__":

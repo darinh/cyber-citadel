@@ -6,9 +6,10 @@ in your browser — with original characters, an original world in your chosen a
 narration, sourced music, and a signature **interactive quiz** where you click answers laid right
 over the video. No cloud, no accounts, no publishing.
 
-It works **with or without a GPU** (it detects your hardware and degrades gracefully), and produces
-a **single video** or a **whole course**. Quizzes are on by default; study guides, custom avatars,
-and music are optional.
+It works **with or without a GPU** — it uses the **same high-quality models either way**; a machine
+without a GPU just renders more slowly (it never silently drops to lower quality). It produces a
+**single video** or a **whole course**. Quizzes are on by default; study guides, custom avatars, and
+music are optional.
 
 ## Quick start
 1. Open **this folder** in GitHub Copilot CLI (it auto-loads `AGENTS.md`).
@@ -25,9 +26,10 @@ high-fantasy guild, a neon hacker city, a cozy kitchen. It builds **original** c
 in that style; it will **not** use real franchises, characters, or trademarks (a gate blocks that).
 
 ## Requirements
-- **Python 3.10+** and **ffmpeg** on your PATH (the setup prompt installs the rest for your hardware).
-- A GPU is optional. On a CPU-only laptop you get fast Piper voices + illustrated avatars; on a CUDA
-  GPU you get expressive cloned voices + AI-generated portraits. Either way the course plays the same.
+- **Python 3.10+** and **ffmpeg** on your PATH (the setup prompt installs the rest).
+- A GPU is optional. You get the **same high quality** on any machine — expressive cloned voices +
+  AI-generated portraits — because the same models run on CPU too. A GPU just makes rendering faster;
+  a CPU-only laptop takes longer. Quality is only reduced if **you** explicitly ask to trade it for speed.
 
 ## What's in here
 | Path | What it is |
@@ -43,8 +45,8 @@ in that style; it will **not** use real franchises, characters, or trademarks (a
 ## Try the example
 ```bash
 # from this folder (set CC_PROJECT to the example):
-python engine/probe.py                       # see your hardware tier
-CC_PROJECT=examples/kitchen-academy CC_THEME=examples/kitchen-academy/theme.json CC_TTS=piper \
+python engine/probe.py                       # see your render-speed + the high-quality models
+CC_PROJECT=examples/kitchen-academy CC_THEME=examples/kitchen-academy/theme.json \
   python engine/build_episode.py examples/kitchen-academy/course/scripts/ep01.json
 python engine/package.py --project examples/kitchen-academy
 cd examples/kitchen-academy && python serve.py        # opens the player in your browser

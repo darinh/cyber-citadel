@@ -3,7 +3,7 @@
   - chatterbox  : expressive zero-shot voice cloning (best quality; GPU-ideal). Includes
                   the SELF-CORRECTING synth gate (re-rolls a take that an STT pass shows was
                   garbled/dropped). STT model size steps DOWN by tier so it runs on CPU too.
-  - piper       : fast deterministic ONNX TTS — the always-works CPU fallback.
+  - piper       : fast deterministic ONNX TTS — a user-approved lower-quality speed downgrade (CC_TTS=piper).
 
 Both share one interface — synth_line(speaker, text, out_wav) -> seconds — plus a shared,
 generic pronunciation pre-processor. Per-speaker voice config (timbre, knobs, effects) comes
@@ -156,23 +156,44 @@ def _piper_voice(speaker):
 
 
 def _engine_choice():
+    """Pick the voice engine. QUALITY-FIRST + never silently degrade:
+      - default (CC_TTS unset) = chatterbox, the high-quality neural voice, ALWAYS. It runs on
+        CPU too (just slower), so a missing GPU does NOT lower quality — it only affects speed.
+      - CC_TTS=piper is the ONLY way to get piper (fast, robotic). That is a QUALITY DOWNGRADE the
+        USER must explicitly approve; we never fall back to it automatically.
+      - if chatterbox isn't installed and piper wasn't explicitly chosen, FAIL LOUD with guidance
+        (installing it is one-time setup; it still runs on CPU). A silent piper fallback is exactly
+        what ships surprise low-quality voices, so we refuse to do it."""
     e = os.environ.get("CC_TTS", "").lower()
-    if e in ("chatterbox", "cbx", "3"):
-        return "chatterbox"
     if e in ("piper", "1"):
-        return "piper"
-    try:
-        import importlib.util
-        if importlib.util.find_spec("chatterbox") and importlib.util.find_spec("torch"):
-            import torch
-            if torch.cuda.is_available():
-                return "chatterbox"
-    except Exception:                                       # noqa: BLE001
-        pass
-    return "piper"
+        return "piper"                              # explicit, user-approved downgrade
+    import importlib.util
+    have_cbx = bool(importlib.util.find_spec("chatterbox") and importlib.util.find_spec("torch"))
+    if e in ("chatterbox", "cbx", "3", ""):
+        if have_cbx:
+            return "chatterbox"                     # high quality, on GPU or CPU
+        raise RuntimeError(
+            "High-quality voice engine 'chatterbox' is not installed, so narration would be LOW "
+            "QUALITY. Install it once (it runs on CPU too, just slower):\n"
+            "    pip install chatterbox-tts torch\n"
+            "(see system-prompts/02_environment.md). ONLY if you explicitly accept lower-quality "
+            "robotic voices, re-run with CC_TTS=piper.")
+    if have_cbx:                                     # unrecognized CC_TTS value -> high quality
+        return "chatterbox"
+    raise RuntimeError(f"Unknown CC_TTS={e!r} and chatterbox not installed; see 02_environment.md")
 
 
-_ENGINE = _engine_choice()
+_ENGINE = None
+_ANNOUNCED = False
+
+
+def engine_name():
+    """Lazily resolve the voice engine (so importing this module for CAST/EFFECTS/preprocess never
+    requires the heavy backend, and any error surfaces at synth time with actionable guidance)."""
+    global _ENGINE
+    if _ENGINE is None:
+        _ENGINE = _engine_choice()
+    return _ENGINE
 
 
 def _dur(path):
@@ -249,7 +270,9 @@ def _stt():
             cuda = torch.cuda.is_available()
         except Exception:                                   # noqa: BLE001
             cuda = False
-        model = os.environ.get("CC_STT_MODEL") or ("large-v3" if cuda else "small")
+        # QUALITY-FIRST: the audio-QA gate uses large-v3 by default on GPU AND CPU (on CPU it is
+        # slower, not weaker). CC_STT_MODEL=small|base is a user-approved speed downgrade only.
+        model = os.environ.get("CC_STT_MODEL") or "large-v3"
         _STT_M = WhisperModel(model, device="cuda" if cuda else "cpu",
                               compute_type="float16" if cuda else "int8")
     return _STT_M
@@ -322,19 +345,32 @@ def _cbx_synth(speaker, text, out_wav):
 def _key(speaker, text):
     import hashlib
     h = hashlib.sha1()
-    h.update(repr((_ENGINE, (speaker or "").upper(), _knobs(speaker), _effect(speaker),
+    h.update(repr((engine_name(), (speaker or "").upper(), _knobs(speaker), _effect(speaker),
                    str(_ref_clip(speaker)), preprocess(text))).encode("utf-8"))
     return h.hexdigest()[:20]
 
 
 def synth_line(speaker, text, out_wav) -> float:
+    global _ANNOUNCED
+    eng = engine_name()
+    if not _ANNOUNCED:
+        _ANNOUNCED = True
+        if eng == "chatterbox":
+            try:
+                import torch
+                dev = "cuda (fast)" if torch.cuda.is_available() else "cpu (slower — same high quality)"
+            except Exception:                               # noqa: BLE001
+                dev = "cpu"
+            print(f"[tts] voice engine: chatterbox on {dev}")
+        else:
+            print("[tts] voice engine: piper — user-approved fast/lower-quality downgrade (CC_TTS=piper)")
     out_wav = Path(out_wav)
     out_wav.parent.mkdir(parents=True, exist_ok=True)
     cached = CACHE / f"{_key(speaker, text)}.wav"
     if cached.exists():
         shutil.copyfile(cached, out_wav)
         return _dur(out_wav)
-    if _ENGINE == "chatterbox":
+    if eng == "chatterbox":
         _cbx_synth(speaker, text, out_wav)
     else:
         _piper_synth(speaker, text, out_wav)
@@ -343,7 +379,7 @@ def synth_line(speaker, text, out_wav) -> float:
 
 
 if __name__ == "__main__":
-    print("engine:", _ENGINE, "| cast voices:", list(CAST))
+    print("engine:", engine_name(), "| cast voices:", list(CAST))
     out = PROJECT / ".cache" / "tts_smoke"
     out.mkdir(parents=True, exist_ok=True)
     for i, (sp, tx) in enumerate([("NARRATOR", "Welcome to the lesson."),

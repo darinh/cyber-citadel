@@ -6,26 +6,37 @@ Run preflight from `prompt-system/` before a live build:
 python engine/probe.py preflight
 ```
 
-## Hardware tiers and downloads
-`engine/probe.py` writes `capabilities.json` and chooses safe tiers:
+## Quality is fixed HIGH; hardware only changes SPEED
+`engine/probe.py` writes `capabilities.json` with the **recommended HIGH-QUALITY models** (always the
+same) plus a `speed` estimate. It never auto-downgrades — the same models run on GPU **or** CPU:
 
-| Subsystem | Higher tier | Lower/fallback tier |
-| --- | --- | --- |
-| TTS | `chatterbox` if CUDA and VRAM >= 6GB; first run downloads about 3GB. | `piper`; download 2-3 `.onnx` voices into `assets/voices/` at about 60MB each. |
-| Avatars | `sdxl_ipa` if CUDA and VRAM >= 10GB; SDXL about 6GB plus IP-Adapter about 1GB. | `sd_turbo` if CUDA and VRAM >= 4GB; otherwise `illustrated` with no model download. |
-| STT | `large-v3` if CUDA and VRAM >= 8GB; about 3GB on first verify. | `small` about 0.5GB, or `base` about 0.15GB. |
+| Subsystem | Model (DEFAULT, GPU or CPU) | First-run download | Opt-in downgrade (user approval only) |
+| --- | --- | --- | --- |
+| TTS | `chatterbox` (expressive neural) | ~3GB | `CC_TTS=piper` (fast, robotic) + `.onnx` voices ~60MB each |
+| Avatars | `sdxl` original portraits | ~6GB | `CC_AVATARS=turbo` (few-step) or `=illustrated` (instant, no download) |
+| STT gate | `large-v3` | ~3GB | `CC_STT_MODEL=small` (~0.5GB) or `base` (~0.15GB) |
 
-CPU-only builds still work, but they are slower and use piper voices plus illustrated avatars.
+CPU-only builds produce the **same high quality** — they just render slower. Do NOT downgrade to save
+time unless the user explicitly approves it.
 
 ## Common failures
-- **No CUDA**: use `CC_TTS=piper`; expect illustrated avatars.
-- **Low VRAM or OOM**: rerun `python engine/probe.py`; the probe forces a lower tier to avoid runtime failures.
+- **No CUDA**: nothing to change — chatterbox + SDXL + large-v3 run on CPU (slower). Do NOT switch to
+  piper/illustrated unless the user approves the speed-for-quality trade.
+- **`chatterbox is not installed` error**: install it (`pip install chatterbox-tts torch`) — it runs on
+  CPU too. The engine fails loud rather than silently shipping low-quality piper voices.
+- **Low VRAM / OOM on GPU**: the high-quality model may spill to RAM/CPU and run slowly; quality stays
+  high. Reduce concurrent GPU use or, with user approval, apply a downgrade.
 - **ffmpeg/ffprobe not found**: install ffmpeg 6+ and put both commands on PATH. They are required.
-- **First run stalls**: model downloads may be in progress. Use `python engine/probe.py preflight` to see expected downloads before starting.
-- **Fonts look wrong or missing**: the engine uses vendored Noto Sans by default. Keep theme font names mapped to files in `engine/assets/fonts/` unless using valid absolute paths.
-- **`file://` playback fails or quizzes do not click**: use the range server with `python serve.py`, or double-click `play.cmd` / run `./play.sh`.
-- **CPU render is slow**: this is expected; quality and interactivity remain the same, only speed and media fidelity change.
-- **Suspicious transcript failure**: faster-whisper can hallucinate repetition or miss short lines; check the flagged final-MP4 region before re-rendering everything.
+- **First run stalls**: model downloads may be in progress. Use `python engine/probe.py preflight` (and
+  the trigger commands in `02_environment.md`) to fetch weights before starting.
+- **Fonts look wrong or missing**: the engine uses vendored Noto Sans by default. Keep theme font names
+  mapped to files in `engine/assets/fonts/` unless using valid absolute paths.
+- **`file://` playback fails or quizzes do not click**: use the range server with `python serve.py`, or
+  double-click `play.cmd` / run `./play.sh`.
+- **CPU render is slow**: expected — quality and interactivity are unchanged, only speed. Warn the user;
+  downgrade only with their approval.
+- **Suspicious transcript failure**: faster-whisper can hallucinate repetition or miss short lines;
+  check the flagged final-MP4 region before re-rendering everything.
 ## Command reminders
 Run from `prompt-system/`; the engine treats the current working directory as the project root.
 

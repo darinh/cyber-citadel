@@ -1,15 +1,20 @@
 # 02 — Environment → `capabilities.json`
 
-Set up the local environment for the detected hardware tier **before** any live/demo run. Avoid surprise first-run downloads in front of an audience.
+Install the **high-quality** models (chatterbox voice, SDXL avatars, large-v3 audio-QA) **before** any
+live/demo run. These run on **GPU or CPU** — hardware only affects SPEED, not quality. Avoid surprise
+first-run downloads in front of an audience.
 
-Run commands from the project root: the folder with `AGENTS.md`, `engine/`, and `system-prompts/`.
+Run commands with `CC_PROJECT` set to your project folder (`projects/<slug>`); the engine writes there.
 
 ---
 
 ## Goal
-Write `capabilities.json`, create a Python venv, install tier-appropriate dependencies, fetch voice models, and run preflight.
+Write `capabilities.json`, create a Python venv, install the high-quality dependencies, fetch the
+voice reference clips, and run preflight so the first render is fast.
 
-Quality is identical across tiers. Only voice timbre, avatar fidelity, and speed vary.
+**Quality is fixed HIGH on every machine.** A missing GPU makes rendering slower, not worse — you
+still install and use the same high-quality models. Only apply a downgrade (piper/illustrated/small
+STT) if the user explicitly asks to trade quality for speed.
 
 ---
 
@@ -18,7 +23,7 @@ Windows PowerShell:
 
 ```powershell
 $env:PYTHONUTF8 = "1"
-$env:CC_PROJECT = (Get-Location).Path
+$env:CC_PROJECT = "projects\<slug>"   # your course folder (create it if new)
 $env:CC_VERIFY = "1"
 ```
 
@@ -26,11 +31,12 @@ macOS/Linux:
 
 ```bash
 export PYTHONUTF8=1
-export CC_PROJECT="$PWD"
+export CC_PROJECT="projects/<slug>"
 export CC_VERIFY=1
 ```
 
-`CC_THEME` normally stays unset; `engine/theme.py` auto-discovers `theme.json` or `course/theme.json`.
+`CC_THEME` normally stays unset; `engine/theme.py` auto-discovers the project's `theme.json`. Do NOT
+set `CC_TTS`/`CC_AVATARS`/`CC_STT_MODEL` here — they default to the high-quality models.
 
 ---
 
@@ -40,9 +46,10 @@ export CC_VERIFY=1
 python engine/probe.py
 ```
 
-This writes `capabilities.json`; read `overall` and `tiers` (`tts`, `avatars`, `stt`, `stt_compute`).
-
-Tier rules from `engine/probe.py`: TTS is `chatterbox` at CUDA + 6GB VRAM, else `piper`; avatars are `sdxl_ipa` at CUDA + 10GB, `sd_turbo` at CUDA + 4GB, else `illustrated`; STT is `large-v3`, `small`, or `base`.
+This writes `capabilities.json`. Read `speed` (`fast`/`ok`/`slow`) and `recommended` (always the
+high-quality models: `chatterbox`, `sdxl`, `large-v3`). If `speed` is `slow` (CPU-only), tell the user
+rendering will take longer but stays full quality; only downgrade with their approval
+(`downgrades_opt_in` lists the switches).
 
 ---
 
@@ -79,37 +86,32 @@ ffprobe -version
 
 ---
 
-## 4 — Install TTS for the tier
-GPU / `tiers.tts = chatterbox`:
+## 4 — Install the HIGH-QUALITY voice engine (chatterbox — GPU or CPU)
+This is the default on every machine. On a CUDA GPU, install the GPU torch build; on CPU, the plain
+build (same quality, slower):
 
 ```powershell
 python -m pip install chatterbox-tts
+# GPU (CUDA):
 python -m pip install torch --index-url https://download.pytorch.org/whl/cu124
-$env:CC_TTS = "chatterbox"
+# CPU only (no CUDA): just `python -m pip install torch`
 ```
 
-CPU / `tiers.tts = piper`:
-
-```powershell
-python -m pip install piper-tts
-New-Item -ItemType Directory -Force assets\voices | Out-Null
-curl.exe -L -o assets\voices\en_US-lessac-medium.onnx https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx
-curl.exe -L -o assets\voices\en_US-lessac-medium.onnx.json https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json
-$env:CC_TTS = "piper"
-```
-
-macOS/Linux: use `mkdir -p assets/voices`, `curl -L`, and `export CC_TTS=...`.
+Leave `CC_TTS` unset (chatterbox is automatic). **Only** install Piper if the user has approved the
+fast/robotic downgrade — see `06_voices.md` (then `pip install piper-tts` + fetch an `.onnx` voice and
+set `CC_TTS=piper`).
 
 ---
 
-## 5 — Install avatar deps only if needed
-If avatars are opted in and `tiers.avatars` is `sdxl_ipa` or `sd_turbo`:
+## 5 — Install avatar deps (SDXL — GPU or CPU), only if avatars are opted in
+SDXL is the default high-quality avatar path and runs on CPU too (slower, one-time):
 
 ```powershell
 python -m pip install diffusers transformers accelerate safetensors
 ```
 
-If `tiers.avatars = illustrated`, install no diffusion packages.
+If the user approved the instant illustrated downgrade (`CC_AVATARS=illustrated`), no diffusion
+packages are needed. If avatars are skipped entirely, install nothing here.
 
 ---
 
@@ -122,10 +124,10 @@ python engine/probe.py preflight
 Read the printed plan, then **trigger the first-run model downloads NOW** (never mid-demo):
 
 ```powershell
-# voice model + the audio-gate STT model (synthesize one throwaway line; the FIRST line is slow
-# because it also loads the verify model — this is normal):
+# high-quality voice weights + the audio-gate STT model (synthesize one throwaway line; the FIRST
+# line is slow because it also loads the verify model — this is normal, especially on CPU):
 python engine/tts.py
-# avatars, only if opted in (downloads SDXL/Turbo on a GPU tier; instant on the illustrated tier):
+# avatars, only if opted in (downloads SDXL ~6GB on first run; GPU or CPU):
 python engine/gen_avatars.py
 ```
 macOS/Linux: same commands with `python3`.
@@ -133,11 +135,11 @@ macOS/Linux: same commands with `python3`.
 ---
 
 ## Self-review
-- Does `capabilities.json` exist?
-- Are deps matched to the detected tier and selected options?
+- Does `capabilities.json` exist, and did you note the `speed` (warn the user if `slow`)?
+- Is the **high-quality** chatterbox voice installed (not a silent piper fallback)?
 - Are `ffmpeg` and `ffprobe` on PATH?
-- Is `CC_VERIFY=1` set?
-- Did `python engine/probe.py preflight` run before live/demo use?
+- Is `CC_VERIFY=1` set, and are `CC_TTS`/`CC_AVATARS` unset (unless the user approved a downgrade)?
+- Did `python engine/probe.py preflight` + the trigger commands run before live/demo use?
 
 Then route to `system-prompts/03_truth_layer.md`.
 

@@ -19,8 +19,10 @@ python engine/gates/verify_episode.py ep01
 `verify_episode` checks the final MP4 audio, including quiz question/options/reveal lines. Do not rely on upstream line WAVs or intermediate narration files.
 
 ## TTS and verification
-- `CC_TTS=chatterbox` selects the GPU-quality backend when available.
-- `CC_TTS=piper` selects the CPU fallback.
+- **Default = `chatterbox`** (high-quality neural voice) on GPU **and** CPU — never set `CC_TTS` for the
+  normal path. A missing GPU makes it slower, not lower quality.
+- `CC_TTS=piper` is a **user-approved downgrade** only (fast, robotic). The engine never falls back to
+  it automatically; if chatterbox isn't installed it fails loud with install guidance.
 - `CC_VERIFY=1` enables the self-correcting synth gate: garbled, repeated, or truncated takes are re-rolled.
 - The shared text preprocessor applies pronunciations and acronym spelling to spoken lines only.
 
@@ -33,8 +35,8 @@ Faster-whisper can sometimes hallucinate repetition loops or omit short lines in
 - SFX are bundled engine assets and mixed below narration.
 ## Environment switches
 - Set `PYTHONUTF8=1` once per shell.
-- Set `CC_TTS=chatterbox` for the expressive GPU path.
-- Set `CC_TTS=piper` for the deterministic CPU path.
+- Leave `CC_TTS` **unset** for the default high-quality chatterbox voice (GPU or CPU).
+- Set `CC_TTS=piper` ONLY as a user-approved fast/lower-quality downgrade.
 - Leave `CC_VERIFY=1` enabled for production unless debugging a verifier problem.
 
 ## Practical checks

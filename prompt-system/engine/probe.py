@@ -96,57 +96,59 @@ def detect():
         "ram_gb": ram,
         "have": {k: _spec(k) for k in ("torch", "chatterbox", "faster_whisper", "piper", "diffusers")},
     }
-    # ---- tier choices (strict thresholds to avoid runtime OOM) ----
-    if cuda and vram >= 6:
-        tts = "chatterbox"
-    else:
-        tts = "piper"
-    if cuda and vram >= 10:
-        avatars = "sdxl_ipa"          # SDXL base portraits + IP-Adapter expressions
-    elif cuda and vram >= 4:
-        avatars = "sd_turbo"          # few-step turbo portraits (no IP-Adapter)
-    else:
-        avatars = "illustrated"       # deterministic Pillow portraits OR bring-your-own images
+    # ---- QUALITY-FIRST tiers -------------------------------------------------------------
+    # Quality is FIXED at the highest models; hardware only changes SPEED. A missing GPU does NOT
+    # lower quality — the same models run on CPU, just slower. Downgrades are NEVER auto-applied;
+    # they are opt-in and require the user's explicit approval (env vars below).
+    caps["recommended"] = {
+        "tts": "chatterbox",            # high-quality neural voice (GPU or CPU)
+        "avatars": "sdxl",              # SDXL portraits (GPU or CPU)
+        "stt": "large-v3",              # strongest audio-QA gate
+        "stt_compute": "float16" if cuda else "int8",
+    }
+    # expected SPEED of the high-quality path on this machine (quality is identical across these)
     if cuda and vram >= 8:
-        stt = "large-v3"
-    elif cuda or ram >= 12:
-        stt = "small"
+        caps["speed"] = "fast"
+    elif cuda:
+        caps["speed"] = "ok"            # low-VRAM GPU
     else:
-        stt = "base"
-    caps["tiers"] = {"tts": tts, "avatars": avatars, "stt": stt,
-                     "stt_compute": "float16" if cuda else "int8"}
-    caps["overall"] = ("gpu" if (cuda and vram >= 10) else
-                       "low_gpu" if cuda else "cpu")
+        caps["speed"] = "slow"          # CPU-only: still full quality, but renders take much longer
+    caps["overall"] = "gpu" if cuda else "cpu"
+    # optional, USER-APPROVED-ONLY speed downgrades (the engine never applies these automatically)
+    caps["downgrades_opt_in"] = {
+        "tts": "CC_TTS=piper       (fast, robotic voices — a QUALITY downgrade)",
+        "avatars": "CC_AVATARS=illustrated  (instant geometric portraits instead of SDXL)",
+        "stt": "CC_STT_MODEL=small (faster but weaker audio-QA gate)",
+    }
+    if cuda and vram and vram < 6:
+        caps["notes"] = ("GPU VRAM is low; high-quality models may spill to CPU/RAM and run slowly. "
+                         "Quality stays high — only speed is affected.")
     return caps
 
 
 _PLAN = {
     "tts": {
-        "chatterbox": "pip install chatterbox-tts torch --index-url https://download.pytorch.org/whl/cu124  (~3GB weights on first run)",
-        "piper": "pip install piper-tts ; download 2-3 voice .onnx models into assets/voices/ (~60MB each)",
+        "chatterbox": "pip install chatterbox-tts torch  (~3GB weights on first run; GPU via the cu124 index, else CPU)",
     },
     "stt": {
-        "large-v3": "faster-whisper downloads large-v3 (~3GB) on first verify",
-        "small": "faster-whisper downloads small int8 (~0.5GB) on first verify",
-        "base": "faster-whisper downloads base int8 (~0.15GB) on first verify",
+        "large-v3": "faster-whisper downloads large-v3 (~3GB) on first verify (GPU or CPU)",
     },
     "avatars": {
-        "sdxl_ipa": "pip install diffusers ; SDXL base (~6GB) + IP-Adapter (~1GB) on first run",
-        "sd_turbo": "pip install diffusers ; SD-Turbo (~2GB), few-step portraits, no IP-Adapter",
-        "illustrated": "no model download — deterministic Pillow portraits, or bring your own images",
+        "sdxl": "pip install diffusers transformers accelerate ; SDXL (~6GB) on first run (GPU or CPU)",
     },
 }
 
 
 def preflight(caps):
-    print("Preflight plan for the detected tiers (download BEFORE a live run):")
+    print("Preflight — download the HIGH-QUALITY models BEFORE a live run (same models on GPU/CPU):")
     for sub in ("tts", "stt", "avatars"):
-        tier = caps["tiers"][sub]
+        tier = caps["recommended"][sub]
         print(f"  - {sub:8s} [{tier}]: {_PLAN.get(sub, {}).get(tier, '(no extra setup)')}")
     if not caps["ffmpeg"]:
         print("  ! ffmpeg/ffprobe NOT found — install ffmpeg 6+ and put it on PATH (required).")
     if caps["overall"] == "cpu":
-        print("  note: CPU-only — renders work but are slower; expect piper voices + illustrated avatars.")
+        print("  note: CPU-only — SAME high quality, but renders are much slower. Warn the user and get")
+        print("        explicit approval before applying any speed downgrade (CC_TTS=piper, etc.).")
 
 
 def main():
@@ -158,8 +160,15 @@ def main():
     else:
         print(f"OS {caps['os']} · Python {caps['python']} · RAM {caps['ram_gb']}GB · ffmpeg {caps['ffmpeg']}")
         print(f"GPU: {caps['gpu'] or 'none'} · CUDA {caps['cuda']} · VRAM {caps['vram_gb']}GB")
-        print(f"overall tier: {caps['overall'].upper()}")
-        for k, v in caps["tiers"].items():
+        print(f"render speed on this machine: {caps['speed'].upper()} "
+              f"({'GPU' if caps['overall'] == 'gpu' else 'CPU — high quality, just slower'})")
+        print("recommended models (HIGH QUALITY — used on GPU or CPU):")
+        for k, v in caps["recommended"].items():
+            print(f"  {k:12s}: {v}")
+        if caps.get("notes"):
+            print(f"note: {caps['notes']}")
+        print("downgrades are OPT-IN only (never automatic) — apply ONLY with user approval:")
+        for k, v in caps["downgrades_opt_in"].items():
             print(f"  {k:12s}: {v}")
     (PROJECT / "capabilities.json").write_text(json.dumps(caps, indent=1), encoding="utf-8")
 

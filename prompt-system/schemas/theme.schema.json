@@ -68,7 +68,7 @@
             "properties": {
               "ref": {"type": "string", "description": "chatterbox reference clip in assets/voices/."},
               "exaggeration": {"type": "number"}, "cfg_weight": {"type": "number"}, "temperature": {"type": "number"},
-              "piper": {"type": "string", "description": "piper .onnx voice name in assets/voices/ (CPU fallback)."},
+              "piper": {"type": "string", "description": "piper .onnx voice name in assets/voices/ (used only with the approved CC_TTS=piper downgrade)."},
               "effects": {"type": "string", "description": "optional ffmpeg -af chain."},
               "length": {"type": "number", "description": "piper length-scale (>1 = slower)."}
             }
