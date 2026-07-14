@@ -1,89 +1,29 @@
-# 10 — Assemble → `course/episodes/epNN_*.mp4` + `.srt` + `.cues.json`
+# 10 — Assemble one representative pilot
 
-Render `course/scripts/epNN.json` into a captioned, quizzed mp4 with neural narration, the sourced music
-bed, bundled SFX, and the interactive-quiz cues. The gates (phase 09) must be green first.
-
-**Render ONE episode and spot-check before any bulk render** — full renders are slow, especially on CPU.
-
----
-
-## Goal
-Produce `course/episodes/epNN_<slug>.mp4`, `course/episodes/epNN_<slug>.srt`, and
-`course/episodes/epNN.cues.json` for one episode, verified by eye and ear, before rendering the rest.
-
----
-
-## Environment
+Render exactly one representative episode before any batch. It should exercise the project’s
+highest-risk feature: technical pronunciation, source video, callouts, chart animation, practice,
+or interactive quiz.
 
 ```powershell
+$env:CC_PROJECT = "projects\<slug>"
 $env:PYTHONUTF8 = "1"
-$env:CC_PROJECT = "projects\<slug>"   # your course folder
-$env:CC_VERIFY = "1"         # self-correcting audio gate: re-synthesizes a line until STT matches
-# Do NOT set CC_TTS — the engine uses high-quality chatterbox by default (GPU or CPU).
-# Set CC_TTS=piper ONLY if the user explicitly approved faster, lower-quality robotic voices.
-```
-
-The voice engine defaults to **chatterbox** (high quality) on GPU **and** CPU — a missing GPU makes
-rendering slower, not lower quality. `CC_VERIFY=1` (the default) makes each narration line verify
-against STT and retry up to 4× — keep it on. `CC_THEME` auto-discovers the project's `theme.json`;
-`CC_PROJECT` is the project dir. **If CPU rendering is too slow, warn the user and get their explicit
-approval before setting `CC_TTS=piper`.**
-
----
-
-## Render ONE, then spot-check
-
-```powershell
+$env:CC_VERIFY = "1"
+Remove-Item Env:CC_TTS -ErrorAction SilentlyContinue
 python engine/build_episode.py course/scripts/ep01.json
 ```
 
-The CLI takes the **spec path**; add `--beats N` to render only the first N beats for a fast framing
-check. Output lands in `course/episodes/`. Spot-check before doing anything else:
+## Assembly contracts
 
-```powershell
-ffmpeg -y -ss 12 -i course/episodes/ep01_knife_skills.mp4 -frames:v 1 course/episodes/_spot.jpg
-# open _spot.jpg (framing + captions), and listen to the first ~30s (narration clear? music ducked? quiz reads?)
-```
+- Images and clips resolve through `assets/media.json`; changing an asset invalidates affected beat caches.
+- Source clips are normalized separately to 1920x1080, 30 fps, H.264, and muted before narration.
+- When narration is longer than a source excerpt, hold its final frame; never loop a procedure invisibly.
+- Practice beats render the task/work interval and reveal/feedback as separate phases.
+- Captions stay below instructional content and never cover quiz options.
+- Interactive quiz option rectangles come from the frozen rendered scene and remain normalized.
+- Music/SFX follow project settings; minimal means no habitual sound on every beat.
+- Final A/V uses the proven two-pass mux. Verify the delivered mp4, not intermediate clips.
 
----
-
-## How the render works
-- **Incremental cache.** Per-beat audio/stills/clips are cached under `course/render/<epid>/`, keyed on
-  the engine's render version + a content hash of each beat (visual fields, lines, **voice settings**,
-  `min_seconds`…). Edit one line → only that beat (and the final mux) rebuild; everything else is reused.
-  **Don't bump anything** — the engine owns its render version and bumps it only when render logic changes.
-- **Two-pass mux.** Audio is mixed in an audio-only pass, then mapped RAW into a video-only pass. This is
-  deliberate: combining both filtergraphs non-deterministically dropped ~2–3s of speech at scene
-  boundaries. Never collapse it — and always QA the FINAL mp4 (phase 11), not upstream clips.
-- **Quiz beats are automatic.** From `q`/`options`/`answer`/`why` the engine produces the read-aloud
-  (question + every option + "pause and lock in" + reveal with answer text + why) and writes normalized
-  `opt_rects` into `epNN.cues.json` for the player's clickable hotspots. Chapters come from
-  `title`/`section`/`map` and quiz beats.
-- Music is loop-mastered + ducked from your sourced track (or silent if none); SFX are bundled and
-  applied per scene type.
-
----
-
-## Render the rest (only after the spot-check)
-
-```powershell
-python engine/build_episode.py course/scripts/ep02.json
-```
-
-Re-rendering an edited episode is fast (incremental). Full renders are **much slower on CPU** — the
-same high-quality chatterbox voice runs on CPU, just slowly (a several-minute episode can take many
-minutes of audio synthesis, ×the verify retries). This is expected and keeps quality high. Validate
-ONE episode first and lean on the cache for edits. **If the wait is unacceptable, tell the user and
-get their explicit approval before downgrading** (`CC_TTS=piper` for fast robotic voices,
-`CC_STT_MODEL=small` for a faster gate) — never downgrade silently.
-
----
-
-## Self-review
-- Do `course/episodes/epNN_<slug>.mp4`, `.srt`, and `epNN.cues.json` all exist?
-- Does the spot frame look right (captions placed, nothing overflowing)?
-- Do the first ~30s sound clean, with music sitting under the voice?
-- Did re-running an edited beat rebuild ONLY that beat?
-- Did the console print `EPISODE: …  (N min, B beats, Q quizzes)` with the expected counts?
-
-Then route to `system-prompts/11_player_and_verify.md`.
+Watch the entire pilot at normal size and resized. Check visual legibility, callout alignment,
+caption overlap, pacing, learner work time, narration completeness, music ducking, scene variety,
+and whether every visual clarifies the narration. Fix and rerender the pilot until it passes before
+rendering the rest of a course. Then continue to `11_player_and_verify.md`.

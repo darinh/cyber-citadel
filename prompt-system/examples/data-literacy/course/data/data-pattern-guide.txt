@@ -1,0 +1,33 @@
+Data Pattern Decision Guide
+
+1. Read context first. Before interpreting a chart, identify its title, horizontal and vertical
+axes, units, time span, and visible scale.
+
+2. A trend is a sustained change in one direction across multiple observations. A single high or
+low point does not establish a sustained trend.
+
+3. An anomaly is an observation or compact cluster that differs materially from the surrounding
+pattern. It is a signal to investigate, not proof of a cause.
+
+4. When there are too few observations or essential labels are missing, classify the evidence as
+insufficient rather than forcing a trend or anomaly conclusion.
+
+5. A defensible classification names both the category and visible evidence, such as repeated
+direction across observations, a return to the prior range, the labeled scale, or missing context.
+
+6. Events that occur near each other in time may form a useful investigation hypothesis, but
+temporal proximity alone does not establish that one event caused the other.
+
+Illustrative course datasets
+
+These examples are fictional teaching data created for this course; they are not reports about real
+organizations:
+
+- Weekly checkout error rate, W1 through W5: 2.0%, 2.2%, 7.1%, 2.3%, 2.4%.
+- Guided anomaly practice: 41, 42, 71, 43, 44.
+- Animated completion-rate trend, W1 through W5: 18, 27, 39, 52, 66.
+- Independent downward-trend practice: 68, 61, 55, 47, 39.
+- Release timeline: fictional software release at 09:00, errors rise at 09:08, then investigate
+  logs, traffic, and alternate causes.
+- Hospital transfer case, Monday through Friday: wait times of 18, 22, 27, 32, and 38 minutes
+  after a fictional schedule change.

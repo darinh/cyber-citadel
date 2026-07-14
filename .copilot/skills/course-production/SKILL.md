@@ -1,60 +1,60 @@
 ---
 name: course-production
 description: >-
-  Orchestrate end-to-end production of a binge-watchable, accurate, narrated video training
-  course (the Cyber Citadel engine): from authoritative truth layer through script, text-first
-  review, accuracy gates, avatars, voice, music, assembly, verification, and deploy. Use to plan
-  or drive a full course/episode build, onboard to the pipeline, or reuse the engine for a new
-  topic. Points to the focused sub-skills for each step.
+  Orchestrate an accurate, effective narrated video course from authoritative truth through
+  objective-first learning design, purposeful visuals, practice, text-first review, narration,
+  assembly, final verification, and local packaging. Use for the existing course or a new topic.
 ---
 
-# Course Production (orchestrator)
+# Course production orchestrator
 
-The umbrella for producing the Cyber Citadel video course (and reusing the engine on new topics).
-It sequences the focused sub-skills and the authoritative docs. **Work autonomously; review plans
-and artifacts with a multi-LLM council (adversarial → consensus) before scaling.**
+Build for learner performance, not a predetermined story format. Review plans and artifacts with a
+multi-model council before expensive rendering or scaling.
 
-## Authoritative docs (read first)
-- `course/PRODUCTION_BIBLE.md` — creative + technical spec (concept, cast, episode map, rules).
-- `course/GENERATION_PLAYBOOK.md` — hard-won learnings, exact commands, §11 production rules, §12
-  incremental render, §14 changelog. **Keep current every session that changes pipeline/prompts/
-  seeds/voice.**
-- `course/AUTHORING_NEW_COURSE.md` — reuse the engine for a different standard/topic.
-- `course/seed_registry.yaml` — machine-readable seeds/prompts/voice knobs/licenses.
-- Work backlog: GitHub issues (`gh issue list`), labels skill/pipeline/content/web.
+## Choose the correct path
 
-## Pipeline order (and which sub-skill owns each step)
-1. **Truth layer** → `accuracy-verification` (build `truth.json` from OSCAL; it's the fact source).
-2. **Script** the episodes as declarative `course/scripts/epNN.json` `beats` (scene types in
-   AUTHORING_NEW_COURSE). Cast the four archetypes: expert (VEGA), learner-surrogate (NOVA),
-   loremaster (ARCHIVIST), antagonist (NULL); + NARRATOR/HERALD.
-3. **Text-first review** → `screenplay-review` (multi-LLM table read for voice/flow/echoes)
-   BEFORE any render — cheapest place to fix wording.
-4. **Accuracy gates** → `accuracy-verification` (`verify_script.py` + `audit_narration.py`). Both
-   must pass.
-5. **Avatars** → `base-avatar-creation` (fixed-seed base portraits) + `avatar-expression-variants`
-   (IP-Adapter expression variants, same character).
-6. **Voice** → `tts-narration` (Chatterbox + verify gate; persona-matched clones).
-7. **Music** → `music-bed` (license-clean orchestral, ducked under narration).
-8. **Quizzes & references** → `quiz-and-reference` (read-aloud quizzes; cheat sheets).
-9. **Assemble + verify + deploy** → `video-assembly` (incremental render, two-pass mux, grade,
-   `verify_episode.py` on the FINAL mp4, package, push, verify live).
+- Maintaining the existing NIST course: follow `course/PRODUCTION_BIBLE.md` and its established
+  cast/story conventions.
+- Creating any new course: use `prompt-system/AGENTS.md` and a dedicated
+  `prompt-system/projects/<slug>/`. Do **not** copy the original course's world, cast, palette, or
+  episode recipe.
 
-## Non-negotiables (the rules that cost us re-renders)
-- **Accuracy** from `truth.json`, never LLM memory; baselines are 800-53B.
-- **Review text before rendering**; render ONE episode and spot-check before bulk re-render.
-- **QA the delivered mp4**, not upstream clips; two-pass mux; no temporal grain; files < 95 MB.
-- **Keep NOVA a learner and NULL a villain.** Read-aloud quizzes read the full Q + options +
-  correct ANSWER TEXT + a one-line why.
-- **Persist learnings**: update GENERATION_PLAYBOOK (+ seed_registry) and the relevant SKILL.md in
-  the same change; close the GitHub issue.
+Read `course/GENERATION_PLAYBOOK.md`, `course/AUTHORING_NEW_COURSE.md`, and the prompt-system
+pedagogy/visual-language references.
+
+## New-course pipeline
+
+1. **Truth** — authoritative `truth.json`; every factual claim and visual value traces to it.
+2. **Learning blueprint** — audience/use context, terminal performance, prerequisites, source
+   coverage, aligned evidence, practice, feedback, transfer, retention, and representations.
+3. **Delivery/media plan** — direct narrator-only by default. Image, screenshot, source video,
+   chart, diagram, comparison, worked example, scenario, story, cast, avatar, and music are selected
+   only when they serve an objective. Register provenance and alt text.
+4. **Storyboard/script** — declarative v2 beats with objective/fact/purpose traceability.
+5. **Text-first review** — multi-model screenplay + instructional review before TTS.
+6. **Accuracy and design gates** — `lint_instruction.py`, deterministic fact check, hostile claim
+   audit, IP lint, and craft lint.
+7. **Optional production branches** — avatars only if opted in; sourced music only if opted in;
+   high-quality Chatterbox narration on GPU or CPU.
+8. **Assemble one pilot** — incremental rendering, normalized source clips, two-phase practice,
+   captions, interactive quiz cues, and two-pass mux.
+9. **Verify/package** — final-mp4 audio QA, visual/player checks, credits, and local range server.
+10. **Scale only after the pilot passes.**
+
+## Non-negotiables
+
+- Observable objectives and aligned higher-order evidence; recognition is not a proxy for transfer.
+- Model complex work, fade support, require learner commitment, and give explanatory feedback.
+- Use complementary visuals; remove decorative motion and narrated text walls.
+- Story, characters, avatars, music, and progress/stakes chrome are optional—not quality proxies.
+- Hardware changes speed, not default model quality. A downgrade requires explicit user approval.
+- Read every quiz question and option, then the correct answer text and why.
+- Verify the delivered mp4, not intermediate audio; preserve the two-pass mux.
+- Structural gates do not prove learning. Record SME/learner performance evidence when available.
+- Update the playbook/changelog and relevant skill whenever the pipeline learns something durable.
 
 ## Council
-Use the `task` tool with varied `model` (gpt-5.5, gemini-3.1-pro-preview, claude-sonnet-4.6) +
-local ollama (`tools/council_ollama.py`) for diverse failure modes. Reach consensus before scaling.
-Validate any reviewer "fix" against existing conventions before applying.
 
-## Definition of done (every session)
-If you changed pipeline code/prompts/seeds/voice or settled a creative decision, append a
-GENERATION_PLAYBOOK changelog entry (+ seed_registry) and update the relevant skill BEFORE exiting.
-Render one episode and spot-check before any bulk re-render.
+Use varied hosted models plus local models. Review the blueprint and complete script end-to-end.
+Merge corroborated findings, validate each against truth/contracts, fix P1s and accepted P2s, rerun
+gates, then render. Review agents use isolated worktrees.

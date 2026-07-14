@@ -1,0 +1,65 @@
+{
+  "source": "Data Pattern Decision Guide",
+  "facts": {
+    "PAT-1": {
+      "title": "Read Context First",
+      "statement": "Before interpreting a chart, identify its title, horizontal and vertical axes, units, time span, and visible scale.",
+      "section": "1"
+    },
+    "PAT-2": {
+      "title": "Trend",
+      "statement": "A trend is a sustained change in one direction across multiple observations.",
+      "section": "2"
+    },
+    "PAT-3": {
+      "title": "Anomaly",
+      "statement": "An anomaly is an observation or compact cluster that differs materially from the surrounding pattern.",
+      "section": "3"
+    },
+    "PAT-4": {
+      "title": "Insufficient Evidence",
+      "statement": "When there are too few observations or essential labels are missing, classify the evidence as insufficient rather than forcing a trend or anomaly conclusion.",
+      "section": "4"
+    },
+    "PAT-5": {
+      "title": "Evidence-Based Classification",
+      "statement": "A defensible classification names both the category and visible evidence.",
+      "section": "5"
+    },
+    "PAT-6": {
+      "title": "Timing Is Not Causation",
+      "statement": "Temporal proximity alone does not establish that one event caused the other.",
+      "section": "6"
+    },
+    "EX-1": {
+      "title": "Illustrative Checkout Anomaly",
+      "statement": "In the fictional weekly checkout error-rate example, the W1 through W5 values are 2.0%, 2.2%, 7.1%, 2.3%, and 2.4%.",
+      "section": "Illustrative course datasets"
+    },
+    "EX-2": {
+      "title": "Illustrative Guided Anomaly",
+      "statement": "In the fictional guided anomaly practice, the values are 41, 42, 71, 43, and 44.",
+      "section": "Illustrative course datasets"
+    },
+    "EX-3": {
+      "title": "Illustrative Upward Trend",
+      "statement": "In the fictional animated completion-rate example, the W1 through W5 values are 18, 27, 39, 52, and 66.",
+      "section": "Illustrative course datasets"
+    },
+    "EX-4": {
+      "title": "Illustrative Downward Trend",
+      "statement": "In the fictional independent downward-trend practice, the values are 68, 61, 55, 47, and 39.",
+      "section": "Illustrative course datasets"
+    },
+    "EX-5": {
+      "title": "Illustrative Release Timeline",
+      "statement": "In the fictional release timeline, a software release begins at 09:00, errors rise at 09:08, and the next action is to investigate logs, traffic, and alternate causes.",
+      "section": "Illustrative course datasets"
+    },
+    "EX-6": {
+      "title": "Illustrative Wait-Time Transfer",
+      "statement": "In the fictional hospital transfer case, Monday through Friday wait times are 18, 22, 27, 32, and 38 minutes after a fictional schedule change.",
+      "section": "Illustrative course datasets"
+    }
+  }
+}

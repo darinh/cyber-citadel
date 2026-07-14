@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "episode": "ep01",
+  "model": "gemma3:27b",
+  "audited_at": "2026-07-14T19:57:30.659661+00:00",
+  "truth_sha256": "04a9967e812fecfda90663b91259000e816d8913a0c1a97761fa46b610b96440",
+  "script_sha256": "358adb8b2fadb7237b62044f83bc1efcafe672f1d07f28c5ad1ea823799c1c07",
+  "verdict": "NEEDS_REVIEW",
+  "findings": [
+    {
+      "severity": "P2",
+      "beat": 3,
+      "scene": "process",
+      "claim": "Use four moves every time: establish context, inspect the pattern across observations, choose trend, anomaly, or insufficient evidence, then justify that category with a visible cue.",
+      "fact_ids": [
+        "PAT-1",
+        "PAT-2",
+        "PAT-3",
+        "PAT-4",
+        "PAT-5"
+      ],
+      "problem": "The claim implies this routine is universally applicable without acknowledging that insufficient evidence may preclude classification into trend or anomaly. The truth layer states PAT-4: 'When there are too few observations or essential labels are missing, classify the evidence as insufficient rather than forcing a trend or anomaly conclusion.'",
+      "correction": "Use four moves every time: establish context, inspect the pattern across observations, choose trend, anomaly, *or* insufficient evidence, then justify that category with a visible cue."
+    },
+    {
+      "severity": "P2",
+      "beat": 6,
+      "scene": "comparison",
+      "claim": "A trend sustains a direction across multiple observations. An anomaly departs from what surrounds it. A point's absolute height is less informative than its relationship to several neighbors.",
+      "fact_ids": [
+        "PAT-2",
+        "PAT-3",
+        "EX-1",
+        "EX-3"
+      ],
+      "problem": "While generally true, the claim doesn't acknowledge that *both* trend and anomaly require multiple observations. An isolated data point can be neither a trend nor an anomaly without context.",
+      "correction": "A trend sustains a direction across *multiple* observations. An anomaly departs from what surrounds it *across multiple observations*. A point’s absolute height is less informative than its relationship to several neighbors."
+    },
+    {
+      "severity": "P2",
+      "beat": 13,
+      "scene": "chart",
+      "claim": "The pattern is visible, but the preceding scheduling change still does not prove what caused the rise.",
+      "fact_ids": [
+        "PAT-6",
+        "EX-6"
+      ],
+      "problem": "The statement implies that a causal relationship is being *claimed* in the scenario. The episode doesn't present anyone as claiming causation, only stating temporal proximity. This introduces an unnecessary straw man.",
+      "correction": "The pattern is visible; temporal proximity suggests a question, but does not prove cause."
+    }
+  ]
+}

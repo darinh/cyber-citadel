@@ -1,19 +1,22 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "episode spec — course/scripts/epNN.json (declarative beats rendered by the engine)",
+  "title": "episode spec — declarative instructional beats rendered by the engine",
   "type": "object",
   "required": ["id", "beats"],
   "properties": {
-    "id": {"type": "string", "description": "Episode id, e.g. ep01 (used for output filenames + cache)."},
-    "tag": {"type": "string", "description": "Short corner tag, e.g. L01."},
-    "slug": {"type": "string", "description": "Filename slug for the mp4."},
-    "num": {"type": "string", "description": "Display number (else derived from id)."},
+    "schema_version": {"type": "string", "description": "Use 2.0 for objective-first courses. Omitted v1 specs remain render-compatible."},
+    "id": {"type": "string"},
+    "tag": {"type": "string"},
+    "slug": {"type": "string"},
+    "num": {"type": "string"},
     "title": {"type": "string"},
     "subtitle": {"type": "string"},
-    "families": {"type": "string", "description": "Sidebar subtitle (groups covered)."},
+    "families": {"type": "string"},
     "synopsis": {"type": "string"},
-    "background": {"type": "string", "description": "Optional backdrop name in assets/backgrounds/ (or absolute path)."},
-    "music": {"type": "string", "description": "Optional SOURCED track filename in assets/music/ for this episode."},
+    "background": {"type": "string"},
+    "music": {"type": "string"},
+    "sound_design": {"enum": ["none", "minimal", "cinematic"]},
+    "progress_meter": {"type": "boolean", "default": false},
     "beats": {
       "type": "array",
       "items": {
@@ -21,43 +24,128 @@
         "required": ["scene"],
         "properties": {
           "scene": {
-            "type": "string",
             "enum": ["title", "section", "map", "persona", "guardian", "concept", "control",
                      "quote", "diagram", "points", "cheatcard", "define", "coldopen", "quiz",
-                     "pledge", "oath", "notebook"],
-            "description": "See reference/SCENE_CONTRACT.md for each type's fields."
+                     "pledge", "oath", "notebook", "image", "screenshot", "video",
+                     "comparison", "timeline", "process", "chart", "worked_example", "practice"]
           },
+          "objective_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "purpose": {"enum": ["orient", "activate", "define", "explain", "model", "example",
+                              "non_example", "guided_practice", "independent_practice", "feedback",
+                              "retrieve", "synthesize", "transfer", "assess"]},
+          "visual_purpose": {"enum": ["establish_context", "show_appearance", "locate",
+                                     "demonstrate_action", "show_change", "explain_process",
+                                     "show_relationship", "compare_cases", "visualize_quantity",
+                                     "model_reasoning", "cue_attention", "support_practice", "summarize"]},
+          "fact_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "practice_id": {"type": "string"},
+          "evidence_id": {"type": "string"},
+          "narrative": {"type": "boolean", "default": false},
+          "narrative_function": {"type": "string"},
+          "alt": {"type": "string"},
           "say": {
             "type": "array",
-            "description": "Spoken dialogue for this beat.",
             "items": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 2}
           },
-          "min_seconds": {"type": "number", "description": "Minimum on-screen time (engine extends for narration)."},
-          "id": {"type": "string", "description": "concept/control: must match a truth.json fact id."},
+          "min_seconds": {"type": "number"},
+          "id": {"type": "string"},
           "title": {"type": "string"},
+          "badge": {
+            "type": "string",
+            "description": "Optional short label in a fitted pill above a title-scene heading."
+          },
           "plain": {"type": "string"},
           "why": {"type": "string"},
           "source": {"type": "string"},
           "section": {"type": "string"},
-          "quote": {"type": "string", "description": "quote: VERBATIM substring of the fact's statement."},
-          "cite": {"type": "string", "description": "quote/define: citation naming the fact id."},
+          "quote": {"type": "string"},
+          "cite": {"type": "string"},
           "q": {"type": "string"},
           "options": {"type": "array", "items": {"type": "string"}},
-          "answer": {"type": "integer", "description": "0-based index of the correct option."},
+          "answer": {"type": "integer"},
+          "practice_type": {"enum": ["retrieval", "self_explanation", "classification", "ordering", "prediction", "error_detection", "worked_example_completion", "scenario", "performance", "apply_to_novel"]},
+          "prompt": {"type": "string"},
+          "instructions": {"type": "string"},
+          "model_answer": {"type": "string"},
+          "feedback": {"type": "string"},
+          "think_seconds": {"type": "number"},
           "bullets": {"type": "array", "items": {"type": "string"}},
           "mnemonic": {"type": "string"},
-          "term": {"type": "string"}, "expand": {"type": "string"}, "example": {"type": "string"},
-          "kicker": {"type": "string"}, "note": {"type": "string"}, "subtitle": {"type": "string"},
-          "group": {"type": "string"}, "group_name": {"type": "string"}, "persona": {"type": "string"},
-          "summary": {"type": "string"}, "meaning": {"type": "string"},
-          "headline": {"type": "string"}, "body": {"type": "string"}, "year": {"type": "string"},
-          "label": {"type": "string"}, "mitre": {"type": "string"}, "teaches": {"type": "string"},
-          "oath": {"type": "string"}, "controls": {"type": "string"},
+          "term": {"type": "string"},
+          "expand": {"type": "string"},
+          "example": {"type": "string"},
+          "kicker": {"type": "string"},
+          "note": {"type": "string"},
+          "subtitle": {"type": "string"},
+          "group": {"type": "string"},
+          "group_name": {"type": "string"},
+          "persona": {"type": "string"},
+          "summary": {"type": "string"},
+          "meaning": {"type": "string"},
+          "headline": {"type": "string"},
+          "body": {"type": "string"},
+          "year": {"type": "string"},
+          "label": {"type": "string"},
+          "mitre": {"type": "string"},
+          "teaches": {"type": "string"},
+          "oath": {"type": "string"},
+          "controls": {"type": "string"},
+          "asset": {"type": "string", "description": "Stable key in assets/media.json."},
+          "fit": {"enum": ["cover", "contain"]},
+          "focus": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+          "caption": {"type": "string"},
+          "callouts": {"type": "array"},
+          "left": {"type": "object"},
+          "right": {"type": "object"},
+          "events": {"type": "array"},
+          "steps": {"type": "array"},
+          "layout": {"enum": ["linear", "cycle"]},
+          "chart_type": {"enum": ["bar", "line"]},
+          "data": {"type": "array"},
+          "unit": {"type": "string"},
+          "insight": {"type": "string"},
+          "problem": {"type": "string"},
+          "start": {"type": "number"},
+          "end": {"type": "number"},
           "order": {"type": "array", "items": {"type": "string"}},
-          "deps": {"type": "array"}, "nodes": {"type": "array"}, "arrows": {"type": "array"}, "lines": {"type": "array"}
-        }
+          "deps": {"type": "array"},
+          "nodes": {"type": "array"},
+          "arrows": {"type": "array"},
+          "lines": {"type": "array"}
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"scene": {"const": "quiz"}}},
+            "then": {
+              "required": ["q", "options", "answer", "why"],
+              "properties": {
+                "q": {"type": "string", "minLength": 1},
+                "options": {
+                  "type": "array",
+                  "items": {"type": "string", "minLength": 1},
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                "answer": {"type": "integer", "minimum": 0, "maximum": 3},
+                "why": {"type": "string", "minLength": 1}
+              }
+            }
+          },
+          {
+            "if": {"properties": {"scene": {"const": "practice"}}},
+            "then": {
+              "required": ["practice_type", "prompt", "think_seconds", "model_answer", "feedback"],
+              "properties": {
+                "prompt": {"type": "string", "minLength": 1},
+                "think_seconds": {"type": "number", "exclusiveMinimum": 0},
+                "model_answer": {"type": "string", "minLength": 1},
+                "feedback": {"type": "string", "minLength": 1}
+              }
+            }
+          }
+        ]
       }
     }
   },
-  "_reserved": "Do NOT hand-set _integrity, _t, tag (auto), or reveal — the engine injects them."
+  "_reserved": "Do not hand-set _integrity, _t, tag, or reveal; the engine injects them."
 }

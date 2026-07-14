@@ -1,0 +1,60 @@
+{
+  "schema_version": "2.0",
+  "assets": {
+    "analysis-context": {
+      "path": "assets/media/analysis-context.png",
+      "kind": "image",
+      "origin": "original",
+      "license": "Original course asset",
+      "creator": "Prompt-system reference team",
+      "source_url": "",
+      "credit": "Original illustration",
+      "fact_ids": [],
+      "alt": "An analyst workspace with a large monitor showing a weekly line chart."
+    },
+    "operations-dashboard": {
+      "path": "assets/media/operations-dashboard.png",
+      "kind": "image",
+      "origin": "original",
+      "license": "Original course asset",
+      "creator": "Prompt-system reference team",
+      "source_url": "",
+      "credit": "Original interface mock-up",
+      "fact_ids": ["EX-1"],
+      "alt": "A weekly operations dashboard with a titled chart, labeled percentage axis, date axis, and one isolated spike."
+    },
+    "trend-case": {
+      "path": "assets/media/trend-case.png",
+      "kind": "image",
+      "origin": "original",
+      "license": "Original course asset",
+      "creator": "Prompt-system reference team",
+      "source_url": "",
+      "credit": "Original comparison chart",
+      "fact_ids": ["EX-3"],
+      "alt": "Five points move steadily upward."
+    },
+    "anomaly-case": {
+      "path": "assets/media/anomaly-case.png",
+      "kind": "image",
+      "origin": "original",
+      "license": "Original course asset",
+      "creator": "Prompt-system reference team",
+      "source_url": "",
+      "credit": "Original comparison chart",
+      "fact_ids": ["EX-1"],
+      "alt": "Four points remain in one range while one middle point spikes."
+    },
+    "trend-build-demo": {
+      "path": "assets/media/trend-build-demo.mp4",
+      "kind": "video",
+      "origin": "original",
+      "license": "Original course asset",
+      "creator": "Prompt-system reference team",
+      "source_url": "",
+      "credit": "Original animated demonstration",
+      "fact_ids": ["EX-3"],
+      "alt": "Five weekly points appear one at a time, each higher than the previous point, forming a sustained upward trend."
+    }
+  }
+}

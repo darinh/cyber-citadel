@@ -1,0 +1,35 @@
+{
+  "schema_version": "2.0",
+  "topic": "Classifying patterns in short time-series charts",
+  "sources": [
+    {
+      "type": "notes",
+      "name": "Data Pattern Decision Guide",
+      "path_or_url": "course/data/data-pattern-guide.txt"
+    }
+  ],
+  "audience": {
+    "description": "New operations analysts who review weekly dashboards",
+    "prior_knowledge": ["Can read whole numbers and percentages", "Recognizes a line chart"],
+    "work_context": "Classifying dashboard patterns before escalating an operational issue",
+    "accessibility": ["Captions", "High contrast", "Do not rely on color alone"]
+  },
+  "desired_performance": "Classify an unfamiliar short time-series as a trend, anomaly, or insufficient evidence and justify the decision with visible chart cues.",
+  "scope": {"kind": "single_video", "episodes": 1},
+  "options": {
+    "quizzes": true,
+    "study_guide": false,
+    "quick_reference": true,
+    "avatars": false,
+    "music": false,
+    "narrative": false
+  },
+  "delivery": {
+    "mode": "direct",
+    "tone": "clear, practical, and conversational",
+    "aesthetic": "editorial data visualization with restrained navy, blue, and amber",
+    "voice_preferences": "one natural narrator"
+  },
+  "target_length": "5–7 minutes",
+  "language": "English"
+}

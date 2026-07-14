@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "episode": "ep01",
+  "script_sha256": "358adb8b2fadb7237b62044f83bc1efcafe672f1d07f28c5ad1ea823799c1c07",
+  "truth_path": "course/data/truth.json",
+  "reviewed_report": "ep01.narration-audit.gemma3-27b.json",
+  "decisions": [
+    {
+      "beat": 3,
+      "decision": "rejected",
+      "reason": "The narration explicitly names insufficient evidence as the third classification, so it does not force a trend-or-anomaly choice and is consistent with PAT-4."
+    },
+    {
+      "beat": 6,
+      "decision": "rejected",
+      "reason": "The narration defines an anomaly by its relationship to surrounding observations and several neighbors, preserving the multi-observation context required by PAT-3."
+    },
+    {
+      "beat": 13,
+      "decision": "rejected",
+      "reason": "PAT-6 explicitly teaches that temporal proximity does not prove cause. Applying that qualification to the preceding fictional change in EX-6 is accurate and does not assert that a person claimed causation."
+    }
+  ]
+}

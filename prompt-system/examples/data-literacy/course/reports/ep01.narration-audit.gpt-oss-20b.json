@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "episode": "ep01",
+  "model": "gpt-oss:20b",
+  "audited_at": "2026-07-14T19:56:52.420645+00:00",
+  "truth_sha256": "04a9967e812fecfda90663b91259000e816d8913a0c1a97761fa46b610b96440",
+  "script_sha256": "358adb8b2fadb7237b62044f83bc1efcafe672f1d07f28c5ad1ea823799c1c07",
+  "verdict": "CLEAN",
+  "findings": []
+}

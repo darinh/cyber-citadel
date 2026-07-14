@@ -1,13 +1,13 @@
-"""Scene renderer (Pillow) — theme-driven, topic-agnostic.
+"""Instructional scene renderer (Pillow) — theme-driven and topic-agnostic.
 
-Renders 1920x1080 stills for declarative scene types. A consistent "frame"
-(gradient + grid + vignette + top bar + caption strip) wraps every scene so a
-series feels cohesive. ffmpeg later adds motion (Ken Burns), transitions, music
-and burned captions.
+Renders 1920x1080 stills for declarative scene types. The engine offers several
+visual grammars—full-bleed media, annotated screenshots, comparison, timeline,
+process, data chart, worked example, practice, and legacy cards—so a course does
+not collapse into one slide template. ffmpeg later adds motion and captions.
 
-ALL colors, fonts, and on-screen vocabulary come from the active theme (theme.py /
-theme.json); GEOMETRY and the quiz option-box layout (quiz_layout) are frozen and
-never change with theming, so the interactive player's click-hotspots always align.
+Colors, fonts, and optional vocabulary come from the active theme. Layouts are
+engine-owned rather than generated from raw pixel instructions. The quiz option
+geometry alone is globally frozen so interactive click-hotspots always align.
 
 Library: render(beat: dict, out_path). CLI: `python scene.py demo` renders one
 of each type to engine/_demo_out for visual QA.
@@ -15,12 +15,13 @@ of each type to engine/_demo_out for visual QA.
 from __future__ import annotations
 import math
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
 
 ROOT = Path(__file__).resolve().parent          # engine/
 import sys as _sys
 _sys.path.insert(0, str(ROOT))
 import theme as _theme
+import media as _media
 ART = ROOT / "_demo_out"
 W, H = 1920, 1080
 _T = _theme.load()
@@ -114,6 +115,18 @@ def tracked_text(d, xy, text, fnt, fill, tracking=0, anchor_center=False):
         d.text((x, y), ch, font=fnt, fill=fill)
         x += w + tracking
     return total
+
+
+def fit_tracked_font(d, text, fontfn, start_size, max_w, tracking=0, min_size=18):
+    size = start_size
+    while size > min_size:
+        fnt = fontfn(size)
+        width = sum(d.textlength(ch, font=fnt) for ch in text)
+        width += tracking * max(0, len(text) - 1)
+        if width <= max_w:
+            return fnt
+        size -= 2
+    return fontfn(min_size)
 
 
 def wrap(d, text, fnt, max_w):
@@ -211,30 +224,29 @@ def frame(tag_left=None, tag_right="", integrity=None):
     if tag_left is None:
         tag_left = _theme.brand(_T)
     base = gradient_bg()
-    base = add_grid(base)
-    base = add_vignette(base)
+    surface = _theme.visual("background_style", _T)
+    chrome = _theme.visual("chrome", _T)
+    if surface == "grid":
+        base = add_grid(base)
+    if surface in ("gradient", "grid") or chrome == "framed":
+        base = add_vignette(base)
     img = base.convert("RGBA")
     if _BG_IMG is not None:
         tint = img.copy()
         tint.putalpha(165)
         img = Image.alpha_composite(_BG_IMG.copy(), tint)
     d = ImageDraw.Draw(img)
-    # faint circuit arcs
-    arc = glow_layer(lambda dd: [dd.arc([200 + i * 360, -260, 760 + i * 360, 300],
-                     200, 340, fill=CYAN + (40,), width=2) for i in range(4)],
-                     CYAN, blur=2)
-    img.alpha_composite(arc)
     # top bar
     d.line([(70, 70), (W - 70, 70)], fill=(255, 255, 255, 26), width=1)
     tracked_text(d, (70, 30), tag_left, FSB(24), CYAN, tracking=6)
     if tag_right:
         tw = sum(d.textlength(c, font=FSB(22)) for c in tag_right) + 4 * (len(tag_right) - 1)
         tracked_text(d, (W - 70 - tw, 32), tag_right, FSB(22), MUTED, tracking=4)
-    # corner ticks
-    for (cx, cy, dx, dy) in [(70, 70, 1, 1), (W - 70, 70, -1, 1),
-                             (70, H - 60, 1, -1), (W - 70, H - 60, -1, -1)]:
-        d.line([(cx, cy), (cx + 26 * dx, cy)], fill=CYAN + (180,), width=3)
-        d.line([(cx, cy), (cx, cy + 26 * dy)], fill=CYAN + (180,), width=3)
+    if chrome == "framed":
+        for (cx, cy, dx, dy) in [(70, 70, 1, 1), (W - 70, 70, -1, 1),
+                                 (70, H - 60, 1, -1), (W - 70, H - 60, -1, -1)]:
+            d.line([(cx, cy), (cx + 26 * dx, cy)], fill=CYAN + (180,), width=3)
+            d.line([(cx, cy), (cx, cy + 26 * dy)], fill=CYAN + (180,), width=3)
     if integrity is not None:
         integrity_bar(img, integrity)
     return img
@@ -302,11 +314,16 @@ def s_title(img, b):
     d = ImageDraw.Draw(img)
     badge = b.get("badge", "")
     if badge:
-        bw = 220
+        badge_tracking = 6
+        badge_font = fit_tracked_font(d, badge, FSB, 30, W - 400, badge_tracking)
+        badge_text_w = sum(d.textlength(ch, font=badge_font) for ch in badge)
+        badge_text_w += badge_tracking * max(0, len(badge) - 1)
+        bw = min(W - 320, max(220, badge_text_w + 80))
         neon_rrect(img, [W / 2 - bw / 2, 250, W / 2 + bw / 2, 320], 14, GOLD,
                    width=2, fill=(20, 18, 40, 200))
         d = ImageDraw.Draw(img)
-        tracked_text(d, (W / 2, 264), badge, FSB(30), GOLD, tracking=6, anchor_center=True)
+        tracked_text(d, (W / 2, 264), badge, badge_font, GOLD,
+                     tracking=badge_tracking, anchor_center=True)
     title = b.get("title", "")
     d = ImageDraw.Draw(img)
     tf = fit_font(d, title, FB, 120, W - 320)
@@ -520,21 +537,26 @@ def s_diagram(img, b):
     return img
 
 
+QUIZ_BOX_H = 84
+QUIZ_BOX_STEP = 100
+QUIZ_SAFE_BOTTOM = 890
+
+
 def quiz_layout(b):
     """SINGLE source of truth for quiz option-box geometry, in 1920x1080 px.
     Shared by s_quiz (drawing) and build_episode2/cues.json (interactive
     click-hotspots) so the web buttons sit EXACTLY on the rendered boxes.
     Returns a list of (x0, y0, x1, y1), one per option. Mirrors the layout in
     s_quiz: kicker @175, question wrapped from y=250 (FB58, 1.2 leading, max_w
-    1500), +30, then 96px-tall boxes stacked every 120px, 1240px wide, centered."""
+    1500), +30, then caption-safe boxes stacked above y=890, 1240px wide, centered."""
     d = ImageDraw.Draw(Image.new("RGB", (W, H)))
     lh = int(FB(58).size * 1.2)
     nlines = len(wrap(d, b.get("q", ""), FB(58), 1500))
     y = 250 + nlines * lh + 30
     boxes = []
     for _ in b.get("options", []):
-        boxes.append((W / 2 - 620, y, W / 2 + 620, y + 96))
-        y += 120
+        boxes.append((W / 2 - 620, y, W / 2 + 620, y + QUIZ_BOX_H))
+        y += QUIZ_BOX_STEP
     return boxes
 
 
@@ -553,10 +575,10 @@ def s_quiz(img, b):
         neon_rrect(img, [x0, y0, x1, y1], 16, col, width=2 if not correct else 4,
                    fill=(18, 40, 36, 240) if correct else (16, 22, 52, 235))
         dd = ImageDraw.Draw(img)
-        dd.text((x0 + 60, y0 + 24), letter, font=FB(48), fill=col)
-        draw_fit(dd, (x0 + 150, y0 + 30), opt, FSB, 40, INK, 980)
+        dd.text((x0 + 60, y0 + 18), letter, font=FB(48), fill=col)
+        draw_fit(dd, (x0 + 150, y0 + 24), opt, FSB, 40, INK, 980)
         if correct:
-            cxp, cyp = x1 - 75, y0 + 48
+            cxp, cyp = x1 - 75, y0 + QUIZ_BOX_H / 2
             dd.line([(cxp, cyp), (cxp + 16, cyp + 20), (cxp + 48, cyp - 24)],
                     fill=MINT, width=9, joint="curve")
     return img
@@ -701,11 +723,344 @@ def s_notebook(img, b):
     return img
 
 
+def _asset_meta(ref):
+    return _media.get(str(ref)) or {}
+
+
+def _place_asset(img, ref, box, fit="cover", focus=(0.5, 0.5), panel=True):
+    """Place a manifest image and return its actual displayed rectangle."""
+    path = _media.resolve(str(ref))
+    if not path.exists():
+        raise FileNotFoundError(f"media asset not found: {path}")
+    source = Image.open(path).convert("RGB")
+    x0, y0, x1, y1 = [int(v) for v in box]
+    tw, th = x1 - x0, y1 - y0
+    if panel:
+        ImageDraw.Draw(img).rectangle([x0, y0, x1, y1], fill=PANEL + (255,))
+    if fit == "contain":
+        placed = ImageOps.contain(source, (tw, th), Image.Resampling.LANCZOS)
+        px = x0 + (tw - placed.width) // 2
+        py = y0 + (th - placed.height) // 2
+    else:
+        centering = tuple(max(0.0, min(1.0, float(v))) for v in focus[:2])
+        placed = ImageOps.fit(source, (tw, th), Image.Resampling.LANCZOS, centering=centering)
+        px, py = x0, y0
+    img.paste(placed.convert("RGBA"), (px, py))
+    return px, py, px + placed.width, py + placed.height
+
+
+def _media_credit(ref, beat):
+    meta = _asset_meta(ref)
+    return (beat.get("credit") or meta.get("credit") or
+            " · ".join(x for x in (meta.get("creator"), meta.get("license")) if x))
+
+
+def _arrow(d, start, end, color=CYAN, width=4):
+    d.line([start, end], fill=color, width=width)
+    ang = math.atan2(end[1] - start[1], end[0] - start[0])
+    size = 18
+    d.polygon([
+        end,
+        (end[0] - size * math.cos(ang - 0.45), end[1] - size * math.sin(ang - 0.45)),
+        (end[0] - size * math.cos(ang + 0.45), end[1] - size * math.sin(ang + 0.45)),
+    ], fill=color)
+
+
+def s_image(img, b):
+    """Full-bleed relevant image with restrained labels and provenance."""
+    ref = b.get("asset")
+    _place_asset(img, ref, [0, 72, W, H - 170], b.get("fit", "cover"),
+                 tuple(b.get("focus", [0.5, 0.5])), panel=False)
+    shade = Image.new("RGBA", (W, H - 242), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(shade)
+    for y in range(shade.height):
+        edge = min(y / 260, (shade.height - y) / 300)
+        alpha = int(190 * max(0.0, 1.0 - edge))
+        sd.line([(0, y), (W, y)], fill=(0, 0, 0, alpha))
+    img.alpha_composite(shade, (0, 72))
+    d = ImageDraw.Draw(img)
+    if b.get("title"):
+        draw_fit(d, (110, 126), b["title"], FB, 68, INK, W - 220)
+    if b.get("caption"):
+        draw_wrapped(d, (110, 750), b["caption"], FSB(36), INK, W - 220, 1.25)
+    credit = _media_credit(ref, b)
+    if credit:
+        draw_fit(d, (W - 110, H - 208), credit, F, 22, MUTED, W - 220, anchor="ra")
+    return img
+
+
+def s_screenshot(img, b):
+    """Large screenshot with normalized callouts that reveal in sequence."""
+    d = ImageDraw.Draw(img)
+    if b.get("title"):
+        draw_fit(d, (110, 105), b["title"], FB, 54, INK, W - 220)
+    image_box = [110, 190, W - 110, 836]
+    actual = _place_asset(img, b.get("asset"), image_box, b.get("fit", "contain"),
+                          tuple(b.get("focus", [0.5, 0.5])))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle(image_box, radius=18, outline=MUTED + (180,), width=2)
+    callouts = b.get("callouts") or []
+    visible = math.ceil(max(0.0, min(1.0, b.get("_t", 1.0))) * len(callouts))
+    ax0, ay0, ax1, ay1 = actual
+    aw, ah = ax1 - ax0, ay1 - ay0
+    for index, callout in enumerate(callouts[:visible]):
+        x, y, w, h = callout["rect"]
+        box = [ax0 + x * aw, ay0 + y * ah, ax0 + (x + w) * aw, ay0 + (y + h) * ah]
+        color = _c(callout.get("color", "danger"))
+        d.rounded_rectangle(box, radius=10, outline=color, width=5)
+        bx, by = box[0] + 18, max(96, box[1] - 18)
+        d.ellipse([bx - 22, by - 22, bx + 22, by + 22], fill=color)
+        d.text((bx, by), str(index + 1), font=FB(24), fill=BG_TOP, anchor="mm")
+        label = str(callout.get("label", ""))
+        lw = min(620, max(180, int(d.textlength(label, font=FSB(26)) + 36)))
+        ly = min(H - 230, max(100, by - 20))
+        d.rounded_rectangle([bx + 32, ly - 8, bx + 32 + lw, ly + 42],
+                            radius=10, fill=(8, 10, 18, 225))
+        draw_fit(d, (bx + 50, ly), label, FSB, 26, INK, lw - 30)
+    credit = _media_credit(b.get("asset"), b)
+    if credit:
+        draw_fit(d, (W - 110, 852), credit, F, 20, MUTED, W - 220, anchor="ra")
+    return img
+
+
+def _comparison_side(img, item, box, color):
+    x0, y0, x1, y1 = box
+    neon_rrect(img, box, 22, color, width=2, glow=False, fill=PANEL + (245,))
+    d = ImageDraw.Draw(img)
+    image_bottom = y0
+    if item.get("asset"):
+        image_bottom = y0 + 330
+        _place_asset(img, item["asset"], [x0 + 18, y0 + 18, x1 - 18, image_bottom],
+                     item.get("fit", "cover"), tuple(item.get("focus", [0.5, 0.5])))
+    title_y = image_bottom + 28 if image_bottom > y0 else y0 + 58
+    draw_fit(d, (x0 + 42, title_y), item.get("title", ""), FB, 46, color, x1 - x0 - 84)
+    body_y = title_y + 72
+    draw_wrapped(d, (x0 + 42, body_y), item.get("body", ""), F(31), INK,
+                 x1 - x0 - 84, 1.35)
+    if item.get("label"):
+        tracked_text(d, (x0 + 42, y1 - 62), item["label"], FSB(21), MUTED, tracking=4)
+
+
+def s_comparison(img, b):
+    """Two materially different cases shown at the same time for discrimination."""
+    d = ImageDraw.Draw(img)
+    draw_fit(d, (W / 2, 120), b.get("title", ""), FB, 58, INK, W - 240, anchor="ma")
+    tt = b.get("_t", 1.0)
+    if tt >= 0.05:
+        _comparison_side(img, b.get("left") or {}, [90, 220, 930, 858], CYAN)
+    if tt >= 0.5:
+        _comparison_side(img, b.get("right") or {}, [990, 220, W - 90, 858], GOLD)
+    return img
+
+
+def s_timeline(img, b):
+    """Auto-laid-out sequence; authors supply events, never pixel coordinates."""
+    d = ImageDraw.Draw(img)
+    draw_fit(d, (W / 2, 118), b.get("title", ""), FB, 58, INK, W - 240, anchor="ma")
+    events = (b.get("events") or [])[:6]
+    if not events:
+        return img
+    x0, x1, y = 170, W - 170, 520
+    d.line([(x0, y), (x1, y)], fill=MUTED, width=4)
+    visible = math.ceil(max(0.0, min(1.0, b.get("_t", 1.0))) * len(events))
+    gap = (x1 - x0) / max(1, len(events) - 1)
+    for index, event in enumerate(events[:visible]):
+        x = x0 + index * gap
+        color = _c(event.get("color", "accent" if index % 2 == 0 else "gold"))
+        d.ellipse([x - 15, y - 15, x + 15, y + 15], fill=color)
+        above = index % 2 == 0
+        cy = 270 if above else 590
+        box = [x - 140, cy, x + 140, cy + 190]
+        d.rounded_rectangle(box, radius=18, fill=PANEL + (245,), outline=color, width=2)
+        draw_fit(d, (x, cy + 20), event.get("when", ""), FSB, 24, color, 240, anchor="ma")
+        draw_fit(d, (x, cy + 58), event.get("label", ""), FB, 30, INK, 240, anchor="ma")
+        draw_wrapped(d, (x, cy + 105), event.get("note", ""), F(23), MUTED, 230, 1.25, center=True)
+        d.line([(x, y - 16 if above else y + 16), (x, cy + 190 if above else cy)],
+               fill=color, width=2)
+    return img
+
+
+def s_process(img, b):
+    """Auto-laid-out linear or cycle process with progressive reveal."""
+    d = ImageDraw.Draw(img)
+    draw_fit(d, (W / 2, 116), b.get("title", ""), FB, 58, INK, W - 240, anchor="ma")
+    steps = (b.get("steps") or [])[:6]
+    if not steps:
+        return img
+    visible = math.ceil(max(0.0, min(1.0, b.get("_t", 1.0))) * len(steps))
+    layout = b.get("layout", "linear")
+    boxes = []
+    if layout == "cycle":
+        radius = 285
+        for index in range(len(steps)):
+            angle = -math.pi / 2 + index * 2 * math.pi / len(steps)
+            cx = W / 2 + radius * math.cos(angle)
+            cy = 540 + radius * math.sin(angle)
+            boxes.append([cx - 145, cy - 70, cx + 145, cy + 70])
+    else:
+        gap = 34
+        card_w = min(310, (W - 220 - gap * (len(steps) - 1)) / len(steps))
+        total = card_w * len(steps) + gap * (len(steps) - 1)
+        left = (W - total) / 2
+        boxes = [[left + i * (card_w + gap), 360,
+                  left + i * (card_w + gap) + card_w, 690] for i in range(len(steps))]
+
+    for index in range(min(visible, len(steps))):
+        if index:
+            prev, cur = boxes[index - 1], boxes[index]
+            if layout == "cycle":
+                _arrow(d, ((prev[0] + prev[2]) / 2, (prev[1] + prev[3]) / 2),
+                       ((cur[0] + cur[2]) / 2, (cur[1] + cur[3]) / 2), MUTED, 3)
+            else:
+                _arrow(d, (prev[2] + 5, (prev[1] + prev[3]) / 2),
+                       (cur[0] - 10, (cur[1] + cur[3]) / 2), MUTED, 3)
+        step = steps[index]
+        color = _c(step.get("color", "accent" if index % 2 == 0 else "gold"))
+        box = boxes[index]
+        d.rounded_rectangle(box, radius=20, fill=PANEL + (245,), outline=color, width=3)
+        d.ellipse([box[0] + 20, box[1] + 20, box[0] + 70, box[1] + 70], fill=color)
+        d.text((box[0] + 45, box[1] + 45), str(index + 1), font=FB(26),
+               fill=BG_TOP, anchor="mm")
+        draw_fit(d, (box[0] + 24, box[1] + 92), step.get("title", ""), FB, 31,
+                 INK, box[2] - box[0] - 48)
+        draw_wrapped(d, (box[0] + 24, box[1] + 145), step.get("detail", ""),
+                     F(24), MUTED, box[2] - box[0] - 48, 1.3)
+    if layout == "cycle" and visible == len(steps):
+        first, last = boxes[0], boxes[-1]
+        _arrow(d, ((last[0] + last[2]) / 2, (last[1] + last[3]) / 2),
+               ((first[0] + first[2]) / 2, (first[1] + first[3]) / 2), MUTED, 3)
+    return img
+
+
+def s_chart(img, b):
+    """Simple engine-laid-out bar or line chart for sourced quantitative claims."""
+    d = ImageDraw.Draw(img)
+    draw_fit(d, (W / 2, 112), b.get("title", ""), FB, 58, INK, W - 240, anchor="ma")
+    data = (b.get("data") or [])[:10]
+    if not data:
+        return img
+    values = [float(item.get("value", 0)) for item in data]
+    high = max(max(values), 1.0)
+    left, top, right, bottom = 220, 245, W - 180, 790
+    d.line([(left, top), (left, bottom), (right, bottom)], fill=MUTED, width=3)
+    unit = b.get("unit", "")
+    if unit:
+        d.text((left, top - 40), unit, font=FSB(23), fill=MUTED)
+    tt = max(0.0, min(1.0, b.get("_t", 1.0)))
+    chart_type = b.get("chart_type", "bar")
+    gap = (right - left) / len(data)
+    if chart_type == "line":
+        points = []
+        visible = max(1, math.ceil(tt * len(data)))
+        for index, item in enumerate(data[:visible]):
+            x = left + gap * (index + 0.5)
+            y = bottom - (float(item.get("value", 0)) / high) * (bottom - top)
+            points.append((x, y))
+            color = _c(item.get("color", "accent"))
+            d.ellipse([x - 8, y - 8, x + 8, y + 8], fill=color)
+            draw_fit(d, (x, bottom + 22), str(item.get("label", "")), FSB, 22,
+                     MUTED, max(70, gap - 12), anchor="ma")
+            d.text((x, y - 34), f"{item.get('value')}{unit}", font=FSB(21),
+                   fill=INK, anchor="ma")
+        if len(points) > 1:
+            d.line(points, fill=CYAN, width=5, joint="curve")
+    else:
+        for index, item in enumerate(data):
+            x0 = left + gap * index + gap * 0.18
+            x1 = left + gap * (index + 1) - gap * 0.18
+            height = (float(item.get("value", 0)) / high) * (bottom - top) * tt
+            y0 = bottom - height
+            color = _c(item.get("color", "accent" if index % 2 == 0 else "gold"))
+            d.rounded_rectangle([x0, y0, x1, bottom], radius=10, fill=color)
+            draw_fit(d, ((x0 + x1) / 2, bottom + 22), str(item.get("label", "")),
+                     FSB, 22, MUTED, max(70, gap - 10), anchor="ma")
+            if tt > 0.65:
+                d.text(((x0 + x1) / 2, y0 - 34), f"{item.get('value')}{unit}",
+                       font=FSB(22), fill=INK, anchor="ma")
+    if b.get("insight"):
+        draw_fit(d, (W / 2, 846), b["insight"], FSB, 30, GOLD, W - 320, anchor="ma")
+    return img
+
+
+def s_worked_example(img, b):
+    """Problem at left, expert reasoning steps at right, optionally faded."""
+    d = ImageDraw.Draw(img)
+    draw_fit(d, (W / 2, 108), b.get("title", "WORKED EXAMPLE"), FB, 58,
+             INK, W - 240, anchor="ma")
+    left = [110, 220, 750, 858]
+    right = [800, 220, W - 110, 858]
+    d.rounded_rectangle(left, radius=22, fill=PANEL + (245,), outline=GOLD, width=2)
+    d.rounded_rectangle(right, radius=22, fill=PANEL + (245,), outline=CYAN, width=2)
+    tracked_text(d, (155, 258), "PROBLEM", FSB(23), GOLD, tracking=5)
+    draw_wrapped(d, (155, 310), b.get("problem", ""), FSB(34), INK, 550, 1.35)
+    tracked_text(d, (845, 258), "REASONING", FSB(23), CYAN, tracking=5)
+    steps = b.get("steps") or []
+    visible = math.ceil(max(0.0, min(1.0, b.get("_t", 1.0))) * len(steps))
+    faded_from = b.get("faded_from")
+    reveal = b.get("reveal", True)
+    y = 315
+    for index, raw in enumerate(steps[:visible]):
+        step = raw if isinstance(raw, dict) else {"title": f"Step {index + 1}", "detail": str(raw)}
+        d.ellipse([845, y + 4, 889, y + 48], fill=CYAN)
+        d.text((867, y + 26), str(index + 1), font=FB(23), fill=BG_TOP, anchor="mm")
+        if faded_from is not None and index >= int(faded_from) and not reveal:
+            d.text((915, y + 4), "YOUR TURN", font=FSB(28), fill=GOLD)
+            d.line([(915, y + 50), (W - 165, y + 50)], fill=GOLD, width=2)
+            y += 100
+            continue
+        draw_fit(d, (915, y), step.get("title", ""), FB, 29, INK, 760)
+        y = draw_wrapped(d, (915, y + 42), step.get("detail", ""), F(25), MUTED,
+                         760, 1.28) + 22
+    if b.get("model_answer") and (faded_from is None or reveal):
+        tracked_text(d, (155, 760), "RESULT", FSB(22), MINT, tracking=5)
+        draw_fit(d, (155, 800), b["model_answer"], FB, 32, MINT, 550)
+    return img
+
+
+def s_practice(img, b):
+    """Pause-and-do activity with a distinct prompt and explanatory reveal."""
+    d = ImageDraw.Draw(img)
+    reveal = bool(b.get("reveal"))
+    color = MINT if reveal else GOLD
+    tracked_text(d, (W / 2, 150), "FEEDBACK" if reveal else
+                 b.get("kicker", "PAUSE · TRY IT"), FSB(28), color,
+                 tracking=8, anchor_center=True)
+    if not reveal:
+        draw_wrapped(d, (W / 2, 270), b.get("prompt", ""), FB(54), INK,
+                     1460, 1.23, center=True)
+        if b.get("instructions"):
+            draw_wrapped(d, (W / 2, 620), b["instructions"], FSL(34), MUTED,
+                         1320, 1.3, center=True)
+    else:
+        draw_wrapped(d, (W / 2, 260), b.get("model_answer", ""), FB(48), MINT,
+                     1460, 1.25, center=True)
+        if b.get("feedback"):
+            draw_wrapped(d, (W / 2, 590), b["feedback"], F(34), INK,
+                         1400, 1.35, center=True)
+    return img
+
+
+def s_video(img, b):
+    """Poster used only by scene demos; the assembler inserts the actual source clip."""
+    d = ImageDraw.Draw(img)
+    tracked_text(d, (W / 2, 210), "SOURCE CLIP", FSB(28), CYAN, tracking=8,
+                 anchor_center=True)
+    draw_fit(d, (W / 2, 330), b.get("title", "VIDEO DEMONSTRATION"), FB, 66,
+             INK, W - 300, anchor="ma")
+    d.rounded_rectangle([390, 500, W - 390, 720], radius=24,
+                        fill=PANEL + (245,), outline=CYAN, width=3)
+    d.polygon([(875, 550), (875, 670), (1015, 610)], fill=CYAN)
+    return img
+
+
 RENDERERS = {
     "title": s_title, "section": s_section, "map": s_map,
     "quote": s_quote, "diagram": s_diagram, "quiz": s_quiz,
     "points": s_points, "cheatcard": s_cheatcard,
     "define": s_define, "coldopen": s_coldopen, "notebook": s_notebook,
+    "image": s_image, "screenshot": s_screenshot, "video": s_video,
+    "comparison": s_comparison, "timeline": s_timeline, "process": s_process,
+    "chart": s_chart, "worked_example": s_worked_example, "practice": s_practice,
     # neutral scene-type names + legacy aliases (same renderer) so authoring stays theme-free
     "persona": s_guardian, "guardian": s_guardian,
     "concept": s_control, "control": s_control,
@@ -727,8 +1082,19 @@ def render(beat: dict, out_path: str, t: float = 1.0):
 def _demo():
     demo = ART / "_demo"
     demo.mkdir(parents=True, exist_ok=True)
-    # A NEUTRAL, non-cyber demo (kitchen-skills) so every scene type can be eyeballed
-    # without implying any particular theme. Real courses supply their own theme + specs.
+    sample_asset = demo / "_sample_dashboard.png"
+    sample = Image.new("RGB", (1400, 760), (238, 241, 246))
+    sd = ImageDraw.Draw(sample)
+    sd.rounded_rectangle([70, 70, 1330, 690], radius=30, fill=(255, 255, 255),
+                         outline=(90, 105, 130), width=4)
+    sd.line([(170, 590), (170, 170), (1210, 170)], fill=(70, 80, 100), width=4)
+    pts = [(190, 540), (370, 500), (550, 430), (730, 455), (910, 330), (1090, 260)]
+    sd.line(pts, fill=(62, 124, 210), width=12, joint="curve")
+    for x, y in pts:
+        sd.ellipse([x - 12, y - 12, x + 12, y + 12], fill=(62, 124, 210))
+    sample.save(sample_asset)
+
+    # A neutral data-literacy demo exercises both legacy cards and the new visual grammar.
     samples = [
         {"scene": "title", "kicker": "AN INTERACTIVE TRAINING SERIES",
          "badge": "LESSON 01", "title": "KNIFE SKILLS", "subtitle": "Cut with confidence",
@@ -757,6 +1123,45 @@ def _demo():
                      "The claw \u2014 protect your fingertips",
                      "Rock, don't saw \u2014 tip stays on the board"],
          "mnemonic": "\u201CSharp blade, safe claw, steady board.\u201D", "tag": "L01"},
+        {"scene": "image", "asset": str(sample_asset), "title": "Start with the whole pattern",
+         "caption": "Relevant imagery establishes context; narration explains what to notice.",
+         "credit": "Original engine demo asset", "tag": "L01"},
+        {"scene": "screenshot", "asset": str(sample_asset), "title": "Read the axes before the line",
+         "callouts": [{"rect": [0.06, 0.12, 0.12, 0.70], "label": "Vertical scale"},
+                      {"rect": [0.18, 0.68, 0.70, 0.12], "label": "Time axis"}],
+         "tag": "L01"},
+        {"scene": "comparison", "title": "Trend or one-off anomaly?",
+         "left": {"title": "Trend", "body": "A sustained direction across several observations.",
+                  "label": "PATTERN"},
+         "right": {"title": "Anomaly", "body": "A short departure from the surrounding pattern.",
+                   "label": "EXCEPTION"}, "tag": "L01"},
+        {"scene": "timeline", "title": "A compact review schedule",
+         "events": [{"when": "NOW", "label": "Learn", "note": "Build the first model."},
+                    {"when": "NEXT", "label": "Retrieve", "note": "Recall without looking."},
+                    {"when": "LATER", "label": "Transfer", "note": "Apply in a new case."}],
+         "tag": "L01"},
+        {"scene": "process", "title": "Read a chart in four moves", "layout": "linear",
+         "steps": [{"title": "Axes", "detail": "Name each measure."},
+                   {"title": "Scale", "detail": "Check the visible range."},
+                   {"title": "Pattern", "detail": "Look across observations."},
+                   {"title": "Claim", "detail": "State evidence, not impression."}], "tag": "L01"},
+        {"scene": "chart", "title": "One spike is not a sustained trend", "chart_type": "line",
+         "unit": "%", "data": [{"label": "Jan", "value": 40}, {"label": "Feb", "value": 42},
+                               {"label": "Mar", "value": 71, "color": "danger"},
+                               {"label": "Apr", "value": 43}, {"label": "May", "value": 44}],
+         "insight": "Compare the spike with the observations on both sides.", "tag": "L01"},
+        {"scene": "worked_example", "title": "Model the reasoning",
+         "problem": "Does the March spike prove a rising trend?",
+         "steps": [{"title": "Inspect neighbors", "detail": "February and April remain near the baseline."},
+                   {"title": "Classify the pattern", "detail": "Only one observation departs sharply."},
+                   {"title": "Justify", "detail": "The evidence supports an anomaly, not a sustained rise."}],
+         "model_answer": "March is an anomaly.", "tag": "L01"},
+        {"scene": "practice", "prompt": "Classify the pattern and name the evidence you used.",
+         "instructions": "Pause before the reveal. Explain your reasoning in one sentence.",
+         "reveal": False, "tag": "L01"},
+        {"scene": "practice", "model_answer": "Anomaly: the adjacent observations return to baseline.",
+         "feedback": "The category matters less than the evidence. Compare multiple observations.",
+         "reveal": True, "tag": "L01"},
     ]
     for i, s in enumerate(samples):
         render(s, str(demo / f"demo_{i:02d}_{s['scene']}.jpg"))

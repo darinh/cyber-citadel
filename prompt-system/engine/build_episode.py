@@ -1,14 +1,11 @@
-"""v2 episode assembler.
+"""Objective-first episode assembler.
 
-Upgrades over v1:
-- Kokoro voices + per-character mastering (tts2)
-- Two-phase quizzes: question + on-screen COUNTDOWN (think time) -> answer reveal
-- Global audio mix: narration + music DUCKED under speech + procedural SFX bed
-- Per-speaker caption colors (ASS)
-- Emits course/episodes/epNN.cues.json (chapters + quiz cues) for the interactive player
+Supports high-quality theme-driven narration, heterogeneous source media, animated semantic
+scenes, two-phase quizzes and pause-and-do practice, optional sourced music/SFX, captions,
+and interactive cues. Source clips are normalized without audio before assembly.
 
-Video is hard-cut concat (video duration == narration duration, perfect sync);
-transition SFX (whoosh/boom) cover the cuts so they read as "produced".
+Video is hard-cut concatenated so each visual duration exactly matches its narration. The final
+audio and video use separate ffmpeg passes to prevent scene-boundary audio loss.
 """
 from __future__ import annotations
 import hashlib
@@ -24,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import os
 import scene
 import theme as _theme
+import media as _media
 import tts                      # engine/tts package: synth_line + CAST + EFFECTS + preprocess
 import music                    # engine/music.py: SOURCED public-domain/CC beds (never generated)
 import sfx as SFX               # engine/sfx.py: bundled, license-clean cue assets
@@ -66,6 +64,14 @@ ANTAGONISTS = {(_cm.get("name") or "").upper() for _cm in (_T.get("cast", []) or
                if (_cm.get("role") or "").lower() in ("antagonist", "villain", "threat")}
 
 
+def _resolve_spec_path(spec_path):
+    path = Path(spec_path)
+    if path.is_absolute():
+        return path
+    candidate = PROJECT / path
+    return candidate if candidate.exists() else path
+
+
 def _role_speaker(roles, default="NARRATOR"):
     for _cm in (_T.get("cast", []) or []):
         if (_cm.get("role") or "").lower() in roles:
@@ -102,7 +108,7 @@ def run(cmd, cwd=None):
 # reuses unchanged beats and rebuilds only the few that changed, so editing one
 # line/slide costs a few files, not the whole episode.
 RENDER_ROOT = PROJECT / "course" / "render"
-RENDER_VER = "v1"            # bump to force a full rebuild when render logic changes
+RENDER_VER = "v4"            # objective-first scenes + caption-safe quiz geometry
 
 
 def _sha(*parts):
@@ -218,8 +224,48 @@ def build_clip(png, dur, idx, out_mp4, static=False, countdown=None, fade_in=Fal
          "-r", str(FPS), "-an", str(out_mp4)])
 
 
+def source_video_duration(beat):
+    path = _media.resolve(beat.get("asset", ""), PROJECT)
+    total = dur_of(path)
+    start = float(beat.get("start", 0) or 0)
+    end = float(beat["end"]) if beat.get("end") is not None else total
+    return max(0.0, min(total, end) - start)
+
+
+def build_source_clip(beat, dur, out_mp4):
+    """Normalize a source clip separately so it cannot destabilize the final mux.
+
+    Source audio is intentionally stripped: narration, captions, music, and SFX keep
+    the proven two-pass path. If the requested excerpt is shorter than narration, the
+    last visual frame holds rather than looping misleading action.
+    """
+    path = _media.resolve(beat.get("asset", ""), PROJECT)
+    if not path.exists():
+        raise FileNotFoundError(f"source clip does not exist: {path}")
+    start = float(beat.get("start", 0) or 0)
+    segment = source_video_duration(beat)
+    if segment <= 0:
+        raise ValueError(f"video beat has an empty source range: {path}")
+    if beat.get("fit", "cover") == "contain":
+        scale = ("scale=1920:1080:force_original_aspect_ratio=decrease,"
+                 "pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=black")
+    else:
+        scale = ("scale=1920:1080:force_original_aspect_ratio=increase,"
+                 "crop=1920:1080")
+    hold = max(0.0, dur - segment)
+    vf = (f"trim=duration={segment:.3f},setpts=PTS-STARTPTS,fps={FPS},{scale},"
+          f"setsar=1,tpad=stop_mode=clone:stop_duration={hold:.3f},trim=duration={dur:.3f}")
+    run(["ffmpeg", "-y", "-ss", f"{start:.3f}", "-i", str(path),
+         "-filter_complex", f"[0:v]{vf}[v]", "-map", "[v]", "-an",
+         "-t", f"{dur:.3f}", "-c:v", "libx264", "-preset", "veryfast",
+         "-crf", "20", "-pix_fmt", "yuv420p", "-r", str(FPS), str(out_mp4)])
+
+
 ANIM = 1.4               # entrance-animation seconds for map/diagram beats
-ANIM_SCENES = {"map", "diagram"}
+ANIM_SCENES = {
+    "map", "diagram", "screenshot", "comparison", "timeline", "process", "chart",
+    "worked_example",
+}
 
 
 def build_clip_anim(beat, dur, idx, out_mp4, bdir):
@@ -303,7 +349,8 @@ def build_sfx_bed(cues, total, out_path):
 
 
 def assemble(spec_path, limit=None):
-    spec = json.loads(Path(spec_path).read_text(encoding="utf-8"))
+    spec_path = _resolve_spec_path(spec_path)
+    spec = json.loads(spec_path.read_text(encoding="utf-8"))
     epid = spec["id"].lower(); tag = spec.get("tag", spec["id"])
     _bg = spec.get("background")
     bgp = (Path(_bg) if (_bg and Path(_bg).is_absolute())
@@ -320,8 +367,11 @@ def assemble(spec_path, limit=None):
     beats = spec["beats"][:limit] if limit else spec["beats"]
 
     timeline = 0.0
-    clips, beat_audios, cap_cues, sfx_cues, quiz_cues, chapters = [], [], [], [], [], []
+    clips, beat_audios, cap_cues, sfx_cues = [], [], [], []
+    quiz_cues, activity_cues, chapters = [], [], []
     avatar_cues = []
+    sound_design = spec.get("sound_design", "minimal")
+    minimal_sfx = {"title", "section", "quiz", "practice"}
 
     def add_clip(beat, idx, lines, min_s, static, countdown=None, extra_tail=0.0):
         nonlocal timeline
@@ -334,9 +384,15 @@ def assemble(spec_path, limit=None):
         _cast = getattr(tts, "CAST", {})
         _fx = getattr(tts, "EFFECTS", {})
         vfp = [(s, _cast.get(s), _fx.get(s)) for s, _ in lines]
+        asset_refs = [beat.get("asset")]
+        if sc == "comparison":
+            asset_refs.extend((beat.get(side) or {}).get("asset") for side in ("left", "right"))
+        asset_fp = tuple(
+            _media.fingerprint(ref, PROJECT) for ref in asset_refs if ref
+        )
         bkey = _sha(RENDER_VER, json.dumps(vis, sort_keys=True, ensure_ascii=False),
                     [(s, t) for s, t in lines], vfp, round(min_s, 3), round(extra_tail, 3),
-                    idx, bool(static), countdown, fade_in)
+                    idx, bool(static), countdown, fade_in, asset_fp)
         used_keys.add(str(idx))
         clip = rdir / f"b{idx:03d}.mp4"
         aud = rdir / f"b{idx:03d}.wav"
@@ -345,7 +401,9 @@ def assemble(spec_path, limit=None):
             bdur, starts, ldurs = ent["dur"], ent["starts"], ent["ldurs"]   # cache hit: reuse
         else:
             _ba, bdur, starts, ldurs, _lc = build_beat_audio(lines, rdir, idx, min_s, extra_tail, work=bdir)
-            if sc in ANIM_SCENES:
+            if sc == "video":
+                build_source_clip(beat, bdur, clip)
+            elif sc in ANIM_SCENES:
                 build_clip_anim(beat, bdur, idx, clip, bdir)
             else:
                 png = rdir / f"b{idx:03d}.png"
@@ -354,9 +412,10 @@ def assemble(spec_path, limit=None):
             manifest["beats"][str(idx)] = {"key": bkey, "dur": bdur, "starts": starts,
                                            "ldurs": ldurs, "video": clip.name, "audio": aud.name}
         clips.append(clip); beat_audios.append(aud)
-        sname, sgain = SFX.SCENE_SFX.get(sc, ("whoosh", -17))
-        sfx_cues.append((timeline + 0.02, sname, sgain))
-        if any(sp in ANTAGONISTS for sp, _ in lines):
+        if sound_design == "cinematic" or (sound_design == "minimal" and sc in minimal_sfx):
+            sname, sgain = SFX.SCENE_SFX.get(sc, ("whoosh", -18))
+            sfx_cues.append((timeline + 0.02, sname, sgain))
+        if sound_design == "cinematic" and any(sp in ANTAGONISTS for sp, _ in lines):
             sfx_cues.append((timeline + 0.05, "rumble", -16))
         for (sp, tx), st, ld in zip(lines, starts, ldurs):
             cap_cues.extend(chunk_caption(sp, tx.replace("—", "-"), timeline + st, ld))
@@ -368,20 +427,23 @@ def assemble(spec_path, limit=None):
 
     qn = 0
     integ = 100.0
+    show_meter = bool(spec.get("progress_meter", False))
     for i, beat in enumerate(beats):
         sc = beat.get("scene")
         lines = [(s[0], s[1]) for s in beat.get("say", [])]
         # running stakes meter: dips on antagonist/threat beats, rises as concepts are taught
         _has_null = any(s[0] in ANTAGONISTS for s in beat.get("say", []))
-        if sc == "coldopen":
-            integ = max(22, integ - 18)
-        elif _has_null:
-            integ = max(22, integ - 9)
-        elif sc in ("control", "quiz", "cheatcard", "oath"):
-            integ = min(100, integ + 7)
-        elif sc in ("points", "define", "diagram", "notebook"):
-            integ = min(100, integ + 3)
-        beat = dict(beat); beat["_integrity"] = round(integ)
+        beat = dict(beat)
+        if show_meter:
+            if sc == "coldopen":
+                integ = max(22, integ - 18)
+            elif _has_null:
+                integ = max(22, integ - 9)
+            elif sc in ("control", "quiz", "cheatcard", "oath"):
+                integ = min(100, integ + 7)
+            elif sc in ("points", "define", "diagram", "notebook"):
+                integ = min(100, integ + 3)
+            beat["_integrity"] = round(integ)
         if sc == "quiz":
             qn += 1
             opts = beat.get("options", [])
@@ -412,14 +474,55 @@ def assemble(spec_path, limit=None):
                          for (x0, y0, x1, y1) in _bx]
             quiz_cues.append({"n": qn, "q": beat.get("q", ""), "options": opts,
                               "answer": ans, "why": why, "opt_rects": opt_rects,
+                              "objective_ids": beat.get("objective_ids", []),
+                              "practice_id": beat.get("practice_id"),
+                              "evidence_id": beat.get("evidence_id"),
                               "t_question": round(q_start, 2),
                               "t_quiz": round(q_start + q_narr, 2),
                               "t_reveal": round(r_start, 2),
                               "t_resume": round(r_start + r_dur, 2)})
             chapters.append({"t": round(q_start, 2), "title": f"Quiz {qn}"})
+        elif sc == "practice":
+            think = float(beat.get("think_seconds", 8.0))
+            pbeat = dict(beat); pbeat["reveal"] = False
+            p_lines = list(lines)
+            if beat.get("prompt"):
+                p_lines.append(("NARRATOR", beat["prompt"]))
+            if beat.get("instructions"):
+                p_lines.append(("NARRATOR", beat["instructions"]))
+            p_lines.append((QUIZ_PROMPT_SPEAKER, "Pause here and work it out before the reveal."))
+            p_start, p_dur, p_narr = add_clip(
+                pbeat, i * 10, p_lines, beat.get("min_seconds", 6.0),
+                static=True, countdown=think, extra_tail=think,
+            )
+            answer = beat.get("model_answer", "")
+            feedback = beat.get("feedback", "")
+            reveal_text = f"A strong response is: {answer}." + (
+                f" {feedback}" if feedback else ""
+            )
+            rbeat = dict(beat); rbeat["reveal"] = True
+            r_start, r_dur, _ = add_clip(
+                rbeat, i * 10 + 1, [[QUIZ_REVEAL_SPEAKER, reveal_text]],
+                max(REVEAL_HOLD, 5.0), static=True,
+            )
+            activity_cues.append({
+                "type": beat.get("practice_type", "reflection"),
+                "prompt": beat.get("prompt", ""),
+                "model_answer": answer,
+                "feedback": feedback,
+                "objective_ids": beat.get("objective_ids", []),
+                "practice_id": beat.get("practice_id"),
+                "evidence_id": beat.get("evidence_id"),
+                "t_prompt": round(p_start, 2),
+                "t_pause": round(p_start + p_narr, 2),
+                "t_reveal": round(r_start, 2),
+                "t_resume": round(r_start + r_dur, 2),
+            })
+            chapters.append({"t": round(p_start, 2), "title": "Practice"})
         else:
             static = sc in ("control", "quote", "cheatcard", "points", "diagram",
-                            "define", "coldopen", "oath", "notebook")
+                            "define", "coldopen", "oath", "notebook", "screenshot",
+                            "comparison", "timeline", "process", "chart", "worked_example")
             ms = beat.get("min_seconds", 2.6 if lines else 3.0)
             if sc in ("points", "cheatcard"):     # dense slides need time to read
                 ms = max(ms, 3.5 + 1.7 * len(beat.get("bullets", [])))
@@ -431,6 +534,8 @@ def assemble(spec_path, limit=None):
                 ms = max(ms, 6.5)
             elif sc == "control":
                 ms = max(ms, 6.5)
+            elif sc == "video":
+                ms = max(ms, source_video_duration(beat))
             st, du, _ = add_clip(beat, i * 10, lines, ms, static=static)
             if sc in ("title", "section", "map"):
                 chapters.append({"t": round(st, 2),
@@ -514,13 +619,12 @@ def assemble(spec_path, limit=None):
 
     (out_dir / f"{epid}_{slug}.srt").write_text((bdir / "ep.srt").read_text(encoding="utf-8"), encoding="utf-8")
     cues = {"id": spec["id"], "title": spec.get("tag", spec["id"]), "duration": round(T, 2),
-            "chapters": chapters, "quizzes": quiz_cues}
+            "chapters": chapters, "quizzes": quiz_cues, "activities": activity_cues}
     (out_dir / f"{epid}.cues.json").write_text(json.dumps(cues, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"EPISODE: {final}  ({T/60:.1f} min, {len(beats)} beats, {len(quiz_cues)} quizzes)")
     return final
 
 
 if __name__ == "__main__":
-    spec = sys.argv[1]
     limit = int(sys.argv[sys.argv.index("--beats") + 1]) if "--beats" in sys.argv else None
-    assemble(spec, limit)
+    assemble(sys.argv[1], limit)

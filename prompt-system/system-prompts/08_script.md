@@ -1,106 +1,80 @@
-# 08 — Script → `course/scripts/epNN.json`
+# 08 — Storyboard and script from the learning blueprint
 
-Author one JSON spec per episode: an ordered list of **beats** (a scene + on-screen fields + spoken
-`say` lines) that the engine renders into a captioned, quizzed mp4. You write words and structure only;
-geometry, timing, caption placement, and quiz layout are fixed in `engine/`.
+Read the truth layer, learning blueprint, media manifest, theme, `reference/PEDAGOGY_RULES.md`,
+`reference/VISUAL_LANGUAGE.md`, and `reference/SCENE_CONTRACT.md`. Author
+`course/scripts/epNN.json` as an aligned **instructional storyboard**, not a transcript pasted onto
+slides.
 
-Read `reference/SCENE_CONTRACT.md` (every beat field) and `reference/PRODUCTION_RULES.md` (craft) first.
-Copy `examples/kitchen-academy/course/scripts/ep01.json` as your template and mirror its beat patterns.
+## 1. Trace every episode and beat
 
----
+Each episode declares `objective_ids`. Each beat declares:
 
-## Goal
-Produce a valid `course/scripts/epNN.json` whose on-screen facts all trace to `course/data/truth.json`,
-that opens on a hook, teaches 2–3 concepts (each anchored by a verbatim quote), recaps, and quizzes.
+- `objective_ids` it advances;
+- `fact_ids` for every factual claim;
+- `purpose` such as activate, explain, model, non-example, guided practice,
+  independent practice, feedback, retrieve, transfer, or assess;
+- `visual_purpose`: what the learner should notice or do with the visual;
+- `alt` for explanatory visuals;
+- `practice_id` or `evidence_id` where applicable;
+- `narrative_function` only if narrative is enabled.
 
----
+Do not write ornamental filler. If a beat has no objective or instructional function, remove it.
 
-## Spec shape
+## 2. Use complementary channels
 
-```json
-{
-  "id": "ep01",
-  "tag": "L01",
-  "slug": "knife_skills",
-  "beats": []
-}
-```
+Narration carries explanation and reasoning. On-screen text labels, signals, and summarizes; it does
+not reproduce paragraphs of narration. Show the referent while naming it. Point to the exact chart
+feature, UI control, process step, or contrast at the moment it is discussed.
 
-Top-level optional fields: `num`, `title`, `subtitle` (or `families`), `synopsis`, `background`
-(an `assets/backgrounds/<name>.png`), and `music` (a file in `assets/music/`). See
-`schemas/episode-spec.schema.json`.
+Use treatments from the blueprint:
 
----
+- `image` for relevant appearance/context;
+- `screenshot` plus callouts for interfaces/documents;
+- `video` for source demonstrations;
+- `comparison` for alternatives and non-examples;
+- `timeline` for temporal order/change;
+- `process` for stages and relationships;
+- `chart` for quantities/patterns;
+- `diagram` for structure;
+- `worked_example` for expert reasoning;
+- `practice` for pause-and-do performance;
+- `quiz` for aligned retrieval or decisions;
+- `quote` only when exact language matters.
 
-## Beat shape + scene types
-Every beat has a `scene` plus its scene-specific fields, optional `say`, and optional `min_seconds`:
+The engine owns layout. Scripts provide semantic content and normalized callout rectangles, never
+raw pixel coordinates.
 
-```json
-{
-  "scene": "concept",
-  "id": "KN-1",
-  "title": "Pinch Grip",
-  "plain": "Pinch the blade just ahead of the handle for control.",
-  "why": "It turns your wrist into a precise hinge.",
-  "source": "Kitchen Academy Handbook",
-  "section": "2.1",
-  "say": [["APPRENTICE", "Where should my hand be?"], ["CHEF", "Pinch the blade, thumb and finger."]],
-  "min_seconds": 6.0
-}
-```
+## 3. Build learning, not just coverage
 
-Scene types (neutral names; legacy aliases in parens): `title`, `section`, `map`, `persona`(`guardian`),
-`concept`(`control`), `quote`, `diagram`, `points`, `cheatcard`, `define`, `coldopen`, `quiz`,
-`pledge`(`oath`), `notebook`. Per-field details are in `reference/SCENE_CONTRACT.md`. **Never hand-set**
-`_integrity`, `_t`, `tag`, or `reveal` — the engine injects them.
+For complex performance, model the reasoning, then use guided/completion practice and fade toward
+independence. Put feedback after commitment: state the correct answer/action, why it is correct, why
+the likely alternative fails, and what cue to use next time. Include a novel surface context for
+apply-level or higher objectives.
 
----
+Use retrieval across episodes, not only same-scene repetition. If discrimination matters, mix
+problem types rather than blocking one category at a time. Keep pacing segmented: one conceptual
+move per beat, with natural pauses at boundaries.
 
-## Rules to bake in (NON-NEGOTIABLE)
-1. **Facts are sourced.** Every on-screen `id`/`title`/`quote` comes from `course/data/truth.json`. A
-   `concept`/`control` `id`+`title` must match a fact; a `quote` must be a **verbatim substring** of that
-   fact's `statement`, with a `cite` naming the id. `verify_facts` enforces this (phase 09).
-2. **Quotes read verbatim.** On a `quote` beat the spoken `say` must equal the on-screen `quote`
-   word-for-word — the source-reader never reads a truncated quote. Put the same text in both.
-3. **Quizzes are interactive + read aloud.** A `quiz` beat needs `q`, `options` (2–4), `answer` (0-based
-   index), and `why`. The engine auto-narrates the question, every option ("A… B… C…"), a "pause and lock
-   in" prompt with think-time, then a reveal that reads the **correct answer text + the one-line why** —
-   and exports normalized `opt_rects` so the player lays clickable hotspots EXACTLY on the rendered
-   boxes. Do NOT write "pause" in a quiz `say` line (lint blocks the double prompt).
-4. **Episode arc.** Open on a **hook** (`coldopen`/`title`); `define` jargon before use; teach **2–3
-   concepts** (each a `concept` plain + why, anchored by a verbatim `quote`); then **recap**
-   (`points`/`cheatcard`/`notebook`); then a **quiz**. End scenes with forward motion.
-5. **Characters keep their archetype.** The learner-avatar asks novice questions (never lectures); the
-   expert/mentor explains and corrects; the verbatim-source reader only reads source text. Don't have two
-   characters deliver the same explanation.
+## 4. Quiz and practice contracts
 
----
+The interactive player preserves answer geometry from the rendered quiz scene. Keep exactly four
+options for interactive MCQ beats; state the full answer text and one-line explanation in narration.
+Do not use MCQ for a performance objective when a scenario, artifact, explanation, or pause-and-do
+task is the aligned evidence.
 
-## Author the spec
-1. Copy `examples/kitchen-academy/course/scripts/ep01.json` into `course/scripts/ep01.json` and adapt it.
-2. Pull every `id`/`title`/`quote`/`cite` straight from `course/data/truth.json`.
-3. Set `min_seconds` generously on dense slides (`points`, `cheatcard`, `define`, `notebook`).
-4. Keep section/map/title headings unique in the episode; keep titles short enough to fit (phase 09
-   measures overflow).
+`practice` beats are two-phase: first show the task and a visible work interval, then resume with the
+reveal, model answer, and explanatory feedback.
 
----
+## 5. Review before audio
 
-## Review as TEXT with a council (cheaper than re-rendering)
-Before any render, run an **adversarial multi-model council** on the script text:
+Run a multi-model table read and an adversarial instructional review. Reviewers ask:
 
-- Launch several `task` agents with **different `model` values** (e.g. a GPT, a Gemini, a Claude), plus
-  the `screenplay-review` skill if available. Ask each to find: factual drift from `truth.json`,
-  archetype slips (a learner lecturing), word echoes across adjacent lines, dull pacing,
-  weak/ambiguous quiz options, and metaphor that never maps back to reality.
-- Reconcile the notes, reach **consensus**, and revise the spec before proceeding.
+- Does each objective receive explanation, aligned practice, and feedback?
+- Does higher-order evidence require higher-order performance?
+- Is coverage complete without becoming source recitation?
+- Are visual choices causally useful rather than decorative?
+- Does narration duplicate dense screen text?
+- Does story, if any, consume time without teaching?
+- Can a learner apply the skill to a new example?
 
----
-
-## Self-review
-- Does the JSON parse, with every `scene` a valid scene type?
-- Does every on-screen `id`/`title`/`quote` trace to `truth.json`, and does each `quote` `say` equal the on-screen quote?
-- Are there 2–3 concepts, a hook, a recap, and — if quizzes are enabled — at least one quiz with a single clearly-correct answer?
-- Are character voices distinct, with no duplicated explanations?
-- Did the council reach consensus and were edits applied?
-
-Then route to `system-prompts/09_gates.md`.
+Fix text now. Then continue to `09_gates.md`.

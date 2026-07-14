@@ -1,0 +1,223 @@
+{
+  "schema_version": "2.0",
+  "course_goal": "Enable new operations analysts to classify unfamiliar short time-series patterns and justify decisions without overclaiming from a single point or timing coincidence.",
+  "audience": {
+    "description": "New operations analysts who review weekly dashboards",
+    "prior_knowledge": ["Can read whole numbers and percentages", "Recognizes a line chart"],
+    "work_context": "Classifying dashboard patterns before escalating an operational issue",
+    "constraints": ["One short video", "No assumed statistical training"],
+    "accessibility": ["Captions", "High contrast", "Do not rely on color alone"]
+  },
+  "terminal_objective": {
+    "id": "TERM-1",
+    "action_verb": "classify",
+    "performance": "Classify an unfamiliar short time-series as a trend, anomaly, or insufficient evidence and justify the decision with visible cues.",
+    "condition": "Given a labeled or partially labeled chart not used during modeling",
+    "success_criteria": [
+      "Selects the defensible category",
+      "Names at least one visible cue",
+      "Does not claim causation from timing alone"
+    ],
+    "level": "evaluate"
+  },
+  "coverage": {
+    "required_fact_ids": [
+      "PAT-1", "PAT-2", "PAT-3", "PAT-4", "PAT-5", "PAT-6",
+      "EX-1", "EX-2", "EX-3", "EX-4", "EX-5", "EX-6"
+    ],
+    "excluded_fact_ids": []
+  },
+  "objectives": [
+    {
+      "id": "OBJ-1",
+      "action_verb": "inspect",
+      "performance": "Inspect title, axes, units, time span, and scale before interpreting a chart.",
+      "condition": "Given an unfamiliar dashboard chart",
+      "success_criteria": ["Identifies all available context fields", "Flags any essential missing label"],
+      "level": "apply",
+      "prerequisites": [],
+      "fact_ids": ["PAT-1", "PAT-4", "EX-1"],
+      "misconceptions": ["The line shape can be interpreted before reading labels"],
+      "enables_terminal": true,
+      "transfer_context": "A chart with a different metric, scale, and missing unit label",
+      "evidence": [
+        {
+          "id": "E-1",
+          "type": "error_detection",
+          "description": "Identify which missing or overlooked chart context makes a conclusion unsafe.",
+          "criteria": ["Names the missing field", "Explains why it limits interpretation"]
+        }
+      ],
+      "practices": [
+        {
+          "id": "P-1",
+          "type": "error_detection",
+          "description": "Independently identify why an unlabeled chart cannot support a firm classification.",
+          "scaffolding": "independent",
+          "transfer": true,
+          "feedback": {
+            "type": "elaborative",
+            "content": "Missing context changes what the same line shape could mean, so the defensible category is insufficient evidence."
+          }
+        }
+      ],
+      "representations": [
+        {
+          "treatment": "image",
+          "purpose": "establish_context",
+          "rationale": "A realistic analysis workspace anchors the chart-reading task in the learner's work context."
+        },
+        {
+          "treatment": "screenshot",
+          "purpose": "locate",
+          "rationale": "An annotated dashboard lets learners locate title, units, scale, and time span in a real interface."
+        },
+        {
+          "treatment": "process",
+          "purpose": "explain_process",
+          "rationale": "A short ordered process gives novices a reusable inspection routine before classification."
+        }
+      ]
+    },
+    {
+      "id": "OBJ-2",
+      "action_verb": "distinguish",
+      "performance": "Distinguish a sustained trend from an isolated anomaly and from insufficient evidence.",
+      "condition": "Given short time-series examples with varied surface features",
+      "success_criteria": ["Uses persistence across observations", "Does not treat one point as a trend"],
+      "level": "analyze",
+      "prerequisites": ["OBJ-1"],
+      "fact_ids": ["PAT-2", "PAT-3", "PAT-4", "EX-1", "EX-2", "EX-3", "EX-4"],
+      "misconceptions": ["Any large final point proves a trend", "Every unusual point is an error"],
+      "enables_terminal": true,
+      "transfer_context": "A staffing metric with a different range and direction from the worked example",
+      "evidence": [
+        {
+          "id": "E-2",
+          "type": "classification",
+          "description": "Classify several unfamiliar patterns and cite the feature that separates them.",
+          "criteria": ["Correct category", "Evidence names persistence, return to range, or missing context"]
+        }
+      ],
+      "practices": [
+        {
+          "id": "P-2B",
+          "type": "classification",
+          "description": "Classify a short numeric sequence after a comparison of trend and anomaly.",
+          "scaffolding": "guided",
+          "feedback": {
+            "type": "comparative",
+            "content": "A trend persists across observations; an anomaly departs and then returns toward the prior range."
+          }
+        },
+        {
+          "id": "P-2",
+          "type": "classification",
+          "description": "Independently classify a different downward sequence.",
+          "scaffolding": "independent",
+          "transfer": true,
+          "feedback": {
+            "type": "elaborative",
+            "content": "Direction can be upward or downward; repeated movement is the relevant cue."
+          }
+        }
+      ],
+      "representations": [
+        {
+          "treatment": "chart",
+          "purpose": "visualize_quantity",
+          "rationale": "Plotted observations make persistence and return to the prior range directly inspectable."
+        },
+        {
+          "treatment": "comparison",
+          "purpose": "compare_cases",
+          "rationale": "Side-by-side criteria expose the decision boundary between a trend and an anomaly."
+        },
+        {
+          "treatment": "video",
+          "purpose": "show_change",
+          "rationale": "Progressively appearing observations demonstrate that a trend is established across time, not by one point."
+        },
+        {
+          "treatment": "worked_example",
+          "purpose": "model_reasoning",
+          "rationale": "The worked example makes the expert inspection and classification steps visible."
+        }
+      ]
+    },
+    {
+      "id": "OBJ-3",
+      "action_verb": "justify",
+      "performance": "Justify a pattern classification with visible evidence while separating an investigation hypothesis from a causal claim.",
+      "condition": "Given an unfamiliar chart and a nearby operational event",
+      "success_criteria": ["States category and cue", "Uses qualified language", "Does not infer cause from timing alone"],
+      "level": "evaluate",
+      "prerequisites": ["OBJ-1", "OBJ-2"],
+      "fact_ids": ["PAT-5", "PAT-6", "EX-5", "EX-6"],
+      "misconceptions": ["A nearby event proves what caused the pattern", "Naming a category is enough justification"],
+      "enables_terminal": true,
+      "transfer_context": "A hospital wait-time chart paired with a scheduling change",
+      "evidence": [
+        {
+          "id": "E-3",
+          "type": "apply_to_novel",
+          "description": "Classify and justify a new domain example while qualifying a causal hypothesis.",
+          "criteria": ["Defensible category", "Visible cue cited", "Causal language remains qualified"]
+        }
+      ],
+      "practices": [
+        {
+          "id": "P-3",
+          "type": "apply_to_novel",
+          "description": "Independently classify and justify an unfamiliar wait-time sequence.",
+          "scaffolding": "independent",
+          "transfer": true,
+          "feedback": {
+            "type": "elaborative",
+            "content": "A strong response names the category, cites repeated movement, and treats the scheduling change as a hypothesis rather than proof."
+          }
+        }
+      ],
+      "representations": [
+        {
+          "treatment": "timeline",
+          "purpose": "show_change",
+          "rationale": "A timeline makes temporal proximity visible while preserving the distinction between sequence and causation."
+        },
+        {
+          "treatment": "chart",
+          "purpose": "support_practice",
+          "rationale": "A novel chart supplies observable evidence for the final independent classification."
+        }
+      ]
+    }
+  ],
+  "episodes": [
+    {
+      "id": "ep01",
+      "objective_ids": ["OBJ-1", "OBJ-2", "OBJ-3"],
+      "retrieves": [],
+      "transfer_task": "Classify and justify an unfamiliar hospital wait-time pattern paired with a nearby scheduling change."
+    }
+  ],
+  "retention": {
+    "follow_up": [
+      {
+        "after": "1 day",
+        "objective_ids": ["OBJ-1", "OBJ-2"],
+        "activity": "Inspect and classify one unlabeled and one labeled chart before checking the guide."
+      },
+      {
+        "after": "1 week",
+        "objective_ids": ["OBJ-1", "OBJ-2", "OBJ-3"],
+        "activity": "Classify a new work dashboard pattern, cite evidence, and write one alternate explanation."
+      }
+    ],
+    "interleaving_rationale": "Trend, anomaly, and insufficient-evidence cases are mixed because analysts must discriminate among them in the same workflow."
+  },
+  "delivery": {
+    "mode": "direct",
+    "cast": "narrator-only",
+    "narrative": {"enabled": false}
+  }
+}

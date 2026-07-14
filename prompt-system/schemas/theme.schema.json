@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "theme.json — creative tokens (the ONLY thing a course author changes about how it LOOKS)",
+  "title": "theme.json — visual identity and optional voice/cast tokens",
   "type": "object",
-  "required": ["brand", "palette", "cast"],
+  "required": ["brand", "palette"],
   "properties": {
     "brand": {"type": "string", "description": "Series name shown top-left and as the page title."},
     "series_kicker": {"type": "string", "description": "Small tagline on the title card."},
@@ -24,9 +24,18 @@
         "accent": {}, "accent2": {}, "gold": {}, "mint": {}, "danger": {}, "violet": {}
       }
     },
+    "visual": {
+      "type": "object",
+      "description": "Restrained surface treatment. Scene geometry remains engine-owned; only quiz geometry is globally frozen.",
+      "properties": {
+        "background_style": {"enum": ["clean", "gradient", "grid", "paper"]},
+        "chrome": {"enum": ["minimal", "framed"]},
+        "image_tint": {"type": "number", "minimum": 0, "maximum": 0.8}
+      }
+    },
     "world": {
       "type": "object",
-      "description": "On-screen vocabulary (words only — never geometry).",
+      "description": "Optional narrative vocabulary retained for story-based courses and v1 compatibility.",
       "properties": {
         "stakes_label": {"type": "string", "description": "Optional top progress/stakes meter label."},
         "center_label": {"type": "string", "description": "The protected center on a map scene."},
@@ -55,13 +64,13 @@
     },
     "cast": {
       "type": "array",
-      "description": "Original characters. Names are UPPERCASE speaker ids used in beat `say`.",
+      "description": "Optional voice roster. A direct course normally has one NARRATOR entry; fictional characters are not required.",
       "items": {
         "type": "object",
         "required": ["name"],
         "properties": {
           "name": {"type": "string"},
-          "role": {"type": "string", "enum": ["narrator", "mentor", "expert", "learner", "source", "antagonist", "villain", "threat", ""], "description": "antagonist/villain/threat get a low rumble + stakes dip + italic captions."},
+          "role": {"type": "string", "enum": ["narrator", "presenter", "host", "mentor", "expert", "learner", "source", "antagonist", "villain", "threat", ""], "description": "Fictional roles are optional. antagonist/villain/threat receive special audio treatment."},
           "caption_color": {"type": "string", "description": "A palette token or #rrggbb."},
           "voice": {
             "type": "object",

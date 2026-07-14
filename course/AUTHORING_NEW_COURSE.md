@@ -1,141 +1,176 @@
-# Authoring a NEW course with the Cyber Citadel engine
+# Authoring a new course with the portable prompt system
 
-*This is the operator's manual for reusing this fully-local pipeline to build a **different**
-training course (any standard, framework, or body of knowledge). It assumes the tooling in
-`tools/` and the conventions in `GENERATION_PLAYBOOK.md`. Read the playbook's **§11 Production
-Rules** and **§12 Incremental Render Architecture** first; this guide ties them into a workflow.*
+Use `prompt-system/` for a new subject. The original course under `course/` is one creative
+instantiation with its own cast and tooling; it is not the template. The portable engine defaults to
+direct, narrator-only instruction and chooses media, scenarios, or narrative from the learning task.
 
-The engine is topic-agnostic: a **truth layer** (authoritative facts) + **declarative JSON
-episode specs** (beats made of typed scenes + character dialogue) → **local TTS** + **Pillow
-scenes** + **ffmpeg** → mp4s + captions + an interactive web player. Nothing here is specific to
-NIST except the content you put in the truth layer and the specs.
+Read:
 
----
+- `prompt-system/AGENTS.md`
+- `prompt-system/reference/PEDAGOGY_RULES.md`
+- `prompt-system/reference/VISUAL_LANGUAGE.md`
+- `prompt-system/reference/SCENE_CONTRACT.md`
+- `prompt-system/reference/PRODUCTION_RULES.md`
 
-## 0. One-time environment (per machine)
-- **Two Python venvs** (heavy deps don't co-exist): `.venv_img` (SDXL + diffusers + IP-Adapter,
-  image gen) and `.venv_tts` (Chatterbox + torch cu124, voice). `ffmpeg/ffprobe 8.0`, `python 3.11`.
-- **ollama** for drafting/review councils (gpt-oss:20b, gemma3:27b, …).
-- **IP-Adapter weights** under `tools/_ipa/` (see playbook §4a). `$env:PYTHONUTF8=1` for scripts.
-- Set `$env:CC_TTS='chatterbox'` to use the current voice engine.
+## 1. Project isolation
 
-## 1. Pipeline at a glance
-```
-authoritative source ──build_truth──▶ course/data/truth.json   (facts: id/title/text)
-                                          │
-world+cast (PRODUCTION_BIBLE) ────────────┤
-                                          ▼
-        episode specs  course/scripts/epNN.json   (beats = scenes + dialogue)
-                                          │  verify_script.py (deterministic gate)
-                                          │  audit_narration.py (local-LLM fact-check)
-                                          ▼
-   build_episode2.py  ──▶ course/render/<ep>/ (persistent per-beat/per-line artifacts)
-        scene.py (Pillow stills) + tts3.py (voice) + music2/sfx + ffmpeg
-                                          ▼
-            course/episodes/epNN_*.mp4 + .srt/.vtt + .cues.json
-                                          │  package.py
-                                          ▼
-            transcripts + quizzes.json + manifest.json + index.html / watch.html → GitHub Pages
+Every new course lives under `prompt-system/projects/<slug>/`:
+
+```text
+project.json
+capabilities.json
+theme.json
+course/data/truth.json
+course/design/learning-blueprint.json
+course/scripts/epNN.json
+assets/media.json
+assets/{media,voices,avatars,music}/
 ```
 
-## 2. Step-by-step for a new course
+Do not put generated course artifacts in the repository root or copy the original course's names,
+world, palette, cast, story structure, or scene sequence.
 
-### Step 1 — Build the truth layer
-Point `tools/build_truth.py` at your authoritative source and emit `course/data/truth.json` in
-the shape the gates expect: `TRUTH[group].controls[ID] = {title, statement, discussion,
-related, enhancements:[{id,title}]}`. You need, per unit: a stable **ID**, an exact **title**,
-and a **verbatim quotable statement**. Keep the shape so `verify_script.py` / `audit_narration.py`
-work unchanged. *All on-screen IDs/titles/quotes must come from here — never from LLM memory.*
+## 2. Objective-first pipeline
 
-### Step 2 — Design the world + cast (creative spec)
-Write a Production-Bible analog: a **method-of-loci** map for your taxonomy and the four
-archetypes — **expert** (mentor), **learner-avatar** (asks novice questions, grows), **verbatim
-source** (reads the real text; never opines), **antagonist** (embodies the threat/failure mode).
-Define tone per character. (See `PRODUCTION_BIBLE.md` for the NIST instantiation.)
+```text
+authoritative source
+  -> truth.json (stable facts and citations)
+  -> desired terminal performance and prerequisite objectives
+  -> acceptable evidence, learner practice, feedback, and transfer
+  -> purposeful representations and optional delivery concept
+  -> episode storyboard/script
+  -> instructional + fact + IP + craft gates
+  -> one pilot render and final-mp4/player verification
+  -> remaining episodes and optional reinforcement
+```
 
-### Step 3 — Generate the cast art (see playbook §4 + §4c, `seed_registry.yaml`)
-Base portrait per character at a **fixed seed** (`gen_avatars.py`), then expression variants via
-**IP-Adapter image-conditioning** on that base (`gen_avatar_ipa.py`, identity scale ~0.72). Frame
-into cards (`make_avatars.py`). **Record every seed + prompt in `seed_registry.yaml` before
-deriving variants.** Optionally regenerate backgrounds (`gen_backgrounds.py`, hybrid rule §4b).
+### Intake
 
-### Step 4 — Clone the voices (see playbook §5)
-Put a license-clean reference clip per character in `tools/voices_ref/<SPEAKER>.wav`; set
-per-character Chatterbox knobs (`exaggeration/cfg_weight/temperature`, plus any pitch/EQ) in
-`tts3.py CAST`/`EFFECTS`. Extend the pronunciation map in `tts.py preprocess()` for your domain's
-acronyms/IDs (spoken text only). Smoke-test with `python tools\tts3.py`.
+Collect the audience, prior knowledge, use context, source, scope, and an observable completion:
 
-### Step 5 — Author episode specs (`course/scripts/epNN.json`)
-Each spec = `{"id","tag","slug","beats":[ ... ]}`. A beat is `{"scene": <type>, ...fields,
-"say": [["SPEAKER","line"], ...], "min_seconds": <float>}`. Follow the **§11 Production Rules**
-(antagonist always in character + present every episode; quizzes read Q+options+answer+why;
-every episode opens on a hook and closes on an antagonist escalation; verbatim source only
-quotes; translate the metaphor back to reality). See the **scene-type contract** in §3 below.
+> After this course, the learner can ___ under ___ conditions to ___ criteria.
 
-### Step 6 — Gate every script (before rendering)
+Ask about delivery preferences, but do not require an aesthetic, world, cast, avatars, music, or
+story. When the user delegates those decisions, default to direct narrator-only instruction,
+practice enabled, and restrained subject-derived visuals.
+
+### Truth layer
+
+Parse or curate the authoritative source into `course/data/truth.json`. Each fact needs a stable ID,
+title, statement, and citation/section where available. Source every factual visual claim too. Never
+use model memory as authority.
+
+### Learning blueprint
+
+Write `course/design/learning-blueprint.json` using
+`prompt-system/schemas/learning-blueprint.schema.json`. Explicitly:
+
+- require or exclude every truth fact with a reason;
+- decompose the terminal performance into measurable prerequisite objectives;
+- choose evidence before instruction;
+- match evidence/practice to cognitive demand;
+- model and fade complex skills toward independent performance;
+- provide explanatory feedback;
+- include novel transfer for apply-level and higher objectives;
+- plan delayed/cumulative retrieval;
+- state why each image, screenshot, clip, chart, diagram, comparison, or worked example is needed.
+
+### Visual language and media
+
+Choose treatment by the learner's task:
+
+| Need | Treatment |
+|---|---|
+| Recognize appearance/context | relevant image |
+| Locate a real control or document element | annotated screenshot |
+| Observe a procedure | source video or screenshot sequence |
+| See change/order | animation, timeline, process, or chart |
+| Understand structure | diagram/process |
+| Discriminate cases | comparison with examples/non-examples |
+| Interpret quantity | sourced chart |
+| Follow reasoning | worked example |
+| Perform/retrieve | practice or interactive quiz |
+
+Register images and clips in `assets/media.json` with path, origin, license, creator, source URL,
+credit, and alt text. Music is optional and sourced only. Story/cast/avatar work occurs only when
+`learning-blueprint.delivery.narrative.enabled` is true with a concrete instructional function.
+
+## 3. Episode v2 contract
+
+Each spec is schema version `2.0` and declares the planned objective IDs. Every non-structural beat
+traces to:
+
+- `objective_ids`
+- `fact_ids`
+- `purpose` (`explain`, `model`, `guided_practice`, `transfer`, and so on)
+- `visual_purpose`
+- `practice_id` / `evidence_id` where relevant
+- `alt` for explanatory visuals
+- `say` narration/dialogue
+
+Primary treatments:
+
+| Scene | Semantic fields |
+|---|---|
+| `image` | `asset`, `fit`, `focus`, `title`, `caption` |
+| `screenshot` | `asset`, normalized `callouts[].rect`, `label` |
+| `video` | `asset`, `start`, `end`, `fit` |
+| `comparison` | semantic `left` and `right` cases |
+| `timeline` | `events[{when,label,note}]` |
+| `process` | `steps[{title,detail}]`, `layout` |
+| `chart` | `chart_type`, `data[{label,value}]`, `unit`, `insight` |
+| `worked_example` | `problem`, reasoning `steps`, `model_answer` |
+| `practice` | `prompt`, `instructions`, `think_seconds`, `model_answer`, `feedback` |
+| `quiz` | `q`, four `options`, zero-based `answer`, explanatory `why` |
+
+The engine owns pixels, font measurement, animation, captions, and quiz geometry. See
+`prompt-system/reference/SCENE_CONTRACT.md` for exact examples and legacy scene compatibility.
+
+## 4. Gates before rendering
+
+From `prompt-system/`:
+
 ```powershell
-python tools\verify_script.py course\scripts\epNN.json      # deterministic: facts vs truth.json
-python tools\audit_narration.py course\scripts\epNN.json    # local-LLM narrative fact-check
-```
-Fix all hard errors. Then run a **multi-LLM council** (playbook §7) on the scripts.
+$env:CC_PROJECT = (Resolve-Path "projects\<slug>").Path
+$env:PYTHONUTF8 = "1"
+$env:CC_VERIFY = "1"
 
-### Step 7 — Render (incremental; see §12)
+python engine\gates\lint_instruction.py --warn
+python engine\gates\verify_facts.py "$env:CC_PROJECT\course\scripts\ep01.json"
+python engine\gates\lint_prompts.py
+python engine\gates\lint_script.py ep01 --warn
+```
+
+Then run an adversarial source/claim audit and a multi-model screenplay/instructional review.
+Reconcile findings against the source and contracts. Automated structure checks do not prove learner
+effectiveness.
+
+## 5. Render and verify one pilot
+
 ```powershell
-$env:CC_TTS='chatterbox'; python tools\render_all.py epNN     # ONE episode first (spot-check)
-$env:CC_TTS='chatterbox'; python tools\render_all.py          # all, once spot-check passes
+Remove-Item Env:CC_TTS -ErrorAction SilentlyContinue
+python engine\build_episode.py "$env:CC_PROJECT\course\scripts\ep01.json"
+python engine\gates\verify_episode.py ep01
+python engine\package.py
+python player\serve.py
 ```
-Artifacts persist under `course/render/<ep>/` keyed by a content hash, so **editing one
-line/slide rebuilds only that beat**. Bump `RENDER_VER` in `build_episode2.py` when you change
-**render logic** (scene drawing, grade, etc.) to force a rebuild. **Always spot-check one
-episode (extract a frame, listen) before a full batch.**
 
-### Step 8 — Package + deploy
-```powershell
-python tools\package.py        # transcripts (incl. on-screen text), quizzes.json, manifest, index.html, VTT
-```
-Commit `course/episodes/*.mp4|srt|vtt|cues.json`, `manifest.json`, `index.html`; push to the
-Pages branch. (`course/render/` and the venvs/model weights stay gitignored.)
+Chatterbox, SDXL when generation is needed, and large-v3 verification are the high-quality defaults
+on GPU or CPU. Hardware changes speed, never model quality. Any downgrade requires explicit user
+approval.
 
----
+Watch the pilot completely and resized. Verify source clip timing, callouts, chart labels, learner
+work time, explanatory reveals, captions, final audio, and interactive hotspot alignment. Only then
+render additional episodes.
 
-## 3. Episode-spec scene-type contract (authoritative field reference)
-Every beat: `scene` (required) + optional `say` `[["SPEAKER","text"], ...]` + `min_seconds`.
-Speakers: the cast names (e.g. `NARRATOR, VEGA, NOVA, ARCHIVIST, NULL, HERALD`) — each needs a
-voice in `tts3.py` and a framed avatar `course/art/avatars/<SPEAKER>.png`. Fields per scene:
+## 6. Retention and performance support
 
-| scene | fields (besides `say`/`min_seconds`) | notes |
-|-------|--------------------------------------|-------|
-| `title` | `badge`, `title`, `subtitle`, `kicker` | episode/series title card; fades in |
-| `section` | `num`, `title`, `subtitle` | layer/act divider |
-| `map` | `title`, `highlight:[GROUP codes]`, `deps:[[A,B]]` | method-of-loci map; **animated** (sequential reveal) |
-| `guardian` | `family`, `family_name`, `persona`, `protects`, `reality` | introduce a group + its real-world meaning |
-| `control` | `id`, `title`, `plain`, `why` | **`id`+`title` must match truth.json**; `plain`=meaning, `why`=stakes |
-| `quote` | `quote` (VERBATIM), `cite` (must contain the ID) | the verbatim source on screen; `verify_script` checks it's a real substring |
-| `diagram` | `title`, `nodes`, `arrows` | **animated** (boxes pop, arrows draw) |
-| `points` | `kicker`, `title`, `bullets:[...]`, `note` | dense slide; on-screen time scales with bullet count |
-| `cheatcard` | `family`, `title`, `bullets:[...]`, `mnemonic` | recap card |
-| `define` | `kicker`, `term`, `expand`, `plain`, `example`, `cite` | plain-English jargon card (beginner-first) |
-| `coldopen` | `label` (default "BREACH OF THE WEEK"), `year`, `headline`, `body`, `mitre`, `teaches` | the hook; use a real incident (year+MITRE) OR `label:"FROM THE FIELD"` + headline/body for an honest illustrative scenario (no fabricated dated breach) |
-| `quiz` | `q`, `options:[...]`, `answer` (index), `why` | engine auto-reads Q+options in think phase and the correct answer TEXT + `why` at reveal; exports cues for the player |
-| `oath` | `family`, `oath`, `controls` | guardian oath/sigil beat |
-| `notebook` | `title`, `lines:[...]`, `mnemonic` | learner's recap (callbacks) |
+Use a job aid for in-workflow decisions, a study guide for explanation and examples, delayed
+retrieval for retention, and varied transfer cases for flexible use. Do not generate a decorative
+summary that merely repeats headings.
 
-Reserved/auto fields (do **not** set by hand): `_integrity` (running stakes meter, injected by
-`build_episode2`), `_t` (animation progress), `tag` (episode tag), `reveal` (quiz phase).
+## 7. Legacy compatibility
 
-Add a **new** scene type by writing a renderer in `scene.py` and registering it in the
-`RENDERERS` dict — never hand-render frames.
-
----
-
-## 4. Guardrails (don't repeat known mistakes)
-- **Accuracy**: on-screen IDs/titles/quotes from `truth.json` only; verbatim quotes are exact
-  substrings; run both gates + the council before rendering. Don't fabricate incidents.
-- **Audio**: STT-spot-check rendered lines; approved audio lives under `course/render/` (never
-  ship from `_tmp`); the final mix is loudnorm'd + limited.
-- **Reproducibility**: every seed/prompt/voice-knob is recorded in `seed_registry.yaml`; treat
-  approved base portraits as frozen assets.
-- **Pacing/pedagogy**: dense slides get reading time; define jargon before use; quizzes read the
-  answer + a "why"; map the metaphor back to reality.
-- See `GENERATION_PLAYBOOK.md` §11 for the full, council-ratified rule set, and §13 for the
-  open backlog.
+Schema-v1 projects and narrative scene types remain renderable. They do not receive the v2
+instructional gate automatically. New projects should use schema v2; do not backport the original
+course's mandatory world/cast/story assumptions into the portable workflow.

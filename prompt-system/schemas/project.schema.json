@@ -1,18 +1,40 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "project.json — intake answers (CONTENT/CREATIVE choices only; never quality knobs)",
+  "title": "project.json — learner, performance, scope, and optional delivery preferences",
   "type": "object",
-  "required": ["topic", "aesthetic", "scope"],
+  "required": ["schema_version", "topic", "sources", "audience", "desired_performance", "scope", "options", "delivery"],
   "properties": {
-    "topic": {"type": "string", "description": "What the course teaches."},
-    "source_material": {"type": "array", "items": {"type": "string"}, "description": "Paths/URLs/notes the truth layer is built from (or 'user expertise')."},
-    "audience": {"type": "string", "description": "e.g. complete beginner, practitioner, manager."},
-    "aesthetic": {"type": "string", "description": "Free-text vibe (becomes an ORIGINAL world + characters; never a named franchise)."},
+    "schema_version": {"const": "2.0"},
+    "topic": {"type": "string"},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "name", "path_or_url"],
+        "properties": {
+          "type": {"enum": ["pdf", "doc", "url", "notes", "expert"]},
+          "name": {"type": "string"},
+          "path_or_url": {"type": "string"}
+        }
+      }
+    },
+    "audience": {
+      "type": "object",
+      "required": ["description", "prior_knowledge", "work_context"],
+      "properties": {
+        "description": {"type": "string"},
+        "prior_knowledge": {"type": "array", "items": {"type": "string"}},
+        "work_context": {"type": "string"},
+        "accessibility": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "desired_performance": {"type": "string", "description": "What learners must be able to do after instruction."},
     "scope": {
       "type": "object",
+      "required": ["kind", "episodes"],
       "properties": {
-        "kind": {"type": "string", "enum": ["single_video", "course"]},
-        "episodes": {"type": "integer", "description": "For a course."}
+        "kind": {"enum": ["single_video", "course"]},
+        "episodes": {"type": "integer", "minimum": 1}
       }
     },
     "options": {
@@ -21,13 +43,22 @@
         "quizzes": {"type": "boolean", "default": true},
         "study_guide": {"type": "boolean", "default": false},
         "quick_reference": {"type": "boolean", "default": false},
-        "avatars": {"type": "boolean", "default": true},
-        "music": {"type": "boolean", "default": true}
+        "avatars": {"type": "boolean", "default": false},
+        "music": {"type": "boolean", "default": false},
+        "narrative": {"type": "boolean", "default": false}
       }
     },
-    "tone": {"type": "string", "description": "e.g. warm and playful, serious, witty."},
-    "length": {"type": "string", "description": "Target per-episode length / pacing."},
-    "voices": {"type": "string", "description": "How many characters + gender/accent vibes (timbres only)."},
-    "language": {"type": "string", "default": "en"}
+    "delivery": {
+      "type": "object",
+      "required": ["mode", "tone"],
+      "properties": {
+        "mode": {"enum": ["direct", "documentary", "demonstration", "case-based", "scenario-based", "story", "agent-decides"]},
+        "tone": {"type": "string"},
+        "aesthetic": {"type": "string", "description": "Optional visual direction; blank means the agent derives a restrained visual system from the subject."},
+        "voice_preferences": {"type": "string"}
+      }
+    },
+    "target_length": {"type": "string"},
+    "language": {"type": "string", "default": "English"}
   }
 }

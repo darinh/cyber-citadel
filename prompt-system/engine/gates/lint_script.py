@@ -1,5 +1,5 @@
 """Deterministic CRAFT gate for episode scripts (complements verify_facts.py = facts,
-audit_narration.py = optional LLM narrative-claim review, and a multi-model screenplay table-read).
+audit_narration.py = required LLM narrative-claim review, and a multi-model screenplay table-read).
 
 Fails the build on whole CLASSES of distraction, so they never ship:
   1. WORD ECHO   - a distinctive word repeated across adjacent spoken lines / slide
@@ -48,6 +48,7 @@ try:
     _D = _ImgDraw.Draw(_Img.new("RGB", (_S.W, _S.H)))
     _SITES = {  # (scene, field): (fontfn, base_size, max_w)  — must mirror scene.py draw sites
         ("title", "title"): (_S.FB, 120, _W - 320), ("title", "subtitle"): (_S.FSL, 46, _W - 280),
+        ("title", "badge"): (_S.FSB, 30, _W - 400),
         ("section", "title"): (_S.FB, 96, _W - 320), ("section", "subtitle"): (_S.FSL, 40, _W - 260),
         ("map", "title"): (_S.FB, 54, _W - 200),
         ("control", "title"): (_S.FB, 56, _W - 644 - 150),
@@ -64,6 +65,14 @@ try:
         ("quote", "cite"): (_S.MONO, 32, _W - 560),
         ("coldopen", "mitre"): (_S.MONO, 34, 560), ("coldopen", "teaches"): (_S.FSB, 34, 760),
         ("quiz", "options"): (_S.FSB, 40, 980),
+        ("image", "title"): (_S.FB, 68, _W - 220),
+        ("screenshot", "title"): (_S.FB, 54, _W - 220),
+        ("video", "title"): (_S.FB, 66, _W - 300),
+        ("comparison", "title"): (_S.FB, 58, _W - 240),
+        ("timeline", "title"): (_S.FB, 58, _W - 240),
+        ("process", "title"): (_S.FB, 58, _W - 240),
+        ("chart", "title"): (_S.FB, 58, _W - 240),
+        ("worked_example", "title"): (_S.FB, 58, _W - 240),
     }
     _HAVE_SCENE = True
 except Exception:
@@ -160,20 +169,46 @@ def lint(ep):
         for b in beats:
             sc = b.get("scene")
             checks = [(f, b.get(f)) for f in ("title", "subtitle", "family_name", "group_name", "persona",
-                                              "term", "mnemonic", "cite", "mitre", "teaches")]
+                                              "term", "mnemonic", "cite", "mitre", "teaches", "badge")]
             if sc == "quiz":
                 checks += [("options", o) for o in b.get("options", [])]
+                boxes = _S.quiz_layout(b)
+                if boxes and boxes[-1][3] > _S.QUIZ_SAFE_BOTTOM:
+                    p1.append((
+                        ep, "QUIZ_CAPTION_COLLISION",
+                        f"quiz options extend to y={int(boxes[-1][3])}, below the "
+                        f"caption-safe boundary y={_S.QUIZ_SAFE_BOTTOM}; shorten the question",
+                    ))
             for fname, val in checks:
                 site = _SITES.get((sc, fname))
                 if not site or not val:
                     continue
                 fontfn, size, maxw = site
-                f = _S.fit_font(_D, val, fontfn, size, maxw, min_size=18)
-                if _D.textlength(val, font=f) > maxw + 1:          # cannot fit even shrunk
-                    p1.append((ep, "OVERFLOW", f'{sc}.{fname} does NOT fit ({int(_D.textlength(val, font=f))}'
+                if (sc, fname) == ("title", "badge"):
+                    f = _S.fit_tracked_font(_D, val, fontfn, size, maxw, tracking=6, min_size=18)
+                    width = sum(_D.textlength(ch, font=f) for ch in val) + 6 * max(0, len(val) - 1)
+                else:
+                    f = _S.fit_font(_D, val, fontfn, size, maxw, min_size=18)
+                    width = _D.textlength(val, font=f)
+                if width > maxw + 1:          # cannot fit even shrunk
+                    p1.append((ep, "OVERFLOW", f'{sc}.{fname} does NOT fit ({int(width)}'
                                f'>{maxw}px at floor): "{val}"'))
                 elif f.size <= size * 0.6:                          # had to shrink a lot
                     p2.append((ep, "TIGHT_FIT", f'{sc}.{fname} shrunk {size}->{f.size}px to fit: "{val}"'))
+            if sc == "practice":
+                wrapped_sites = {
+                    "prompt": (_S.FB(54), 1460, 4),
+                    "instructions": (_S.FSL(34), 1320, 5),
+                    "model_answer": (_S.FB(48), 1460, 4),
+                    "feedback": (_S.F(34), 1400, 5),
+                }
+                for field, (font, max_width, max_lines) in wrapped_sites.items():
+                    value = str(b.get(field, "")).strip()
+                    if value and len(_S.wrap(_D, value, font, max_width)) > max_lines:
+                        p1.append((
+                            ep, "OVERFLOW",
+                            f'practice.{field} exceeds {max_lines} rendered lines: "{value}"',
+                        ))
 
     # ---- duplicate quiz pause prompt (BLOCKING: assembler always appends one) ----
     for b in beats:

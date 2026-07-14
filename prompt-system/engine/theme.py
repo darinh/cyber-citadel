@@ -1,11 +1,8 @@
-"""Theme loader — the ONLY place creative tokens (palette, fonts, world vocabulary,
-group colors, brand, cast) enter the renderer.
+"""Theme loader for visual identity, optional narrative vocabulary, and voices.
 
-Hard rule (council consensus): theming changes COLORS / TEXTURES / WORDS only. It must
-NEVER change geometry, timing, the A/V mux, caption placement, or the quiz option-box
-layout (`scene.quiz_layout()` stays the single source of truth and is exported to the
-player as `opt_rects`). Quality constants live in `engine/quality.py`, not here, so a
-user theme can change how a course LOOKS but can never degrade how it PLAYS.
+The engine owns layouts and rendering quality. A theme may select a restrained surface
+treatment, but it never supplies raw geometry. The quiz option-box layout remains
+globally frozen because `scene.quiz_layout()` is exported to the player as `opt_rects`.
 
 A theme is a JSON file (normally `course/theme.json`, or `$CC_THEME`). Every field has a
 NEUTRAL, non-cyberpunk default so a missing/partial theme still renders cleanly and does
@@ -46,9 +43,14 @@ _DEFAULT = {
         "danger":   [240, 110, 120],
         "violet":   [176, 150, 240],
     },
+    "visual": {
+        "background_style": "clean",
+        "chrome": "minimal",
+        "image_tint": 0.18,
+    },
     "world": {
-        # generic, theme-overridable vocabulary used as on-screen labels/defaults
-        "stakes_label":     "PROGRESS",                 # the optional top meter
+        # Optional narrative vocabulary retained for story courses and v1 compatibility.
+        "stakes_label":     "",                         # progress meter is opt-in per spec
         "center_label":     "CORE",                     # the protected center on a map
         "group_role_label": "GUIDE",                    # what a group's persona is called
         "covers_label":     "COVERS",                   # persona card: what this group covers
@@ -62,7 +64,7 @@ _DEFAULT = {
     # Optional method-of-loci grouping for multi-topic COURSES (single videos omit it).
     # cluster -> {color: <palette token>, members: [group keys]}.
     "groups": {"order": [], "clusters": {}},
-    # Cast is consumed by the avatar + voice prompts; the renderer only needs names.
+    # Direct instruction normally has one NARRATOR. Fictional characters are optional.
     "cast": [],
 }
 
@@ -81,6 +83,12 @@ def theme_path() -> Path | None:
     env = os.environ.get("CC_THEME")
     if env and Path(env).exists():
         return Path(env)
+    project = os.environ.get("CC_PROJECT")
+    if project:
+        root = Path(project)
+        for cand in (root / "theme.json", root / "course" / "theme.json"):
+            if cand.exists():
+                return cand
     # search upward from CWD for a course/theme.json or theme.json
     here = Path.cwd()
     for d in [here, *here.parents]:
@@ -160,6 +168,11 @@ def group_order(t: dict | None = None) -> list:
 def world(key: str, t: dict | None = None) -> str:
     t = t or load()
     return t.get("world", {}).get(key, _DEFAULT["world"].get(key, ""))
+
+
+def visual(key: str, t: dict | None = None):
+    t = t or load()
+    return t.get("visual", {}).get(key, _DEFAULT["visual"].get(key))
 
 
 def brand(t: dict | None = None) -> str:

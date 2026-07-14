@@ -23,7 +23,9 @@ python engine/gates/verify_episode.py ep01
   normal path. A missing GPU makes it slower, not lower quality.
 - `CC_TTS=piper` is a **user-approved downgrade** only (fast, robotic). The engine never falls back to
   it automatically; if chatterbox isn't installed it fails loud with install guidance.
-- `CC_VERIFY=1` enables the self-correcting synth gate: garbled, repeated, or truncated takes are re-rolled.
+- `CC_VERIFY=1` enables the self-correcting synth gate: garbled, repeated, or truncated takes are
+  re-rolled. Review `.cache/synth_verify_fails.log`; it records the best take whenever all four
+  attempts still fail clip-level transcription.
 - The shared text preprocessor applies pronunciations and acronym spelling to spoken lines only.
 
 Faster-whisper can sometimes hallucinate repetition loops or omit short lines in long-form transcription. If a verification flag seems suspicious, re-extract and inspect the exact region before treating it as a real audio failure.

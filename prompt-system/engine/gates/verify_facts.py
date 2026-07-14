@@ -23,6 +23,7 @@ from pathlib import Path
 PROJECT = Path(os.environ.get("CC_PROJECT") or Path.cwd())
 TRUTH = PROJECT / "course" / "data" / "truth.json"
 _ID = re.compile(r"\b([A-Za-z]{1,6}-\d{1,4}[A-Za-z]?(?:\(\d+\))?)\b")
+_NUMBER = re.compile(r"(?<![A-Za-z])(?:\d{1,2}:\d{2}|\d+(?:\.\d+)?)(?![A-Za-z])")
 
 
 def _norm(s):
@@ -45,13 +46,55 @@ def _id_in(text, facts):
     return None
 
 
+def _numeric_claims(beat):
+    """Return authored numbers that carry instructional meaning, not layout/timing metadata."""
+    values = []
+    for item in beat.get("data", []) or []:
+        if isinstance(item, dict) and isinstance(item.get("value"), (int, float)):
+            values.append(str(item["value"]))
+    for item in beat.get("events", []) or []:
+        if isinstance(item, dict):
+            values.extend(_NUMBER.findall(str(item.get("when", ""))))
+    for field in ("prompt", "model_answer", "feedback", "insight", "problem"):
+        values.extend(_NUMBER.findall(str(beat.get(field, ""))))
+    return list(dict.fromkeys(values))
+
+
+def _resolve_spec_path(spec_path):
+    path = Path(spec_path)
+    if path.is_absolute():
+        return path
+    project_path = PROJECT / path
+    return project_path if project_path.exists() else path
+
+
 def verify(spec_path):
     facts = _facts()
-    spec = json.loads(Path(spec_path).read_text(encoding="utf-8"))
+    spec_path = _resolve_spec_path(spec_path)
+    spec = json.loads(spec_path.read_text(encoding="utf-8"))
     ep = spec.get("id", Path(spec_path).stem)
     fails, checked = [], 0
     for i, b in enumerate(spec.get("beats", [])):
         sc = b.get("scene")
+        for fid in b.get("fact_ids", []) or []:
+            checked += 1
+            if str(fid).upper() not in facts:
+                fails.append(f"[{ep} #{i}] {sc} fact_id '{fid}' not in truth layer")
+        numeric_claims = _numeric_claims(b)
+        if numeric_claims:
+            sources = " ".join(
+                f"{facts[str(fid).upper()].get('title', '')} "
+                f"{facts[str(fid).upper()].get('statement', '')}"
+                for fid in b.get("fact_ids", []) or []
+                if str(fid).upper() in facts
+            )
+            for value in numeric_claims:
+                checked += 1
+                if value.lower() not in sources.lower():
+                    fails.append(
+                        f"[{ep} #{i}] {sc} numeric claim '{value}' is absent from its "
+                        "referenced truth statements"
+                    )
         if sc in ("concept", "control"):
             cid = (b.get("id") or "").upper()
             if not cid:
@@ -89,7 +132,7 @@ def verify(spec_path):
     for f in fails:
         print("  FAIL", f)
     if not fails:
-        print("  PASSED \u2713  all on-screen facts match the truth layer")
+        print("  PASSED - all on-screen facts match the truth layer")
     return not fails
 
 

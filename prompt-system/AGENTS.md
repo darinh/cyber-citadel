@@ -1,117 +1,119 @@
-# AGENTS.md — you are building a narrated, interactive **video training course**
+# AGENTS.md — build an accurate, effective, memorable video course
 
-You are an AI coding agent (GitHub Copilot CLI) working **inside this `prompt-system/` folder**.
-Your job: help the user turn ANY topic into a **binge-watchable, accurate, interactive video course**
-that runs **locally** on this machine — original characters, an original world in the user's chosen
-aesthetic, neural narration, sourced music, and the signature **interactive quiz** (clickable answers
-laid right over the video). No cloud, no publishing.
+You are a GitHub Copilot CLI coding agent working inside this reusable `prompt-system/`.
+Turn any subject into local video instruction that helps a defined audience perform a real task.
+Start with learner outcomes, source coverage, assessment evidence, and practice. Choose direct
+explanation, demonstrations, images, diagrams, animation, cases, or story only when that treatment
+serves the learning objective. **A fictional world, characters, and slide deck are never defaults.**
 
-**First, take inventory** (below) to decide whether this is a NEW project or one already in progress,
-then follow the numbered prompts in `system-prompts/`.
+## 0. Inventory and route
 
----
+Every course lives in `projects/<slug>/`; never put course artifacts in the engine root.
 
-## 0. Inventory → route (do this first, every session)
-Each course lives in its **own project folder** (`projects/<slug>/`). Look there (not the engine root):
-- **No `projects/*/` with a `theme.json`** → **NEW project.** Greet the user, ask their topic + the
-  world/aesthetic, then create `projects/<slug>/`, set `CC_PROJECT` to it, and start at
-  `system-prompts/01_intake.md`. Go in order. (Never build a course in the engine root.)
-- **A project has `theme.json` + `course/data/truth.json` but no `course/episodes/*.mp4`** → content is
-  authored but not rendered → resume at `system-prompts/09_gates.md` then `10_assemble.md`.
-- **A project has `course/episodes/*.mp4`** → resume at `11_player_and_verify.md` (package/verify) or
-  ask the user what to change. Use the incremental render cache — editing one line rebuilds one beat.
-Always read the project's `plan.md` (if present) and `capabilities.json` (run `python engine/probe.py`
-from the project folder if missing).
+- No project with `project.json`: start at `system-prompts/01_intake.md`. Ask for the topic,
+  sources, audience, prior knowledge, work context, and what learners must be able to do. An
+  aesthetic is optional.
+- Truth exists but `course/design/learning-blueprint.json` does not: resume at
+  `system-prompts/04_learning_design.md`.
+- Blueprint exists but scripts do not: resume at `05_visual_language.md`, then `08_script.md`.
+- Scripts exist but no episode: run `09_gates.md`, then render one pilot via `10_assemble.md`.
+- Episodes exist: run final verification/package via `11_player_and_verify.md`.
 
-## 1. The pipeline (what the prompts walk you through)
+Read the project's `plan.md`, `project.json`, `capabilities.json`, truth layer, and learning
+blueprint before editing an in-progress course.
+
+## 1. Objective-first pipeline
+
+```text
+01 intake          -> project.json (learner, desired performance, sources, scope)
+02 environment     -> capabilities.json (hardware affects speed, never silent quality loss)
+03 truth layer     -> course/data/truth.json (authoritative facts and citations)
+04 learning design -> course/design/learning-blueprint.json
+                      (objective -> evidence -> practice -> instruction -> transfer)
+05 visual language -> theme.json + assets/media.json + optional cast/assets
+06 narration       -> narrator voice; additional roles only when instruction needs them
+07 music + SFX     -> optional sourced music; minimal sound design by default
+08 storyboard      -> course/scripts/epNN.json (aligned beats + meaningful media)
+09 gates           -> instruction + facts + IP + craft; all P1 findings block render
+10 assemble        -> mp4 + captions + cues (one pilot first)
+11 verify/player   -> final-mp4 QA + package + local range server
+12 reinforcement  -> optional study guide, job aid, delayed retrieval, transfer practice
 ```
-01 intake        -> project.json         (topic, audience, AESTHETIC, scope, options)
-02 environment   -> capabilities.json    (probe hardware for SPEED; install the HIGH-QUALITY models)
-03 truth layer   -> course/data/truth.json   (verbatim FACTS with ids/titles/quotes + source/section)
-04 world + cast  -> theme.json            (ORIGINAL world metaphor + ORIGINAL characters in the aesthetic)
-05 avatars       -> assets/avatars/*.png  (SDXL fixed-seed original portraits — GPU or CPU)
-06 voices        -> assets/voices/*       (one voice per character; high-quality neural chatterbox — GPU or CPU)
-07 music + sfx   -> assets/music/*        (SOURCED public-domain/CC beds; attributed. SFX are bundled)
-08 script        -> course/scripts/epNN.json   (declarative beats: scenes + dialogue)
-09 gates         -> (verify_facts, lint_prompts, lint_script) must pass before render
-10 assemble      -> course/episodes/epNN_*.mp4 + .srt + .cues.json   (incremental render, two-pass mux)
-11 player+verify -> verify_episode + package -> watch.html/index.html + serve.py (LOCAL play)
-12 reference     -> OPTIONAL quizzes / study guide / quick reference
-```
-**Build each course in its OWN project folder — never in this engine folder.** Create
-`projects/<slug>/` (e.g. `projects/home-espresso/`), set `CC_PROJECT` to it, and run all commands
-against it. That keeps `theme.json`, `project.json`, `course/`, `assets/`, and the copied player out
-of the engine root so the system stays clean and you can build several courses side by side.
 
-A single video OR a whole course. **Quizzes are ON by default** (the signature feature); avatars,
-music, study guides, and extra episodes are **opt-in** with sane defaults — so a quick demo can
-produce ONE interactive video even on a laptop with **no GPU** (same high quality — just slower).
+## 2. Non-negotiable rules
 
-## 2. Golden rules (NON-NEGOTIABLE — tailor CONTENT, never QUALITY)
-1. **Accuracy.** Every on-screen id/title/quote comes from `course/data/truth.json`, never invented.
-   Quotes are verbatim substrings shown with a citation (+page/section when available). The
-   `verify_facts` gate enforces it; run it before every render.
-2. **Original IP only.** A requested vibe ("wizarding school", "cartoon ponies", "fellowship quest",
-   "bullet-time hacker noir") becomes an **original** world + **original** characters in that
-   aesthetic — NEVER named franchises, characters, places, studios, or "in the style of <artist>".
-   The `lint_prompts` gate blocks this; design original characters as primitives (silhouette,
-   palette, 2–3 distinctive motifs).
-3. **Sourced audio.** Music is **sourced** public-domain/CC0/CC-BY only (attribute CC-BY in
-   `THIRD_PARTY_NOTICES.md`) — **never generated**. No music source ⇒ a silent bed. SFX are bundled,
-   license-clean assets.
-4. **Quality is fixed HIGH — never silently downgrade; hardware only affects SPEED.** Always use the
-   highest-quality models by DEFAULT: **chatterbox** neural voice, **SDXL** portraits, **large-v3**
-   audio-QA. These all run on **CPU too** — a missing GPU makes rendering slower, NOT lower quality,
-   so run the same model on CPU. NEVER auto-swap to a lower-quality model/voice (piper, illustrated,
-   small STT). If the high-quality path isn't installed, the engine FAILS LOUD with setup guidance —
-   do not work around it by degrading. If CPU rendering is too slow, **WARN the user and get their
-   EXPLICIT approval before applying any downgrade** (`CC_TTS=piper`, `CC_AVATARS=illustrated`,
-   `CC_STT_MODEL=small`). The user MUST approve any quality reduction. Geometry, timing, the two-pass
-   A/V mux, caption placement, the quiz hotspot layout, and the gates are also FROZEN in `engine/`;
-   the theme changes only colors/fonts/words; never reimplement the quiz hotspots.
-5. **Verify the delivered artifact.** QA the final mp4 (`verify_episode`), not upstream clips. Render
-   ONE episode and spot-check before any bulk render.
-6. **Adversarial review.** For scripts and any significant artifact, review as text with multiple
-   models (a council) and reach consensus before rendering — text review is far cheaper than re-renders.
+1. **Outcomes before aesthetics.** State observable learner performance and success criteria before
+   choosing a delivery format. Avoid vague objectives such as “understand” or “be familiar with.”
+2. **Alignment and completeness.** Every scoped fact maps to an objective. Every objective maps to
+   acceptable evidence, modeled/guided work where needed, learner practice, explanatory feedback,
+   and—at apply level or above—a novel transfer task.
+3. **Accuracy.** IDs, titles, quotes, and factual visual claims trace to
+   `course/data/truth.json`; quotes are verbatim and cited. Run the deterministic fact gate and an
+   adversarial claim review before rendering.
+4. **Media must earn its place.** Show appearance with an image, action with a demonstration,
+   software with a screenshot/callout, change with animation/timeline, relationships with a diagram,
+   quantities with a chart, discrimination with comparison, and reasoning with a worked example.
+   Do not decorate a narration with irrelevant imagery or duplicate dense prose on screen.
+5. **Story is optional.** Default delivery is direct, narrator-only instruction. Enable a world,
+   fictional cast, or plot only with a written instructional function. Every narrative beat still
+   serves an objective; entertainment never substitutes for explanation, practice, or feedback.
+6. **Active learning, not trivia.** Use retrieval and interactive questions, but match assessment to
+   the objective: classification, prediction, error detection, ordering, scenario decisions,
+   completion problems, performances, and transfer prompts—not only recognition MCQs.
+7. **Retention is designed.** Activate relevant prior knowledge, build prerequisites, use examples
+   and non-examples where discrimination matters, fade scaffolds, retrieve prior objectives in later
+   episodes, and provide delayed follow-up practice.
+8. **Accessible, licensed media.** Every image/clip is declared in `assets/media.json` with path,
+   provenance, license, credit, and alt text. Music is sourced public-domain/CC only and attributed.
+9. **Quality stays high.** Chatterbox, SDXL when images are generated, large-v3 final audio QA,
+   two-pass mux, captions, and quiz geometry remain the defaults on GPU or CPU. A speed-for-quality
+   downgrade requires explicit user approval.
+10. **Review and verify.** A multi-model council reviews learning design and script text. Render one
+    pilot, inspect it, then verify the final mp4 and interactive player before scaling.
 
-## 3. Folder layout — the engine folder vs. your project folder
-The engine folder holds the reusable system; **each course lives in its own `projects/<slug>/`** so it
-never pollutes the engine root. All engine commands read `CC_PROJECT` (a project dir) — set it once.
-```
-prompt-system/                          <- THE ENGINE (don't put course content here)
+## 3. Engine folder and project folder
+
+```text
+prompt-system/
   AGENTS.md  system-prompts/  engine/  player/  reference/  schemas/  examples/
-  projects/<slug>/                      <- YOUR COURSE lives here (CC_PROJECT points at it)
-    project.json  theme.json  capabilities.json   <- intake + world/cast + detected hardware
-    course/data/truth.json              <- the truth layer (facts)
-    course/scripts/epNN.json            <- episode specs you author
-    course/episodes/*.mp4 .srt .cues.json   <- rendered output (gitignored)
-    assets/{voices,avatars,music,backgrounds}/  <- generated/sourced media
-    watch.html index.html serve.py play.cmd play.sh   <- copied here by package.py for local play
+  projects/<slug>/
+    project.json  capabilities.json  theme.json
+    course/data/truth.json
+    course/design/learning-blueprint.json
+    course/scripts/epNN.json
+    course/episodes/*.mp4 *.srt *.cues.json
+    assets/media.json
+    assets/{media,voices,avatars,music,backgrounds}/
+    watch.html index.html serve.py play.cmd play.sh
 ```
 
-## 4. Commands (set `CC_PROJECT` to your project folder; the engine writes everything there)
-Set once per shell: `CC_PROJECT=projects/<slug>` (the course folder); `PYTHONUTF8=1`; `CC_VERIFY=1`
-(self-correcting audio gate). `CC_THEME` auto-discovers the project's `theme.json`. Do NOT set
-`CC_TTS`/`CC_AVATARS`/`CC_STT_MODEL` — they default to the HIGH-QUALITY models (GPU or CPU); set them
-ONLY to apply a user-approved downgrade.
-```
-python engine/probe.py                                  # SPEED tier + recommended models -> capabilities.json
-python engine/scene.py demo                             # eyeball all scene types in the theme
-python engine/build_episode.py course/scripts/ep01.json # render ONE episode (spot-check first!)
+## 4. Commands
+
+Set `CC_PROJECT=projects/<slug>`, `PYTHONUTF8=1`, and `CC_VERIFY=1`. Leave quality-downgrade
+variables unset.
+
+```text
+python engine/probe.py
+python engine/theme.py
+python engine/scene.py demo
+python engine/gates/lint_instruction.py
 python engine/gates/verify_facts.py course/scripts/ep01.json
+python engine/gates/audit_narration.py course/scripts/ep01.json
 python engine/gates/lint_prompts.py
 python engine/gates/lint_script.py ep01
-python engine/gates/verify_episode.py ep01              # final-mp4 audio QA
-python engine/package.py                                # manifest + posters + copy player into the project
-cd $CC_PROJECT; python serve.py   (or double-click play.cmd / ./play.sh)   # watch it locally
+python engine/build_episode.py course/scripts/ep01.json
+python engine/gates/verify_episode.py ep01
+python engine/package.py
 ```
-Reference contracts (read before authoring): `reference/SCENE_CONTRACT.md` (every beat field),
-`reference/PRODUCTION_RULES.md`, `reference/ACCURACY_RULES.md`, `reference/AUDIO_RULES.md`,
-`schemas/` (theme.json / project.json / truth.json / episode-spec). Hardware tiers + model downloads:
-`reference/TROUBLESHOOTING.md`. Music licensing/attribution: `reference/ATTRIBUTION_AND_LICENSING.md`.
 
-## 5. Definition of done (before telling the user a course is ready)
-`verify_facts` + `lint_prompts` + `lint_script` pass (0 blocking); ONE episode spot-checked; then for
-all rendered episodes `verify_episode` reads `OK`; `package.py` link-check is clean; music attributed;
-**zero references to any existing franchise**. The user can double-click `play.cmd` and watch with the
-interactive quiz working. Keep `plan.md` and `THIRD_PARTY_NOTICES.md` current.
+Read `reference/PEDAGOGY_RULES.md`, `reference/VISUAL_LANGUAGE.md`,
+`reference/SCENE_CONTRACT.md`, `reference/AUDIO_RULES.md`, and
+`reference/DEFINITION_OF_DONE.md` before authoring.
+
+## 5. Definition of done
+
+The instructional, fact, IP, and craft gates pass; coverage is deliberate; every objective has
+aligned practice/feedback and transfer where required; media provenance is complete; one pilot was
+rendered and inspected before any batch; every final mp4 passes audio QA; package links resolve; and
+the local player works with accessible captions and aligned interactive hotspots. Structural gates
+do not prove learning efficacy—record SME review and learner transfer evidence when available.

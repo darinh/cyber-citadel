@@ -63,30 +63,36 @@ re-learning the hard way.*
 
 ---
 
-## 3. The pedagogy / narrative pattern (reusable recipe)
-A standard, dry standard becomes binge-watchable by wrapping it in a consistent world:
+## 3. Objective-first pedagogy (reusable recipe)
 
-- **Method-of-loci spatial map.** Map the taxonomy onto a memorable place (here: 20 control
-  families → 20 districts/guardians of a citadel). Spatial memory aids recall.
-- **A small, clearly-typed cast** with one job each:
-  - **Expert** (VEGA) — explains, the authority in-world.
-  - **Learner-avatar** (NOVA) — asks the audience's questions; informal, curious, growing.
-  - **Verbatim source** (THE ARCHIVIST) — reads the *real* standard text on screen; the
-    accuracy anchor. Keeps story separate from fact.
-  - **Antagonist** (THE NULL) — embodies the threat; tie each threat to a real-world
-    incident + a concrete attack technique (MITRE ATT&CK).
-- **Per-unit structure** (~8–10 min episode): cold-open real-incident hook → map highlight →
-  guardian intro → **real flagship items** (real ID + plain meaning + one verbatim quote) →
-  map the metaphor back to real-world meaning → **active-recall quiz** (pause-and-answer) →
-  recap card / "notebook" → cliffhanger.
-- **One concrete worked example end-to-end.** Reviewers' #1 fix: add a dedicated episode
-  that runs a single, named, concrete system through the whole process (here: "Aegis
-  Hospital" through the RMF with a named human cast). Abstractions don't stick; one worked
-  example does.
-- **Always translate the metaphor back to reality.** The story is "interpretation"; the
-  on-screen text is authoritative. Say which is which.
-- **Retention scaffolding:** define-cards for jargon, quizzes per episode + a final
-  roll-call quiz, recap notebook, and a cheat sheet per family.
+The reusable system starts with learner performance, not a fictional world or a scene template:
+
+1. State the learner, prior knowledge, use context, observable terminal performance, conditions,
+   and success criteria.
+2. Decompose prerequisites and map every scoped truth fact to an objective.
+3. Choose acceptable evidence before instruction; recognition MCQ cannot prove diagnosis,
+   performance, justification, or transfer.
+4. Model complex reasoning, provide guided/completion work, fade toward independent practice, and
+   give explanatory feedback after commitment.
+5. Retrieve important learning after a delay and vary surface context. Interleave when the real task
+   requires discrimination among types.
+6. Select a representation by cognitive job: image for appearance/context, screenshot for location,
+   clip for action, timeline/process for change/order, comparison for boundaries, chart for
+   quantity, worked example for reasoning, and practice for performance.
+7. Use narration and visuals as complementary channels. Signal the current element, segment
+   conceptual moves, and remove decoration/redundant prose.
+8. Include a novel transfer task for apply-level and higher objectives.
+
+Direct narrator-only instruction is the default for new courses. Story, a memory palace, cast,
+avatars, and music are optional delivery tools and need a concrete instructional function. The
+original NIST course deliberately uses a spatial world and four archetypes; those are
+course-specific creative decisions, not the reusable recipe. When metaphor is enabled, always map it
+back to the real concept.
+
+The durable v2 contracts and research basis live in
+`prompt-system/reference/PEDAGOGY_RULES.md`,
+`prompt-system/reference/VISUAL_LANGUAGE.md`, and
+`prompt-system/schemas/learning-blueprint.schema.json`.
 
 ---
 
@@ -403,21 +409,17 @@ $env:CC_TTS='chatterbox'; python tools\render_all.py ep00
 
 ## 9. Reuse for a NEW course/topic (the generalization)
 > **Full step-by-step + the episode-spec/scene-type field contract: `course/AUTHORING_NEW_COURSE.md`.**
-This pipeline is topic-agnostic. To target a different standard / body of knowledge:
-1. **Build the truth layer first.** Parse the authoritative source into `truth.json` with a
-   stable contract the renderer + gates rely on: `TRUTH[family]` with
-   `controls[ID] = {title, statement, discussion, related, enhancements}` (see
-   `tools/build_truth.py` + `episode_lib.TRUTH`). Whatever the topic, you need a stable unit
-   **ID**, an exact **title**, and a **verbatim authoritative text** to quote. Re-point
-   `build_truth.py` at the new source but keep the shape, so `verify_script.py` /
-   `audit_narration.py` keep working unchanged.
-2. **Re-skin the world + cast** (course-specific; lives in `PRODUCTION_BIBLE.md`): pick a
-   method-of-loci map for the taxonomy and cast the four archetypes (expert / learner-avatar /
-   verbatim-source / antagonist). Generate base portraits (§4) at NEW fixed seeds and record
-   them in `seed_registry.yaml`; clone voices (§5) from license-clean reference clips.
-3. **Author scripts** as JSON beat specs using the existing scene types (§6): keep ≥50% of
-   runtime on real units, one verbatim quote per unit, always translate metaphor → reality.
-4. **Run the gates + council, then spot-render ONE episode** before bulk.
+Use `prompt-system/` for a different standard or body of knowledge:
+1. Create `prompt-system/projects/<slug>/`; never pollute the engine root.
+2. Build `truth.json` from authoritative sources.
+3. Complete the v2 `learning-blueprint.json`: explicit source coverage, observable objectives,
+   prerequisites, aligned evidence/practice/feedback, representations, retention, and transfer.
+4. Derive the visual language and media manifest from those objectives. Direct/narrator-only is the
+   default; opt into a world/cast/avatar/music/story only with instructional rationale.
+5. Author traced v2 episode specs using varied semantic treatments; do not copy this course's
+   world, cast, palette, scene sequence, or story engine.
+6. Run instructional, fact, IP, and craft gates plus the council, then render and inspect one pilot
+   before scaling.
 
 **Consensus loop (how "review with multiple agents/LLMs" actually runs):**
 draft → deterministic gate (`verify_script.py`) → local-LLM auditor (`audit_narration.py`) →
@@ -444,7 +446,19 @@ true **character animation** (lip-sync / motion) instead of static avatars + mot
 reviewing the shipped v3.1 series. Each rule exists because we got it wrong at least once.
 Treat as a script-review + render checklist. "Mistakes are okay; repeating them is not."*
 
-### A. Character & dialogue
+### General rules for any new course
+- Objectives, evidence, practice, feedback, and transfer are aligned before scripting.
+- Every source fact is covered or deliberately excluded; every authored claim is truth-backed.
+- Visual treatment is chosen by learning purpose, not by habit or a variety quota.
+- Dense on-screen prose does not duplicate narration; media is relevant, licensed, and accessible.
+- Story/cast/avatar/music are optional. Entertainment never replaces modeling or learner practice.
+- Complex skills move from worked modeling to independent performance; higher-order objectives use
+  higher-order evidence and a novel context.
+- Run the v2 instructional gate plus fact/IP/craft gates; structural conformance does not prove
+  learning efficacy.
+- Render and inspect one representative pilot before any batch; verify the delivered mp4.
+
+### A. Character & dialogue (original NIST course only)
 - **NULL is never neutral.** Every NULL line drips contempt, menace, disdain, or tactical
   threat. **Test: could Vega or the Narrator say this line? If yes, it fails.** (Killed lines:
   EP08 "Good. Because I never stop, either." / EP7B "Good. Because neither do I." — villain
@@ -468,7 +482,7 @@ Treat as a script-review + render checklist. "Mistakes are okay; repeating them 
   list section headings, give opinions, or converse. (Killed: EP00 "Identifier. Control.
   Discussion…" — that's paraphrase, not a quote.)
 
-### B. Story & structure
+### B. Story & structure (original NIST course only)
 - **Every episode opens with a real-incident cold open** (year + headline + MITRE technique) —
   Act II included (EP08–11 currently have none).
 - **Every episode closes on a NULL escalation cliffhanger** that names/implies the next topic.
@@ -655,6 +669,31 @@ well below that, and color grading / HUD / audio mastering raise polish but NOT 
 ---
 
 ## 14. Changelog of learnings
+- **2026-06 — objective-first portable course engine (issue #22).** Removed the reusable
+  `prompt-system/` requirement to invent a world, four-character cast, plot, avatars, and uniform
+  cards before learning design. Added schema-v2 intake + backward-design blueprint
+  (explicit source coverage; observable objectives; prerequisite order; aligned evidence,
+  modeled/guided/independent practice; explanatory feedback; transfer; retention; representation
+  rationale), a blocking `lint_instruction.py` gate with schema validation, and media provenance/
+  alt-text contracts. Added a generic, source-bound local-LLM narration auditor to catch unsupported
+  paraphrases and overclaims that exact deterministic checks cannot see; its model findings must
+  still be judged against `truth.json`. Expanded the visual grammar with full-bleed images,
+  annotated screenshots,
+  muted source clips, comparisons, timelines, processes/cycles, charts, worked examples, and
+  two-phase pause-and-do practice; kept engine-owned layouts, frozen quiz hotspot geometry,
+  incremental fingerprints, and two-pass mux. Progress chrome, narrative, cast, avatars, music, and
+  cinematic SFX are now opt-in; direct narrator-only instruction is the default. Added a complete
+  non-story data-literacy pilot and research-backed `PEDAGOGY_RULES.md`/`VISUAL_LANGUAGE.md`.
+  Lesson: visual variety should follow different cognitive jobs, not a slide-layout quota, and
+  automated alignment gates establish conformance rather than learner effectiveness. The portable
+  Chatterbox gate now records any line that still fails after all four re-rolls so clip-level
+  defects cannot disappear silently before final-MP4 verification. `RENDER_VER` advanced to v3
+  when title badges became content-fitted, invalidating stale scene caches. The browser render-
+  contract harness now accepts `CC_PROJECT`, so any generated course—not only the bundled kitchen
+  example—can prove resized hotspot alignment and transparent quiz interaction. Final-frame QA
+  found a fourth quiz option crossing into the burned-caption region; the shared frozen geometry
+  was compressed above a declared safe boundary, `lint_script.py` now blocks future collisions,
+  and `RENDER_VER` advanced to v4.
 - **2026-06 — "the Archivist never finishes speaking" (EP04): spoken `say` was truncated while
   the on-screen `quote` was complete + the gate only checked the display field.** Root cause: an
   earlier "complete the incomplete quotes" pass updated each quote scene's on-screen `quote`

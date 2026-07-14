@@ -1,0 +1,45 @@
+{
+  "brand": "DATA IN PRACTICE",
+  "series_kicker": "A PRACTICAL VIDEO LESSON",
+  "fonts": {
+    "regular": "NotoSans-Regular.ttf",
+    "semibold": "NotoSans-SemiBold.ttf",
+    "bold": "NotoSans-Bold.ttf",
+    "light": "NotoSans-Regular.ttf",
+    "mono": "NotoSans-Bold.ttf"
+  },
+  "palette": {
+    "bg_top": [13, 22, 38],
+    "bg_bot": [24, 37, 57],
+    "panel": [31, 47, 70],
+    "panel_hi": [46, 67, 95],
+    "ink": [242, 246, 250],
+    "muted": [169, 184, 202],
+    "accent": [91, 169, 255],
+    "accent2": [255, 153, 102],
+    "gold": [247, 197, 92],
+    "mint": [113, 216, 177],
+    "danger": [237, 104, 116],
+    "violet": [175, 151, 239]
+  },
+  "visual": {
+    "background_style": "clean",
+    "chrome": "minimal",
+    "image_tint": 0.08
+  },
+  "cast": [
+    {
+      "name": "NARRATOR",
+      "role": "narrator",
+      "caption_color": "ink",
+      "voice": {
+        "ref": "narrator.wav",
+        "exaggeration": 0.5,
+        "cfg_weight": 0.5,
+        "temperature": 0.78
+      }
+    }
+  ],
+  "pronunciations": {},
+  "spell_acronyms": []
+}

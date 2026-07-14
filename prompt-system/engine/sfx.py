@@ -132,6 +132,10 @@ SCENE_SFX = {
     "quiz": ("riser", -16),
     "coldopen": ("sting", -10), "define": ("sparkle", -17),
     "oath": ("boom", -12), "pledge": ("boom", -12), "notebook": ("click", -18),
+    "image": ("whoosh", -19), "screenshot": ("click", -18), "video": ("whoosh", -20),
+    "comparison": ("click", -18), "timeline": ("whoosh", -18),
+    "process": ("click", -18), "chart": ("click", -18),
+    "worked_example": ("sparkle", -18), "practice": ("riser", -17),
 }
 
 

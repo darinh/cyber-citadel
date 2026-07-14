@@ -1,50 +1,53 @@
-# Production Rules
+# Production rules
 
-Make the course memorable, accurate, and easy to finish. The engine supplies rendering quality; the author supplies clear teaching.
+These rules preserve instructional and technical quality across subjects and delivery styles.
 
-## Core craft
-- Open on a hook: a concrete problem, consequence, or puzzle the learner wants resolved.
-- Use a world metaphor only as a memory aid, then translate it back to real practice.
-- Teach 2-3 core concepts per episode; too many beats turn into a reference dump.
-- Give each core concept a plain-language explanation, a why-it-matters, and a verbatim source quote when facts are involved.
-- Define jargon before using it in a question or recap.
-- Prefer short sentences and visible examples over abstract lectures.
+## Before scripting
 
-## Four reusable archetypes
-1. **Expert/mentor**: explains, corrects misconceptions, and keeps the episode moving.
-2. **Learner-avatar**: asks novice questions the audience is likely thinking; does not lecture.
-3. **Verbatim-source reader**: reads source text exactly and never opines or paraphrases.
-4. **Optional antagonist/tension**: creates stakes or conflict while staying in character and never inventing facts.
+1. Keep the course under `projects/<slug>/`.
+2. Build and cite `truth.json`.
+3. Define audience, terminal performance, prerequisites, conditions, and success criteria.
+4. Complete `learning-blueprint.json`: scope decisions, aligned evidence, practice, feedback,
+   representations, episode order, retention, and delivery rationale.
+5. Register every image/clip in `assets/media.json`.
+6. Review the blueprint adversarially before spending time on polished script or media.
 
-## Quiz contract
-- Read the full question aloud.
-- Read every option aloud: “A… B… C…”.
-- Give think time so the learner can answer.
-- On reveal, read the correct **answer text** plus a one-line why; never reveal only the letter.
-- Make options plausible, mutually exclusive, and unambiguous.
+## Authoring
 
-## Reading time and pacing
-- Dense `points`, `cheatcard`, `define`, and `notebook` scenes need enough `min_seconds` for reading.
-- Use diagrams for relationships; use cheatcards for recap; use quizzes for retrieval practice.
-- Keep an antagonist or tension thread consistent if used; do not change motives scene to scene.
+- Default to one direct narrator; story, cast, avatars, and music are opt-in.
+- Trace each beat to objectives and facts.
+- Choose scene treatment by cognitive purpose, not visual habit.
+- Use complementary narration and visuals, signaling, segmenting, and restrained motion.
+- Model complex reasoning; fade practice; require independent/transfer performance.
+- Give explanatory feedback after learner commitment.
+- Read interactive quiz questions, every option, full correct answer text, and one-line why.
+- Keep all layouts semantic and engine-owned; scripts do not hand-pack pixels.
 
-## Per-episode pacing budget
-1. Hook: one problem or question.
-2. Teach: 2-3 concepts, each grounded in reality and source text where needed.
-3. Recap: notebook, points, or cheatcard.
-4. Quiz: retrieval with answer text and why.
-5. Cliffhanger: preview the next practical payoff.
-## Scene usage
-- Use `coldopen` for stakes, not for unsourced claims.
-- Use `define` before the first jargon-heavy concept.
-- Use `concept` for the teachable unit and `quote` for the source anchor.
-- Use `diagram` when a relationship matters more than a list.
-- Use `points` for mid-lesson synthesis.
-- Use `cheatcard` or `notebook` for end-of-episode retention.
+## Asset and IP safety
 
-## Dialogue discipline
-- The mentor can simplify; the source reader cannot.
-- The learner should ask, test, and summarize in plain words.
-- Avoid having two characters deliver the same explanation.
-- Let silence or `min_seconds` do reading work instead of filling every second with narration.
-- End scenes with a forward motion line: “Now apply it,” “That sets up the quiz,” or “Next, compare the two choices.”
+- Use original or explicitly licensed media, voices, music, fonts, and SFX.
+- Music is sourced, never generated.
+- Record media provenance and accessibility metadata.
+- Do not reference protected franchises, named characters/places, celebrity likenesses, studio
+  branding, trade dress, or “in the style of” living artists.
+- Aesthetic inspiration is translated into generic design attributes, not imitation.
+
+## Quality and hardware
+
+- Hardware changes speed, not the default model quality.
+- Use Chatterbox, SDXL when generation is needed, and large-v3 final audio verification on GPU or CPU.
+- Fail loudly when high-quality dependencies are unavailable.
+- A downgrade requires explicit user approval and a recorded reason.
+
+## Render and verification
+
+1. Run instructional, fact, IP, and craft gates before rendering.
+2. Render and inspect one representative pilot before any batch.
+3. Use incremental beat caches; media fingerprints invalidate affected beats.
+4. Normalize source clips separately and strip their audio by default.
+5. Use the two-pass final mux.
+6. Verify the delivered mp4, captions, cues, media credits, and interactive player.
+7. Test hotspot geometry and accessibility after player resize.
+
+Structural gates establish conformance, not learning efficacy. Add SME approval and learner
+performance/transfer evidence when available.

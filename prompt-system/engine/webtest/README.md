@@ -5,8 +5,8 @@ exactly over the video's own rendered option boxes**, the overlay is transparent
 the captions), the quiz plays in the background, and the theme palette/brand are applied — with
 no console errors.
 
-It drives the **example** course (`examples/kitchen-academy`) through a real headless browser
-against the local range server.
+It drives a packaged course through a real headless browser against the local range server.
+`CC_PROJECT` selects the project; without it, the test uses `examples/kitchen-academy`.
 
 ## Run it
 ```bash
@@ -21,6 +21,14 @@ npm install            # installs Playwright (downloads a browser the first time
 npx playwright install chromium
 node contract-check.js
 ```
-Expected: `PASS ✓ render contract holds on a custom theme` (maxAlignErr < 0.02).
+
+To check another packaged project:
+
+```powershell
+$env:CC_PROJECT = "C:\path\to\project"
+node contract-check.js
+```
+
+Expected: `PASS ✓ render contract holds on the packaged project` (maxAlignErr < 0.02).
 
 This is a developer check, not required to build a course. `node_modules/` is gitignored.

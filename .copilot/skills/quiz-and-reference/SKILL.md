@@ -1,48 +1,57 @@
 ---
 name: quiz-and-reference
 description: >-
-  Author retention-first quizzes and reference materials (cheat sheets, roll-call, quiz bank) for
-  a narrated course. Encodes the read-aloud quiz contract (read the full question + all options +
-  the correct ANSWER TEXT + a one-line why — never just the letter) and how quizzes/references are
-  rendered and packaged. Use when adding quizzes, cheat sheets, or reference guides.
+  Author aligned learner practice, read-aloud interactive quizzes, delayed retrieval, transfer
+  activities, job aids, study guides, and quiz banks for narrated courses.
 ---
 
-# Quiz & Reference Generation (retention-first)
+# Practice, quizzes, and performance support
 
-Quizzes and references turn watching into learning. Read `course/GENERATION_PLAYBOOK.md` §3 and
-the quiz logic in `tools/build_episode2.py`.
+Watching is not evidence of learning. Start from the objective and acceptable evidence, then choose
+the activity form.
 
-## Read-aloud quiz contract (the rule that was wrong before)
-A narrated quiz MUST, on screen and in audio:
-1. Read the **full question** aloud, then **all options** aloud ("A. … B. … C. …"), then a
-   think-time countdown (pause to lock in an answer).
-2. On reveal, read the **correct ANSWER TEXT** plus a **one-line "why"** — **never just the
-   letter** ("The answer is B. In SP 800-53B. Baselines moved to the companion doc in Rev 5.").
-This is enforced by `build_episode2.py` (it appends the question + `Your options. …` + a NOVA
-"pause" line, then a reveal line `The answer is {letter}. {correct text}. {why}`).
+## Match activity to performance
 
-## Quiz spec fields (in `course/scripts/epNN.json`, `scene: "quiz"`)
-`q` (question), `options` (array), `answer` (0-based index), `why` (one-line rationale),
-`min_seconds` (think time). Authoring rules:
-- Options mutually exclusive and plausible; one unambiguous correct answer.
-- `why` must actually explain (teach), not restate the option.
-- Keep questions in-world but testing the real concept; NOVA/VEGA framing stays in character.
+- Remember/understand: retrieval, explanation, selected response.
+- Apply/analyze: classification, ordering, prediction, error detection, completion problem, scenario.
+- Evaluate/create: justification, performance, product, critique, or application to a novel case.
 
-## References
-- **Cheat sheets**: one page per control family in `course/cheatsheets/*.png` (+ the master map
-  `00_MASTER_the_twenty_guardians.png`), surfaced on `index.html`.
-- **Quiz bank + roll call**: `python tools\package.py` extracts all quizzes to
-  `course/quizzes.json` and builds the interactive **Guardian Roll Call** in `index.html`; the
-  per-episode quiz cues drive the in-video pauses in `watch.html`.
-- Every episode should map the Citadel metaphor back to real-world meaning (RMF tie-in) and end
-  Act I/the series with a cumulative quiz.
+Recognition MCQ does not establish that a learner can perform a procedure or justify a decision.
+Use `practice` beats for pause-and-do work and `quiz` only when four-option selection is aligned.
+
+## Interactive quiz contract
+
+`q`, four mutually exclusive `options`, zero-based `answer`, and explanatory `why` are required.
+
+1. Show and read the full question and every option.
+2. Make only the visible option buttons clickable from their first frame.
+3. Pause for commitment.
+4. Reveal and read the letter, full correct answer text, and a one-line explanation—never the
+   letter alone.
+
+The engine exports normalized option rectangles from the renderer, so the player must use those
+coordinates rather than re-derive layout.
+
+## Pause-and-do practice contract
+
+Provide `practice_type`, `prompt`, concise `instructions`, sufficient `think_seconds`,
+`model_answer`, and specific `feedback`. The reveal explains why the response works, why a likely
+alternative fails, or which process cue to use next. For complex skills, sequence modeled,
+guided/completion, and independent/transfer activities.
+
+## Retention and reference artifacts
+
+- **Delayed retrieval:** recall/use before answer exposure at increasing intervals.
+- **Transfer set:** varied surface contexts preserving the underlying principle.
+- **Job aid:** decision cues, steps, thresholds, examples, and escalation points used during work.
+- **Study guide:** objective-organized explanations, examples/non-examples, misconceptions, sources.
+- **Quiz bank:** parallel items mapped to objective/evidence/fact IDs with explanatory feedback.
+
+Do not produce a decorative recap that only repeats headings. Mix prior objectives into later
+practice when discrimination and retention matter.
 
 ## Gates
-- Quiz `q`/`options`/`why` text is dialogue → run **screenplay-review** (clarity) and
-  **accuracy-verification** (the correct answer must be factually right vs `truth.json`).
-- After render, `verify_episode.py` confirms the quiz lines (incl. options + answer text) are
-  actually spoken in the final mp4.
 
-## Definition of done
-- Each quiz reads Q + all options + correct answer TEXT + why; options clean; answer factually
-  verified; cheat sheets present; `package.py` regenerated (quiz bank + roll call); link check clean.
+Run instructional alignment, screenplay clarity, and fact verification before render. After render,
+verify the final mp4 speaks every question/option/answer/why, practice cues contain both phases, and
+hotspots remain aligned and accessible after resize.

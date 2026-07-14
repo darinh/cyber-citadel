@@ -81,15 +81,36 @@ def _texts_from_specs():
             s = json.loads(sp.read_text(encoding="utf-8"))
         except Exception:                                   # noqa: BLE001
             continue
-        for i, b in enumerate(s.get("beats", [])):
-            for k in ("title", "subtitle", "term", "plain", "why", "quote", "headline",
-                      "body", "example", "expand", "mnemonic", "q", "persona", "summary", "meaning"):
-                if b.get(k):
-                    out.append((f"{sp.name}#{i}.{k}", str(b[k])))
-            for opt in b.get("options", []) or []:
-                out.append((f"{sp.name}#{i}.option", str(opt)))
-            for sp2, tx in b.get("say", []):
-                out.append((f"{sp.name}#{i}.say", str(tx)))
+        out.extend(_walk_strings(s, sp.name))
+    return out
+
+
+def _walk_strings(value, where):
+    out = []
+    if isinstance(value, str):
+        out.append((where, value))
+    elif isinstance(value, list):
+        for i, item in enumerate(value):
+            out.extend(_walk_strings(item, f"{where}[{i}]"))
+    elif isinstance(value, dict):
+        for key, item in value.items():
+            out.extend(_walk_strings(item, f"{where}.{key}"))
+    return out
+
+
+def _texts_from_design():
+    out = []
+    for path in (
+        PROJECT / "project.json",
+        PROJECT / "course" / "design" / "learning-blueprint.json",
+        PROJECT / "assets" / "media.json",
+    ):
+        if path.exists():
+            try:
+                out.extend(_walk_strings(json.loads(path.read_text(encoding="utf-8")),
+                                         str(path.relative_to(PROJECT))))
+            except Exception:                               # noqa: BLE001
+                continue
     return out
 
 
@@ -106,7 +127,7 @@ def _texts_from_prompts():
 
 def lint():
     banned = _BANNED + _load_extra()
-    items = _texts_from_theme() + _texts_from_specs() + _texts_from_prompts()
+    items = _texts_from_theme() + _texts_from_design() + _texts_from_specs() + _texts_from_prompts()
     hits = []
     for where, text in items:
         low = (text or "").lower()

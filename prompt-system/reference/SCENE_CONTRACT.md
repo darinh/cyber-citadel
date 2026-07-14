@@ -1,45 +1,179 @@
-# Scene Contract
+# Episode and scene contract
 
-Author beats in `course/scripts/epNN.json`; the engine renders frames from `engine/scene.py`. Never hand-render frames. The theme may change colors, fonts, and words only; geometry, caption placement, timing, quiz boxes, and quality stay frozen in `engine/`.
+`engine/build_episode.py` renders declarative JSON. Layout is engine-owned; authors provide semantic
+content and normalized coordinates only. Validate against `schemas/episode-spec.schema.json`.
 
-Every beat may include:
-- `say`: optional dialogue lines as `["SPEAKER", "line"]`; used for narration/captions/avatars.
-- `min_seconds`: optional minimum on-screen duration; dense slides should set it generously.
-- Do **not** hand-set reserved auto fields: `_integrity`, `_t`, `tag`, `reveal`.
-- To add a visual pattern, add a renderer in `engine/scene.py` and register it in `RENDERERS`.
+## Episode fields
 
-| Scene | Purpose | Fields | Example |
-| --- | --- | --- | --- |
-| `title` | Episode title card. | Optional: `kicker`, `badge`, `title`, `subtitle`. | `{ "scene":"title", "kicker":"AN INTERACTIVE COOKING SERIES", "badge":"LESSON 01", "title":"KNIFE SKILLS", "subtitle":"Cut safely" }` |
-| `section` | Act/section divider. | Optional: `num`, `title`, `subtitle`. | `{ "scene":"section", "num":"02", "title":"Control", "subtitle":"Hands, board, blade" }` |
-| `map` | Course/group map with optional highlights and dependencies. | Optional: `title`, `order`, `highlight`, `deps`. `order` defaults to theme group order. | `{ "scene":"map", "title":"Stations", "order":["KN","HEAT"], "highlight":["KN"], "deps":[["KN","HEAT"]] }` |
-| `persona` (`guardian`) | Group/persona card connecting metaphor to real practice. | Optional: `group`/`family`, `group_name`/`family_name`, `persona`, `summary`/`protects`, `meaning`/`reality`. | `{ "scene":"persona", "group":"KN", "group_name":"Knife Station", "persona":"The steady prep lead", "summary":"Safe cutting basics", "meaning":"Stable setup and controlled motion" }` |
-| `concept` (`control`) | Fact/concept card with source line. | Optional: `id`, `title`, `plain`, `why`, `source`, `section`. On-screen factual `id`/`title` must match truth. | `{ "scene":"concept", "id":"KN-1", "title":"Pinch Grip", "plain":"Pinch the blade near the handle.", "why":"It improves control.", "source":"Kitchen Academy Handbook", "section":"2.1" }` |
-| `quote` | Verbatim source excerpt with citation. | Required for fact gate: `quote` as a verbatim substring, `cite` naming the source/fact. Spoken quote must equal on-screen quote. | `{ "scene":"quote", "quote":"Curl the fingertips of your guiding hand under.", "cite":"Kitchen Academy Handbook · KN-2" }` |
-| `diagram` | Boxes and arrows. | Optional: `title`. Required for useful diagram: `nodes` with `{label,x,y,w?,h?,color?}`, `arrows` as `[fromIndex,toIndex,label?]`. | `{ "scene":"diagram", "title":"Prep flow", "nodes":[{"label":"Set board","x":300,"y":360}], "arrows":[] }` |
-| `points` | Bullet teaching slide. | Optional: `kicker`, `title`, `bullets`, `note`. | `{ "scene":"points", "kicker":"REMEMBER", "title":"Three checks", "bullets":["Board steady","Blade sharp"], "note":"Set up once." }` |
-| `cheatcard` | Recap card for a group/topic. | Optional: `group`/`family`, `title`, `bullets`, `mnemonic`. | `{ "scene":"cheatcard", "group":"KN", "title":"Knife Skills", "bullets":["Pinch grip","The claw"], "mnemonic":"Sharp blade, safe claw." }` |
-| `define` | Plain-language definition card. | Optional: `kicker`, `term`, `expand`, `plain`, `example`, `cite`. | `{ "scene":"define", "kicker":"PLAIN LANGUAGE", "term":"Mise en place", "plain":"Everything in its place.", "example":"Put a damp towel under the board." }` |
-| `coldopen` | Hook/tension card tied to the lesson. | Optional: `label`, `year`, `headline`, `body`, `mitre`, `teaches`. | `{ "scene":"coldopen", "label":"CASE STUDY", "year":"2024", "headline":"Dinner rush slows prep", "body":"A loose board causes mistakes.", "teaches":"Knife setup" }` |
-| `quiz` | Interactive question; engine reads it aloud and exports `opt_rects` for clickable hotspots. | Required: `q`, `options`, `answer` (0-based index), `why`. Optional: `kicker`, `min_seconds`. | `{ "scene":"quiz", "q":"Where should fingertips be?", "options":["Flat","Curled under","Over blade"], "answer":1, "why":"The claw keeps tips behind knuckles." }` |
-| `pledge` (`oath`) | Spoken mnemonic pledge for a group. | Optional: `group`/`family`, `oath`, `controls`. | `{ "scene":"pledge", "group":"KN", "oath":"I set the board before I cut.", "controls":"KN-1 · KN-2" }` |
-| `notebook` | Recap page with ruled notes. | Optional: `title`, `lines`, `mnemonic`. | `{ "scene":"notebook", "title":"Today’s notes", "lines":["Stable board first","Guide with knuckles"], "mnemonic":"Steady, sharp, tucked." }` |
+```json
+{
+  "schema_version": "2.0",
+  "id": "ep01",
+  "slug": "read-the-pattern",
+  "title": "Read the Pattern",
+  "objective_ids": ["OBJ-1"],
+  "sound_design": "minimal",
+  "progress_meter": false,
+  "beats": []
+}
+```
 
-Quiz geometry is frozen in `quiz_layout()`: question at the top, 96px option boxes stacked below, and the same rectangles exported as normalized `opt_rects`. Do not alter player hotspots separately.
-## Field notes
-- `title`: `badge` and `kicker` are optional labels; `subtitle` should fit on one line.
-- `section`: use `num` for act numbering; keep `title` unique inside an episode.
-- `map`: `deps` is a list of two-item group-key pairs; `highlight` reveals selected groups.
-- `persona`/`guardian`: `group` is the short key; `group_name` is the human-readable name.
-- `concept`/`control`: `id` drives group color by prefix and is checked by the fact gate.
-- `quote`: keep `say` exactly equal to `quote` if the quote is narrated.
-- `diagram`: node `x`/`y` are pixel positions in the frozen 1920x1080 frame.
-- `points` and `cheatcard`: each `bullets` item is a string; use `note` or `mnemonic` for the final takeaway.
-- `define`: `expand` is for acronyms; `plain` is the learner-facing definition.
-- `coldopen`: use sourced, non-fabricated cases; `teaches` is the lesson target.
-- `quiz`: `answer` is zero-based; the engine draws A/B/C letters and reveal checkmark.
-- `pledge`/`oath`: `controls` is rendered as a single mono line.
-- `notebook`: `lines` are rendered as ruled handwritten-style notes.
+`music` is an optional sourced track key/path. `sound_design` is `none`, `minimal`, or `cinematic`;
+use `minimal` by default. Progress meters are opt-in and should represent a real instructional state,
+not inherited story chrome.
 
-## Rendering rule
-The `RENDERERS` keys are the authoritative scene names. If a key is absent there, the engine cannot render that scene.
+## Common v2 beat fields
+
+```json
+{
+  "scene": "chart",
+  "objective_ids": ["OBJ-1"],
+  "fact_ids": ["F-1"],
+  "purpose": "model",
+  "visual_purpose": "visualize_quantity",
+  "alt": "A line chart whose final point reverses the earlier decline.",
+  "say": [["NARRATOR", "First identify the overall direction, then inspect exceptions."]],
+  "min_seconds": 5
+}
+```
+
+- `objective_ids` trace instruction.
+- `fact_ids` trace claims.
+- `purpose` is one of `orient`, `activate`, `define`, `explain`, `model`, `example`,
+  `non_example`, `guided_practice`, `independent_practice`, `feedback`, `retrieve`, `synthesize`,
+  `transfer`, or `assess`.
+- `visual_purpose` states what the representation does.
+- `practice_id`/`evidence_id` link activities.
+- `narrative` and `narrative_function` are required only for an enabled narrative beat.
+- `say` is an array of `[speaker,text]`; narrator-only is valid.
+- `alt` is required for explanatory visual treatments.
+
+## Visual treatments
+
+### Title
+
+```json
+{"scene":"title","badge":"5-MINUTE SKILL","title":"Read the Pattern",
+ "subtitle":"Classify evidence without overclaiming"}
+```
+
+`badge` is an optional short label displayed in a fitted pill above the heading. The craft gate
+measures the themed badge font and letter spacing before render.
+
+### Image
+
+```json
+{"scene":"image","asset":"factory-floor","fit":"cover","focus":[0.62,0.45],
+ "caption":"Inspect the work where it happens.","alt":"An operator checking a gauge."}
+```
+
+`asset` is a key in `assets/media.json`. `fit` is `cover` or `contain`; `focus` is normalized.
+If the image itself contains factual values or labels, its manifest entry declares `fact_ids` and
+the beat includes the same IDs.
+
+### Screenshot with callouts
+
+```json
+{"scene":"screenshot","asset":"dashboard","title":"Locate the warning",
+ "callouts":[{"rect":[0.64,0.18,0.22,0.12],"label":"1","text":"Status and threshold"}],
+ "alt":"A dashboard with the status panel highlighted."}
+```
+
+Callout `rect` values are normalized `[x,y,w,h]`; `label` is the visible explanation.
+
+### Source video
+
+```json
+{"scene":"video","asset":"procedure-demo","start":4.2,"end":12.8,"fit":"contain",
+ "alt":"A cursor opens the filter and selects the previous week."}
+```
+
+Source audio is stripped. The selected excerpt is normalized; its final frame holds if narration is
+longer.
+
+### Comparison
+
+```json
+{"scene":"comparison","title":"Trend or anomaly?",
+ "left":{"asset":"trend-chart","fit":"contain","label":"Trend",
+         "title":"Sustained direction","body":"Several consecutive periods"},
+ "right":{"asset":"anomaly-chart","fit":"contain","label":"Anomaly",
+          "title":"Isolated departure","body":"One point breaks the pattern"},
+ "alt":"Two cases contrasted by persistence over time."}
+```
+
+Each side may omit `asset` for a text-only comparison or name a manifested image asset. Nested
+assets receive the same existence, provenance, traceability, cache, and credit checks as top-level
+media.
+
+### Timeline
+
+```json
+{"scene":"timeline","title":"What changed first?",
+ "events":[{"when":"09:00","label":"Deploy","note":"Version 4.2 starts"},
+           {"when":"09:08","label":"Errors rise","note":"Investigate; timing alone is not cause"}],
+ "alt":"Deployment precedes an increase in errors by eight minutes."}
+```
+
+### Process
+
+```json
+{"scene":"process","title":"Evidence before conclusion","layout":"linear",
+ "steps":[{"title":"Observe","detail":"Read the axes"},{"title":"Compare","detail":"Find the baseline"},
+          {"title":"Conclude","detail":"Name the supported pattern"}],
+ "alt":"Observe, compare, then conclude."}
+```
+
+Use `layout:"cycle"` only for a genuine repeating loop.
+
+### Chart
+
+```json
+{"scene":"chart","title":"One spike is not a trend","chart_type":"line","unit":"%",
+ "data":[{"label":"W1","value":2},{"label":"W2","value":2.2},{"label":"W3","value":7.1}],
+ "insight":"The final point is isolated; persistence has not been established.",
+ "alt":"Two values near two percent followed by one isolated value above seven percent."}
+```
+
+Data and insight must trace to truth facts. The deterministic fact gate checks authored numeric
+values against the statements named by `fact_ids`.
+
+### Worked example
+
+```json
+{"scene":"worked_example","title":"Model the decision","problem":"Classify the pattern.",
+ "steps":[{"title":"Direction","detail":"Mostly flat"},{"title":"Exception","detail":"One spike"}],
+ "model_answer":"Anomaly, pending more observations.",
+ "alt":"A two-step classification followed by a qualified conclusion."}
+```
+
+### Practice
+
+```json
+{"scene":"practice","practice_id":"P-1","evidence_id":"E-1",
+ "practice_type":"classification","prompt":"Classify this unfamiliar chart.",
+ "instructions":"State the pattern and cite one visible cue.","think_seconds":8,
+ "model_answer":"A sustained upward trend; four consecutive points rise.",
+ "feedback":"The repeated direction, not the final value alone, supports the classification.",
+ "alt":"An unlabeled practice chart with four rising points."}
+```
+
+The assembler creates prompt/work and reveal/feedback phases and records them in `activities`.
+
+### Quiz
+
+`quiz` requires `q`, exactly four `options`, zero-based `answer`, and explanatory `why`. The engine
+renders question/countdown and reveal phases, reads all options aloud, emits frozen normalized
+`opt_rects`, and writes interactive cues. The craft gate blocks a question whose wrapping would
+push the fourth option into the burned-caption region.
+
+## Legacy treatments
+
+`title`, `section`, `concept`, `control`, `quote`, `diagram`, `points`, `cheatcard`, `define`,
+`coldopen`, `notebook`, `map`, `persona`, `guardian`, `pledge`, and `oath` remain render-compatible.
+For schema v2, use them only when their instructional purpose is explicit. Persona/guardian/pledge/
+oath treatments are blocked when narrative is disabled.
+
+## Reserved fields
+
+Never hand-set `_integrity`, `_t`, `tag`, `reveal`, or quiz option rectangles. The engine owns them.

@@ -25,10 +25,13 @@ CC-BY requires attribution in `THIRD_PARTY_NOTICES.md`. Template:
 
 Include the exact license version and source URL. If the license requires additional wording, include it.
 
-## Fonts, SFX, and images
+## Fonts, SFX, images, and source video
 - Vendored Noto Sans fonts are licensed under the SIL Open Font License.
 - SFX are self-contained engine assets; do not replace them with unlicensed sound libraries.
-- Images, avatars, logos, and world art must be original or explicitly licensed for reuse.
+- Images, avatars, logos, screenshots, and video clips must be original or explicitly licensed for reuse.
+- Register every image/clip in `assets/media.json` with origin, license, creator, source URL where
+  applicable, credit, alt text, and represented truth `fact_ids`.
+- Generated-original visuals record tool, model, prompt, and seed.
 - Do not use protected characters, trademarks, celebrity likenesses, named fictional places, studio marks, or “in the style of” a living artist.
 ## Music intake checklist
 - Save the original source URL.

@@ -112,4 +112,5 @@ python -m json.tool course/data/truth.json >/dev/null
 - Are there enough facts for the requested video/course scope?
 - Did you avoid using LLM memory as a source?
 
-Then route to `system-prompts/04_world_and_cast.md`.
+Do not turn facts into scenes yet. The next phase decides what learners must do with those facts.
+Route to `system-prompts/04_learning_design.md`.

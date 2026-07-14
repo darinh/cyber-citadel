@@ -74,7 +74,7 @@ If PowerShell blocks activation: `Set-ExecutionPolicy -Scope Process -ExecutionP
 - macOS: `brew install ffmpeg`  ·  Linux: `sudo apt install ffmpeg`
 
 ```powershell
-python -m pip install Pillow numpy faster-whisper
+python -m pip install Pillow numpy jsonschema faster-whisper
 ffmpeg -version
 ffprobe -version
 ```
@@ -142,6 +142,5 @@ macOS/Linux: same commands with `python3`.
 - Did `python engine/probe.py preflight` + the trigger commands run before live/demo use?
 
 Then route to `system-prompts/03_truth_layer.md`.
-
 
 

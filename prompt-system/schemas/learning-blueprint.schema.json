@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "learning-blueprint.json — backward-design contract for schema v2 courses",
+  "type": "object",
+  "required": ["schema_version", "course_goal", "audience", "terminal_objective", "coverage", "objectives", "episodes", "delivery"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "course_goal": {"type": "string", "minLength": 20},
+    "audience": {
+      "type": "object",
+      "required": ["description", "prior_knowledge", "work_context"],
+      "properties": {
+        "description": {"type": "string"},
+        "prior_knowledge": {"type": "array", "items": {"type": "string"}},
+        "work_context": {"type": "string"},
+        "constraints": {"type": "array", "items": {"type": "string"}},
+        "accessibility": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "terminal_objective": {"$ref": "#/definitions/objectiveCore"},
+    "coverage": {
+      "type": "object",
+      "required": ["required_fact_ids", "excluded_fact_ids"],
+      "properties": {
+        "required_fact_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "excluded_fact_ids": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "reason"],
+            "properties": {"id": {"type": "string"}, "reason": {"type": "string", "minLength": 20}}
+          }
+        }
+      }
+    },
+    "objectives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "allOf": [
+          {"$ref": "#/definitions/objectiveCore"},
+          {
+            "type": "object",
+            "required": ["prerequisites", "fact_ids", "misconceptions", "evidence", "practices", "representations", "enables_terminal"],
+            "properties": {
+              "prerequisites": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+              "fact_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+              "misconceptions": {"type": "array", "items": {"type": "string"}},
+              "enables_terminal": {"type": "boolean"},
+              "transfer_context": {"type": "string"},
+              "evidence": {
+                "type": "array",
+                "minItems": 1,
+                "items": {"$ref": "#/definitions/evidence"}
+              },
+              "practices": {
+                "type": "array",
+                "minItems": 1,
+                "items": {"$ref": "#/definitions/practice"}
+              },
+              "representations": {
+                "type": "array",
+                "minItems": 1,
+                "items": {"$ref": "#/definitions/representation"}
+              }
+            }
+          }
+        ]
+      }
+    },
+    "episodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "objective_ids", "retrieves"],
+        "properties": {
+          "id": {"type": "string"},
+          "objective_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+          "retrieves": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "transfer_task": {"type": "string"}
+        }
+      }
+    },
+    "retention": {
+      "type": "object",
+      "properties": {
+        "follow_up": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["after", "objective_ids", "activity"],
+            "properties": {
+              "after": {"type": "string"},
+              "objective_ids": {"type": "array", "items": {"type": "string"}},
+              "activity": {"type": "string"}
+            }
+          }
+        },
+        "interleaving_rationale": {"type": "string"}
+      }
+    },
+    "delivery": {
+      "type": "object",
+      "required": ["mode", "cast", "narrative"],
+      "properties": {
+        "mode": {"enum": ["direct", "documentary", "demonstration", "case-based", "scenario-based", "story"]},
+        "cast": {"enum": ["narrator-only", "host", "dialogue", "ensemble"]},
+        "narrative": {
+          "type": "object",
+          "required": ["enabled"],
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "instructional_function": {"type": "string"}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "objectiveCore": {
+      "type": "object",
+      "required": ["id", "action_verb", "performance", "condition", "success_criteria", "level"],
+      "properties": {
+        "id": {"type": "string"},
+        "action_verb": {"type": "string"},
+        "performance": {"type": "string", "minLength": 12},
+        "condition": {"type": "string"},
+        "success_criteria": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "level": {"enum": ["remember", "understand", "apply", "analyze", "evaluate", "create"]}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["id", "type", "description", "criteria"],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"enum": ["selected_response", "scenario_decision", "classification", "ordering", "prediction", "error_detection", "worked_example_completion", "performance", "product", "explanation", "apply_to_novel"]},
+        "description": {"type": "string"},
+        "criteria": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+      }
+    },
+    "practice": {
+      "type": "object",
+      "required": ["id", "type", "description", "scaffolding", "feedback"],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"enum": ["retrieval", "self_explanation", "classification", "ordering", "prediction", "error_detection", "worked_example_completion", "scenario", "performance", "apply_to_novel"]},
+        "description": {"type": "string"},
+        "scaffolding": {"enum": ["guided", "faded", "independent"]},
+        "transfer": {"type": "boolean", "default": false},
+        "feedback": {
+          "type": "object",
+          "required": ["type", "content"],
+          "properties": {
+            "type": {"enum": ["corrective", "elaborative", "process", "comparative"]},
+            "content": {"type": "string", "minLength": 12}
+          }
+        }
+      }
+    },
+    "representation": {
+      "type": "object",
+      "required": ["treatment", "purpose", "rationale"],
+      "properties": {
+        "treatment": {"enum": ["image", "screenshot", "video", "comparison", "timeline", "process", "chart", "diagram", "worked_example", "text"]},
+        "purpose": {"enum": ["establish_context", "show_appearance", "locate", "demonstrate_action", "show_change", "explain_process", "show_relationship", "compare_cases", "visualize_quantity", "model_reasoning", "cue_attention", "support_practice", "summarize"]},
+        "rationale": {"type": "string", "minLength": 20}
+      }
+    }
+  }
+}

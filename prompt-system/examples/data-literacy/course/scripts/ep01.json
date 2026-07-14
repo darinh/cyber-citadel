@@ -1,0 +1,337 @@
+{
+  "schema_version": "2.0",
+  "id": "ep01",
+  "tag": "LESSON 01",
+  "slug": "read-the-pattern",
+  "title": "Read the Pattern",
+  "objective_ids": ["OBJ-1", "OBJ-2", "OBJ-3"],
+  "sound_design": "minimal",
+  "progress_meter": false,
+  "beats": [
+    {
+      "scene": "title",
+      "kicker": "DATA IN PRACTICE",
+      "badge": "5-MINUTE SKILL",
+      "title": "TREND, ANOMALY, OR NOT ENOUGH?",
+      "subtitle": "Read the evidence before you name the pattern",
+      "objective_ids": ["OBJ-1"],
+      "purpose": "orient",
+      "visual_purpose": "establish_context",
+      "say": [
+        ["NARRATOR", "Suppose a line jumps. Is the system changing, is one point unusual, or are you missing the context to decide? In this lesson, you will make that call from evidence."]
+      ],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "image",
+      "asset": "analysis-context",
+      "fit": "cover",
+      "focus": [0.55, 0.48],
+      "title": "A chart is evidence",
+      "caption": "Not a verdict. Start with context, then inspect the shape.",
+      "alt": "An analyst workspace with a large monitor showing five steadily rising weekly points.",
+      "objective_ids": ["OBJ-1"],
+      "purpose": "activate",
+      "visual_purpose": "establish_context",
+      "fact_ids": ["PAT-1"],
+      "say": [
+        ["NARRATOR", "Start with context, not shape. A defensible reading begins by asking what was measured, over what period, and on which scale."]
+      ],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "screenshot",
+      "asset": "operations-dashboard",
+      "fit": "contain",
+      "title": "Inspect context before the line",
+      "callouts": [
+        {"rect": [0.06, 0.17, 0.38, 0.10], "label": "Title: what is measured"},
+        {"rect": [0.05, 0.31, 0.08, 0.52], "label": "Vertical scale and unit"},
+        {"rect": [0.09, 0.80, 0.82, 0.09], "label": "Time span and interval"}
+      ],
+      "alt": "A weekly checkout error-rate dashboard with title, percent scale, and date axis highlighted in sequence.",
+      "objective_ids": ["OBJ-1"],
+      "purpose": "model",
+      "visual_purpose": "locate",
+      "fact_ids": ["PAT-1", "EX-1"],
+      "say": [
+        ["NARRATOR", "Let's inspect this fictional dashboard. First, the title: checkout error rate. Next, the vertical axis and units: percent of sessions. Then the horizontal axis: five weekly observations. Finally, check the visible scale before judging the size of the jump."]
+      ],
+      "min_seconds": 8.0
+    },
+    {
+      "scene": "process",
+      "title": "A reusable four-move routine",
+      "layout": "linear",
+      "steps": [
+        {"title": "Context", "detail": "Read title, axes, units, and time span."},
+        {"title": "Pattern", "detail": "Inspect direction across multiple observations."},
+        {"title": "Classify", "detail": "Trend, anomaly, or insufficient evidence."},
+        {"title": "Justify", "detail": "Name the visible cue and qualify the claim."}
+      ],
+      "alt": "Four ordered moves: context, pattern, classify, and justify.",
+      "objective_ids": ["OBJ-1"],
+      "purpose": "explain",
+      "visual_purpose": "explain_process",
+      "fact_ids": ["PAT-1", "PAT-2", "PAT-3", "PAT-4", "PAT-5"],
+      "say": [
+        ["NARRATOR", "Use four moves every time: establish context, inspect the pattern across observations, choose trend, anomaly, or insufficient evidence, then justify that category with a visible cue."]
+      ],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "practice",
+      "kicker": "PAUSE · CONTEXT CHECK",
+      "practice_type": "error_detection",
+      "prompt": "A line rises sharply, but the chart has no title or units. Which category is defensible?",
+      "instructions": "Choose a category and name the missing evidence.",
+      "think_seconds": 7,
+      "model_answer": "Insufficient evidence. The title and units are missing, so the line shape has no interpretable meaning.",
+      "feedback": "The same shape could represent dollars, seconds, or defects. Missing context changes the claim you can defend.",
+      "alt": "A context-check prompt asking about an unlabeled rising line.",
+      "objective_ids": ["OBJ-1"],
+      "purpose": "transfer",
+      "visual_purpose": "support_practice",
+      "practice_id": "P-1",
+      "evidence_id": "E-1",
+      "fact_ids": ["PAT-1", "PAT-4"],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "section",
+      "num": "02",
+      "title": "DISTINGUISH THE PATTERNS",
+      "subtitle": "Persistence · departure · missing evidence",
+      "objective_ids": ["OBJ-2"],
+      "purpose": "orient",
+      "visual_purpose": "establish_context",
+      "say": [
+        ["NARRATOR", "With context established, the decision turns on what happens across observations."]
+      ],
+      "min_seconds": 4.0
+    },
+    {
+      "scene": "comparison",
+      "title": "The decision boundary",
+      "left": {
+        "asset": "trend-case",
+        "fit": "contain",
+        "title": "TREND",
+        "body": "A direction persists across multiple observations. It may rise or fall.",
+        "label": "LOOK FOR REPEATED DIRECTION"
+      },
+      "right": {
+        "asset": "anomaly-case",
+        "fit": "contain",
+        "title": "ANOMALY",
+        "body": "An observation or compact cluster departs from the surrounding pattern.",
+        "label": "LOOK FOR DEPARTURE FROM CONTEXT"
+      },
+      "alt": "Trend and anomaly compared by persistence versus departure from the surrounding pattern.",
+      "objective_ids": ["OBJ-2"],
+      "purpose": "define",
+      "visual_purpose": "compare_cases",
+      "fact_ids": ["PAT-2", "PAT-3", "EX-1", "EX-3"],
+      "say": [
+        ["NARRATOR", "A trend sustains a direction across multiple observations. An anomaly departs from what surrounds it. A point's absolute height is less informative than its relationship to several neighbors."]
+      ],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "chart",
+      "title": "A jump followed by a return",
+      "chart_type": "line",
+      "unit": "%",
+      "data": [
+        {"label": "W1", "value": 2.0},
+        {"label": "W2", "value": 2.2},
+        {"label": "W3", "value": 7.1, "color": "danger"},
+        {"label": "W4", "value": 2.3},
+        {"label": "W5", "value": 2.4}
+      ],
+      "insight": "The surrounding observations stay near two percent.",
+      "alt": "Four weekly values near two percent with one isolated spike above seven percent in week three.",
+      "objective_ids": ["OBJ-2"],
+      "purpose": "example",
+      "visual_purpose": "visualize_quantity",
+      "fact_ids": ["PAT-2", "PAT-3", "EX-1"],
+      "say": [
+        ["NARRATOR", "Here, week three jumps, then the series returns to its earlier range. That visible return supports anomaly, not a sustained upward trend."]
+      ],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "worked_example",
+      "title": "Model the classification",
+      "problem": "Does the week-three spike establish a rising trend?",
+      "steps": [
+        {"title": "Check context", "detail": "Weekly checkout error rate, measured as a percentage."},
+        {"title": "Inspect observations", "detail": "Weeks one, two, four, and five remain near two percent."},
+        {"title": "Classify", "detail": "One point departs and the series returns to its prior range."},
+        {"title": "Qualify", "detail": "Investigate the anomaly; do not claim a continuing rise."}
+      ],
+      "model_answer": "An isolated anomaly worth investigating.",
+      "alt": "A four-step worked example classifying one spike among otherwise stable observations.",
+      "objective_ids": ["OBJ-2"],
+      "purpose": "model",
+      "visual_purpose": "model_reasoning",
+      "fact_ids": ["PAT-1", "PAT-2", "PAT-3", "PAT-5", "EX-1"],
+      "say": [
+        ["NARRATOR", "An expert does not name the tallest point and stop. They verify the metric, inspect both sides of the spike, classify the departure, and qualify the next action."]
+      ],
+      "min_seconds": 8.0
+    },
+    {
+      "scene": "practice",
+      "kicker": "GUIDED PRACTICE",
+      "practice_type": "classification",
+      "prompt": "Values are 41, 42, 71, 43, and 44. Trend, anomaly, or insufficient evidence?",
+      "instructions": "Use the relationship among observations, not the largest number alone.",
+      "think_seconds": 7,
+      "model_answer": "Anomaly. Seventy-one departs sharply, while the next value returns near the earlier range.",
+      "feedback": "The return toward forty-three separates this from a sustained rise.",
+      "alt": "A guided classification prompt using five numeric observations.",
+      "objective_ids": ["OBJ-2"],
+      "purpose": "guided_practice",
+      "visual_purpose": "support_practice",
+      "practice_id": "P-2B",
+      "fact_ids": ["PAT-2", "PAT-3", "EX-2"],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "video",
+      "asset": "trend-build-demo",
+      "start": 0,
+      "end": 6,
+      "fit": "cover",
+      "alt": "Five weekly completion-rate points appear progressively, each above the previous point.",
+      "objective_ids": ["OBJ-2"],
+      "purpose": "explain",
+      "visual_purpose": "show_change",
+      "fact_ids": ["PAT-2", "EX-3"],
+      "say": [
+        ["NARRATOR", "Now watch a trend form. No single point does the work. Each new observation extends the same direction, so persistence becomes visible across time."]
+      ],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "practice",
+      "kicker": "INDEPENDENT CLASSIFICATION",
+      "practice_type": "classification",
+      "prompt": "A labeled metric moves 68, 61, 55, 47, then 39. Classify the pattern and cite the cue.",
+      "instructions": "Answer in one sentence before the reveal.",
+      "think_seconds": 8,
+      "model_answer": "A downward trend: the value falls in the same direction across five observations.",
+      "feedback": "Trend describes persistence, not whether the direction is good, bad, rising, or falling.",
+      "alt": "An independent prompt with five consecutively decreasing values.",
+      "objective_ids": ["OBJ-2"],
+      "purpose": "transfer",
+      "visual_purpose": "support_practice",
+      "practice_id": "P-2",
+      "evidence_id": "E-2",
+      "fact_ids": ["PAT-2", "PAT-5", "EX-4"],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "timeline",
+      "title": "Sequence suggests a question, not a cause",
+      "events": [
+        {"when": "09:00", "label": "Release", "note": "A software change begins."},
+        {"when": "09:08", "label": "Errors rise", "note": "An anomaly appears nearby."},
+        {"when": "FOLLOW-UP", "label": "Investigate", "note": "Test alternatives; do not assume cause."}
+      ],
+      "alt": "A software release precedes an error increase by eight minutes, followed by investigation.",
+      "objective_ids": ["OBJ-3"],
+      "purpose": "model",
+      "visual_purpose": "show_change",
+      "fact_ids": ["PAT-6", "EX-5"],
+      "say": [
+        ["NARRATOR", "In this fictional scenario, the release and error spike are close in time. Timing alone makes the release a useful hypothesis, not proof of cause. Logs, traffic, and competing explanations remain to be tested."]
+      ],
+      "min_seconds": 7.0
+    },
+    {
+      "scene": "chart",
+      "title": "Transfer: a different domain, same reasoning",
+      "chart_type": "line",
+      "unit": "min",
+      "data": [
+        {"label": "MON", "value": 18},
+        {"label": "TUE", "value": 22},
+        {"label": "WED", "value": 27},
+        {"label": "THU", "value": 32},
+        {"label": "FRI", "value": 38}
+      ],
+      "insight": "Wait time rises across every observed day.",
+      "alt": "Hospital wait time rises from eighteen to thirty-eight minutes across five weekdays.",
+      "objective_ids": ["OBJ-3"],
+      "purpose": "explain",
+      "visual_purpose": "support_practice",
+      "fact_ids": ["PAT-2", "PAT-5", "PAT-6", "EX-6"],
+      "say": [
+        ["NARRATOR", "Change the domain. Consider a fictional hospital case: wait time rises across five days. The pattern is visible, but the preceding scheduling change still does not prove what caused the rise."]
+      ],
+      "min_seconds": 6.0
+    },
+    {
+      "scene": "practice",
+      "kicker": "FINAL TRANSFER",
+      "practice_type": "apply_to_novel",
+      "prompt": "Wait time rises 18, 22, 27, 32, 38 minutes after a schedule change. Classify and justify.",
+      "instructions": "Name the pattern, cite one cue, and qualify the causal claim.",
+      "think_seconds": 10,
+      "model_answer": "An upward trend: all five observations rise. The schedule change is a hypothesis, not proof of cause.",
+      "feedback": "The repeated direction supports trend. Temporal proximity can guide investigation, but causation needs additional evidence.",
+      "alt": "A transfer prompt combining a five-day wait-time sequence with a nearby schedule change.",
+      "objective_ids": ["OBJ-3"],
+      "purpose": "transfer",
+      "visual_purpose": "support_practice",
+      "practice_id": "P-3",
+      "evidence_id": "E-3",
+      "fact_ids": ["PAT-2", "PAT-5", "PAT-6", "EX-6"],
+      "min_seconds": 7.0
+    },
+    {
+      "scene": "quiz",
+      "q": "A data point stands well above its neighbors, then the series returns to its earlier range. Which conclusion is defensible?",
+      "options": [
+        "A sustained upward trend is proven",
+        "The spike is an anomaly worth investigating",
+        "The nearest event definitely caused it",
+        "The series is a downward trend because it falls after the spike"
+      ],
+      "answer": 1,
+      "why": "One departure can justify investigation, but it does not establish persistence or cause.",
+      "alt": "A four-option knowledge check about the defensible conclusion after one isolated spike.",
+      "objective_ids": ["OBJ-2", "OBJ-3"],
+      "purpose": "retrieve",
+      "visual_purpose": "support_practice",
+      "fact_ids": ["PAT-2", "PAT-3", "PAT-6"],
+      "say": [
+        ["NARRATOR", "One final decision. Commit to the strongest conclusion the evidence supports."]
+      ],
+      "min_seconds": 4.0
+    },
+    {
+      "scene": "points",
+      "kicker": "THE ROUTINE",
+      "title": "Context · Pattern · Classify · Justify",
+      "bullets": [
+        "Read labels, units, time span, and scale",
+        "Look across observations, not at one point",
+        "Name trend, anomaly, or insufficient evidence",
+        "Cite a visible cue and qualify causal claims"
+      ],
+      "note": "The quality of the decision lives in the evidence.",
+      "alt": "A four-step summary of the chart-classification routine.",
+      "objective_ids": ["OBJ-1", "OBJ-2", "OBJ-3"],
+      "purpose": "synthesize",
+      "visual_purpose": "summarize",
+      "fact_ids": ["PAT-1", "PAT-2", "PAT-3", "PAT-4", "PAT-5", "PAT-6"],
+      "say": [
+        ["NARRATOR", "Run the routine: establish context, inspect across observations, choose the defensible category, and justify it without claiming more than the evidence can support."]
+      ],
+      "min_seconds": 7.0
+    }
+  ]
+}

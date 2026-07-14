@@ -1,17 +1,18 @@
 """Voice engine (theme-cast-driven) with two interchangeable backends:
 
-  - chatterbox  : expressive zero-shot voice cloning (best quality; GPU-ideal). Includes
+  - chatterbox  : expressive zero-shot voice cloning (best quality on GPU or CPU). Includes
                   the SELF-CORRECTING synth gate (re-rolls a take that an STT pass shows was
-                  garbled/dropped). STT model size steps DOWN by tier so it runs on CPU too.
+                  garbled/dropped).
   - piper       : fast deterministic ONNX TTS — a user-approved lower-quality speed downgrade (CC_TTS=piper).
 
 Both share one interface — synth_line(speaker, text, out_wav) -> seconds — plus a shared,
 generic pronunciation pre-processor. Per-speaker voice config (timbre, knobs, effects) comes
 from the THEME cast, never from hardcoded character names, so it is topic/world agnostic.
 
-Engine selection: $CC_TTS ('chatterbox'|'piper'), else chatterbox if importable AND CUDA is
-present, else piper. The assembler keys its incremental cache on CAST+EFFECTS so a voice
-change re-synthesizes the affected lines.
+Engine selection: $CC_TTS ('chatterbox'|'piper'), else chatterbox on GPU or CPU. Missing
+high-quality dependencies fail loudly; piper is selected only after an explicit user-approved
+downgrade. The assembler keys its incremental cache on CAST+EFFECTS so a voice change
+re-synthesizes the affected lines.
 """
 from __future__ import annotations
 
@@ -249,6 +250,7 @@ _CONDS: dict = {}
 _STT_M = None
 VERIFY = os.environ.get("CC_VERIFY", "1") != "0"
 VERIFY_TRIES, VERIFY_THRESH = 4, 0.8
+_FAILLOG = PROJECT / ".cache" / "synth_verify_fails.log"
 
 
 def _cbx_model():
@@ -322,21 +324,28 @@ def _cbx_raw(speaker, text, raw_path):
 
 def _cbx_synth(speaker, text, out_wav):
     raw = Path(out_wav).with_suffix(".raw.wav")
-    best, best_recall = None, -1.0
+    best, best_recall, best_heard = None, -1.0, ""
+    accepted = False
     tries = VERIFY_TRIES if VERIFY else 1
     for _ in range(tries):
         _cbx_raw(speaker, text, raw)
         _master(raw, out_wav, speaker)
         if not VERIFY:
             break
-        ok, recall, _heard = _verify_score(text, out_wav)
+        ok, recall, heard = _verify_score(text, out_wav)
         if recall > best_recall:
-            best_recall, best = recall, Path(out_wav).read_bytes()
+            best_recall, best_heard = recall, heard
+            best = Path(out_wav).read_bytes()
         if ok:
-            best = None
+            accepted = True
             break
-    if VERIFY and best is not None:
+    if VERIFY and not accepted and best is not None:
         Path(out_wav).write_bytes(best)
+        _FAILLOG.parent.mkdir(parents=True, exist_ok=True)
+        with _FAILLOG.open("a", encoding="utf-8") as handle:
+            handle.write(
+                f"{speaker} recall={best_recall:.2f} WANT[{text}] HEARD[{best_heard}]\n"
+            )
     raw.unlink(missing_ok=True)
     return _dur(out_wav)
 

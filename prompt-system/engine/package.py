@@ -24,6 +24,7 @@ from pathlib import Path
 ENGINE = Path(__file__).resolve().parent
 sys.path.insert(0, str(ENGINE))
 import theme as _theme
+import media as _media
 
 W, H = 1280, 720
 MIN_LUMA = 55
@@ -112,24 +113,27 @@ def _num_from_id(epid):
 def _synopsis(spec):
     if spec.get("synopsis"):
         return spec["synopsis"]
-    # first define/concept plain line, else first narrator line
+    # first concise teaching/caption line, else first narration line
     for b in spec.get("beats", []):
         if b.get("scene") in ("define", "concept", "control") and b.get("plain"):
             return b["plain"]
+        if b.get("caption"):
+            return b["caption"]
     for b in spec.get("beats", []):
         for sp, tx in b.get("say", []):
             return tx
     return ""
 
 
-def _transcript(spec, cues):
+def _transcript(spec, cues, project):
     """A simple readable transcript (on-screen text + spoken lines)."""
     out = [f"# {spec.get('title', spec.get('tag', spec.get('id')))}", ""]
     for b in spec.get("beats", []):
         sc = b.get("scene", "")
         head = b.get("title") or b.get("term") or b.get("q") or b.get("headline") or sc
         out.append(f"## {head}  _({sc})_")
-        for key in ("plain", "why", "quote", "example", "expand", "note", "body"):
+        for key in ("plain", "why", "quote", "example", "expand", "note", "body",
+                    "caption", "problem", "prompt", "model_answer", "feedback", "insight", "alt"):
             if b.get(key):
                 out.append(f"- {b[key]}")
         for opt in b.get("bullets", []) or []:
@@ -140,6 +144,28 @@ def _transcript(spec, cues):
                 out.append(f"  - {chr(65 + i)}. {o}{mark}")
             if b.get("why"):
                 out.append(f"  - Why: {b['why']}")
+        for item in b.get("steps", []) or []:
+            if isinstance(item, dict):
+                out.append(f"- **{item.get('title', 'Step')}:** {item.get('detail', '')}")
+            else:
+                out.append(f"- {item}")
+        for item in b.get("events", []) or []:
+            out.append(f"- **{item.get('when', '')} {item.get('label', '')}:** {item.get('note', '')}")
+        for item in b.get("data", []) or []:
+            out.append(f"- {item.get('label', '')}: {item.get('value', '')}{b.get('unit', '')}")
+        media_refs = [(b.get("asset"), b.get("credit"))]
+        if b.get("scene") == "comparison":
+            media_refs.extend(
+                ((b.get(side) or {}).get("asset"), (b.get(side) or {}).get("credit"))
+                for side in ("left", "right")
+            )
+        for media_ref, beat_credit in media_refs:
+            if not media_ref:
+                continue
+            meta = _media.get(str(media_ref), project=project) or {}
+            credit = beat_credit or meta.get("credit")
+            if credit:
+                out.append(f"- Media credit: {credit}")
         for sp, tx in b.get("say", []):
             out.append(f"> **{sp}:** {tx}")
         out.append("")
@@ -186,18 +212,22 @@ def package(project: Path, quizzes=True, transcripts=True):
         for q in cues.get("quizzes", []):
             quiz_bank.append({"ep": epid, "n": q.get("n"), "q": q.get("q"),
                               "options": q.get("options"), "answer": q.get("answer"),
-                              "why": q.get("why", "")})
+                              "why": q.get("why", ""),
+                              "objective_ids": q.get("objective_ids", []),
+                              "practice_id": q.get("practice_id"),
+                              "evidence_id": q.get("evidence_id")})
         if transcripts and spec:
             tdir = project / "course" / "transcripts"
             tdir.mkdir(parents=True, exist_ok=True)
-            (tdir / f"{epid}.md").write_text(_transcript(spec, cues), encoding="utf-8")
+            (tdir / f"{epid}.md").write_text(_transcript(spec, cues, project), encoding="utf-8")
         print(f"  {ep['num']}  {ep['title']}  ({ep['duration']}s, {ep['quizzes']} quiz)")
 
     # sort episodes by numeric-ish id
     episodes.sort(key=lambda e: e["id"])
     manifest = {
         "brand": _theme.brand(t),
-        "theme": {"palette": t.get("palette", {}), "world": t.get("world", {})},
+        "theme": {"palette": t.get("palette", {}), "visual": t.get("visual", {}),
+                  "world": t.get("world", {})},
         "episodes": episodes,
     }
     (epdir / "manifest.json").write_text(json.dumps(manifest, indent=1, ensure_ascii=False), encoding="utf-8")
